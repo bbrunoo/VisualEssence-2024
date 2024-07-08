@@ -1,0 +1,6 @@
+@VisualEssence.API_HostAddress = http://localhost:5015
+
+GET {{VisualEssence.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,220 @@
+/*@import url("https://fonts.googleapis.com/css2?family=Joti+One&display=swap");*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.container {
+  position: relative;
+  background-image: url("../../../assets/estrelas.png"),
+    url("../../../assets/planofundo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  height: 100%;
+}
+
+.btnVoltar img {
+  width: 65px;
+  height: 65px;
+}
+
+.btnVoltar p {
+  font-size: 30px;
+  color: white;
+  padding-left: 80px;
+  margin-top: -55px;
+  font-weight: 600;
+  width: 15px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.formContato {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin-top: 3%;
+  padding: 25px;
+}
+
+
+.formulario {
+  border-radius: 55px;
+  width: 950px;
+  height: 480px;
+  padding: 20px;
+  color: #ffffff;
+  font-size: 25px;
+  background: rgb(25,71,131);
+  background: linear-gradient(180deg, rgba(25,71,131,0.28895308123249297) 0%, rgba(255,255,255,0.09567577030812324) 100%);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.6px);
+  -webkit-backdrop-filter: blur(5.6px);
+
+  h1{
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  label{
+    font-size: 25px;
+    font-weight: 600;
+  }
+}
+
+.form-conteudo
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1.5em;
+}
+
+.form-conteudo h1{
+  font-size: 30px;
+}
+
+
+form {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.left,
+.right {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 48%;
+}
+
+h1 {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 55px;
+}
+
+.itemForm {
+  margin-bottom: 20px;
+}
+
+.itemForm label{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.itemForm input,
+.itemForm textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: #1f194d;
+  background-color: #D9D9D9;
+}
+
+.itemForm textarea {
+  resize: none;
+  height: 240px;
+}
+
+.itemForm textarea::-webkit-scrollbar {
+  background-color: #47445e;
+  border-radius: 8px;
+  width: 8px;
+  cursor: pointer;
+  padding-right: 2px;
+}
+
+.itemForm textarea::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
+  border-radius: 8px;
+  width: 15px;
+  cursor: pointer;
+}
+
+.btnEnviar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.btnEnviar button {
+  background-color: #1f194d;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 10px 30px;
+  cursor: pointer;
+  width: 350px;
+  transition: background-color 0.3s ease;
+}
+
+.btnEnviar button:hover {
+  background-color: rgba(31, 25, 77, 0.8);
+}
+
+@media screen and (max-width: 768px) {
+  .formulario {
+    width: 90%;
+    font-size: 20px;
+    padding: 15px;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  .btnEnviar button {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .formContato {
+    margin-top: 5%;
+    padding: 10px;
+  }
+
+  .formulario {
+    width: 95%;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .btnEnviar button {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 18px;
+  }
+}

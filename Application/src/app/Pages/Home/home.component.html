@@ -1,0 +1,164 @@
+<div class="container">
+  <div class="MENU">
+    <div class="MENU-NAVBAR">
+      <div class="MENU-CONTENT">
+        <div class="MENU-LOGO">
+          <img [src]="Logo" alt="">
+          
+        </div>
+        <div class="MENU-OPTIONS">
+          <ul>
+            <li>HOME</li>
+            <li>ONGs</li>
+            <li>JOGOS</li>
+            <li><a [routerLink]="['/admin-contato']" routerLinkActive="router-link-active">
+                _contato
+              </a></li>
+          </ul>
+        </div>
+        <div class="MENU-ACCOUNT">
+          <div class="MENU-CONTA">
+            <img [src]="Perfil" alt="">
+          </div>
+
+          <div class="MENU-LOGOUT">
+            <img [src]="Logout" alt="" [routerLink]="['/opc-entrar']" routerLinkActive="router-link-active"
+              (click)="logout()">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <section class="sec-sobre">
+    <div class="sobre-conteudo">
+      <div class="sobre-imagem">
+        <img [src]="Nave">
+      </div>
+
+      <div class="cont-textos">
+        <div class="s-titulo">
+          <h1>
+            Visual Essence
+          </h1>
+        </div>
+
+        <div class="s-texto">
+          <p>
+            Uma plataforma de jogos seguros e divertidos para crianças,
+            com monitoramento integrado da saúde visual.
+            Com uma variedade de jogos educativos,
+            os pais podem acompanhar o progresso e
+            identificar possíveis problemas visuais
+            enquanto seus filhos se divertem.
+            Uma solução abrangente que une
+            entretenimento digital e cuidados
+            com a saúde infantil.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="sec-ong">
+    <div class="ong-container">
+      <div class="cont-left">
+        <h1>Ajude a Melhorar a Visão de Milhares</h1>
+
+        <p>Cada doação transforma vidas e enxerga um novo mundo.
+          Ao contribuir, você oferece apoio, inspira mudanças
+          e alimenta esperanças. Além disso,
+          fortalece nosso bem-estar emocional,
+          trazendo um sentido de propósito.
+          Não importa o valor, cada contribuição conta.
+          Faça a diferença e ajude a construir um mundo melhor,
+          onde todos possam ver um futuro brilhante.
+        </p>
+
+
+      </div>
+      <div class="cont-right">
+        <img [src]="Doe" />
+
+        <a class="ong-button">
+          Doe!
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-jogos">
+    <div class="jogos-container">
+      <h1>JOGOS</h1>
+      <p>Jogos que ajudam a identificar possíveis problemas visuais.
+        Venha aprender brincando!</p>
+
+      <div class="jogos-box">
+        <div class="jogos-daltonismo">
+          <h2>Daltonismo</h2>
+          <div class="jogos-img">
+            <img [src]="Dalt" />
+          </div>
+          <div class="jogos-text">
+            <p>Veja como é enxergar com daltonismo!</p>
+          </div>
+        </div>
+
+        <div class="jogos-miopia">
+          <h2>Miopia</h2>
+          <div class="jogos-img">
+            <img [src]="Miop" />
+          </div>
+          <div class="jogos-text">
+            <p>Descubra como é ver o mundo com miopia!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="space"></div>
+  <section>
+    <div class="custom-shape-divider-bottom-1718164474">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path
+          d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+          class="shape-fill"></path>
+      </svg>
+    </div>
+    <footer class="rodape">
+      <div class="redes-sociais">
+        <h3>Visual Essence</h3>
+        <div class="redes">
+          <img [src]="Insta" alt="">
+          <img [src]="X" alt="">
+          <img [src]="Face" alt="">
+        </div>
+      </div>
+      <div class="other-pages">
+        <div class="pages">
+          <ul>
+            <li>Sobre nós</li>
+            <li>Painel Educativo</li>
+            <li>
+              <a [routerLink]="['/contato']" routerLinkActive="router-link-active">
+                Contato
+              </a>
+            </li>
+          </ul>
+        </div>
+        <span class="regua"></span>
+        <div class="copy">
+          <p>Direitos reservados a equipe de desenvolvimento Code Fusion</p>
+        </div>
+      </div>
+    </footer>
+  </section>
+  <div class="background-layer1"></div>
+  <div class="background-layer2"></div>
+  <div class="background-layer3"></div>
+  <div class="background-layer4"></div>
+</div>

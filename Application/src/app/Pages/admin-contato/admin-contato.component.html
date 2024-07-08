@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="btnVoltar">
+    <a class="teste" [routerLink]="['/home']" routerLinkActive="router-link-active">
+      <img src="../../../assets/home.png" alt="voltar" />
+      <p>Voltar</p>
+    </a>
+  </div>
+          <!-- COLOCAR LOGO NO CANTO EM ALGUM LUGAR -->
+
+  <div class="formContato">
+    <div class="formulario">
+      <div class="form-conteudo">
+        <h1>Resultados</h1>
+        <div class="Content" *ngIf="data">
+          <div class="infos" *ngFor="let data of data">
+            <div class="left">
+              <div class="itemForm">
+                <label for="nome">Nome</label>
+                <p>{{data.nome}}</p>
+              </div>
+              <div class="itemForm">
+                <label for="email">Email</label>
+                <p>{{data.email}}</p>
+              </div>
+              <div class="itemForm">
+                <label for="assunto">Assunto</label>
+                <p>{{data.assunto}}</p>
+              </div>
+            </div>
+            <div class="right">
+              <div class="itemForm">
+                <label for="descricao">Descricao</label>
+                <p>{{data.descricao}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
