@@ -7,8 +7,8 @@ namespace VisualEssence.Infrasctructure.Mappings
     public class MappingProfile : Profile
     {
         public MappingProfile() { 
-            CreateMap<UserPaisDTO, UserPais>();
-            CreateMap<UserInstDTO, UserInst>();
+            CreateMap<UserPais, UserPaisDTO>();
+            CreateMap<UserInst, UserInstDTO>();
         }
     }
 }

@@ -8,7 +8,7 @@ import { ContatoModel } from '../../app/Models/ContatoEntitie/contato.model';
   providedIn: 'root'
 })
 export class ContatoServiceService {
-  apiUrl = 'https://localhost:7063/api/Contato/Contato';
+  apiUrl = 'https://localhost:5200/Contato/Contato';
 
   constructor(private http: HttpClient, private router: Router) {}
 

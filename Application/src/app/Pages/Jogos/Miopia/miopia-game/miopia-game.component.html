@@ -1,0 +1,15 @@
+<div *ngIf="fase.length">
+  <h1>{{fase[faseAtual].question}}</h1>
+  <div>
+    <img [src]="fase[faseAtual].question" alt="Imagem da Pergunta" />
+  </div>
+  <div>
+    <ul>
+      <li *ngFor="let option of fase[faseAtual].questionImage">
+        <button (click)="checkAnswer(option)">
+        <img [src]="option" alt="Opção" />
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

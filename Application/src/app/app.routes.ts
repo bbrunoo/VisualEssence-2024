@@ -17,7 +17,14 @@ import { HomeComponent } from './Pages/Home/home.component';
 import { AdminContatoComponent } from './Pages/admin-contato/admin-contato.component';
 
 
+//jogos
+
+import { MiopiaInstructionsComponent } from './Pages/Jogos/Miopia/miopia-game/miopia-instructions/miopia-instructions.component';
+import { MiopiaGameComponent } from './Pages/Jogos/Miopia/miopia-game/miopia-game.component';
+import { MiopiaResultComponent } from './Pages/Jogos/Miopia/miopia-game/miopia-result/miopia-result.component';
+
 import { ContatoComponent } from './Pages/Contato/contato.component';
+import { AuthGuard } from './guards/user-authenticated.guard';
 
 export const routes: Routes = [
   {path: '', component: EntrarComponent},
@@ -36,5 +43,9 @@ export const routes: Routes = [
 
   {path: 'esquecer-senha', component: EsquecerSenhaComponent},
 
-  {path: 'home', component: HomeComponent}
+  {path: 'jogos/miopia/instrucoes', component: MiopiaInstructionsComponent, canActivate: [AuthGuard]},
+  {path: 'jogos/miopia', component: MiopiaGameComponent , canActivate: [AuthGuard]},
+  {path: 'jogos/miopia/result', component: MiopiaResultComponent, canActivate: [AuthGuard]},
+
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]}
 ];

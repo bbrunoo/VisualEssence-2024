@@ -2,15 +2,16 @@ import { CredentialsInst } from '../../../app/Models/credentialsInst.model';
 import { CredentialsPais } from '../../../app/Models/credentialsPais.model';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, map} from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { loggedUser } from '../../../app/Models/LoggedUser/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  apiUrl = 'https://localhost:7063/api/Auth'
+  apiUrl = 'https://localhost:5200/Account'
 
   constructor(private http:HttpClient, private router: Router){}
   registerPais(UserPais: any): Observable<any>
@@ -44,7 +45,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
   }
-  getToken(){
+  private getToken(){
     return localStorage.getItem('token');
   }
 
@@ -52,23 +53,18 @@ export class AuthService {
     return !!this.getToken();
   }
 
-  getUserLogged(): Observable<any> {
+  getUserProfile(): Observable<loggedUser>
+  {
     const token = this.getToken();
-    if (token) {
-      const decodedToken: any = jwtDecode(token);
-      const userId = decodedToken.userId; // Supondo que o token possui um campo userId
-      const userType = decodedToken.userType; // Supondo que o token possui um campo userType indicando o tipo de usuário (inst ou pais)
-
-      let route = '';
-      if (userType === 'inst') {
-        route = 'instituicao';
-      } else if (userType === 'pais') {
-        route = 'pais';
-      }
-
-      return this.http.get(`${this.apiUrl}/${route}/${userId}`);
-    } else {
-      return new Observable();
+    if (!token) {
+      console.error('Token JWT não encontrado no localStorage');
     }
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+
+    return this.http.get<loggedUser>(`${this.apiUrl}/user-infos`, { headers });
   }
 }
