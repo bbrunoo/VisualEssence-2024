@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using VisualEssence.Domain.DTOs;
-using VisualEssence.Domain.Interfaces;
+using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
 
 namespace VisualEssenceAPI.Services
@@ -17,10 +17,9 @@ namespace VisualEssenceAPI.Services
             _mapper = mapper;
         }
 
-        public async Task ExcetuteAsyncs(UserPaisDTO userPaisDTO)
+        public async Task ExcetuteAsyncs(UserPaisDTO userPais)
         {
-            var user = _mapper.Map<UserPais>(userPaisDTO);
-            user.Senha = BCrypt.Net.BCrypt.HashPassword(userPaisDTO.Senha);
+            var user = _mapper.Map<UserPais>(userPais);
             await _usuarioPaisRepository.AddUsuarioPais(user);
         }
     }

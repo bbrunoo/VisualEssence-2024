@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VisualEssence.Domain.Interfaces;
+using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
 using VisualEssence.Infrastructure.Context;
 

@@ -15,11 +15,11 @@
 
 .container{
     background-image: url("../../../assets/HomeImages/background.png");
-    background-size:contain; 
+    background-size:contain;
     background-repeat: no-repeat;
-    width: 100vw; 
-    min-height: 350vh; 
-    z-index:-5; 
+    width: 100vw;
+    min-height: 350vh;
+    z-index:-5;
 }
 
 .background-layer1 {
@@ -89,7 +89,7 @@
     width: 40em;
     font-weight: bold;
     }
-    
+
 .MENU-ACCOUNT{
         display: flex;
         flex-direction: row;
@@ -97,15 +97,22 @@
         gap: 2em;
         align-items: center;
         font-weight: bold;
-        
+
         img {
             width: 40px;
             height: 40px;
             }
 }
-            
+
+.MENU-CONTA{
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+}
+
 .MENU-CONTA img{
-    border-radius: 100%;           
+    border-radius: 100%;
 }
 
 .sec-sobre {
@@ -148,7 +155,7 @@
     width: 100vw;
     height: 80vh;
 
-    
+
     background: rgb(30,47,108);
     background: -moz-linear-gradient(90deg, rgba(30,47,108,1) 0%, rgba(41,73,157,1) 100%);
     background: -webkit-linear-gradient(90deg, rgba(30,47,108,1) 0%, rgba(41,73,157,1) 100%);
@@ -175,7 +182,7 @@
     gap: 20px;
 }
 
-.cont-left p {	
+.cont-left p {
     font-size: 20px;
 }
 
@@ -312,7 +319,7 @@
         cursor: pointer;
     }
     }
-    
+
 .redes{
     display: flex;
     flex-direction: row;
@@ -354,8 +361,8 @@
     width: 100%;
     justify-content: space-evenly;
     gap: 1em;
-    
-    
+
+
 }
 
 .regua {display:block; padding:0; width:95%; height:2px; background-color:#ddd}

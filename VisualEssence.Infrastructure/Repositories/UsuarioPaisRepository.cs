@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VisualEssence.Domain.Interfaces;
+using System.Security.Cryptography;
+using System.Text;
+using VisualEssence.Domain.DTOs;
+using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
 using VisualEssence.Infrastructure.Context;
 
@@ -19,10 +22,19 @@ namespace VisualEssenceAPI.Repositories
             return await _context.UserPais.AnyAsync(e => e.Email == email);
         }
 
-        public async Task AddUsuarioPais(UserPais userPais)
+        public async Task<UserPais> AddUsuarioPais(UserPais userPais)
         {
-            await _context.AddAsync(userPais);
+            if (string.IsNullOrEmpty(userPais.Senha)) throw new ArgumentException("A senha deve ser fornecida.");
+
+            using (var hmac = new HMACSHA512())
+            {
+                userPais.SenhaSalt = hmac.Key;
+                userPais.SenhaHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userPais.Senha));
+            }
+
+            await _context.UserPais.AddAsync(userPais);
             await _context.SaveChangesAsync();
+            return userPais;
         }
 
         public async Task<UserPais> GetUsuarioByEmail(string email)
@@ -38,6 +50,18 @@ namespace VisualEssenceAPI.Repositories
         public async Task<IEnumerable<UserPais>> GetUser()
         {
             return await _context.UserPais.ToListAsync();
+        }
+
+        public async Task<UserPais> Delete(UserPais userPais)
+        {
+            _context.UserPais.Remove(userPais);
+            await _context.SaveChangesAsync();
+            return userPais;
+        }
+
+        public async Task<bool> Exists(Guid id)
+        {
+            return await _context.UserPais.AnyAsync(e => e.Id == id);
         }
     }
 }

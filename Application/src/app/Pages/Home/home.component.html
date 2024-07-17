@@ -1,12 +1,12 @@
 <div class="container">
   <div class="MENU">
-    <div class="MENU-NAVBAR">
+    <div class="MENU-NAVBAR ">
       <div class="MENU-CONTENT">
         <div class="MENU-LOGO">
           <img [src]="Logo" alt="">
-          
+
         </div>
-        <div class="MENU-OPTIONS">
+        <div class="MENU-OPTIONS ">
           <ul>
             <li>HOME</li>
             <li>ONGs</li>
@@ -17,8 +17,9 @@
           </ul>
         </div>
         <div class="MENU-ACCOUNT">
-          <div class="MENU-CONTA">
+          <div *ngIf="user" class="MENU-CONTA">
             <img [src]="Perfil" alt="">
+            <p>{{user.nome}}</p>
           </div>
 
           <div class="MENU-LOGOUT">
@@ -111,7 +112,7 @@
         <div class="jogos-miopia">
           <h2>Miopia</h2>
           <div class="jogos-img">
-            <img [src]="Miop" />
+            <img [src]="Miop" routerLink="/jogos/miopia/instrucoes"/>
           </div>
           <div class="jogos-text">
             <p>Descubra como é ver o mundo com miopia!</p>

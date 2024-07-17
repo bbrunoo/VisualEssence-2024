@@ -23,4 +23,8 @@
     <ProjectReference Include="..\VisualEssence.Domain\VisualEssence.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Context\Migrations\" />
+  </ItemGroup>
+
 </Project>

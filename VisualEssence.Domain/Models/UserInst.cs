@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VisualEssence.Domain.Models
 {
@@ -24,20 +25,32 @@ namespace VisualEssence.Domain.Models
         public string CNPJ { get; set; }
 
         [Required]
-        public string Senha { get; set; }
+        public byte[] SenhaHash { get; set; }
+
+        public byte[] SenhaSalt { get; set; }
 
         [Required]
         public bool IsAdmin { get; set; }
 
+        [NotMapped]
+        public string Senha { get; set; }
 
-        public UserInst(string nomeInst, string email, string cnpj, string senha, bool isAdmin)
+
+        public UserInst(string nomeInst, string email, string cnpj, byte[] senhaHash, byte[] senhaSalt, bool isAdmin)
         {
-            Id = Guid.NewGuid();
             NomeInst = nomeInst;
             Email = email;
             CNPJ = cnpj;
-            Senha = senha;
+            SenhaHash = senhaHash;
+            SenhaSalt = senhaSalt;
             IsAdmin = isAdmin;
+            Id = Guid.NewGuid();
+        }
+
+        public void AlterarSenha(byte[] passwordHash, byte[] passwordSalt)
+        {
+            SenhaHash = passwordHash;
+            SenhaSalt = passwordSalt;
         }
     }
 }

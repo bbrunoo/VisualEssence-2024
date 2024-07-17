@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using VisualEssence.Domain.Interfaces;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
 
 namespace VisualEssenceAPI.Controllers
