@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="menu">
+        <div class="logo">
+            <img src="../../../assets/HomeImages/VisualEssenceLogo.svg">
+        </div>
+
+        <div class="MenuOpt">
+            <ul>
+                <li>
+                    <div class="AumDim"><button>A+/</button><button>A-</button></div>
+                </li>
+                <li><a href="">HOME</a></li>
+                <li><a [routerLink]="['/criar-sala']">CRIAR SALA</a></li>
+                <li><a [routerLink]="['/cadastros']">CADASTROS</a></li>
+                <li><a href="">JOGOS</a></li>
+                <li><a href="">HISTÓRICO</a></li>
+                <li><button class="btnIdi"><img src="assets/bdEUA.webp"></button></li>
+            </ul>
+        </div>
+
+        <div class="MenuAcco">
+            <div *ngIf="user" class="MenuConta">
+                <img [src]="Perfil" alt="">
+                <p>{{user.nome}}</p>
+            </div>
+
+            <div class="MenuLogout">
+                <img [src]="Logout" alt="" [routerLink]="['/opc-entrar']" routerLinkActive="router-link-active"
+                    (click)="logout()">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="criarS_Opt">
+        <button (click)="showCriarS = false">CRIAR SALA</button>
+        <p>|</p>
+        <button (click)="showOpCad = true">CADASTRAR CRIANÇA</button>
+    </div>
+
+    <div class="criarS_Cont" *ngIf="!showOpCad" [ngClass]="{'fade_In': !showOpCad}">
+        <div class="novaSala">
+            <form action="">
+                <h3>NOVA SALA</h3>
+                <input type="text" id="name" placeholder="Nome">
+                <br>
+                <input type="text" id="capacity" placeholder="Capacidade">
+                <br>
+                <div class="btnSalvar">
+                    <button type="submit">Salvar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="salasExist">
+            <div class="Salas">
+                <h3>SALAS EXISTENTES</h3>
+                <div class="barra">
+                    <div class="salaInf">
+                        <label for="" id="titSala">SALA 01</label>
+                        <div class="dados">
+                            <a [routerLink]="['/cadastros']">Crianças Cadastradas</a>
+                            <p>Quantidade:<label for="">0</label></p>
+                            <p>CapMáx:<label for="">0</label></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fade_In" *ngIf="showOpCad">
+        <!--oooooooooooooooooooooooooo-->
+    </div>
+
+</div>
