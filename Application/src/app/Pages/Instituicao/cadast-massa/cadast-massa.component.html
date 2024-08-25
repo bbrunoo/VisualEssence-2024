@@ -1,0 +1,72 @@
+<div class="container">
+    <!--<div class="menu">
+        <div class="logo">
+            <img src="../../../assets/HomeImages/VisualEssenceLogo.svg">
+        </div>
+
+        <div class="MenuOpt">
+            <ul>
+                <li>
+                    <div class="AumDim"><button>A+/</button><button>A-</button></div>
+                </li>
+                <li><a href="">HOME</a></li>
+                <li><a [routerLink]="['/criar-sala']">CRIAR SALA</a></li>
+                <li><a [routerLink]="['/cadastros']">CADASTROS</a></li>
+                <li><a href="">JOGOS</a></li>
+                <li><a href="">HISTÓRICO</a></li>
+                <li><button class="btnIdi"><img src="assets/bdEUA.webp"></button></li>
+            </ul>
+        </div>
+
+        <div class="MenuAcco">
+            <div *ngIf="user" class="MenuConta">
+                <img [src]="Perfil" alt="">
+                <p>{{user.nome}}</p>
+            </div>
+
+            <div class="MenuLogout">
+                <img [src]="Logout" alt="" [routerLink]="['/opc-entrar']" routerLinkActive="router-link-active"
+                    (click)="logout()">
+            </div>
+        </div>
+    </div>
+
+    <div class="criarS_Opt">
+        <button>CRIAR SALA</button>
+        <p>|</p>
+        <button>CADASTRAR CRIANÇA</button>
+    </div>-->
+
+    <div class="conteudo" *ngIf="!showNew" [ngClass]="{'fade_In': !showNew}">
+        <div class="formulario">
+            <form action="">
+                <legend>CADASTRO EM MASSA</legend>
+
+                <select (change)="SelectChange($event, 'sala')" [(ngModel)]="selectSala" name="sala" id="" required>
+                    <option value="" disabled>Selecionar Sala</option>
+                    <option value="bra"></option>
+                </select>
+
+                <br>
+
+                <div class="arqExc" (click)="fileUpl()">
+                    <label for="labelFile">
+                        <span>
+                            {{fileName ? fileName : 'Exportar Arquivo Excel' }}
+                        </span>
+                    </label>
+                    <img src="../../../assets/imgUpl.png" alt="">
+                </div>
+                <input type="file" #inputFile (change)="fileSel($event)" name="arqExcel" id="">
+
+                <br>
+
+                <div class="btns">
+                    <button type="submit" class="btnSalvar">Salvar</button>
+                    <button type="reset" class="btnCancelar">Cancelar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

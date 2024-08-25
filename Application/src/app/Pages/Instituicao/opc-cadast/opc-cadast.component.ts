@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIf, CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { OpcCadastComponent } from '../opc-cadast/opc-cadast.component';
+import { CadastUniComponent } from '../cadast-uni/cadast-uni.component';
+import { CadastMassaComponent } from '../cadast-massa/cadast-massa.component';
 
 @Component({
-  selector: 'app-criar-sala',
+  selector: 'app-opc-cadast',
   standalone: true,
-  imports: [RouterLink, NgIf, CommonModule, OpcCadastComponent],
-  templateUrl: './criar-sala.component.html',
-  styleUrl: './criar-sala.component.css',
+  imports: [RouterLink, NgIf, CommonModule, CadastUniComponent, CadastMassaComponent],
+  templateUrl: './opc-cadast.component.html',
+  styleUrl: './opc-cadast.component.css',
   animations: [
     trigger('fadeAnimation', [
       state('void', style({ opacity: 0 })),
@@ -17,7 +18,7 @@ import { OpcCadastComponent } from '../opc-cadast/opc-cadast.component';
     ]),
   ],
 })
-export class CriarSalaComponent {
+export class OpcCadastComponent {
   user: any;
   Perfil: any;
   Logout: any;
@@ -44,5 +45,15 @@ export class CriarSalaComponent {
 
   toggleCadMas() {
     this.showCadMas = !this.showCadMas;
+  }
+
+  showCadastro(type: string) {
+    if (type === 'uni') {
+      this.showCadUni = true;
+      this.showCadMas = false;
+    } else if (type === 'mas') {
+      this.showCadUni = false;
+      this.showCadMas = true;
+    }
   }
 }

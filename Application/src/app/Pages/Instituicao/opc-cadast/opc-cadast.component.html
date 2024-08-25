@@ -1,0 +1,55 @@
+<div class="container">
+    <!--<div class="menu">
+        <div class="logo">
+            <img src="../../../assets/HomeImages/VisualEssenceLogo.svg">
+        </div>
+        <div class="MenuOpt">
+            <ul>
+                <li>
+                    <div class="AumDim"><button>A+/</button><button>A-</button></div>
+                </li>
+                <li><a href="">HOME</a></li>
+                <li><a [routerLink]="['/criar-sala']">CRIAR SALA</a></li>
+                <li><a [routerLink]="['/cadastros']">CADASTROS</a></li>
+                <li><a href="">JOGOS</a></li>
+                <li><a href="">HISTÓRICO</a></li>
+                <li><button class="btnIdi"><img src="assets/bdEUA.webp"></button></li>
+            </ul>
+        </div>
+
+        <div class="MenuAcco">
+            <div *ngIf="user" class="MenuConta">
+                <img [src]="Perfil" alt="">
+                <p>{{user.nome}}</p>
+            </div>
+
+            <div class="MenuLogout">
+                <img [src]="Logout" alt="" [routerLink]="['/opc-entrar']" routerLinkActive="router-link-active"
+                    (click)="logout()">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="criarS_Opt">
+        <button>CRIAR SALA</button>
+        <p>|</p>
+        <button>CADASTRAR CRIANÇA</button>
+    </div>-->
+
+    <div class="conteudo" *ngIf="!showCadUni && !showCadMas"
+        [ngClass]="{'fade_In': !showCadUni} && {'fade_In': !showCadMas}">
+        <div class="espBtn">
+            <button class="btnCad" id="btnCadUn" (click)="showCadastro('uni')">CADASTRO UNITÁRIO DE CRIANÇA</button>
+            <br>
+            <button class="btnCad" id="btnCadMa" (click)="showCadastro('mas')">CADASTRO EM MASSA</button>
+        </div>
+    </div>
+
+    <div class="fade_In" *ngIf="showCadUni">
+        <app-cadast-uni></app-cadast-uni>
+    </div>
+    <div class="fade_In" *ngIf="showCadMas">
+        <app-cadast-massa></app-cadast-massa>
+    </div>
+</div>
