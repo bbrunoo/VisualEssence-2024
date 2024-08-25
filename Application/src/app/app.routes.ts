@@ -16,6 +16,10 @@ import { HomeComponent } from './Pages/Home/home.component';
 
 import { AdminContatoComponent } from './Pages/admin-contato/admin-contato.component';
 
+//-----------------------------------
+import { HomeInstComponent } from './Pages/Instituicao/home-inst/home-inst.component';
+//-----------------------------------
+
 
 //jogos
 
@@ -42,6 +46,8 @@ export const routes: Routes = [
   {path: 'opc-entrar', component: OpcEntrarComponent},
 
   {path: 'esquecer-senha', component: EsquecerSenhaComponent},
+
+  {path: 'home-inst', component: HomeInstComponent},
 
   {path: 'jogos/miopia/instrucoes', component: MiopiaInstructionsComponent, canActivate: [AuthGuard]},
   {path: 'jogos/miopia', component: MiopiaGameComponent , canActivate: [AuthGuard]},
