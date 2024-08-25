@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="menu">
+        <div class="logo">
+            <img src="../../../assets/HomeImages/VisualEssenceLogo.svg">
+        </div>
+
+        <div class="MenuOpt">
+            <ul>
+                <li>
+                    <div class="AumDim"><button>A+/</button><button>A-</button></div>
+                </li>
+                <li><a href="">HOME</a></li>
+                <li><a [routerLink]="['/criar-sala']">CRIAR SALA</a></li>
+                <li><a [routerLink]="['/cadastros']">CADASTROS</a></li>
+                <li><a href="">JOGOS</a></li>
+                <li><a href="">HISTÓRICO</a></li>
+                <li><button class="btnIdi"><img src="assets/bdEUA.webp"></button></li>
+            </ul>
+        </div>
+
+        <div class="MenuAcco">
+            <div *ngIf="user" class="MenuConta">
+                <img [src]="Perfil" alt="">
+                <p>{{user.nome}}</p>
+            </div>
+
+            <div class="MenuLogout">
+                <img [src]="Logout" alt="" [routerLink]="['/opc-entrar']" routerLinkActive="router-link-active"
+                    (click)="logout()">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="conteudo">
+        <div class="grafico">
+            <!--Inserir gráfico aqui-->
+            <div class="twoGra">
+                <div class="graPizza">
+                    <canvas #meuCanvas1 width="100" height="100"></canvas>
+                </div>
+                <div class="graBarra">
+                    <canvas #meuCanvas2 width="100" height="100"></canvas>
+                </div>
+            </div>
+            <div class="legendGra">
+                Os gráficos disponibilizados tem o intuito de exibir a quantidade de
+                alunos que obtiveram uma pontuação considerada baixa nos jogos de miopia e daltonismo, além da quantia
+                que
+                atingiu bons resultados e os que não finalizaram o pré-diagnóstico.
+            </div>
+        </div>
+
+        <div class="infDesen">
+            <p>Esse projeto tem como finalidade proporcionar uma melhor qualidade de vida para as crianças que enfrentam
+                no
+                seu dia a dia as dificuldades causadas pela baixa visão.
+                No decorrer do website será apresentado de forma minuciosa e divertida uma possível ajuda, que poderá
+                auxiliar
+                as instituições envolvidas a obterem uma direção por meio de jogos simples e dinâmicos, para
+                posteriormente
+                analisar se estas crianças precisam recorrer a um especialista.
+                Devido a isso, os alunos do grupo Code Fusion do curso superior de Análise e Desenvolvimento de
+                Sistemas,
+                dedicam esse projeto a todas as crianças e responsáveis que encaram esse problema e necessitam de
+                auxílio e
+                apoio.
+            </p>
+        </div>
+    </div>
+</div>
