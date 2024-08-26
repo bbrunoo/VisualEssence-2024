@@ -15,6 +15,16 @@ import { OpcEntrarComponent } from './Pages/Conta/opc-entrar/opc-entrar.componen
 import { HomeComponent } from './Pages/Home/home.component';
 
 import { AdminContatoComponent } from './Pages/admin-contato/admin-contato.component';
+//------------------------------------------------------------------------------------
+
+import { HomeInstComponent } from './Pages/Instituicao/home-inst/home-inst.component';
+import { CriarSalaComponent } from './Pages/Instituicao/criar-sala/criar-sala.component';
+import { OpcCadastComponent } from './Pages/Instituicao/opc-cadast/opc-cadast.component';
+import { CadastUniComponent } from './Pages/Instituicao/cadast-uni/cadast-uni.component';
+import { CadastMassaComponent } from './Pages/Instituicao/cadast-massa/cadast-massa.component';
+import { CadastrosComponent } from './Pages/Instituicao/cadastros/cadastros.component';
+import { DadCadastComponent } from './Pages/Instituicao/dad-cadast/dad-cadast.component';
+import { EdtDadComponent } from './Pages/Instituicao/edt-dad/edt-dad.component';
 
 
 //jogos
@@ -42,6 +52,15 @@ export const routes: Routes = [
   {path: 'opc-entrar', component: OpcEntrarComponent},
 
   {path: 'esquecer-senha', component: EsquecerSenhaComponent},
+
+  {path: 'home-inst', component: HomeInstComponent},
+  {path: 'criar-sala', component: CriarSalaComponent},
+  {path: 'opc-cadast', component: OpcCadastComponent},
+  {path: 'cadast-uni', component: CadastUniComponent},
+  {path: 'cadast-massa', component: CadastMassaComponent},
+  {path: 'cadastros', component: CadastrosComponent},
+  {path: 'dad-cadast', component: DadCadastComponent},
+  {path: 'edt-dad', component: EdtDadComponent},
 
   {path: 'jogos/miopia/instrucoes', component: MiopiaInstructionsComponent, canActivate: [AuthGuard]},
   {path: 'jogos/miopia', component: MiopiaGameComponent , canActivate: [AuthGuard]},
