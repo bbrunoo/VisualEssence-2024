@@ -1,0 +1,114 @@
+<div class="container">
+    <div class="menu">
+        <div class="logo">
+            <img src="../../../assets/HomeImages/VisualEssenceLogo.svg">
+        </div>
+
+        <div class="MenuOpt">
+            <ul>
+                <li>
+                    <div class="AumDim"><button>A+/</button><button>A-</button></div>
+                </li>
+                <li><a href="">HOME</a></li>
+                <li><a [routerLink]="['/criar-sala']">CRIAR SALA</a></li>
+                <li><a [routerLink]="['/cadastros']">CADASTROS</a></li>
+                <li><a href="">JOGOS</a></li>
+                <li><a href="">HISTÓRICO</a></li>
+                <li><button class="btnIdi"><img src="assets/bdEUA.webp"></button></li>
+            </ul>
+        </div>
+
+        <div class="MenuAcco">
+            <div *ngIf="user" class="MenuConta">
+                <img [src]="Perfil" alt="">
+                <p>{{user.nome}}</p>
+            </div>
+
+            <div class="MenuLogout">
+                <img [src]="Logout" alt="" [routerLink]="['/opc-entrar']" routerLinkActive="router-link-active"
+                    (click)="logout()">
+            </div>
+        </div>
+    </div>
+
+    <div class="barFiltro">
+        <div class="selectS">
+            <label for="">SALA:</label>
+            <select name="salasCad" id="">
+                <option value=""></option>
+                <option value="">Jardim 1</option>
+                <option value="">Primeiro Ano</option>
+            </select>
+        </div>
+
+        <div class="conjCod">
+            <label for="">CÓD:</label>
+            <input type="text" class="inpCod" name="inputCod" id="">
+        </div>
+
+        <div class="conjNome">
+            <label for="">NOME:</label>
+            <input type="text" class="inpNome" name="inputNome" id="">
+        </div>
+
+        <div class="btnLupa">
+            <button>
+                <img src="../../../assets/lupa.png" alt="">
+            </button>
+        </div>
+    </div>
+
+    <div class="conteudo">
+        <div class="cadastros">
+            <div class="barra">
+                <div class="infAluno">
+                    <div class="imgAluno" (click)="fileInput.click()">
+                        <img *ngIf="imgSRC" [src]="imgSRC" alt="fotoAlu">
+
+                        <div *ngIf="!imgSRC" class="tx">FOTO</div>
+
+                        <input type="file" #fileInput (change)="fileSelect($event)" accept="image/*" hidden
+                            name="inpFile" id="">
+                    </div>
+                    <div class="dadosG">
+                        <div class="informacoes">
+                            <div class="nome">
+                                <a href="">
+                                    <label for="">Brune -</label>
+                                </a>
+                            </div>
+
+                            <div class="date">
+                                <label for="">Data:</label><label for=""></label>
+                            </div>
+
+                            <div class="sex">
+                                <label for="">Sexo:</label><label for=""></label>
+                            </div>
+
+                            <div class="cns">
+                                <label for="">CNS:</label><label for=""></label>
+                            </div>
+
+                            <div class="tel">
+                                <label for="">Tel:</label><label for=""></label>
+                            </div>
+                        </div>
+
+                        <div class="infExtra">
+                            <div class="turma">
+                                <label for="">SALA: </label><label for=""></label>
+                            </div>
+
+                            <div class="Editar">
+                                <a href="">
+                                    <img src="../../../assets/lapis.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

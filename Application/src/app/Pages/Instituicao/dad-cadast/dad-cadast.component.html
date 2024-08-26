@@ -1,0 +1,144 @@
+<div class="container">
+    <div class="menu">
+        <div class="logo">
+            <img src="../../../assets/HomeImages/VisualEssenceLogo.svg">
+        </div>
+
+        <div class="MenuOpt">
+            <ul>
+                <li>
+                    <div class="AumDim"><button>A+/</button><button>A-</button></div>
+                </li>
+                <li><a href="">HOME</a></li>
+                <li><a [routerLink]="['/criar-sala']">CRIAR SALA</a></li>
+                <li><a [routerLink]="['/cadastros']">CADASTROS</a></li>
+                <li><a href="">JOGOS</a></li>
+                <li><a href="">HISTÓRICO</a></li>
+                <li><button class="btnIdi"><img src="assets/bdEUA.webp"></button></li>
+            </ul>
+        </div>
+
+        <div class="MenuAcco">
+            <div *ngIf="user" class="MenuConta">
+                <img [src]="Perfil" alt="">
+                <p>{{user.nome}}</p>
+            </div>
+
+            <div class="MenuLogout">
+                <img [src]="Logout" alt="" [routerLink]="['/opc-entrar']" routerLinkActive="router-link-active"
+                    (click)="logout()">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="conteudo">
+        <div class="agruDados">
+            <legend>DADOS CADASTRADOS</legend>
+
+            <div class="infDados">
+                <div class="I">
+                    <label for="nomeC">Nome:</label><label for="" class="dadoU">Ana Carolina Santos Morata</label>
+                </div>
+
+                <br>
+
+                <div class="linD">
+                    <div class="E">
+                        <label for="dataNas" class="esquerdoLabel">Data Nasc.:</label><label for=""
+                            class="dadoU">20/09/2005</label>
+                    </div>
+
+
+                    <div class="D">
+                        <label for="cns" class="direitoLabel">CNS:</label><label for=""
+                            class="dadoU">123456789-10</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="linD">
+                    <div class="E">
+                        <label for="sex" class="esquerdoLabel">Sexo:</label><label for="" class="dadoU">Feminino</label>
+                    </div>
+
+                    <div class="D">
+                        <label for="cod" class="direitoLabel">CÓD:</label><label for="" class="dadoU">0001</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="I">
+                    <label for="nomeRes">Nome Responsável:</label><label for="" class="dadoU">Lucimara dos Santos
+                        Morata</label>
+                </div>
+
+                <br>
+
+                <div class="linD">
+                    <div class="E">
+                        <label for="cpf" class="esquerdoLabel">CPF:</label><label for=""
+                            class="dadoU">123.456.789-01</label>
+                    </div>
+
+                    <div class="D">
+                        <label for="rg" class="direitoLabel">RG:</label><label for="" class="dadoU">12.345.678-9</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="linD">
+                    <div class="E">
+                        <label for="tel1" class="esquerdoLabel">Telefone 1:</label><label for="" class="dadoU">(16)
+                            12345-6789</label>
+                    </div>
+                    <div class="D">
+                        <!--E se colocar CEP?-->
+                        <label for="end" class="direitoLabel">Endereço:</label><label for="" class="dadoU">R. O,
+                            J.N, Nº12</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="linD">
+                    <div class="E">
+                        <label for="tel2" class="esquerdoLabel">Telefone 2:</label><label for="" class="dadoU">(16)
+                            12345-6789</label>
+                    </div>
+
+
+                    <div class="D">
+                        <label for="sala" class="direitoLabel">Sala:</label><label for="" class="dadoU">Primeiro
+                            Ano A</label>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="preHist">
+                <div class="campHist">
+                    <div class="tit">
+                        <label>Média do Histórico dos Jogos</label>
+                    </div>
+
+                    <div class="dadMiopia">
+                        <label for="" class="titV">MIOPIA - </label>
+                        <label for="">Acertos: 9/18 </label>
+                        <label for="">Resultado: dificuldade na visão</label>
+                    </div>
+
+                    <div class="dadDalt">
+                        <label for="" class="titV">DALTONISMO - </label>
+                        <label for="">Acertos: 18/18 </label>
+                        <label for="">Resultado: visão normal</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

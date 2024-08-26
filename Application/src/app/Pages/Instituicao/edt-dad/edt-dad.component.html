@@ -1,0 +1,139 @@
+<div class="container">
+    <div class="menu">
+        <div class="logo">
+            <img src="../../../assets/HomeImages/VisualEssenceLogo.svg">
+        </div>
+
+        <div class="MenuOpt">
+            <ul>
+                <li>
+                    <div class="AumDim"><button>A+/</button><button>A-</button></div>
+                </li>
+                <li><a href="">HOME</a></li>
+                <li><a [routerLink]="['/criar-sala']">CRIAR SALA</a></li>
+                <li><a [routerLink]="['/cadastros']">CADASTROS</a></li>
+                <li><a href="">JOGOS</a></li>
+                <li><a href="">HISTÓRICO</a></li>
+                <li><button class="btnIdi"><img src="assets/bdEUA.webp"></button></li>
+            </ul>
+        </div>
+
+        <div class="MenuAcco">
+            <div *ngIf="user" class="MenuConta">
+                <img [src]="Perfil" alt="">
+                <p>{{user.nome}}</p>
+            </div>
+
+            <div class="MenuLogout">
+                <img [src]="Logout" alt="" [routerLink]="['/opc-entrar']" routerLinkActive="router-link-active"
+                    (click)="logout()">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="conteudo">
+        <div class="formulario">
+            <form action="">
+                <div class="titEdt">
+                    <img src="../../../assets/lapis.png" alt="">
+                    <legend>EDITAR CRIANÇA</legend>
+                </div>
+
+                <div class="I">
+                    <label for="nomeC">Nome:</label>
+                    <input type="text" class="inteiro" name="nomeC" id="" required>
+                </div>
+
+                <br>
+
+                <div class="linD">
+                    <div class="E">
+                        <label for="dataNas" class="esquerdoLabel">Data Nasc.:</label>
+                        <input type="date" class="inpDate" name="dataNas" id="" required min="2000-01-01">
+                    </div>
+
+
+                    <div class="D">
+                        <label for="cns" class="direitoLabel">CNS:</label>
+                        <input type="text" class="inpCns" name="cns" id="" required>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="linD">
+                    <div class="sele">
+                        <label for="" class="esquerdoLabel">Sexo:</label>
+                        <select class="selectE" name="sex" id="" required>
+                            <option value="bra"></option>
+                            <option value="fem">Feminino</option>
+                            <option value="mas">Masculino</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="I">
+                    <label for="nomeRes">Nome Responsável:</label>
+                    <input type="text" class="inteiro2" name="nomeRes" id="" required>
+                </div>
+
+                <br>
+
+                <div class="linD">
+                    <div class="E">
+                        <label for="cpf" class="esquerdoLabel">CPF:</label>
+                        <input type="text" class="inpCpf" name="cpf" id="" required>
+                    </div>
+
+                    <div class="D">
+                        <label for="rg" class="direitoLabel">RG:</label>
+                        <input type="text" class="inpRg" name="rg" id="" required>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="linD">
+                    <div class="E">
+                        <label for="tel1" class="esquerdoLabel">Telefone 1:</label>
+                        <input type="text" class="inpTels" name="tel1" id="" required>
+                    </div>
+                    <div class="D">
+                        <label for="end" class="direitoLabel">Endereço:</label>
+                        <input type="text" class="inpEnd" name="end" id="" required>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="linD">
+                    <div class="E">
+                        <label for="tel2" class="esquerdoLabel">Telefone 2:</label>
+                        <input type="text" class="inpTels" name="tel2" id="" required>
+                    </div>
+
+
+                    <div class="seles">
+                        <label for="" class="direitoLabel">Sala:</label>
+                        <select class="selectD" name="sala" id="" required>
+                            <option value="bra"></option>
+                            <option value="">Primeiro Ano A</option>
+                            <option value="">Segundo Ano A</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <br>
+
+                <div class="btns">
+                    <button type="submit" class="btnSalvarAlt">Salvar Alterações</button>
+                    <button type="reset" class="btnCancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+* {
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+.container {
+    background-image: url("../../../assets/HomeImages/star1.png"),
+        url("../../../assets/HomeImages/allplanets1.png"),
+        url("../../../assets/HomeImages/planeta2.png"),
+        url("../../../assets/HomeImages/background.png");
+    background-size: cover, cover, 25% 50%;
+    background-position: 0 0, right -20px top -100px, left -125px bottom -75px;
+    background-repeat: no-repeat;
+    background-color: #010029;
+    width: 100%;
+    height: 100%;
+}
+
+.logo img {
+    width: 100px;
+    height: 80px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+
+}
+
+.MenuOpt ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    flex-direction: row;
+    width: 50em;
+    font-weight: bold;
+    margin: 10px 200px 10px 150px;
+    gap: 3em;
+}
+
+.btnIdi {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.AumDim {
+    display: flex;
+    gap: 3px;
+    position: relative;
+}
+
+.AumDim button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.AumDim::after {
+    content: "";
+    position: absolute;
+    background-color: white;
+    width: 0;
+    height: 3px;
+    bottom: -10px;
+    left: -10%;
+    transition: 0.5s ease-in-out;
+}
+
+.AumDim:hover::after {
+    width: 115%;
+}
+
+.MenuOpt ul li a::after {
+    content: "";
+    position: absolute;
+    background-color: white;
+    width: 0;
+    height: 3px;
+    bottom: -10px;
+    left: -8%;
+    transition: 0.5s ease-in-out;
+}
+
+a {
+    position: relative;
+    letter-spacing: 0.5px;
+}
+
+.MenuOpt ul li a:hover::after {
+    width: 115%;
+}
+
+.MenuAcco {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2em;
+    align-items: center;
+    font-weight: bold;
+
+    img {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+.MenuConta {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+}
+
+.MenuConta img {
+    border-radius: 100%;
+}
+
+.conteudo {
+    width: 100%;
+    height: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formulario {
+    width: 50%;
+    height: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.8px);
+    -webkit-backdrop-filter: blur(3.8px);
+}
+
+.titEdt {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -15px;
+    padding: 5px;
+}
+
+.titEdt img {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    position: relative;
+    top: -3px;
+}
+
+.titEdt legend {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input {
+    border: none;
+    background-color: transparent;
+    outline: 0;
+    font-size: 16px;
+    padding: 3px;
+    position: relative;
+    color: white;
+    top: 1px;
+    font-weight: bold;
+    /*margin: 25px 40px 25px 70px;*/
+}
+
+label {
+    font-size: 17px;
+    position: absolute;
+    cursor: text;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+}
+
+.linD {
+    display: flex;
+    width: 550px;
+    position: relative;
+    padding-top: 6px;
+    top: 1px;
+}
+
+.I {
+    position: relative;
+    padding-top: 6px;
+    top: 1px;
+    border-bottom: 2px solid white;
+}
+
+.inteiro {
+    width: 480px;
+    left: 68px;
+}
+
+.inteiro2 {
+    width: 370px;
+    left: 178px;
+}
+
+.E {
+    width: 55%;
+    border-bottom: 2px solid white;
+    margin-right: 10%;
+}
+
+.inpDate {
+    width: 59%;
+    left: 41%;
+}
+
+.inpCpf {
+    width: 80%;
+    left: 20%;
+}
+
+.inpTels {
+    width: 60%;
+    left: 40%;
+}
+
+.D {
+    width: 55%;
+    border-bottom: 2px solid white;
+}
+
+.inpCns {
+    width: 80%;
+    left: 20%;
+}
+
+.inpRg {
+    width: 85%;
+    left: 15%;
+}
+
+.inpEnd {
+    width: 60%;
+    left: 40%;
+}
+
+.direitoLabel {
+    margin-left: 55%;
+}
+
+input[type="date"] {
+    color: transparent;
+    transition: 0.5s ease-in-out;
+}
+
+input[type=date]:valid,
+input[type=date]:focus {
+    color: white;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(0.8);
+}
+
+.seles {
+    border-bottom: 2px solid white;
+    width: 55%;
+}
+
+.sele {
+    border-bottom: 2px solid white;
+    width: 45%;
+}
+
+select {
+    border: none;
+    background-color: transparent;
+    outline: 0;
+    font-size: 17px;
+    padding: 2px;
+    color: white;
+}
+
+.selectD {
+    display: flex;
+    width: 80%;
+    margin-left: 20%;
+}
+
+.selectE {
+    position: relative;
+    left: 22%;
+    width: 78%;
+}
+
+select option {
+    color: black;
+    background-color: rgb(107, 126, 161);
+}
+
+.btns {
+    height: 35px;
+    position: relative;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btns button {
+    width: 200px;
+    height: 30px;
+    color: white;
+    font-size: 17px;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.btnSalvarAlt {
+    background-color: green;
+    position: relative;
+    right: 15px;
+}
+
+.btnCancelar {
+    background-color: darkred;
+    position: relative;
+    left: 15px;
+}
+
+.btnSalvarAlt:hover {
+    background-color: forestgreen;
+    color: white;
+    font-weight: bold;
+}
+
+.btnCancelar:hover {
+    background-color: firebrick;
+    color: white;
+    font-weight: bold;
+}
