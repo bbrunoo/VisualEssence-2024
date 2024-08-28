@@ -11,10 +11,6 @@
 }
 
 .container {
-    background-image: url("../../../assets/HomeImages/star1.png"),
-        url("../../../assets/HomeImages/allplanets1.png"),
-        url("../../../assets/HomeImages/planeta2.png"),
-        url("../../../assets/HomeImages/background.png");
     background-size: cover, cover, 25% 50%;
     background-position: 0 0, right -20px top -100px, left -125px bottom -75px;
     background-repeat: no-repeat;

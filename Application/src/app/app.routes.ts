@@ -37,7 +37,7 @@ import { ContatoComponent } from './Pages/Contato/contato.component';
 import { AuthGuard } from './guards/user-authenticated.guard';
 
 export const routes: Routes = [
-  {path: '', component: EntrarComponent},
+  {path: 'entrar', component: EntrarComponent},
 
   {path: 'contato', component: ContatoComponent},
 
@@ -53,7 +53,7 @@ export const routes: Routes = [
 
   {path: 'esquecer-senha', component: EsquecerSenhaComponent},
 
-  {path: 'home-inst', component: HomeInstComponent},
+  {path: '', component: HomeInstComponent},
   {path: 'criar-sala', component: CriarSalaComponent},
   {path: 'opc-cadast', component: OpcCadastComponent},
   {path: 'cadast-uni', component: CadastUniComponent},
