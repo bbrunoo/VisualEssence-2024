@@ -1,0 +1,24 @@
+<section class="sec-jogos">
+  <div class="jogos-container">
+    <h1>JOGOS</h1>
+    <p>Jogos que ajudam a identificar possíveis problemas visuais.
+      Venha aprender brincando!</p>
+
+    <div class="jogos-box">
+      <div class="jogos-daltonismo">
+        <h2>Daltonismo</h2>
+        <div class="jogos-img">
+          <img [src]="Dalt" />
+        </div>
+      </div>
+
+      <div class="jogos-miopia">
+        <h2>Miopia</h2>
+        <div class="jogos-img">
+          <img [routerLink]="['/jogos/miopia/instrucoes']" [src]="Miop" routerLink="/jogos/miopia/instrucoes"/>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

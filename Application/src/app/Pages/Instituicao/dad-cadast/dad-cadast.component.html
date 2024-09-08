@@ -1,0 +1,98 @@
+<div class="container">
+  <app-inst-menu></app-inst-menu>
+
+  <div class="conteudo">
+    <div class="agruDados">
+      <h1 class="titulo">DADOS CADASTRADOS</h1>
+
+      <div class="infDados">
+        <div class="content-infos">
+          <div class="I">
+            <label for="nomeC">Nome:</label>
+            <label for="" class="dadoU">{{ crianca.nome }}</label>
+          </div>
+
+          <div class="linD">
+            <div class="E">
+              <label for="dataNas" class="esquerdoLabel">Data Nasc.:</label>
+              <label for="" class="dadoU">{{ crianca.dataNascimento }}</label>
+            </div>
+
+            <div class="D">
+              <label for="cns" class="direitoLabel">CNS:</label>
+              <label for="" class="dadoU">{{ crianca.cns }}</label>
+            </div>
+          </div>
+
+          <div class="linD">
+            <div class="E">
+              <label for="sex" class="esquerdoLabel">Sexo:</label>
+              <label for="" class="dadoU">{{ crianca.sexo }}</label>
+            </div>
+          </div>
+
+          <div class="I">
+            <label for="nomeRes">Nome Responsável:</label>
+            <label for="" class="dadoU">{{ crianca.nomeResp }}</label>
+          </div>
+
+          <div class="linD">
+            <div class="E">
+              <label for="cpf" class="esquerdoLabel">CPF:</label>
+              <label for="" class="dadoU">{{ crianca.cpf }}</label>
+            </div>
+
+            <div class="D">
+              <label for="rg" class="direitoLabel">RG:</label>
+              <label for="" class="dadoU">{{ crianca.rg }}</label>
+            </div>
+          </div>
+
+          <div class="linD">
+            <div class="E">
+              <label for="tel1" class="esquerdoLabel">Telefone 1:</label>
+              <label for="" class="dadoU">{{ crianca.tel1 }}</label>
+            </div>
+            <div class="D">
+              <!--E se colocar CEP?-->
+              <label for="end" class="direitoLabel">Endereço:</label>
+              <label for="" class="dadoU">{{ crianca.endereco }}</label>
+            </div>
+          </div>
+
+          <div class="linD">
+            <div class="E">
+              <label for="tel2" class="esquerdoLabel">Telefone 2:</label>
+              <label for="" class="dadoU">{{ crianca.tel2 }}</label>
+            </div>
+
+            <div class="D">
+              <label for="sala" class="direitoLabel">Sala:</label>
+              <label for="" class="dadoU">{{ crianca.sala.nome }}</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="preHist">
+          <div class="campHist">
+            <div class="tit">
+              <label>Média do Histórico dos Jogos</label>
+            </div>
+
+            <div class="dadMiopia">
+              <label for="" class="titV">MIOPIA - </label>
+              <label for="">Acertos: 9/18 </label>
+              <label for="">Resultado: dificuldade na visão</label>
+            </div>
+
+            <div class="dadDalt">
+              <label for="" class="titV">DALTONISMO - </label>
+              <label for="">Acertos: 18/18 </label>
+              <label for="">Resultado: visão normal</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

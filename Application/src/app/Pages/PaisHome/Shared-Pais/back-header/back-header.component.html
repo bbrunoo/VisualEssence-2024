@@ -1,0 +1,32 @@
+<header>
+  <div class="menu">
+    <div class="back-opt">
+      <img [routerLink]="['/Pais/Home']" src="../../../../../assets/home.png" />
+      <div class="back">Voltar</div>
+    </div>
+
+    <div class="MenuOpt">
+      <ul>
+        <div class="logo">
+          <img [routerLink]="['/Pais/Home']" src="../../../../../assets/home.png" src="../../../assets/HomeImages/VisualEssenceLogo.svg" />
+        </div>
+      </ul>
+    </div>
+
+    <div class="MenuAcco">
+      <div *ngIf="user" class="MenuConta">
+        <img [src]="Perfil" alt="" />
+        <p>{{ user.nome }}</p>
+      </div>
+
+      <div class="MenuLogout">
+        <img
+          [src]="Logout"
+          alt=""
+          [routerLink]="['/opc-entrar']"
+          (click)="logout()"
+        />
+      </div>
+    </div>
+  </div>
+</header>

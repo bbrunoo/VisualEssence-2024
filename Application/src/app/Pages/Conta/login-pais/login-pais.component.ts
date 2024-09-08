@@ -30,7 +30,7 @@ export class LoginPaisComponent {
     this.authService.loginPais(this.CredentialsPais).subscribe(
       (response) => {
       console.log('Logado com sucesso', response);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/Pais/Home']);
     }, error => {
       console.log('Não foi possivel realizar o login', error);
     });

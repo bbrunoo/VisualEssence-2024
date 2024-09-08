@@ -10,9 +10,11 @@ using VisualEssence.Domain.Interfaces.Games.SystemGamesRepository;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Infrasctructure.Mappings;
 using VisualEssence.Infrastructure.Context;
+using VisualEssence.Infrastructure.Repositories;
 using VisualEssence.Infrastructure.Repositories.Games;
 using VisualEssence.Infrastructure.Repositories.Identity;
 using VisualEssence.Infrastructure.Repositories.SystemGames;
+//using VisualEssence.Infrastructure.Service;
 using VisualEssenceAPI.Repositories;
 using VisualEssenceAPI.Services;
 
@@ -58,11 +60,14 @@ builder.Services.AddScoped<IUsuarioInstRepository, UsuarioInstRepository>();
 builder.Services.AddScoped<IUsuarioPaisRepository, UsuarioPaisRepository>();
 builder.Services.AddScoped<IMiopiaGameRepository, JogadaRepository>();
 builder.Services.AddScoped<ISystemGamesRepository, SystemGamesRepository>();
+builder.Services.AddScoped<ICriancaInstRepository, CriancaInstRepository>();
+builder.Services.AddScoped<ICriancaPaisRepository, CriancaPaisRepository>();
+builder.Services.AddScoped<ISalaRepository, SalaRepository>();
+//builder.Services.AddScoped<IExcelService, ExcelService>();
 
 builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
 builder.Services.AddScoped<IAuthenticateInst, AuthenticateInst>();
 builder.Services.AddScoped<IAuthenticatePais, AuthenticatePais>();
-
 
 builder.Services.AddHttpContextAccessor();
 
@@ -87,8 +92,6 @@ var mappingConfig = new MapperConfiguration(mc =>
 IMapper mapper = mappingConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
-
-
 var jwtSettings = builder.Configuration.GetSection("jwt");
 var key = Encoding.ASCII.GetBytes(jwtSettings["secretKey"]);
 
@@ -111,7 +114,6 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -121,9 +123,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
 app.UseHttpsRedirection();
-
 
 app.UseAuthentication();
 app.UseAuthorization();

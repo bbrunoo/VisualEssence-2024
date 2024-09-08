@@ -1,0 +1,40 @@
+<header>
+  <div class="menu">
+    <div class="logo">
+      <img (click)="scrollTo('sobre')" src="../../../assets/HomeImages/VisualEssenceLogo.svg" />
+    </div>
+
+    <div class="MenuOpt">
+      <ul>
+        <li>
+          <div class="AumDim">
+            <button>A+/</button>
+            <button>A-</button>
+          </div>
+        </li>
+        <li><a (click)="scrollTo('sobre')">HOME</a></li>
+        <li><a (click)="scrollTo('doe-info')">ONGs</a></li>
+        <li><a (click)="scrollTo('jogos')">JOGOS</a></li>
+        <li>
+          <button class="btnIdi"><img src="assets/bdEUA.webp" /></button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="MenuAcco">
+      <div *ngIf="user" class="MenuConta">
+        <img [src]="Perfil" alt="" />
+        <p>{{ user.nome }}</p>
+      </div>
+
+      <div class="MenuLogout">
+        <img
+          [src]="Logout"
+          alt=""
+          [routerLink]="['/opc-entrar']"
+          (click)="logout()"
+        />
+      </div>
+    </div>
+  </div>
+</header>

@@ -7,6 +7,7 @@ using System.Text;
 using VisualEssence.API.ViewModel;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.Authenticate;
+using VisualEssence.Domain.Interfaces.GenericRepository;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
 using VisualEssenceAPI.Services;
@@ -185,7 +186,7 @@ namespace VisualEssence.API
 
         [HttpGet("user-infos")]
         public async Task<ActionResult<UserInfoViewModel>> GetProfileUser()
-        {
+        { 
             var userId = Guid.Parse(User.FindFirst("id").Value);
             if (userId == null) return NotFound();
 
@@ -221,6 +222,22 @@ namespace VisualEssence.API
                 return Ok(viewModel);
             }
             return NotFound();
+        }
+
+        [HttpPut("Pais/{id}")]
+        public async Task<IActionResult> UpdatePais(Guid id, EditUserPaisDTO pais)
+        {
+            if (pais == null) return NotFound("crianca nao encontrada");
+            await _usuarioPaisRepository.UpdateUserPais(id, pais);
+            return Ok(new { message = "editado com sucesso" });
+        }
+
+        [HttpPut("Institucional/{id}")]
+        public async Task<IActionResult> UpdateInst(Guid id, EditUserInstDTO inst)
+        {
+            if (inst == null) return NotFound("crianca nao encontrada");
+            await _usuarioInstRepository.UpdateUserInst(id, inst);
+            return Ok(new { message = "editado com sucesso" });
         }
     }
 }

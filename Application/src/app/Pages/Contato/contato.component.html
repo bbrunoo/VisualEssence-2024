@@ -1,44 +1,36 @@
 <div class="container">
-  <div class="btnVoltar">
-    <a class="teste" [routerLink]="['/home']" routerLinkActive="router-link-active">
-      <img src="../../../assets/home.png" alt="voltar" />
-      <p>Voltar</p>
-    </a>
-  </div>
-          <!-- COLOCAR LOGO EM ALGUM CANTO -->
-
+  <app-back-header></app-back-header>
   <div class="formContato">
     <div class="formulario">
       <div class="form-conteudo">
         <h1>Contato</h1>
-      <form #sendFeeback="ngForm" (ngSubmit)="sendFeedback()" >
-        <div class="left">
-          <div class="itemForm">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" [(ngModel)]="Contato.nome"  required />
+        <form #sendFeeback="ngForm" (ngSubmit)="sendFeedback()">
+          <div class="left">
+            <div class="itemForm">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" [(ngModel)]="Contato.nome" required />
+            </div>
+            <div class="itemForm">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" [(ngModel)]="Contato.email" required />
+            </div>
+            <div class="itemForm">
+              <label for="assunto">Assunto</label>
+              <input type="text" id="assunto" name="assunto" [(ngModel)]="Contato.assunto" required />
+            </div>
           </div>
-          <div class="itemForm">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" [(ngModel)]="Contato.email"  required />
+          <div class="right">
+            <div class="itemForm">
+              <label for="descricao">Descrição</label>
+              <textarea name="descricao" id="descricao" [(ngModel)]="Contato.descricao" required></textarea>
+            </div>
           </div>
-          <div class="itemForm">
-            <label for="assunto">Assunto</label>
-            <input type="text" id="assunto" name="assunto" [(ngModel)]="Contato.assunto"  required />
-          </div>
-        </div>
-        <div class="right">
-          <div class="itemForm">
-            <label for="descricao">Descrição</label>
-            <textarea name="descricao" id="descricao" [(ngModel)]="Contato.descricao"  required></textarea>
-          </div>
-        </div>
 
-        <div class="btnEnviar">
-          <button type="submit">Enviar</button>
-        </div>
-      </form>
-    </div>
-
+          <div class="btnEnviar">
+            <button type="submit">Enviar</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

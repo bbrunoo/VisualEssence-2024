@@ -5,7 +5,7 @@ using VisualEssence.Domain.Models;
 
 namespace VisualEssenceAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ContatoController : ControllerBase
     {

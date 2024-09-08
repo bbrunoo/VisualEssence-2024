@@ -31,7 +31,7 @@ export class LoginInstComponent {
     this.authService.loginInst(this.CredentialsInst).subscribe(
       (response) => {
       console.log('Logado com sucesso', response);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/instituicao/home']);
     }, error => {
       console.log('Não foi possivel realizar o login', error);
     });

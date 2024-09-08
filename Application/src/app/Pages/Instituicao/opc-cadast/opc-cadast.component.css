@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+* {
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.criarS_Opt {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    padding: 10px;
+    margin-left: 150px;
+}
+
+.criarS_Opt button {
+    font-size: 19px;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.criarS_Opt p {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    cursor: none;
+    padding: 0 30px 0 30px;
+}
+
+.conteudo {
+    width: 100%;
+    height: 78%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    opacity: 1;
+    animation: fadeOut 0.5s forwards;
+  }
+
+  .espBtn {
+    width: 38%;
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+
+    margin-bottom: 50px;
+
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.8px);
+    -webkit-backdrop-filter: blur(3.8px);
+  }
+
+  .btnCad {
+    margin-top: 43px;
+    background-color: green;
+    color: white;
+    font-size: 20px;
+    border-radius: 15px;
+    width: 400px;
+    height: 73px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.btnCad:hover {
+    background-color: forestgreen;
+    color: white;
+    font-weight: bold;
+}
+
+/*--------------------------------------------------------------------------------------------------*/
+
+.fade_In {
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+#fade_Out {
+    opacity: 1;
+    animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
