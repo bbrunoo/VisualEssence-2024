@@ -9,6 +9,7 @@ namespace VisualEssence.Domain.Interfaces.NormalRepositories
         Task<UserInst> AddUsuarioInst(UserInst userInst);
         Task<bool> UsuarioExistente(string email);
         Task<UserInst> GetUsuarioInstByEmail(string email);
+        Task<EditUserInstDTO> UpdateUserInst(Guid id, EditUserInstDTO userDto);
         Task<UserInst> GetUsuarioById(Guid id);
         Task<IEnumerable<UserInst>> GetUser();
         Task<UserInst> Delete(UserInst userInst);

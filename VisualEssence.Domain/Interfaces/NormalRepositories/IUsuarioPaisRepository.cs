@@ -8,6 +8,7 @@ namespace VisualEssence.Domain.Interfaces.NormalRepositories
     {
         Task<UserPais> AddUsuarioPais(UserPais userpais);
         Task<bool> UsuarioExistente(string email);
+        Task<EditUserPaisDTO> UpdateUserPais(Guid id, EditUserPaisDTO userDto);
         Task<UserPais> GetUsuarioByEmail(string email);
         Task<UserPais> GetUsuarioById(Guid id);
         Task<IEnumerable<UserPais>> GetUser();

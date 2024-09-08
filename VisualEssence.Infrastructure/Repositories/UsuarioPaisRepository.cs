@@ -63,5 +63,18 @@ namespace VisualEssenceAPI.Repositories
         {
             return await _context.UserPais.AnyAsync(e => e.Id == id);
         }
+
+        public async Task<EditUserPaisDTO> UpdateUserPais(Guid id, EditUserPaisDTO userDto)
+        {
+            var usuarioExistente = await _context.UserPais.FirstOrDefaultAsync(c => c.Id == id);
+            if (usuarioExistente == null) { throw new KeyNotFoundException("Usuario nao encontrado"); }
+
+            usuarioExistente.Nome = userDto.Nome;
+            usuarioExistente.Email = userDto.Email;
+
+            _context.UserPais.Update(usuarioExistente);
+            await _context.SaveChangesAsync();
+            return userDto;
+        }
     }
 }

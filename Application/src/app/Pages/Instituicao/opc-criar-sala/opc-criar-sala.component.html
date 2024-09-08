@@ -1,0 +1,34 @@
+<div class="criarS_Cont" *ngIf="!showOpCad" [ngClass]="{'fade_In': !showOpCad}">
+  <div class="novaSala">
+      <form (submit)="addSala()">
+          <h3>NOVA SALA</h3>
+          <input type="text" id="name" placeholder="Nome" required [(ngModel)]="sala.nome" [ngModelOptions]="{standalone: true}" >
+          <br>
+          <input type="text" id="capacity" placeholder="Capacidade" required [(ngModel)]="sala.capacidade" [ngModelOptions]="{ standalone: true }" >
+          <div class="botoes">
+            <div class="btnCancelar">
+              <button type="button" (click)="clearForm()">Cancelar</button>
+            </div>
+            <div class="btnSalvar">
+                <button type="submit">Salvar</button>
+            </div>
+          </div>
+        </form>
+  </div>
+
+  <div class="salasExist">
+      <div class="Salas">
+          <h3>SALAS EXISTENTES</h3>
+          <div class="barra" *ngIf="salas">
+              <div class="salaInf" *ngFor="let sala of salas">
+                  <label for="" id="titSala">{{sala.nome}}</label>
+                  <div class="dados">
+                      <a [routerLink]="['/cadastros']">Crianças Cadastradas</a>
+                      <p>Quantidade:<label for="">{{sala.capacidade}}</label></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>

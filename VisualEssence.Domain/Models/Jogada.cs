@@ -25,6 +25,7 @@ namespace VisualEssence.Domain.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         [MaxLength(100)]
         public string Name { get; set; }

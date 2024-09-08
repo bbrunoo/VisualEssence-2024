@@ -1,0 +1,35 @@
+<div class="container">
+<app-inst-menu></app-inst-menu>
+    <div class="conteudo" *ngIf="!showNew" [ngClass]="{'fade_In': !showNew}">
+        <div class="formulario">
+            <form action="">
+                <legend>CADASTRO EM MASSA</legend>
+
+                <select (change)="SelectChange($event, 'sala')" [(ngModel)]="selectSala" name="sala" id="" required>
+                    <option value="" disabled>Selecionar Sala</option>
+                    <option value="bra"></option>
+                </select>
+
+                <br>
+
+                <div class="arqExc" (click)="fileUpl()">
+                    <label for="labelFile">
+                        <span>
+                            {{fileName ? fileName : 'Exportar Arquivo Excel' }}
+                        </span>
+                    </label>
+                    <img src="../../../assets/imgUpl.png" alt="">
+                </div>
+                <input type="file" #inputFile (change)="fileSel($event)" name="arqExcel" id="">
+
+                <br>
+
+                <div class="btns">
+                    <button type="submit" class="btnSalvar">Salvar</button>
+                    <button type="reset" class="btnCancelar" [routerLink]="['/instituicao/criar-sala']" class="btnCancelar">Cancelar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

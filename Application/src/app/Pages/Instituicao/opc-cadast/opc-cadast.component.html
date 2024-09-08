@@ -1,0 +1,19 @@
+<div class="container">
+  <div
+    class="conteudo"
+    *ngIf="!showCadUni && !showCadMas"
+    [ngClass]="{ fade_In: !showCadUni } && { fade_In: !showCadMas }"
+  >
+    <div class="espBtn">
+      <div class="content">
+        <button class="btnCad" [routerLink]="['/instituicao/cadastro-unico']">
+          CADASTRO UNITÁRIO DE CRIANÇA
+        </button>
+        <br />
+        <button class="btnCad" [routerLink]="['/instituicao/cadastro-massa']" >
+          CADASTRO EM MASSA
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
