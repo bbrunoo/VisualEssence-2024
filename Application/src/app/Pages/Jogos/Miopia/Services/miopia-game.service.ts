@@ -2,31 +2,24 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MiopiaGame } from '../../../../Models/MiopiaGame/miopiaGame.model';
 import { Observable } from 'rxjs';
+import { CriancaPais } from '../../../../Models/MiopiaGame/criancapais.model';
+import { Jogada } from '../../../../Models/MiopiaGame/jogada.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MiopiaGameService {
 
-  private url = "https://localhost:5200"
+  private criancaUrl = "https://localhost:5200/CriancaPais"
+  private jogadaUrl = "https://localhost:5200/JogadaPais"
 
   constructor(private http: HttpClient) { }
-  private getToken(): string | null {
-    return localStorage.getItem('token');
+
+  cadastrarCrianca(crianca: CriancaPais): Observable<CriancaPais> {
+    return this.http.post<CriancaPais>(`${this.criancaUrl}`, crianca)
   }
 
-  addJogada(jogada: MiopiaGame): Observable<any>
-  {
-    const token = this.getToken();
-    if (!token) {
-      console.error('Token JWT não encontrado no localStorage');
-    }
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-
-    });
-    return this.http.post<MiopiaGame>(`${this.url}/Jogada/NewJogada`, jogada, { headers });
+  addJogada(jogada: Jogada): Observable<Jogada> {
+    return this.http.post<Jogada>(`${this.jogadaUrl}`, jogada)
   }
 }

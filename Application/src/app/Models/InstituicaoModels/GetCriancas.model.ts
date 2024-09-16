@@ -5,7 +5,7 @@ export interface Sala {
 }
 
 export interface GetCriancas {
-  id?: string;
+  id: string;
   nome: string;
   nomeResp: string;
   sexo: string;

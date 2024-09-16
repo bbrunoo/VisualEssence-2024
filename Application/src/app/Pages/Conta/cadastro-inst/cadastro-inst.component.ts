@@ -10,11 +10,12 @@ import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { NgxMaskDirective } from 'ngx-mask';
 import { NgxMaskPipe } from 'ngx-mask';
 import Swal from 'sweetalert2';
+import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.component";
 
 @Component({
   selector: 'app-cadastro-inst',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, FormsModule, CommonModule, HttpClientModule, NgxMaskDirective, NgxMaskPipe, ReactiveFormsModule],
+  imports: [RouterLink, RouterLinkActive, FormsModule, CommonModule, HttpClientModule, NgxMaskDirective, NgxMaskPipe, ReactiveFormsModule, LogoMenuComponent],
   templateUrl: './cadastro-inst.component.html',
   styleUrl: './cadastro-inst.component.css',
   providers: [AuthService],

@@ -28,14 +28,25 @@ namespace VisualEssence.Infrastructure.Repositories
         }
         public async Task<CriancaPaisDTO> Post(CriancaPaisDTO criancaDto)
         {
+            if (criancaDto == null)
+                throw new ArgumentNullException(nameof(criancaDto));
+
             var crianca = new CriancaPais
             {
                 Nome = criancaDto.Nome,
                 Idade = criancaDto.Idade,
             };
-            await _context.CriancaPais.AddAsync(crianca);
+
+            _context.CriancaPais.Add(crianca);
             await _context.SaveChangesAsync();
-            return criancaDto;
+
+            // Retorna o DTO com o ID gerado
+            return new CriancaPaisDTO
+            {
+                Id = crianca.Id, // Inclui o ID gerado após a inserção
+                Nome = crianca.Nome,
+                Idade = crianca.Idade
+            };
         }
         public async Task<CriancaPaisDTO> Update(Guid id, CriancaPaisDTO criancaDto)
         {

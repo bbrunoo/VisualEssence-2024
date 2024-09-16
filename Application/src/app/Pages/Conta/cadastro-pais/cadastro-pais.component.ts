@@ -6,11 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserPais } from '../../../Models/UserPais.model';
 import Swal from 'sweetalert2';
+import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.component";
 
 @Component({
   selector: 'app-cadastro-pais',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, FormsModule, CommonModule],
+  imports: [RouterLink, RouterLinkActive, FormsModule, CommonModule, LogoMenuComponent],
   templateUrl: './cadastro-pais.component.html',
   styleUrl: './cadastro-pais.component.css',
   providers: [AuthService],

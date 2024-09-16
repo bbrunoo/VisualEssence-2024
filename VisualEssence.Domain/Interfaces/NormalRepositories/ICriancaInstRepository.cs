@@ -12,5 +12,6 @@ namespace VisualEssence.Domain.Interfaces.NormalRepositories
     public interface ICriancaInstRepository : IRepository<CriancaInst, CriancaInstDTO>
     {
         Task<IEnumerable<RequestCriancaInstDTO>> GetCriancasByQuery(Guid? sala, string? codigo, string? nome);
+        Task<CriancaInst> PostCrianca(CriancaInst crianca);
     }
 }

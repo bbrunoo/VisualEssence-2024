@@ -4,11 +4,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
+import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.component";
 
 @Component({
   selector: 'app-login-inst',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, FormsModule],
+  imports: [RouterLink, RouterLinkActive, FormsModule, LogoMenuComponent],
   templateUrl: './login-inst.component.html',
   styleUrl: './login-inst.component.css',
   providers: [AuthService],

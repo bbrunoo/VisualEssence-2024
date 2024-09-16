@@ -1,22 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VisualEssence.Domain.Models;
+using VisualEssence.Domain.Models.Jogada;
 
 namespace VisualEssence.Infrastructure.Context
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
 
         public DbSet<UserInst> UserInst { get; set; }
         public DbSet<UserPais> UserPais { get; set; }
         public DbSet<Contato> Contato { get; set; }
-        public DbSet<Jogada> Jogada { get; set; }
+        public DbSet<JogadaInst> JogadaInst { get; set; }
+        public DbSet<JogadaPais> JogadaPais { get; set; }
         public DbSet<Jogo> Jogo { get; set; }
-        public DbSet<CriancaPais> CriancaPais{ get; set; }
-        public DbSet<CriancaInst> CriancaInst{ get; set; }
-        public DbSet<Sala> Sala{ get; set; }
+        public DbSet<CriancaPais> CriancaPais { get; set; }
+        public DbSet<CriancaInst> CriancaInst { get; set; }
+        public DbSet<Sala> Sala { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -25,10 +28,17 @@ namespace VisualEssence.Infrastructure.Context
             modelBuilder.Entity<UserPais>().HasIndex(e => e.Email).IsUnique();
             modelBuilder.Entity<Contato>().HasIndex(e => e.Email).IsUnique();
 
-            modelBuilder.Entity<Jogada>()
-                .HasOne(e => e.Jogo)
-                .WithMany()
-                .HasForeignKey(e => e.IdJogo);
+            modelBuilder.Entity<JogadaInst>()
+    .HasOne(j => j.CriancaInst)
+    .WithMany()
+    .HasForeignKey(j => j.IdCrianca)
+    .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<JogadaPais>()
+     .HasOne(j => j.CriancaPais)
+     .WithMany()
+     .HasForeignKey(j => j.IdCrianca)
+     .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<CriancaInst>()
                .HasOne(e => e.Sala)

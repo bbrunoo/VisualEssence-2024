@@ -1,15 +1,35 @@
-<div *ngIf="fase.length">
-  <h1>{{fase[faseAtual].question}}</h1>
-  <div>
-    <img [src]="fase[faseAtual].question" alt="Imagem da Pergunta" />
+<div class="container">
+<app-logo-menu></app-logo-menu>
+  <div class="conteudo-geral">
+
+    <div class="gameContent" *ngIf="fase.length">
+
+      <h1>{{ fase[faseAtual].question }}</h1>
+
+      <div class="imagem-game">
+        <div class="questionImage">
+          <img
+          class="imgQuestion"
+          [src]="fase[faseAtual].correctQuestion"
+          [style.width]="getQuestionImageSize()"
+          [style.height]="getQuestionImageSize()"
+          alt="Imagem da Pergunta"
+          />
+        </div>
+      </div>
+
+      <div class="btnContent">
+        <ul class="botoes">
+          <li *ngFor="let option of fase[faseAtual].questionImage">
+            <button class="btn-imagem" (click)="checkAnswer(option)">
+              <img class="btnImg" [src]="option" alt="Opção" />
+            </button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
   </div>
-  <div>
-    <ul>
-      <li *ngFor="let option of fase[faseAtual].questionImage">
-        <button (click)="checkAnswer(option)">
-        <img [src]="option" alt="Opção" />
-        </button>
-      </li>
-    </ul>
-  </div>
+
 </div>

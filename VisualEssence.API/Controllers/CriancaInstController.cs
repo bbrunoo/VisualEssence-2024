@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
+using VisualEssence.Infrastructure.Repositories;
 //using VisualEssence.Domain.Services;
 
 namespace VisualEssence.API.Controllers
@@ -25,43 +27,53 @@ namespace VisualEssence.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var crianca = await _repository.GetAllAsync();
-            return Ok(crianca);
+            var criancas = await _repository.GetAllAsync();
+            return Ok(criancas);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
+        public async Task<IActionResult> GetCrianca(Guid id)
         {
             var crianca = await _repository.GetByIdAsync(id);
-            if (crianca == null) return NotFound();
+            if (crianca == null)
+            {
+                return NotFound();
+            }
+
             return Ok(crianca);
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CriancaInstDTO criancaDto)
         {
-            var sala = await _salaRepository.GetByIdAsync(criancaDto.IdSala);
-            if (sala == null) return NotFound("Sala não encontrada");
-
-            var crianca = new CriancaInst
+            try
             {
-                Nome = criancaDto.Nome,
-                Sexo = criancaDto.Sexo,
-                NomeResp = criancaDto.NomeResp,
-                Cpf = criancaDto.Cpf,
-                Cns = criancaDto.Cns,
-                Endereco = criancaDto.Endereco,
-                Rg = criancaDto.Rg,
-                Tel1 = criancaDto.Tel1,
-                Tel2 = criancaDto.Tel2,
-                DataNascimento = criancaDto.DataNascimento,
-                Sala = sala
-            };
+                var crianca = new CriancaInst
+                {
+                    Nome = criancaDto.Nome,
+                    Sexo = criancaDto.Sexo,
+                    NomeResp = criancaDto.NomeResp,
+                    DataNascimento = criancaDto.DataNascimento,
+                    Endereco = criancaDto.Endereco,
+                    Cpf = criancaDto.Cpf,
+                    Cns = criancaDto.Cns,
+                    Rg = criancaDto.Rg,
+                    Tel1 = criancaDto.Tel1,
+                    Tel2 = criancaDto.Tel2,
+                    IdSala = criancaDto.IdSala,
+                    UserInstId = criancaDto.UserInstId
+                    // Foto = criancaDto.Foto
+                };
 
-            await _repository.Post(criancaDto);
-            return CreatedAtAction(nameof(GetById), new { id = crianca.Id }, crianca);
+                await _repository.PostCrianca(crianca);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                // Logar o erro para diagnóstico
+                return StatusCode(500, "Erro interno do servidor.");
+            }
         }
-
 
 
         [HttpPut("{id}")]

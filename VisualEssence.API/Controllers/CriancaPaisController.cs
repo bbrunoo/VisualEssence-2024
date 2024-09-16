@@ -33,13 +33,12 @@ namespace VisualEssence.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCrianca([FromBody] CriancaPaisDTO criancaDto)
         {
-            var crianca = new CriancaPais
-            {
-                Nome = criancaDto.Nome,
-                Idade = criancaDto.Idade,
-            };
-            await _repository.Post(criancaDto);
-            return Ok(crianca);
+            if (criancaDto == null)
+                return BadRequest("O corpo da requisição não pode ser nulo.");
+
+            var createdCrianca = await _repository.Post(criancaDto);
+
+            return CreatedAtAction(nameof(GetById), new { id = createdCrianca.Id }, createdCrianca);
         }
 
         [HttpPut("{id}")]

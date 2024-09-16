@@ -1,3 +1,4 @@
+import { UserInst } from './../../../Models/UserInst.Model';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { NgIf, CommonModule } from '@angular/common';
@@ -10,6 +11,9 @@ import { CadastroUnicoService } from '../Services/cadastrounico/cadastro-unico.s
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { GetSala } from '../../../Models/InstituicaoModels/GetSala.model';
 import Swal from 'sweetalert2';
+import { loggedUser } from '../../../Models/LoggedUser/user.model';
+import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
+import { CriancaInstDTO } from '../../../Models/CriancaInstDTO.model';
 
 
 @Component({
@@ -27,7 +31,12 @@ import Swal from 'sweetalert2';
 })
 export class CadastUniComponent implements OnInit {
 
-  constructor(private salaService:SalasService, private dadosC:CadastroUnicoService, private router: Router){}
+  constructor(
+    private salaService: SalasService,
+    private dadosC: CadastroUnicoService,
+    private router: Router,
+    private userService: AuthService
+  ) {}
 
   salas: GetSala[] =[]
   ngOnInit() {
@@ -36,9 +45,12 @@ export class CadastUniComponent implements OnInit {
     }, error => {
       console.error('Erro ao buscar salas:', error);
     });
+
+    this.getUser();
   }
 
-  dadosCriancas = {
+
+  dadosCriancas: CriancaInstDTO = {
     nome: '',
     sexo: '',
     nomeResp: '',
@@ -50,12 +62,14 @@ export class CadastUniComponent implements OnInit {
     tel1: '',
     tel2: '',
     idSala: '',
-    sala:{
+    userInstId: '',
+    sala: {
       id: '',
       nome: '',
-      capacidade: ''
+      capacidade: 0
     }
   };
+
   sexos = [
     { valor: 'F', texto: 'Feminino' },
     { valor: 'M', texto: 'Masculino' }
@@ -89,45 +103,58 @@ export class CadastUniComponent implements OnInit {
     );
   }
   cadastrarCrianca() {
-    if (this.dadosCriancas.idSala) {
-      this.atualizarDadosSala(this.dadosCriancas.idSala);
-      setTimeout(() => {
-        console.log('Dados da criança a serem enviados:', this.dadosCriancas);
-        this.dadosC.cadastrarUnico(this.dadosCriancas).subscribe(
-          response => {
-            Swal.fire({
-              title: 'Sucesso!',
-              text: 'Crianca cadastrada com sucesso.',
-              imageUrl: '../../../../assets/icons/check.png',
-              imageWidth: 100,
-              imageHeight: 100,
-              confirmButtonText: 'OK',
-              confirmButtonColor: '#0abf2f',
-              heightAuto: false,
-            });
-            this.changePage();
+    if (this.dadosCriancas.idSala && this.user) {
+      // Criação do objeto CriancaInstDTO
+      const criancaDTO: CriancaInstDTO = {
+        nome: this.dadosCriancas.nome,
+        sexo: this.dadosCriancas.sexo,
+        nomeResp: this.dadosCriancas.nomeResp,
+        cpf: this.dadosCriancas.cpf,
+        endereco: this.dadosCriancas.endereco,
+        cns: this.dadosCriancas.cns,
+        dataNascimento: this.dadosCriancas.dataNascimento,
+        rg: this.dadosCriancas.rg,
+        tel1: this.dadosCriancas.tel1,
+        tel2: this.dadosCriancas.tel2,
+        idSala: this.dadosCriancas.idSala, // Apenas o ID da sala
+        userInstId: this.user.id // Apenas o ID do usuário
+      };
 
-            console.log('Criança cadastrada com sucesso:', response);
-          },
-          error => {
-            Swal.fire({
-              title: 'Falha!',
-              text: 'Não foi possível cadastrar a crianca.',
-              imageUrl: '../../../../assets/icons/cancel.png',
-              imageWidth: 100,
-              imageHeight: 100,
-              confirmButtonText: 'OK',
-              confirmButtonColor: '#d9534f',
-              heightAuto: false,
-            });
-            console.error('Erro ao cadastrar criança:', error);
-          }
-        );
-      }, 1000);
+      console.log('Dados da criança a serem enviados:', criancaDTO);
+      this.dadosC.cadastrarUnico(criancaDTO).subscribe(
+        response => {
+          Swal.fire({
+            title: 'Sucesso!',
+            text: 'Criança cadastrada com sucesso.',
+            imageUrl: '../../../../assets/icons/check.png',
+            imageWidth: 100,
+            imageHeight: 100,
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#0abf2f',
+            heightAuto: false,
+          });
+          this.changePage();
+          console.log('Criança cadastrada com sucesso:', response);
+        },
+        error => {
+          Swal.fire({
+            title: 'Falha!',
+            text: 'Não foi possível cadastrar a criança.',
+            imageUrl: '../../../../assets/icons/cancel.png',
+            imageWidth: 100,
+            imageHeight: 100,
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#d9534f',
+            heightAuto: false,
+          });
+          console.error('Erro ao cadastrar criança:', error);
+        }
+      );
     } else {
-      console.error('ID da sala não fornecido.');
+      console.error('ID da sala ou usuário não fornecido.');
     }
   }
+
 
   changePage(){
     this.router.navigate(['/instituicao/cadastros']);
@@ -136,5 +163,19 @@ export class CadastUniComponent implements OnInit {
   showNew = false;
   toggleContent() {
     this.showNew = !this.showNew;
+  }
+
+  user: loggedUser = {id: '', nome:'', email: '', isInstitucional: false, isPais: false}
+  getUser(){
+    this.userService.getUserProfile().subscribe(
+      (data) => {
+        this.user = data;
+        console.log('dados do usuario', this.user);
+      },
+      (error) =>
+      {
+        console.log('Erro ao recuperar dados do usuario', error);
+      }
+    )
   }
 }

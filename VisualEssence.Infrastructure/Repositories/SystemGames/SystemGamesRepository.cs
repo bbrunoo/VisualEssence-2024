@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using VisualEssence.Domain.DTOs.GamesDTO.NewGame;
 using VisualEssence.Domain.Interfaces.Games.SystemGamesRepository;
@@ -27,26 +24,45 @@ namespace VisualEssence.Infrastructure.Repositories.SystemGames
 
         public async Task<Jogo> GetByIdAsync(int id)
         {
-            return await _context.Jogo.FindAsync(id);
+            var jogo = await _context.Jogo.FindAsync(id);
+            if (jogo == null)
+            {
+                // Handle the case when the item is not found (e.g., throw an exception or return a default value)
+                throw new KeyNotFoundException($"Jogo with ID {id} not found.");
+            }
+            return jogo;
         }
 
         public async Task<Jogo> Post(JogoDTO newJogo)
         {
-            var jogo = new Jogo()
+            // Validate the input (e.g., check if Nome is null or empty)
+            if (string.IsNullOrWhiteSpace(newJogo.Nome))
             {
-                Name = newJogo.Name
+                throw new ArgumentException("Nome is required.");
+            }
+
+            var jogo = new Jogo
+            {
+                Nome = newJogo.Nome
             };
 
-            await _context.AddAsync(jogo);
+            await _context.Jogo.AddAsync(jogo);
             await _context.SaveChangesAsync();
             return jogo;
         }
 
         public async Task<Jogo> Delete(Jogo jogo)
         {
-            _context.Jogo.Remove(jogo);
+            // Check if the game exists before attempting to delete
+            var jogoInData = await _context.Jogo.FindAsync(jogo.Id);
+            if (jogoInData == null)
+            {
+                throw new KeyNotFoundException($"Jogo with ID {jogo.Id} not found.");
+            }
+
+            _context.Jogo.Remove(jogoInData);
             await _context.SaveChangesAsync();
-            return jogo;
+            return jogoInData;
         }
     }
 }

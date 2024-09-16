@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace VisualEssence.Domain.Models
@@ -25,5 +26,7 @@ namespace VisualEssence.Domain.Models
         public string Nome { get; set; }
         [Required]
         public int Capacidade { get; set; }
+
+        public ICollection<CriancaInst> CriancaInst { get; set; }
     }
 }
