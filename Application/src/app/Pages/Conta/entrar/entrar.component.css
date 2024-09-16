@@ -71,8 +71,15 @@
   justify-content: center;
 }
 
+.imagem{
+  width: 35em;
+  height: 35em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .imagem img{
-  width: 35vw;
+  width: 28em;
   height: auto !important;
   display: flex;
   align-items: center;

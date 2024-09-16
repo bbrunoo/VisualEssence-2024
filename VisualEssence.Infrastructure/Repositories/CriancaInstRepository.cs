@@ -42,30 +42,23 @@ namespace VisualEssence.Infrastructure.Repositories
         //        fotoBytes = memoryStream.ToArray();
         //    }
         //}
-        public async Task<CriancaInstDTO> Post(CriancaInstDTO criancaDto)
+        public async Task<CriancaInst> PostCrianca(CriancaInst crianca)
         {
-            var sala = await _context.Sala.FindAsync(criancaDto.IdSala);
-            if (sala == null) return null;
-
-            var crianca = new CriancaInst
+            bool isUsuarioInstitucional = await _context.UserInst.AnyAsync(u => u.Id == crianca.UserInstId);
+            if (!isUsuarioInstitucional)
             {
-                Nome = criancaDto.Nome,
-                Sexo = criancaDto.Sexo,
-                NomeResp = criancaDto.NomeResp,
-                Cpf = criancaDto.Cpf,
-                Rg = criancaDto.Rg,
-                Tel1 = criancaDto.Tel1,
-                Tel2 = criancaDto.Tel2,
-                Cns = criancaDto.Cns,
-                DataNascimento = criancaDto.DataNascimento,
-                Endereco = criancaDto.Endereco,
-                Sala = sala
-            };
+                throw new Exception("Usuário não encontrado.");
+            }
 
-            await _context.CriancaInst.AddAsync(crianca);
+            // Adicionar a nova criança
+            _context.CriancaInst.Add(crianca);
             await _context.SaveChangesAsync();
-            return criancaDto;
+
+            return crianca;
         }
+
+
+
 
         public async Task<CriancaInstDTO> Update(Guid id, CriancaInstDTO criancaDto)
         {
@@ -82,12 +75,29 @@ namespace VisualEssence.Infrastructure.Repositories
                 throw new KeyNotFoundException("Criança não encontrada.");
             }
 
-            var sala = await _context.Sala.FindAsync(criancaDto.IdSala);
-
-            if (sala == null)
+            var novaSala = await _context.Sala.FindAsync(criancaDto.IdSala);
+            if (novaSala == null)
             {
                 throw new KeyNotFoundException("Sala não encontrada.");
             }
+
+            if (crianca.IdSala != criancaDto.IdSala)
+            {
+                var numCriancasNaNovaSala = await _context.CriancaInst.CountAsync(c => c.IdSala == criancaDto.IdSala);
+                if (numCriancasNaNovaSala >= novaSala.Capacidade)
+                {
+                    throw new Exception("Capacidade máxima da nova sala atingida. Não é possível mover a criança para esta sala.");
+                }
+
+                if (crianca.Sala != null)
+                {
+                    crianca.Sala.CriancaInst.Remove(crianca);
+                }
+
+                crianca.IdSala = criancaDto.IdSala;
+                crianca.Sala = novaSala;
+            }
+
 
             crianca.Nome = criancaDto.Nome;
             crianca.Sexo = criancaDto.Sexo;
@@ -99,7 +109,6 @@ namespace VisualEssence.Infrastructure.Repositories
             crianca.Rg = criancaDto.Rg;
             crianca.Tel1 = criancaDto.Tel1;
             crianca.Tel2 = criancaDto.Tel2;
-            crianca.Sala = sala;
 
             //if (criancaDto.Foto != null && criancaDto.Foto.Length > 0)
             //{
@@ -117,6 +126,11 @@ namespace VisualEssence.Infrastructure.Repositories
 
         public async Task<CriancaInst> Delete(CriancaInst crianca)
         {
+            var sala = await _context.Sala.FindAsync(crianca.IdSala);
+            if (sala != null)
+            {
+                sala.CriancaInst.Remove(crianca);
+            }
             _context.CriancaInst.Remove(crianca);
             await _context.SaveChangesAsync();
             return crianca;
@@ -163,5 +177,16 @@ namespace VisualEssence.Infrastructure.Repositories
             }).ToListAsync();
             return criancasDTO;
         }
+
+        
+        public Task<CriancaInstDTO> Post(CriancaInstDTO dto)
+        {
+            throw new NotImplementedException();
+        }
+
+        //public Task<CriancaInstDTO> Post(CriancaInstDTO dto)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

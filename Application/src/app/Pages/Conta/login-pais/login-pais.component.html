@@ -1,26 +1,18 @@
 <div class="container">
-
+<app-logo-menu></app-logo-menu>
   <div class="conteudo">
-
     <div class="box-entrar">
-
       <div class="b-content">
-        <!-- COLOCAR LOGO EM ALGUM CANTO -->
-
         <div class="b-titulo">
-          <p>
-            Entrar
-          </p>
+          <p>Entrar</p>
         </div>
         <div class="b-form">
-
           <form (ngSubmit)="login()" #loginForm="ngForm">
             <div class="input-style">
               <label>Email</label>
               <input type="email" name="" id=""  [(ngModel)]="CredentialsPais.email" [ngModelOptions]="{standalone: true}"  required/>
               <br>
             </div>
-
             <div class="input-style">
               <label>Senha</label>
               <div class="hide-show">
@@ -28,11 +20,6 @@
                   <img class="toggle-password" width="30px" height="30px" (click)="toggleShowPassword()" [src]="showPassword ? 'assets/olho.png' : 'assets/ocultar.png'">
               </div>
             </div>
-
-            <div class="b-forgetPassword">
-              <a [routerLink]="['/esquecer-senha']" routerLinkActive="router-link-active" >Esqueceu a senha?</a>
-            </div>
-
             <div class="b-cont-sub">
               <button class="b-submit" type="submit">Enviar</button>
             </div>

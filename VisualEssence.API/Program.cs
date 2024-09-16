@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Security.Cryptography.Xml;
 using System.Text;
+using System.Text.Json.Serialization;
 using VisualEssence.Domain.Interfaces.Authenticate;
 using VisualEssence.Domain.Interfaces.Games;
 using VisualEssence.Domain.Interfaces.Games.SystemGamesRepository;
@@ -11,8 +13,8 @@ using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Infrasctructure.Mappings;
 using VisualEssence.Infrastructure.Context;
 using VisualEssence.Infrastructure.Repositories;
-using VisualEssence.Infrastructure.Repositories.Games;
 using VisualEssence.Infrastructure.Repositories.Identity;
+using VisualEssence.Infrastructure.Repositories.Jogadas;
 using VisualEssence.Infrastructure.Repositories.SystemGames;
 //using VisualEssence.Infrastructure.Service;
 using VisualEssenceAPI.Repositories;
@@ -51,6 +53,7 @@ builder.Services.AddSwaggerGen(c=>
     });
 });
 
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -58,10 +61,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<IUsuarioInstRepository, UsuarioInstRepository>();
 builder.Services.AddScoped<IUsuarioPaisRepository, UsuarioPaisRepository>();
-builder.Services.AddScoped<IMiopiaGameRepository, JogadaRepository>();
 builder.Services.AddScoped<ISystemGamesRepository, SystemGamesRepository>();
 builder.Services.AddScoped<ICriancaInstRepository, CriancaInstRepository>();
 builder.Services.AddScoped<ICriancaPaisRepository, CriancaPaisRepository>();
+builder.Services.AddScoped<IJogadaPaisRepository, JogadaPaisRepository>();
+builder.Services.AddScoped<IJogadaInstRepository, JogadaInstRepository>();
+
+
+
+
 builder.Services.AddScoped<ISalaRepository, SalaRepository>();
 //builder.Services.AddScoped<IExcelService, ExcelService>();
 

@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 import { CredentialsPais } from '../../../Models/credentialsPais.model';
+import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.component";
 
 @Component({
   selector: 'app-login-pais',
   standalone: true,
-  imports: [RouterLink,RouterLinkActive, FormsModule],
+  imports: [RouterLink, RouterLinkActive, FormsModule, LogoMenuComponent],
   templateUrl: './login-pais.component.html',
   styleUrl: './login-pais.component.css',
   providers: [AuthService],

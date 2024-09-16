@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+* {
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+
+.container {
+  background-image: url("../../../../assets/fundo.png");
+  background-size: cover;
+  background-position: 0 0, right -20px top -100px, left -125px bottom -75px;
+  background-repeat: no-repeat;
+  background-color: #010029;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-bottom: 5px;
+}
+
+form input {
+  margin-bottom: 15px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.conteudo{
+ width: 100%;
+ height: 100vh;
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ justify-content:center;
+ gap: 6em;
+}
+
+.left{
+  display: flex;
+  flex-direction: column;
+  width: 25em;
+  height: 25em;
+  align-items: center;
+  justify-content: center;
+  img{
+    animation: animation 4s ease-in-out infinite;
+    width: 18em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@keyframes animation {
+  0% {
+    transform: translateY(0) rotate(10deg);
+  }
+
+  46% {
+    transform: translateY(-30px) rotate(56deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.right{
+  width: 25em;
+  height: 25em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.09);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(2.8px);
+-webkit-backdrop-filter: blur(2.8px);
+border: 1px solid rgba(255, 255, 255, 0.42);
+
+}
+
+label{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+select
+{
+  width: 15em;
+  font-size: 20px;
+}
+
+select {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  color: #333;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+select option {
+  padding: 10px;
+  color: #333;
+}
+
+/* option{
+  background-color: #c6dfff;
+} */

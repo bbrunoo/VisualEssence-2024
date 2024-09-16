@@ -44,6 +44,7 @@ export class EdtDadComponent implements OnInit {
       console.error('ID não encontrado na rota');
     }
     this.getSalas();
+    console.log("id" + this.selectedCrianca?.id)
   }
 
   loadCriancaData(): void {
@@ -85,6 +86,7 @@ export class EdtDadComponent implements OnInit {
   updateCrianca(): void {
     if (this.selectedCrianca) {
       this.selectedCrianca.idSala = this.selectedCrianca.sala.id;
+      console.log(this.selectedCrianca.id); // Certifique-se de que 'this.crianca' não é undefined
 
       Swal.fire({
         title: 'Confirmação',

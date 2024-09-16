@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.component";
 
 @Component({
   selector: 'app-opc-entrar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, LogoMenuComponent],
   templateUrl: './opc-entrar.component.html',
   styleUrl: './opc-entrar.component.css'
 })

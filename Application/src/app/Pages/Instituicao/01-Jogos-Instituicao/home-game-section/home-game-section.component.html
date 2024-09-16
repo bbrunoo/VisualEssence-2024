@@ -1,11 +1,24 @@
-<div class="container">
+<div class="sec-jogos">
   <app-inst-menu></app-inst-menu>
-  <div class="conteudo">
-    <div class="Manutencao">
-      <h1>Pagina em Manutenção</h1>
-      <p>Estamos realizando melhorias. Por favor, volte mais tarde.</p>
-      <p>Obrigado pela sua paciência.</p>
-      <button [routerLink]="['/instituicao/home']"> Voltar </button>
+  <div class="jogos-container">
+    <h1>JOGOS</h1>
+    <p>Jogos que ajudam a identificar possíveis problemas visuais.
+      Venha aprender brincando!</p>
+
+    <div class="jogos-box">
+      <div class="jogos-daltonismo">
+        <h2>Daltonismo</h2>
+        <div class="jogos-img">
+          <img [src]="Dalt" />
+        </div>
+      </div>
+
+      <div class="jogos-miopia">
+        <h2>Miopia</h2>
+        <div class="jogos-img">
+          <img [routerLink]="['/instituicao/jogos/cadastrar-crianca-inst']" [src]="Miop" />
+        </div>
+      </div>
     </div>
   </div>
 </div>

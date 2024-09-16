@@ -8,6 +8,6 @@ namespace VisualEssence.Domain.DTOs.GamesDTO.NewGame
 {
     public class JogoDTO
     {
-        public string Name { get; set; }
+        public string Nome { get; set; }
     }
 }

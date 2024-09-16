@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DadosCriancas } from '../../../../Models/InstituicaoModels/DadosCrianca';
+import { CriancaInstDTO } from '../../../../Models/CriancaInstDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class CadastroUnicoService {
 
   constructor(private http: HttpClient) { }
 
-  cadastrarUnico(dados: DadosCriancas): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}`, dados);
+  cadastrarUnico(dados: CriancaInstDTO): Observable<any> {
+    return this.http.post(`${this.apiUrl}`, dados);
   }
 
   getCadastrados(): Observable<GetCriancas[]> {

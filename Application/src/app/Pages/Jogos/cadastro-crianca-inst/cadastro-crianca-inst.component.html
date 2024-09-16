@@ -1,0 +1,19 @@
+<app-logo-menu></app-logo-menu>
+<div class="container">
+  <div class="conteudo">
+    <div class="left">
+      <img src="../../../../assets/astro.png">
+    </div>
+    <div class="right">
+      <label for="criancas">Selecione uma criança:</label>
+      <select id="criancas" [(ngModel)]="selectedCriancaId">
+        <option value="" disabled selected>- Selecione -</option>
+        <option *ngFor="let crianca of criancas" [value]="crianca.id">
+          Nome: {{ crianca.nome }}  ||
+          Sala: - {{ crianca.sala.nome }}
+        </option>
+      </select>
+      <button (click)="onSubmit()">Enviar</button>
+    </div>
+  </div>
+</div>

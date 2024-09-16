@@ -16,6 +16,6 @@ namespace VisualEssence.Domain.Models
 
         [Required]
         [MaxLength(100)]
-        public string Name { get; set; }
+        public string Nome { get; set; }
     }
 }

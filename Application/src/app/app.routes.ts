@@ -16,6 +16,9 @@ import { OpcEntrarComponent } from './Pages/Conta/opc-entrar/opc-entrar.componen
 
 // import { HomeComponent } from './Pages/Home/home.component';
 
+import { SobreNosComponent } from './Pages/PaisHome/sobre-nos/sobre-nos.component';
+import { PainelEducativoComponent } from './Pages/PaisHome/painel-educativo/painel-educativo.component';
+
 import { AdminContatoComponent } from './Pages/admin-contato/admin-contato.component';
 
 
@@ -33,17 +36,20 @@ import { HomeGameSectionComponent } from './Pages/Instituicao/01-Jogos-Instituic
 import { HomeComponent } from './Pages/PaisHome/home/home.component';
 
 //jogos
+import { CadastroCriancaInstComponent } from './Pages/Jogos/cadastro-crianca-inst/cadastro-crianca-inst.component';
+import { CadastroCriancaPaisComponent } from './Pages/Jogos/cadastro-crianca-pais/cadastro-crianca-pais.component';
 
-import { MiopiaInstructionsComponent } from './Pages/Jogos/Miopia/miopia-game/miopia-instructions/miopia-instructions.component';
+import { MiopiaInstructionsComponent } from './Pages/Jogos/Miopia/miopia-instructions/miopia-instructions.component';
 import { MiopiaGameComponent } from './Pages/Jogos/Miopia/miopia-game/miopia-game.component';
-import { MiopiaResultComponent } from './Pages/Jogos/Miopia/miopia-game/miopia-result/miopia-result.component';
+import { MiopiaResultComponent } from './Pages/Jogos/Miopia/miopia-result/miopia-result.component';
 
 import { ContatoComponent } from './Pages/Contato/contato.component';
 import { AuthGuard } from './guards/user-authenticated.guard';
 import { HistoricoComponent } from './Pages/Instituicao/historico/historico.component';
-import { SobreComponent } from './Pages/PaisHome/sobre/sobre.component';
-import { JogosComponent } from './Pages/PaisHome/jogos/jogos.component';
-import { FooterComponent } from './Pages/PaisHome/Shared-Pais/footer/footer.component';
+
+import { MiopiaInstComponent } from './Pages/Jogos/MiopiaInst/miopia-inst/miopia-inst.component';
+import { MiopiaInstResultComponent } from './Pages/Jogos/MiopiaInst/miopia-inst-result/miopia-inst-result.component';
+import { MiopiaInstInstrucoesComponent } from './Pages/Jogos/MiopiaInst/miopia-inst-instrucoes/miopia-inst-instrucoes.component';
 
 export const routes: Routes = [
   {path: '', component: EntrarComponent},
@@ -65,6 +71,8 @@ export const routes: Routes = [
   {path: 'doe-info', component: DoeInfoComponent},
 
   {path: 'Pais/Home', component: HomeComponent},
+  {path: 'Pais/Painel-Educativo', component: PainelEducativoComponent},
+  {path: 'Pais/Sobre-nos', component: SobreNosComponent},
 
   {path: 'instituicao/home', component: HomeInstComponent, canActivate: [AuthGuard]},
   {path: 'instituicao/criar-sala', component: CriarSalaComponent, canActivate: [AuthGuard]},
@@ -76,8 +84,15 @@ export const routes: Routes = [
   {path: 'instituicao/editar-dados/:id', component: EdtDadComponent, canActivate: [AuthGuard]},
   {path: 'instituicao/jogos', component: HomeGameSectionComponent, canActivate: [AuthGuard]},
   {path: 'instituicao/historico', component: HistoricoComponent, canActivate: [AuthGuard]},
+  {path: 'instituicao/', component: HistoricoComponent, canActivate: [AuthGuard]},
 
-  {path: 'jogos/miopia/instrucoes', component: MiopiaInstructionsComponent, canActivate: [AuthGuard]},
-  {path: 'jogos/miopia', component: MiopiaGameComponent , canActivate: [AuthGuard]},
-  {path: 'jogos/miopia/result', component: MiopiaResultComponent, canActivate: [AuthGuard]},
+  {path: 'instituicao/jogos/cadastrar-crianca-inst', component: CadastroCriancaInstComponent, canActivate: [AuthGuard]},
+  {path: 'instituicao/jogos/miopia/instrucoes', component: MiopiaInstInstrucoesComponent, canActivate: [AuthGuard]},
+  {path: 'instituicao/jogos/miopia', component: MiopiaInstComponent , canActivate: [AuthGuard]},
+  {path: 'instituicao/jogos/miopia/result', component: MiopiaInstResultComponent, canActivate: [AuthGuard]},
+
+  {path: 'Pais/jogos/miopia/instrucoes', component: MiopiaInstructionsComponent, canActivate: [AuthGuard]},
+  {path: 'Pais/jogos/miopia', component: MiopiaGameComponent , canActivate: [AuthGuard]},
+  {path: 'Pais/jogos/miopia/result', component: MiopiaResultComponent, canActivate: [AuthGuard]},
+  {path: 'Pais/jogos/cadastrar-crianca-pais', component: CadastroCriancaPaisComponent, canActivate: [AuthGuard]},
 ];
