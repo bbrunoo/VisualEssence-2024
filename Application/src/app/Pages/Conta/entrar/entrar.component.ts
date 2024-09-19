@@ -1,3 +1,4 @@
+import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RouterLinkActive } from '@angular/router';
@@ -6,7 +7,7 @@ import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.componen
 @Component({
   selector: 'app-entrar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, LogoMenuComponent],
+  imports: [VlibrasComponent, RouterLink, RouterLinkActive, LogoMenuComponent],
   templateUrl: './entrar.component.html',
   styleUrl: './entrar.component.css'
 })

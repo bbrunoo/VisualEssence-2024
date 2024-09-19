@@ -1,3 +1,4 @@
+import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIf, CommonModule } from '@angular/common';
@@ -9,7 +10,7 @@ import { InstMenuComponent } from "../shared-menu/inst-menu/inst-menu.component"
 @Component({
   selector: 'app-opc-cadast',
   standalone: true,
-  imports: [RouterLink, NgIf, CommonModule, CadastUniComponent, CadastMassaComponent, InstMenuComponent],
+  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, CadastUniComponent, CadastMassaComponent, InstMenuComponent],
   templateUrl: './opc-cadast.component.html',
   styleUrl: './opc-cadast.component.css',
   animations: [

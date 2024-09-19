@@ -5,11 +5,12 @@ import { GetCriancas } from '../../../Models/InstituicaoModels/GetCriancas.model
 import { CadastroUnicoService } from '../../Instituicao/Services/cadastrounico/cadastro-unico.service';
 import { NgFor, NgIf } from '@angular/common';
 import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.component";
+import { VlibrasComponent } from '../../vlibras/vlibras.component';
 
 @Component({
   selector: 'app-cadastro-crianca-inst',
   standalone: true,
-  imports: [FormsModule, RouterLink, NgFor, NgIf, LogoMenuComponent],
+  imports: [FormsModule, RouterLink, NgFor, NgIf, LogoMenuComponent, VlibrasComponent],
   templateUrl: './cadastro-crianca-inst.component.html',
   styleUrl: './cadastro-crianca-inst.component.css'
 })

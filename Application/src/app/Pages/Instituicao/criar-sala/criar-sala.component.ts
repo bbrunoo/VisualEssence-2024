@@ -1,3 +1,4 @@
+import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { Component, OnInit, reflectComponentType } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIf, CommonModule } from '@angular/common';
@@ -12,7 +13,7 @@ import { OpcCriarSalaComponent } from "../opc-criar-sala/opc-criar-sala.componen
 @Component({
   selector: 'app-criar-sala',
   standalone: true,
-  imports: [RouterLink, NgIf, CommonModule, OpcCadastComponent, InstMenuComponent, FormsModule, ReactiveFormsModule, OpcCriarSalaComponent],
+  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, OpcCadastComponent, InstMenuComponent, FormsModule, ReactiveFormsModule, OpcCriarSalaComponent],
   templateUrl: './criar-sala.component.html',
   styleUrl: './criar-sala.component.css',
   animations: [

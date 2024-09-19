@@ -1,3 +1,4 @@
+import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -13,6 +14,7 @@ import Swal from 'sweetalert2';
   selector: 'app-opc-criar-sala',
   standalone: true,
   imports: [
+    VlibrasComponent,
     RouterLink, NgIf, CommonModule, CadastUniComponent, CadastMassaComponent, FormsModule],
   templateUrl: './opc-criar-sala.component.html',
   styleUrl: './opc-criar-sala.component.css',

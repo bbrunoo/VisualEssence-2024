@@ -1,5 +1,6 @@
 <div class="container">
   <app-logo-menu></app-logo-menu>
+  <app-vlibras></app-vlibras>
   <div class="conteudo">
     <div class="resultados">
       <h2>RESULTADO</h2>
@@ -11,7 +12,7 @@
         É possivel que voce tenha algum 'Problema de Visão'. Recomendados tratar
         com um especioalista para diagnosticos precisos.
       </p>
-      <h3>Acertos: 0{{ result.score }}/08</h3>
+      <h3>Acertos: {{ result.score }}/15</h3>
       <div class="botoes">
         <button routerLink="/Pais/Home">SAIR</button>
         <button routerLink="/Pais/jogos/cadastrar-crianca-pais">

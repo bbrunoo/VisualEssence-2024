@@ -1,3 +1,4 @@
+import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { CredentialsInst } from './../../../Models/credentialsInst.model';
 import { UserInst } from './../../../Models/UserInst.Model';
 import { Component, ViewChild } from '@angular/core';
@@ -15,7 +16,7 @@ import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.componen
 @Component({
   selector: 'app-cadastro-inst',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, FormsModule, CommonModule, HttpClientModule, NgxMaskDirective, NgxMaskPipe, ReactiveFormsModule, LogoMenuComponent],
+  imports: [VlibrasComponent, RouterLink, RouterLinkActive, FormsModule, CommonModule, HttpClientModule, NgxMaskDirective, NgxMaskPipe, ReactiveFormsModule, LogoMenuComponent],
   templateUrl: './cadastro-inst.component.html',
   styleUrl: './cadastro-inst.component.css',
   providers: [AuthService],

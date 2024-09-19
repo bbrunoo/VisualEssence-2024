@@ -1,3 +1,4 @@
+import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Router } from '@angular/router';
@@ -9,7 +10,7 @@ import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.componen
 @Component({
   selector: 'app-login-pais',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, FormsModule, LogoMenuComponent],
+  imports: [VlibrasComponent, RouterLink, RouterLinkActive, FormsModule, LogoMenuComponent],
   templateUrl: './login-pais.component.html',
   styleUrl: './login-pais.component.css',
   providers: [AuthService],

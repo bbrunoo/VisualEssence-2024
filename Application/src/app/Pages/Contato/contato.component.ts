@@ -1,3 +1,4 @@
+import { VlibrasComponent } from './../vlibras/vlibras.component';
 import { Component } from '@angular/core';
 import { ContatoServiceService } from '../../../Services/Contato/contato-service.service';
 import { ContatoModel } from '../../Models/ContatoEntitie/contato.model';
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-contato',
   standalone: true,
-  imports: [FormsModule, RouterLink, HeaderComponent, BackHeaderComponent],
+  imports: [VlibrasComponent, FormsModule, RouterLink, HeaderComponent, BackHeaderComponent],
   templateUrl: './contato.component.html',
   styleUrl: './contato.component.css',
   providers: [ContatoServiceService],

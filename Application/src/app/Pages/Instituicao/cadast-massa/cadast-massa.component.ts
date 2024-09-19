@@ -4,11 +4,12 @@ import { NgIf, CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FormsModule } from '@angular/forms';
 import { InstMenuComponent } from '../shared-menu/inst-menu/inst-menu.component';
+import { VlibrasComponent } from '../../vlibras/vlibras.component';
 
 @Component({
   selector: 'app-cadast-massa',
   standalone: true,
-  imports: [RouterLink, NgIf, CommonModule, FormsModule, InstMenuComponent],
+  imports: [RouterLink, NgIf, CommonModule, FormsModule, InstMenuComponent, VlibrasComponent],
   templateUrl: './cadast-massa.component.html',
   styleUrl: './cadast-massa.component.css',
   animations: [
