@@ -1,5 +1,6 @@
 <div class="container">
 <app-logo-menu></app-logo-menu>
+<app-vlibras></app-vlibras>
   <div class="conteudo">
     <div class="box-entrar">
       <div class="b-content">
@@ -17,20 +18,20 @@
               <label>Senha</label>
               <div class="hide-show">
                 <input [type]="showPassword ? 'text' : 'password' " name="password" id="password" [(ngModel)]="CredentialsPais.senha" [ngModelOptions]="{standalone: true}"  required/>
-                  <img class="toggle-password" width="30px" height="30px" (click)="toggleShowPassword()" [src]="showPassword ? 'assets/olho.png' : 'assets/ocultar.png'">
+                  <img class="toggle-password" width="20px" height="20px" (click)="toggleShowPassword()" [src]="showPassword ? 'assets/olho.png' : 'assets/ocultar.png'">
               </div>
             </div>
             <div class="b-cont-sub">
               <button class="b-submit" type="submit">Enviar</button>
             </div>
           </form>
+        </div>
         <div class="b-cadastrar">
           <p>Não possuo uma conta
           <a [routerLink]="['/cadastro-pais']" routerLinkActive="router-link-active" >Cadastrar</a><br>
           <a class="opc2" [routerLink]="['/opc-entrar']" routerLinkActive="router-link-active" >Voltar</a>
           </p>
         </div>
-      </div>
     </div>
   </div>
 </div>

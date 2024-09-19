@@ -10,11 +10,13 @@ import { SalasService } from '../Services/salas/salas.service';
 import { HeaderComponent } from '../../PaisHome/Shared-Pais/header/header.component';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { GetSala } from '../../../Models/InstituicaoModels/GetSala.model';
+import { VlibrasComponent } from '../../vlibras/vlibras.component';
 
 @Component({
   selector: 'app-cadastros',
   standalone: true,
   imports: [
+    VlibrasComponent,
     RouterLink,
     NgIf,
     CommonModule,

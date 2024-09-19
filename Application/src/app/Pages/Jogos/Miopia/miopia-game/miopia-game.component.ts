@@ -5,11 +5,12 @@ import { MiopiaResult } from '../../../../Models/MiopiaGame/miopiaResult.model';
 import { Router } from '@angular/router';
 import { LogoMenuComponent } from '../../../SharedMenu/logo-menu/logo-menu.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { VlibrasComponent } from '../../../vlibras/vlibras.component';
 
 @Component({
   selector: 'app-miopia-game',
   standalone: true,
-  imports: [NgIf, NgFor, LogoMenuComponent],
+  imports: [NgIf, NgFor, LogoMenuComponent, VlibrasComponent],
   templateUrl: './miopia-game.component.html',
   styleUrls: ['./miopia-game.component.css'],
   animations: [
@@ -51,6 +52,13 @@ export class MiopiaGameComponent {
     { question: 'FASE 6', questionImage: [], correctQuestion: '' },
     { question: 'FASE 7', questionImage: [], correctQuestion: '' },
     { question: 'FASE 8', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 9', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 10', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 11', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 12', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 13', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 14', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 15', questionImage: [], correctQuestion: '' },
   ];
 
 
@@ -59,7 +67,7 @@ export class MiopiaGameComponent {
 
   getQuestionImageSize(): string {
     const baseSize = 12;
-    const sizeDecrease = 1.5;
+    const sizeDecrease = 0.8;
     const newSize = baseSize - this.faseAtual * sizeDecrease;
     return `${newSize}em`;
   }

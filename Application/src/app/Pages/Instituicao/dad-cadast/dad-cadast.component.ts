@@ -1,3 +1,4 @@
+import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
@@ -8,7 +9,7 @@ import { GetCriancas } from '../../../Models/InstituicaoModels/GetCriancas.model
 @Component({
   selector: 'app-dad-cadast',
   standalone: true,
-  imports: [RouterLink, NgIf, InstMenuComponent, NgFor],
+  imports: [VlibrasComponent, RouterLink, NgIf, InstMenuComponent, NgFor],
   templateUrl: './dad-cadast.component.html',
   styleUrl: './dad-cadast.component.css'
 })

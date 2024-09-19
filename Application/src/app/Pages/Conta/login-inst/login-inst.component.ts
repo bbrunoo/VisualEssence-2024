@@ -1,3 +1,4 @@
+import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { CredentialsInst } from '../../../Models/credentialsInst.model';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -9,7 +10,7 @@ import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.componen
 @Component({
   selector: 'app-login-inst',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, FormsModule, LogoMenuComponent],
+  imports: [VlibrasComponent, RouterLink, RouterLinkActive, FormsModule, LogoMenuComponent],
   templateUrl: './login-inst.component.html',
   styleUrl: './login-inst.component.css',
   providers: [AuthService],

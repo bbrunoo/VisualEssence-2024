@@ -1,3 +1,4 @@
+import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { GetCriancas } from './../../../Models/InstituicaoModels/GetCriancas.model';
 import { Sala } from './../../../Models/InstituicaoModels/Sala.model';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +17,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-edt-dad',
   standalone: true,
-  imports: [RouterLink, NgIf, FormsModule, InstMenuComponent, CommonModule, NgxMaskPipe, NgxMaskDirective, ReactiveFormsModule],
+  imports: [VlibrasComponent, RouterLink, NgIf, FormsModule, InstMenuComponent, CommonModule, NgxMaskPipe, NgxMaskDirective, ReactiveFormsModule],
   templateUrl: './edt-dad.component.html',
   styleUrl: './edt-dad.component.css'
 })

@@ -1,3 +1,4 @@
+import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { Component} from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
@@ -11,7 +12,7 @@ import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.componen
 @Component({
   selector: 'app-cadastro-pais',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, FormsModule, CommonModule, LogoMenuComponent],
+  imports: [VlibrasComponent, RouterLink, RouterLinkActive, FormsModule, CommonModule, LogoMenuComponent],
   templateUrl: './cadastro-pais.component.html',
   styleUrl: './cadastro-pais.component.css',
   providers: [AuthService],

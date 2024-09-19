@@ -1,3 +1,4 @@
+import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIf } from '@angular/common';
@@ -21,7 +22,7 @@ import {
 @Component({
   selector: 'app-home-inst',
   standalone: true,
-  imports: [RouterLink, NgIf, RouterLinkActive, InstMenuComponent],
+  imports: [VlibrasComponent, RouterLink, NgIf, RouterLinkActive, InstMenuComponent],
   templateUrl: './home-inst.component.html',
   styleUrl: './home-inst.component.css'
 })

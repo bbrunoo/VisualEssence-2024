@@ -35,6 +35,7 @@ export class MiopiaInstComponent {
     '../../../../../assets/MiopiaImages/urso.png'
   ];
 
+
   fase: MiopiaGamePhase[] = [
     { question: 'FASE 1', questionImage: [], correctQuestion: '' },
     { question: 'FASE 2', questionImage: [], correctQuestion: '' },
@@ -44,6 +45,13 @@ export class MiopiaInstComponent {
     { question: 'FASE 6', questionImage: [], correctQuestion: '' },
     { question: 'FASE 7', questionImage: [], correctQuestion: '' },
     { question: 'FASE 8', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 9', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 10', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 11', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 12', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 13', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 14', questionImage: [], correctQuestion: '' },
+    { question: 'FASE 15', questionImage: [], correctQuestion: '' },
   ];
 
 
@@ -52,10 +60,11 @@ export class MiopiaInstComponent {
 
   getQuestionImageSize(): string {
     const baseSize = 12;
-    const sizeDecrease = 1.5;
+    const sizeDecrease = 0.8;
     const newSize = baseSize - this.faseAtual * sizeDecrease;
     return `${newSize}em`;
   }
+
 
   startGame() {
     this.fase.forEach((fase, index) => {

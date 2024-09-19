@@ -7,11 +7,12 @@ import { Jogada } from '../../../../Models/MiopiaGame/jogada.model';
 import { CriancaPais } from '../../../../Models/MiopiaGame/criancapais.model';
 import { LogoMenuComponent } from '../../../SharedMenu/logo-menu/logo-menu.component';
 import { NgIf } from '@angular/common';
+import { VlibrasComponent } from '../../../vlibras/vlibras.component';
 
 @Component({
   selector: 'app-miopia-result',
   standalone: true,
-  imports: [RouterLink, LogoMenuComponent, NgIf],
+  imports: [RouterLink, LogoMenuComponent, NgIf, VlibrasComponent],
   templateUrl: './miopia-result.component.html',
   styleUrl: './miopia-result.component.css'
 })

@@ -34,7 +34,6 @@ export class MiopiaInstResultComponent {
       this.jogada.pontuacao = this.result.score;
       this.processGameResult();
     }
-
   }
 
   processGameResult(): void {
@@ -63,5 +62,5 @@ export class MiopiaInstResultComponent {
     }
   }
 
-  
+
 }

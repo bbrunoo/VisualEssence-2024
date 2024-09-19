@@ -14,12 +14,13 @@ import Swal from 'sweetalert2';
 import { loggedUser } from '../../../Models/LoggedUser/user.model';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 import { CriancaInstDTO } from '../../../Models/CriancaInstDTO.model';
+import { VlibrasComponent } from '../../vlibras/vlibras.component';
 
 
 @Component({
   selector: 'app-cadast-uni',
   standalone: true,
-  imports: [RouterLink, NgIf, CommonModule, FormsModule, OpcCadastComponent, InstMenuComponent, NgxMaskPipe, NgxMaskDirective, ReactiveFormsModule],
+  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, FormsModule, OpcCadastComponent, InstMenuComponent, NgxMaskPipe, NgxMaskDirective, ReactiveFormsModule],
   templateUrl: './cadast-uni.component.html',
   styleUrl: './cadast-uni.component.css',
   animations: [

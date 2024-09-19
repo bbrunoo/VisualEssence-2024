@@ -30,8 +30,8 @@ height: 100vmin;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 550px;
-  height: 550px;
+  width: 32em;
+  height: 35em;
   border-radius: 60px;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
 }
@@ -40,7 +40,7 @@ height: 100vmin;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   width: 100%;
   height: 100%;
   gap: 1.5em;
@@ -68,14 +68,14 @@ height: 100vmin;
 
   label{
     width: 100%;
-    font-size: 25px;
+    font-size: 20px;
     padding: 0 0 10px 0;
   }
 
   #icon{
     position: fixed;
     top: 51.5%;
-    right: 760px; /* Ajuste conforme necessário */
+    right: 760px;
     cursor: pointer;
   }
 }
@@ -83,7 +83,7 @@ height: 100vmin;
 .hide-show{
   display: flex;
   align-items: center;
-  width: 100% !important;
+  width: 100%;
   position: relative;
 }
 
@@ -98,10 +98,10 @@ input{
   width: 100%;
   border:none;
   border-radius: 25px;
-  height: 45px;
-  font-size: 20px;
+  height: 40px;
+  font-size: 15px;
   outline: none;
-  padding: 20px;
+  padding: 0 0 0 15px ;
 }
 
 .b-forgetPassword a{
@@ -109,10 +109,8 @@ input{
   text-decoration: none ;
 }
 
-
 .b-forgetPassword a:hover{
   text-decoration: underline;
-
 }
 
 .b-cont-sub
@@ -125,11 +123,11 @@ input{
   background-color: #530083;
   color: white;
   width: 100%;
-  height: 45px;
+  height: 2em;
   border-radius: 25px;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  font-size: 20px;
 
 }
 
@@ -147,6 +145,12 @@ input{
 
   a{
     text-decoration: none;
+    font-weight: 700;
+  }
+
+  p{
+    font-weight: 700;
+    font-size: 18px;
   }
 
   a:hover{
@@ -154,7 +158,7 @@ input{
   }
 
   p .opc2{
-    padding: 20px;
+    font-size: 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -164,7 +168,7 @@ input{
 
 }
 
-@media screen and (max-width: 960px) {
+/* @media screen and (max-width: 960px) {
   .b-forgetPassword a{
     font-size: 15px ;
   }
@@ -258,4 +262,4 @@ input{
     height: 80%;
   }
 
-}
+} */

@@ -1,5 +1,7 @@
 <div class="container">
   <app-logo-menu></app-logo-menu>
+  <app-vlibras></app-vlibras>
+
   <div class="conteudo">
     <div class="box-entrar">
       <div class="b-content">
@@ -8,8 +10,6 @@
             Cadastrar
           </p>
         </div>
-
-        <!-- COLOCAR LOGO NO CANTO EM ALGUM LUGAR -->
         <div class="b-form">
           <form (ngSubmit)="register()" #cadastroForm="ngForm">
             <div class="content-divide">
@@ -33,13 +33,13 @@
                   <label>Senha</label>
                   <div class="hide-show">
                     <input [type]="showPassword1 ? 'text' : 'password'" name="senha" [(ngModel)]="UserInst.senha" [ngModelOptions]="{standalone: true}" required/>
-                    <img class="toggle-password" width="30px" height="30px" (click)="toggleShowPassword()" [src]="showPassword1 ? 'assets/olho.png' : 'assets/ocultar.png'">
+                    <img class="toggle-password" width="20px" height="20px" (click)="toggleShowPassword()" [src]="showPassword1 ? 'assets/olho.png' : 'assets/ocultar.png'">
                   </div>
 
                   <label>Confirmar Senha</label>
                   <div class="hide-show">
                     <input [type]="showPassword2 ? 'text' : 'password'" name="confirmarSenha" [(ngModel)]="confirmarSenha" required/>
-                      <img class="toggle-password" width="30px" height="30px" (click)="toggleShowPasswordConfirm()" [src]="showPassword2 ? 'assets/olho.png' : 'assets/ocultar.png'">
+                      <img class="toggle-password" width="20px" height="20px" (click)="toggleShowPasswordConfirm()" [src]="showPassword2 ? 'assets/olho.png' : 'assets/ocultar.png'">
                   </div>
 
                   <div class="errorMessage" *ngIf="confirmarSenha !== UserInst.senha && cadastroForm.controls['confirmarSenha']?.touched">
