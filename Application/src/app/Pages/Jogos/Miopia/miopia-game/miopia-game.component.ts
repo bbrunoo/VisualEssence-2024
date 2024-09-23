@@ -121,6 +121,8 @@ export class MiopiaGameComponent {
     }
   }
 
-
+  skipPhase(){
+    this.nextPhase();
+  }
 
 }

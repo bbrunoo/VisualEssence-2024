@@ -115,6 +115,7 @@ export class MiopiaInstComponent {
     }
   }
 
-
-
+  skipPhase() {
+    this.nextPhase();
+  }
 }
