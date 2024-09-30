@@ -10,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 
+declare var google: any;
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -21,7 +23,8 @@ export class HeaderComponent implements OnInit {
 
   user: loggedUser = {id: '', nome:'', email: '', isInstitucional: false, isPais: false}
 
-  constructor(private userService: AuthService){}
+  constructor(private userService: AuthService){
+  }
   ngOnInit(): void {
     this.userService.getUserProfile().subscribe(
       (data) => {

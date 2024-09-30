@@ -186,19 +186,36 @@ namespace VisualEssence.API
 
         [HttpGet("user-infos")]
         public async Task<ActionResult<UserInfoViewModel>> GetProfileUser()
-        { 
-            var userId = Guid.Parse(User.FindFirst("id").Value);
-            if (userId == null) return NotFound();
+        {
+            // Verifica se o token contém a claim "id"
+            var userClaim = User.FindFirst("id");
+            if (userClaim == null)
+            {
+                return Unauthorized("Usuário não autenticado.");
+            }
 
+            // Tenta fazer o parse do valor da claim "id" para Guid
+            if (!Guid.TryParse(userClaim.Value, out var userId))
+            {
+                return BadRequest("ID de usuário inválido.");
+            }
+
+            // Verifica se o usuário é institucional ou pais
             bool isUsuarioInstitucional = await _usuarioInstRepository.Exists(userId);
             bool isUsuarioPais = await _usuarioPaisRepository.Exists(userId);
 
-            if (!isUsuarioInstitucional && !isUsuarioPais) return NotFound();
+            if (!isUsuarioInstitucional && !isUsuarioPais)
+            {
+                return NotFound("Usuário não encontrado.");
+            }
+
+            // Monta o UserInfoViewModel com base no tipo de usuário
+            UserInfoViewModel viewModel;
 
             if (isUsuarioInstitucional)
             {
                 var user = await _usuarioInstRepository.GetUsuarioById(userId);
-                var viewModel = new UserInfoViewModel
+                viewModel = new UserInfoViewModel
                 {
                     Id = user.Id,
                     Nome = user.NomeInst,
@@ -206,12 +223,11 @@ namespace VisualEssence.API
                     IsInstitucional = true,
                     IsPais = false
                 };
-                return Ok(viewModel);
             }
-            else if (isUsuarioPais)
+            else
             {
                 var user = await _usuarioPaisRepository.GetUsuarioById(userId);
-                var viewModel = new UserInfoViewModel
+                viewModel = new UserInfoViewModel
                 {
                     Id = user.Id,
                     Nome = user.Nome,
@@ -219,10 +235,12 @@ namespace VisualEssence.API
                     IsInstitucional = false,
                     IsPais = true
                 };
-                return Ok(viewModel);
             }
-            return NotFound();
+
+            return Ok(viewModel);
         }
+
+
 
         [HttpPut("Pais/{id}")]
         public async Task<IActionResult> UpdatePais(Guid id, EditUserPaisDTO pais)

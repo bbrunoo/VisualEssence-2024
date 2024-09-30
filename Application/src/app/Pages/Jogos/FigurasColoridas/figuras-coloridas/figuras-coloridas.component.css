@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.conteudo {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../../../../../assets/ColorImages/Galax.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5em;
+  position: relative;
+  width: 500px;
+  height: 600px;
+  margin: auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.4px);
+  -webkit-backdrop-filter: blur(3.4px);
+  border: 1px solid rgba(255, 255, 255, 0.37);
+}
+
+.phase-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.phase-title h4 {
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: white;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.4px);
+  -webkit-backdrop-filter: blur(3.4px);
+  border: 1px solid rgba(255, 255, 255, 0.37);
+}
+
+.phase-title p {
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: white;
+}
+
+img {
+  background-color: transparent;
+}
+
+.button-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  padding: 10px;
+  width: 100%;
+}
+
+.color-picker {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.4px);
+  -webkit-backdrop-filter: blur(3.4px);
+  border: 1px solid rgba(255, 255, 255, 0.37);
+}
+
+button {
+  border: none;
+  text-decoration: none;
+}
+
+.color-img {
+  padding: 10px;
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  transition: 1s ease-in-out;
+}
+
+.color-img:hover {
+  filter: brightness(1.2);
+  transition: .3s ease-in-out;
+}
+
+.next-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: red;
+
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.4px);
+  -webkit-backdrop-filter: blur(3.4px);
+  border: 1px solid rgba(255, 255, 255, 0.37);
+}
+
+.next-button img {
+  width: 100%;
+  height: 100%;
+}
+
+.scoreboard {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: right;
+  font-size: 18px;
+  color: #fff;
+}
+
+.size-picker{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  font-weight: 500;
+  gap: .2em;
+  align-items: center;
+  justify-content: center;
+}
+
+.size-options{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.size-options img:hover{
+filter: brightness(5);
+}
+
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 10;
+}
+
+.modal-content {
+  text-align: center;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+  opacity: 1;
+}
+
