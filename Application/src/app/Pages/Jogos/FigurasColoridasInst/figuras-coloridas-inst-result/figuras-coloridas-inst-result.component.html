@@ -1,0 +1,23 @@
+<div class="container">
+  <app-logo-menu></app-logo-menu>
+  <div class="conteudo">
+    <div class="resultados">
+      <h2>RESULTADO</h2>
+      <p *ngIf="result.score > 6">
+        Pelo resultado é possivel que tenha a 'Visao Normal'. Para um resultado
+        preciso aconselhamos consultar um especialista.
+      </p>
+      <p *ngIf="result.score < 6">
+        É possivel que voce tenha algum 'Problema de Visão'. Recomendados tratar
+        com um especioalista para diagnosticos precisos.
+      </p>
+      <h3>Acertos: {{ result.score }}/9</h3>
+      <div class="botoes">
+        <button routerLink="/instituicao/home">SAIR</button>
+        <button routerLink="/instituicao/jogos/cadastrar-crianca-figuras">
+          REFAZER
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
