@@ -6,11 +6,12 @@ import { VlibrasComponent } from '../../../vlibras/vlibras.component';
 import { LogoMenuComponent } from '../../../SharedMenu/logo-menu/logo-menu.component';
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
+import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-menu-inst.component";
 
 @Component({
   selector: 'app-cadastro-criancas-inst-figuras',
   standalone: true,
-  imports: [FormsModule, RouterLink, NgFor, NgIf, LogoMenuComponent, VlibrasComponent],
+  imports: [FormsModule, RouterLink, NgFor, NgIf, LogoMenuComponent, VlibrasComponent, LogoMenuInstComponent],
   templateUrl: './cadastro-criancas-inst-figuras.component.html',
   styleUrl: './cadastro-criancas-inst-figuras.component.css'
 })

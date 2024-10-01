@@ -51,7 +51,6 @@ import { FigurasColoridasInstrucoesComponent } from './Pages/Jogos/FigurasColori
 import { FigurasColoridasResultComponent } from './Pages/Jogos/FigurasColoridas/figuras-coloridas-result/figuras-coloridas-result.component';
 import { CadastroCriancaFigurasComponent } from './Pages/Jogos/FigurasColoridas/cadastro-crianca-figuras/cadastro-crianca-figuras.component';
 
-
 //instituicao
 //miopia
 import { MiopiaInstComponent } from './Pages/Jogos/MiopiaInst/miopia-inst/miopia-inst.component';
@@ -67,10 +66,13 @@ import { CadastroCriancasInstFigurasComponent } from './Pages/Jogos/FigurasColor
 import { ContatoComponent } from './Pages/Contato/contato.component';
 import { AuthGuard } from './guards/user-authenticated.guard';
 import { HistoricoComponent } from './Pages/Instituicao/historico/historico.component';
+import { HistoricoPaisComponent } from './Pages/PaisHome/historico-pais/historico-pais.component';
 
 
 export const routes: Routes = [
-  {path: '', component: EntrarComponent},
+  // {path: '', component: EntrarComponent},
+  {path: 'opc-entrar', component: OpcEntrarComponent},
+  {path: '', component: OpcEntrarComponent},
 
   {path: 'contato', component: ContatoComponent},
 
@@ -82,7 +84,7 @@ export const routes: Routes = [
 
   {path: 'admin-contato', component: AdminContatoComponent},
 
-  {path: 'opc-entrar', component: OpcEntrarComponent},
+  // {path: 'opc-entrar', component: OpcEntrarComponent},
 
   {path: 'esquecer-senha', component: EsquecerSenhaComponent},
 
@@ -91,6 +93,7 @@ export const routes: Routes = [
   {path: 'Pais/Home', component: HomeComponent},
   {path: 'Pais/Painel-Educativo', component: PainelEducativoComponent},
   {path: 'Pais/Sobre-nos', component: SobreNosComponent},
+  {path: 'Pais/Jogos/Historico', component: HistoricoPaisComponent},
 
   {path: 'instituicao/home', component: HomeInstComponent, canActivate: [AuthGuard]},
   {path: 'instituicao/criar-sala', component: CriarSalaComponent, canActivate: [AuthGuard]},

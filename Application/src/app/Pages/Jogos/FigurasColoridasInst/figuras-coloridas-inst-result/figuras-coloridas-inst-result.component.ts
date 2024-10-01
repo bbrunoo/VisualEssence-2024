@@ -4,11 +4,12 @@ import { MiopiaInstService } from '../../MiopiaInst/Services/miopia-inst.service
 import { LogoMenuComponent } from '../../../SharedMenu/logo-menu/logo-menu.component';
 import { NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-menu-inst.component";
 
 @Component({
   selector: 'app-figuras-coloridas-inst-result',
   standalone: true,
-  imports: [LogoMenuComponent, NgIf, RouterLink],
+  imports: [LogoMenuComponent, NgIf, RouterLink, LogoMenuInstComponent],
   templateUrl: './figuras-coloridas-inst-result.component.html',
   styleUrls: ['./figuras-coloridas-inst-result.component.css'] // Corrigido de styleUrl para styleUrls
 })
