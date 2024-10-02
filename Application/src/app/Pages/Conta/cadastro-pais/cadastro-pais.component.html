@@ -4,13 +4,13 @@
     <div class="box-entrar">
       <div class="b-content">
         <br>
-        <div class="b-titulo">
-          <p>
-            Cadastrar
-          </p>
-        </div>
         <div class="b-form">
-        <!-- COLOCAR LOGO NO CANTO EM ALGUM LUGAR -->
+          <!-- COLOCAR LOGO NO CANTO EM ALGUM LUGAR -->
+          <div class="b-titulo">
+            <p>
+              Cadastrar
+            </p>
+          </div>
 
           <form (ngSubmit)="register()" #cadastroForm="ngForm">
 
@@ -30,7 +30,7 @@
               <label>Senha</label>
               <div class="hide-show">
                 <input  class="input-s"  [type]="showPassword1 ? 'text' : 'password'" name="password" id="password" [(ngModel)]="UserPais.senha" [ngModelOptions]="{standalone: true}" required/>
-                  <img class="toggle-password" width="30px" height="30px" (click)="toggleShowPassword()" [src]="showPassword1 ? 'assets/olho.png' : 'assets/ocultar.png'">
+                  <img class="toggle-password" width="20px" height="20px" (click)="toggleShowPassword()" [src]="showPassword1 ? 'assets/olho.png' : 'assets/ocultar.png'">
               </div>
 
             </div>
@@ -39,7 +39,7 @@
             <label>Confirmar Senha</label>
             <div class="hide-show">
               <input [type]="showPassword2 ? 'text' : 'password'" name="confirmarSenha" [(ngModel)]="confirmarSenha" required/>
-                <img class="toggle-password" width="30px" height="30px" (click)="toggleShowPasswordConfirm()" [src]="showPassword2 ? 'assets/olho.png' : 'assets/ocultar.png'">
+                <img class="toggle-password" width="20px" height="20px" (click)="toggleShowPasswordConfirm()" [src]="showPassword2 ? 'assets/olho.png' : 'assets/ocultar.png'">
             </div>
 
             <div class="errorMessage" *ngIf="confirmarSenha !== UserPais.senha && cadastroForm.controls['confirmarSenha']?.touched">
@@ -47,15 +47,6 @@
             </div>
             </div>
 
-            <div class="b-terms">
-              <br>
-              <div class="checkbox">
-                <input class="teste" type="checkbox" name="" required/>
-              </div>
-              <div class="label-text">
-                <label>Li e estou de acordo com os <a [routerLink]="['/termos-de-uso']" routerLinkActive="router-link-active" >Termos de Uso</a></label>
-              </div>
-            </div>
             <div class="b-cont-sub">
               <button class="b-submit" type="submit" [disabled]="!cadastroForm.valid">Enviar</button>
             </div>

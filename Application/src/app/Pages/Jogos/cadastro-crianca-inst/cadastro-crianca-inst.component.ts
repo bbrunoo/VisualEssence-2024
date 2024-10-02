@@ -6,11 +6,12 @@ import { CadastroUnicoService } from '../../Instituicao/Services/cadastrounico/c
 import { NgFor, NgIf } from '@angular/common';
 import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.component";
 import { VlibrasComponent } from '../../vlibras/vlibras.component';
+import { LogoMenuInstComponent } from "../../SharedMenu/logo-menu-inst/logo-menu-inst.component";
 
 @Component({
   selector: 'app-cadastro-crianca-inst',
   standalone: true,
-  imports: [FormsModule, RouterLink, NgFor, NgIf, LogoMenuComponent, VlibrasComponent],
+  imports: [FormsModule, RouterLink, NgFor, NgIf, LogoMenuComponent, VlibrasComponent, LogoMenuInstComponent],
   templateUrl: './cadastro-crianca-inst.component.html',
   styleUrl: './cadastro-crianca-inst.component.css'
 })

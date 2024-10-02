@@ -4,11 +4,12 @@ import { MiopiaGamePhase } from '../../../../Models/MiopiaGame/miopia.model';
 import { Router } from '@angular/router';
 import { LogoMenuComponent } from '../../../SharedMenu/logo-menu/logo-menu.component';
 import { NgFor, NgIf } from '@angular/common';
+import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-menu-inst.component";
 
 @Component({
   selector: 'app-miopia-inst',
   standalone: true,
-  imports: [NgIf, NgFor, LogoMenuComponent],
+  imports: [NgIf, NgFor, LogoMenuComponent, LogoMenuInstComponent],
   templateUrl: './miopia-inst.component.html',
   styleUrl: './miopia-inst.component.css'
 })

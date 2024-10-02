@@ -8,11 +8,12 @@ import { NgIf } from '@angular/common';
 import { LogoMenuComponent } from "../../../SharedMenu/logo-menu/logo-menu.component";
 import { AuthService } from '../../../../../Services/Auth/AuthService/auth.service';
 import { loggedUser } from '../../../../Models/LoggedUser/user.model';
+import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-menu-inst.component";
 
 @Component({
   selector: 'app-miopia-inst-result',
   standalone: true,
-  imports: [RouterLink, NgIf, LogoMenuComponent],
+  imports: [RouterLink, NgIf, LogoMenuComponent, LogoMenuInstComponent],
   templateUrl: './miopia-inst-result.component.html',
   styleUrl: './miopia-inst-result.component.css'
 })

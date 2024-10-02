@@ -15,6 +15,13 @@ body, html {
   font-family: Arial, sans-serif;
 }
 
+.button{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1em;
+}
+
 .container {
   background-image: url("../../../../assets/fundo.png");
   background-size: cover;
@@ -58,8 +65,11 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
   background-color: #218838;
+  transition: background-color 0.3s ease;
 }
