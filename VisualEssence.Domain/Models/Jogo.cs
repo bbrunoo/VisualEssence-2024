@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VisualEssence.Domain.Models.Jogada;
 
 namespace VisualEssence.Domain.Models
 {
@@ -17,5 +18,7 @@ namespace VisualEssence.Domain.Models
         [Required]
         [MaxLength(100)]
         public string Nome { get; set; }
+
+        public ICollection<JogadaInst> Jogadas { get; set; }
     }
 }

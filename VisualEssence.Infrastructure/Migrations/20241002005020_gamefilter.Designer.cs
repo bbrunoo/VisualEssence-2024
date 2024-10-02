@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VisualEssence.Infrastructure.Context;
 
@@ -11,9 +12,11 @@ using VisualEssence.Infrastructure.Context;
 namespace VisualEssence.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241002005020_gamefilter")]
+    partial class gamefilter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -170,12 +173,11 @@ namespace VisualEssence.Infrastructure.Migrations
                     b.Property<Guid>("IdCrianca")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("JogoId")
+                    b.Property<int>("IdJogo")
                         .HasColumnType("int");
 
-                    b.Property<string>("NomeJogo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("JogoId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Pontuacao")
                         .HasColumnType("int");
@@ -206,9 +208,8 @@ namespace VisualEssence.Infrastructure.Migrations
                     b.Property<Guid>("IdCrianca")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("NomeJogo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdJogo")
+                        .HasColumnType("int");
 
                     b.Property<int>("Pontuacao")
                         .HasColumnType("int");
@@ -367,11 +368,15 @@ namespace VisualEssence.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("VisualEssence.Domain.Models.Jogo", null)
+                    b.HasOne("VisualEssence.Domain.Models.Jogo", "Jogo")
                         .WithMany("Jogadas")
-                        .HasForeignKey("JogoId");
+                        .HasForeignKey("JogoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("CriancaInst");
+
+                    b.Navigation("Jogo");
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.Jogada.JogadaPais", b =>

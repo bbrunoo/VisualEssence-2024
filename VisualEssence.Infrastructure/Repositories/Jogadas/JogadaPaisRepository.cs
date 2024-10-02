@@ -38,7 +38,7 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
 
             var jogadaPais = new JogadaPais
             {
-                IdJogo = dto.IdJogo,
+                NomeJogo = dto.NomeJogo,
                 IdCrianca = dto.IdCrianca,
                 Pontuacao = dto.Pontuacao,
                 DataJogo = DateTime.UtcNow
@@ -50,7 +50,7 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
             return new JogadaPaisDTO
             {
                 Id = jogadaPais.Id,
-                IdJogo = jogadaPais.IdJogo,
+                NomeJogo = jogadaPais.NomeJogo,
                 IdCrianca = jogadaPais.IdCrianca,
                 Pontuacao = jogadaPais.Pontuacao,
                 DataJogo = jogadaPais.DataJogo
@@ -67,7 +67,7 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
             if (jogadaPaisExistente == null)
                 throw new KeyNotFoundException("JogadaPais não encontrada.");
 
-            jogadaPaisExistente.IdJogo = dto.IdJogo;
+            jogadaPaisExistente.NomeJogo = dto.NomeJogo;
             jogadaPaisExistente.IdCrianca = dto.IdCrianca;
             jogadaPaisExistente.Pontuacao = dto.Pontuacao;
             jogadaPaisExistente.DataJogo = dto.DataJogo;
@@ -77,7 +77,7 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
 
             return new JogadaPaisDTO
             {
-                IdJogo = jogadaPaisExistente.IdJogo,
+                NomeJogo = jogadaPaisExistente.NomeJogo,
                 IdCrianca = jogadaPaisExistente.IdCrianca,
                 Pontuacao = jogadaPaisExistente.Pontuacao,
                 DataJogo = jogadaPaisExistente.DataJogo
@@ -97,6 +97,13 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
             await _context.SaveChangesAsync();
 
             return jogadaExistente;
+        }
+
+        public async Task<IEnumerable<JogadaPais>> ObterHistoricoPorNomeJogo(string nomeJogo)
+        {
+            return await _context.JogadaPais
+                           .Where(j => j.NomeJogo == nomeJogo)
+                           .ToListAsync();
         }
     }
 }
