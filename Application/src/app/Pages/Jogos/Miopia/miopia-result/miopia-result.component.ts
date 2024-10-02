@@ -20,7 +20,7 @@ export class MiopiaResultComponent implements OnInit {
   result: MiopiaResult;
 
   jogada: Jogada = {
-    idJogo: 1,
+    NomeJogo: "Miopia",
     idCrianca: '',
     pontuacao: 0
   };

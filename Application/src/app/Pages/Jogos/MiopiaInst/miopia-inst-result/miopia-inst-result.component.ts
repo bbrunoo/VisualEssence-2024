@@ -21,7 +21,7 @@ export class MiopiaInstResultComponent {
   result: MiopiaResult;
 
   jogada: Jogada = {
-    idJogo: 1,
+    NomeJogo: "Miopia",
     idCrianca: '',
     pontuacao: 0
   };

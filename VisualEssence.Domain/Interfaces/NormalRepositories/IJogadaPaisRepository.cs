@@ -6,5 +6,7 @@ namespace VisualEssence.Domain.Interfaces.NormalRepositories
 {
     public interface IJogadaPaisRepository : IRepository<JogadaPais, JogadaPaisDTO>
     {
+        Task<IEnumerable<JogadaPais>> ObterHistoricoPorNomeJogo(string nomeJogo);
+
     }
 }

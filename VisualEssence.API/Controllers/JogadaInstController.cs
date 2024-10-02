@@ -43,7 +43,7 @@ namespace VisualEssence.API.Controllers
             }
 
             var jogadaInst = await _repository.Post(dto);
-            return CreatedAtAction(nameof(GetById), new { id = jogadaInst.IdJogo }, jogadaInst);
+            return CreatedAtAction(nameof(GetById), new { id = jogadaInst.NomeJogo }, jogadaInst);
         }
 
         [HttpPut("{id}")]
@@ -78,6 +78,27 @@ namespace VisualEssence.API.Controllers
             {
                 return NotFound("JogadaInst não encontrada.");
             }
+        }
+
+        [HttpGet("historico/miopia")]
+        public async Task<IActionResult> ObterHistoricoMiopia()
+        {
+            var historico = await _repository.ObterHistoricoPorNomeJogo("Miopia");
+            return Ok(historico);
+        }
+
+        [HttpGet("historico/daltonismo")]
+        public async Task<IActionResult> ObterHistoricoDaltonismo()
+        {
+            var historico = await _repository.ObterHistoricoPorNomeJogo("Daltonismo");
+            return Ok(historico);
+        }
+
+        [HttpGet("historico/figuras-coloridas")]
+        public async Task<IActionResult> ObterHistoricoPorNomeJogo()
+        {
+            var historico = await _repository.ObterHistoricoPorNomeJogo("Figuras Coloridas");
+            return Ok(historico);
         }
     }
 }

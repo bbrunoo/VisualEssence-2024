@@ -17,7 +17,7 @@ export class FigurasColoridasInstResultComponent {
   result: { score: number } = { score: 0 };
 
   jogada: Jogada = {
-    idJogo: 3,
+    NomeJogo: "Figuras Coloridas",
     idCrianca: '',
     pontuacao: 0
   };

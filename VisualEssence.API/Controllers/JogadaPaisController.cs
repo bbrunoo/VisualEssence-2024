@@ -87,5 +87,26 @@ namespace VisualEssence.API.Controllers
                 return NotFound("JogadaPais não encontrada.");
             }
         }
+
+        [HttpGet("historico/miopia")]
+        public async Task<IActionResult> ObterHistoricoMiopia()
+        {
+            var historico = await _repository.ObterHistoricoPorNomeJogo("Miopia");
+            return Ok(historico);
+        }
+
+        [HttpGet("historico/daltonismo")]
+        public async Task<IActionResult> ObterHistoricoDaltonismo()
+        {
+            var historico = await _repository.ObterHistoricoPorNomeJogo("Daltonismo");
+            return Ok(historico);
+        }
+
+        [HttpGet("historico/figuras-coloridas")]
+        public async Task<IActionResult> ObterHistoricoPorNomeJogo()
+        {
+            var historico = await _repository.ObterHistoricoPorNomeJogo("Figuras Coloridas");
+            return Ok(historico);
+        }
     }
 }

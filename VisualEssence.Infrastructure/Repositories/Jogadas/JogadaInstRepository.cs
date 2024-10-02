@@ -38,7 +38,7 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
 
             var jogadaInst = new JogadaInst
             {
-                IdJogo = dto.IdJogo,
+                NomeJogo = dto.NomeJogo,
                 IdCrianca = dto.IdCrianca,
                 Pontuacao = dto.Pontuacao,
                 DataJogo = DateTime.UtcNow,
@@ -50,7 +50,7 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
 
             return new JogadaInstDTO
             {
-                IdJogo = jogadaInst.IdJogo,
+                NomeJogo = jogadaInst.NomeJogo,
                 IdCrianca = jogadaInst.IdCrianca,
                 Pontuacao = jogadaInst.Pontuacao,
                 DataJogo = jogadaInst.DataJogo
@@ -66,7 +66,7 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
             if (jogadaInstExistente == null)
                 throw new KeyNotFoundException("JogadaInst não encontrada.");
 
-            jogadaInstExistente.IdJogo = dto.IdJogo;
+            jogadaInstExistente.NomeJogo = dto.NomeJogo;
             jogadaInstExistente.IdCrianca = dto.IdCrianca;
             jogadaInstExistente.Pontuacao = dto.Pontuacao;
             jogadaInstExistente.DataJogo = dto.DataJogo;
@@ -76,7 +76,7 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
 
             return new JogadaInstDTO
             {
-                IdJogo = jogadaInstExistente.IdJogo,
+                NomeJogo = jogadaInstExistente.NomeJogo,
                 IdCrianca = jogadaInstExistente.IdCrianca,
                 Pontuacao = jogadaInstExistente.Pontuacao,
                 DataJogo = jogadaInstExistente.DataJogo
@@ -96,6 +96,13 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
             await _context.SaveChangesAsync();
 
             return jogadaExistente;
+        }
+
+        public async Task<IEnumerable<JogadaInst>> ObterHistoricoPorNomeJogo(string nomeJogo)
+        {
+            return await _context.JogadaInst
+                .Where(j => j.NomeJogo == nomeJogo)
+                .ToListAsync();
         }
     }
 }

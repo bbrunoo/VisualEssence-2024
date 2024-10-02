@@ -1,5 +1,5 @@
 export interface Jogada {
-  idJogo: number;
+  NomeJogo: string;
   idCrianca: string;
   pontuacao: number;
 }

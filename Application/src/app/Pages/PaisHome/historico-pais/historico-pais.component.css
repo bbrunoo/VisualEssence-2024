@@ -1,45 +1,33 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
 * {
-  padding: 0;
+  font-family: "Montserrat", sans-serif;
   margin: 0;
-  color: white;
-  font-family: "Lato", sans-serif;
-  font-weight: bold;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
 }
 
-body {
-  position: relative;
-  background-image: url("../../../../assets/fundo1.png");
-  background-position: center;
-  background-size: cover;
+.container {
+  background-image: url("../../../../assets/HomeImages/star1.png"),
+    url("../../../../assets/HomeImages/allplanets1.png"),
+    url("../../../../assets/HomeImages/planeta2.png"),
+    url("../../../../assets/HomeImages/background.png");
+  background-size: cover, cover, 25% 50%;
+  background-position: 0 0, right -20px top -100px, left -125px bottom -75px;
   background-repeat: no-repeat;
-  height: 100vmin;
-  overflow: hidden;
-}
-
-.estrelas-fundo {
-  position: absolute;
-  background-image: url("../../../../assets/estrelas.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100%;
+  background-color: #010029;
   width: 100%;
-  z-index: 0;
-  animation: anime 8s ease;
-  animation-iteration-count: infinite;
+  height: 100%;
 }
 
-@keyframes anime {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(25px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+.conteudo {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .fundo-nav {
@@ -52,74 +40,23 @@ body {
   align-items: center;
 }
 
-.nave {
-  position: fixed;
-  right: 0;
-  top: 0;
-}
-
-.astro {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-}
-
-.fundo-nav .astro {
-  animation: anim1 20s ease;
-  animation-iteration-count: infinite;
-}
-.fundo-nav .nave {
-  animation: anim2 5s ease;
-  animation-iteration-count: infinite;
-}
-
-@keyframes anim1 {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(155deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes anim2 {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(25px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-.container {
-  width: 100%;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
-
 .alinhamento {
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5%;
+  gap: 5em;
+  background-color: red;
 }
 
 .jogos {
   padding: 20px;
-  width: 10em;
+  width: 12em;
   height: 25em;
 
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 2em;
+  border-radius: 15px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2.8px);
   -webkit-backdrop-filter: blur(2.8px);
@@ -133,32 +70,36 @@ body {
   gap: 5%;
 
   background: rgb(34, 84, 150);
-  background: linear-gradient(
-    180deg,
-    rgba(34, 84, 150, 0.0802696078431373) 22%,
-    rgba(255, 255, 255, 0.16430322128851538) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(34, 84, 150, 0.0802696078431373) 22%,
+      rgba(255, 255, 255, 0.16430322128851538) 100%);
 }
 
 .titulo-jogo {
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: center;
   width: 100%;
-  height: auto;
+  height: 4em;
+  font-size: 12px;
+  color: white;
+  font-weight: 500;
 }
 
 .opcoes-jogo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 2em;
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-weight: 600;
 }
 
 .teste {
   height: 100%;
 }
+
 .btn-opc {
   margin-top: 50%;
   display: flex;
@@ -181,23 +122,22 @@ body {
   height: 25em;
 
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 2em;
+  border-radius: 15px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2.8px);
   -webkit-backdrop-filter: blur(2.8px);
   border: 1px solid rgb(255, 255, 255);
 
   background: rgb(34, 84, 150);
-  background: linear-gradient(
-    180deg,
-    rgba(34, 84, 150, 0.0802696078431373) 22%,
-    rgba(255, 255, 255, 0.16430322128851538) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(34, 84, 150, 0.0802696078431373) 22%,
+      rgba(255, 255, 255, 0.16430322128851538) 100%);
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
 
   align-items: center;
   gap: 20px;
@@ -211,33 +151,55 @@ body {
 
 .titulo-hist {
   display: flex;
-  align-items: start;
+  align-items: center;
+  font-size: 12px;
   justify-content: center;
   width: 100%;
-  height: auto;
+  overflow: hidden;
+  color: white;
 }
+
+.box-oveflow{
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+}
+
 .conteudo-historico {
-  height: 20em;
+  width: 100%;
+  padding-top: 15px;
+}
+
+.list-content{
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .Opcoes-hist {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-direction: column;
+  gap: 1.2em;
 
-  width: 35em;
-  height: 12.5em;
+  width: 100%;
+  height: 150px;
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 2em;
+  border-radius: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2.8px);
   -webkit-backdrop-filter: blur(2.8px);
   border: 1px solid rgb(255, 255, 255);
   background-color: rgba(84, 108, 140, 0.5);
 
+  color: white;
+  padding: 10px;
+
   .titulo {
-    font-size: 1em;
+    font-size: 15px;
     display: flex;
     align-items: center;
     width: 100%;
@@ -247,22 +209,25 @@ body {
   }
 
   .row {
-    font-size: 1em;
+    font-size: 14px;
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
     width: 100%;
     gap: 10px;
   }
+
   .list {
     font-size: 1.1em;
     display: flex;
     flex-direction: row;
     gap: 0.5em;
   }
+
   .download {
-    font-size: 18px;
+    font-size: 14px;
   }
+
   .download:hover {
     text-decoration: underline;
   }
@@ -285,6 +250,7 @@ body {
   padding: 20px;
 }
 
+
 @supports (scrollbar-color: auto) {
   .box-oveflow {
     scrollbar-color: #ffffff transparent;
@@ -295,6 +261,7 @@ body {
   .box-oveflow::-webkit-scrollbar {
     background: rgb(255, 255, 255);
   }
+
   .box-oveflow::-webkit-scrollbar-thumb {
     background: transparent;
   }
