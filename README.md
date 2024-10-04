@@ -1,3 +1,3 @@
 # VisualEssence-2024
 
-repositorio privado para mudançãs
+Projeto realizado com intuito de auxiliar os pais/responsaveis e docentes a identificar problemas visuais.
