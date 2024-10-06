@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(37, 37, 37, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.imagem-selecionada{
+  width: 100px;
+  height: 100px;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 26em;
+  height: 22em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.titulo{
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.conteudo-modal{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+
+.box-select{
+  width: 100%;
+  height: 65%;
+  flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  gap: 1em;
+  padding: 10px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 20%;
+  gap: 1em;
+}
+
+.modal-actions button {
+  border: none;
+  height: 2.5em;
+  width:7.5em;
+  border-radius: 8px;
+}
+
+.cancel{
+  background-color: rgb(255, 80, 80);
+  color:white;
+}
+
+.save{
+  background-color: rgb(59, 183, 255);
+  color:white;
+}
+

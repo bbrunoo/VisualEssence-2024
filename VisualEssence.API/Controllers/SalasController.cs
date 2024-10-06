@@ -54,7 +54,7 @@ namespace VisualEssence.API.Controllers
             return Ok(new { message = "editado com sucesso"});
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClass(Guid id)
         {
             var sala = await _repository.GetByIdAsync(id);

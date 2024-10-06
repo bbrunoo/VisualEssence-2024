@@ -5,88 +5,201 @@
     <div class="formulario">
       <form (ngSubmit)="updateCrianca()">
         <legend>EDITAR DADOS CRIANÇA</legend>
+
+        <!-- Nome -->
         <div class="I">
-          <input type="text" class="inteiro" name="nomeC" id="" required [(ngModel)]="crianca.nome" [ngModelOptions]="{standalone: true}" />
+          <input
+            type="text"
+            class="inteiro"
+            name="nomeC"
+            id="nomeC"
+            required
+            [(ngModel)]="crianca.nome"
+            [ngModelOptions]="{standalone: true}"
+          />
           <label for="nomeC">Nome</label>
         </div>
 
         <br />
 
+        <!-- Data de Nascimento e CNS -->
         <div class="linD">
           <div class="E">
-            <input type="date" class="esquerdo" name="dataNas" id="" required [(ngModel)]="crianca.dataNascimento" [ngModelOptions]="{standalone: true}" />
+            <input
+              type="date"
+              class="esquerdo"
+              name="dataNas"
+              id="dataNas"
+              required
+              [(ngModel)]="crianca.dataNascimento"
+              [ngModelOptions]="{standalone: true}"
+            />
             <label for="dataNas" class="esquerdoLabel">Data Nasc.</label>
           </div>
 
           <div class="D">
-            <input type="text" class="direito" name="cns" id="" required [showMaskTyped]="false" mask="000 0000 0000 0000" [(ngModel)]="crianca.cns" [ngModelOptions]="{standalone: true}" />
+            <input
+              type="text"
+              class="direito"
+              name="cns"
+              id="cns"
+              required
+              [showMaskTyped]="false"
+              mask="000 0000 0000 0000"
+              [(ngModel)]="crianca.cns"
+              [ngModelOptions]="{standalone: true}"
+            />
             <label for="cns" class="direitoLabel">CNS</label>
           </div>
         </div>
 
         <br />
 
+        <!-- Sexo -->
         <div class="linD">
-          <select [(ngModel)]="crianca.sexo" class="selectE" name="sex" id="" required>
+          <select
+            [(ngModel)]="crianca.sexo"
+            class="selectE"
+            name="sex"
+            id="sex"
+            required
+          >
             <option value="" disabled>Sexo</option>
-            <option *ngFor="let sexo of sexos" [value]="sexo.valor">{{ sexo.texto }}</option>
+            <option *ngFor="let sexo of sexos" [value]="sexo.valor">
+              {{ sexo.texto }}
+            </option>
           </select>
         </div>
 
         <br />
 
+        <!-- Nome do Responsável -->
         <div class="I">
-          <input type="text" class="inteiro" name="nomeRes" id="" required [(ngModel)]="crianca.nomeResp" [ngModelOptions]="{standalone: true}" />
+          <input
+            type="text"
+            class="inteiro"
+            name="nomeRes"
+            id="nomeRes"
+            required
+            [(ngModel)]="crianca.nomeResp"
+            [ngModelOptions]="{standalone: true}"
+          />
           <label for="nomeRes">Nome Responsável</label>
         </div>
 
         <br />
 
+        <!-- CPF e RG -->
         <div class="linD">
           <div class="E">
-            <input type="text" class="esquerdo" name="cpf" id="" required [showMaskTyped]="false" mask="000.000.000-00" [(ngModel)]="crianca.cpf" [ngModelOptions]="{standalone: true}" />
+            <input
+              type="text"
+              class="esquerdo"
+              name="cpf"
+              id="cpf"
+              required
+              [showMaskTyped]="false"
+              mask="000.000.000-00"
+              [(ngModel)]="crianca.cpf"
+              [ngModelOptions]="{standalone: true}"
+            />
             <label for="cpf" class="esquerdoLabel">CPF</label>
           </div>
 
           <div class="D">
-            <input type="text" class="direito" name="rg" id="" required [showMaskTyped]="false" mask="00.000.000-0" [(ngModel)]="crianca.rg" [ngModelOptions]="{standalone: true}" />
+            <input
+              type="text"
+              class="direito"
+              name="rg"
+              id="rg"
+              required
+              [showMaskTyped]="false"
+              mask="00.000.000-0"
+              [(ngModel)]="crianca.rg"
+              [ngModelOptions]="{standalone: true}"
+            />
             <label for="rg" class="direitoLabel">RG</label>
           </div>
         </div>
 
         <br />
 
+        <!-- Telefone 1 e Endereço -->
         <div class="linD">
           <div class="E">
-            <input type="text" class="esquerdo" name="tel1" id="" required [showMaskTyped]="false" mask="(00)0000-0000" [(ngModel)]="crianca.tel1" [ngModelOptions]="{standalone: true}" />
+            <input
+              type="text"
+              class="esquerdo"
+              name="tel1"
+              id="tel1"
+              required
+              [showMaskTyped]="false"
+              mask="(00)0000-0000"
+              [(ngModel)]="crianca.tel1"
+              [ngModelOptions]="{standalone: true}"
+            />
             <label for="tel1" class="esquerdoLabel">Telefone 1</label>
           </div>
 
           <div class="D">
-            <input type="text" class="direito" name="end" id="" required [(ngModel)]="crianca.endereco" [ngModelOptions]="{standalone: true}" />
+            <input
+              type="text"
+              class="direito"
+              name="end"
+              id="end"
+              required
+              [(ngModel)]="crianca.endereco"
+              [ngModelOptions]="{standalone: true}"
+            />
             <label for="end" class="direitoLabel">Endereço</label>
           </div>
         </div>
 
         <br />
 
+        <!-- Telefone 2 e Salas -->
         <div class="linD">
           <div class="E">
-            <input type="text" class="esquerdo" name="tel2" id="" required [showMaskTyped]="false" mask="(00)0000-0000" [(ngModel)]="crianca.tel2" [ngModelOptions]="{standalone: true}" />
+            <input
+              type="text"
+              class="esquerdo"
+              name="tel2"
+              id="tel2"
+              required
+              [showMaskTyped]="false"
+              mask="(00)0000-0000"
+              [(ngModel)]="crianca.tel2"
+              [ngModelOptions]="{standalone: true}"
+            />
             <label for="tel2" class="esquerdoLabel">Telefone 2</label>
           </div>
 
-          <select name="sala" id="" required [(ngModel)]="crianca.idSala" [ngModelOptions]="{standalone: true}">
-            <option value="0" selected disabled>Salas</option>
-            <option *ngFor="let sala of salas" [value]="sala.id">{{ sala.nome }} - Capacidade: {{ sala.capacidade }}</option>
-          </select>
+          <!-- <select
+          name="sala"
+          id="sala"
+          required
+          [(ngModel)]="crianca.idSala"
+          [ngModelOptions]="{standalone: true}"
+          (change)="onSalaChange($event)"
+        >
+          <option value="" selected disabled>Salas</option>
+          <option *ngFor="let sala of salas" [value]="sala.id">
+            {{ sala.nome }} - Capacidade: {{ sala.capacidade }}
+          </option>
+        </select> -->
         </div>
 
         <br />
 
+        <!-- Botões -->
         <div class="btns">
           <button type="submit" class="btnSalvar">Salvar</button>
-          <button [routerLink]="['/instituicao/cadastros']" class="btnCancelar">Cancelar</button>
+          <button
+            [routerLink]="['/instituicao/cadastros']"
+            class="btnCancelar"
+          >
+            Cancelar
+          </button>
         </div>
       </form>
     </div>

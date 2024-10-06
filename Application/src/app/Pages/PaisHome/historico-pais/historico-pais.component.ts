@@ -20,16 +20,14 @@ export class HistoricoPaisComponent {
   constructor(private historicoService: HistoricoService) {}
 
   ngOnInit(): void {
-    // Inicializa com um jogo, por exemplo, Miopia
     this.getHistoricoMiopia();
   }
 
-  // Métodos para obter histórico com criança para cada jogo
   getHistoricoMiopia(): void {
     this.historicoService.getHistoricoComCriancaMiopia().subscribe({
       next: (dadosTratados) => {
         this.historico = dadosTratados;
-        this.jogoSelecionado = 'Miopia'; // Define o jogo selecionado
+        this.jogoSelecionado = 'Miopia';
         console.log("dados cianca", this.historico);
       },
       error: (err) => {
@@ -38,11 +36,21 @@ export class HistoricoPaisComponent {
     });
   }
 
+  truncateName(name: string): string {
+    const names = name.split(' ');
+    if (names.length > 1) {
+      const firstName = names[0];
+      const lastName = names[names.length - 1];
+      return `${firstName} ${lastName}`;
+    }
+    return name;
+  }
+
   getHistoricoDaltonismo(): void {
     this.historicoService.getHistoricoComCriancaDaltonismo().subscribe({
       next: (dadosTratados) => {
         this.historico = dadosTratados;
-        this.jogoSelecionado = 'Daltonismo'; // Define o jogo selecionado
+        this.jogoSelecionado = 'Daltonismo';
       },
       error: (err) => {
         console.error("Erro ao obter o histórico de Daltonismo", err);
@@ -54,7 +62,7 @@ export class HistoricoPaisComponent {
     this.historicoService.getHistoricoComCriancaFigurasColoridas().subscribe({
       next: (dadosTratados) => {
         this.historico = dadosTratados;
-        this.jogoSelecionado = 'Figuras Coloridas'; // Define o jogo selecionado
+        this.jogoSelecionado = 'Figuras Coloridas';
         console.log("dados cianca", this.historico);
       },
       error: (err) => {

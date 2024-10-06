@@ -11,6 +11,9 @@ import { HeaderComponent } from '../../PaisHome/Shared-Pais/header/header.compon
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { GetSala } from '../../../Models/InstituicaoModels/GetSala.model';
 import { VlibrasComponent } from '../../vlibras/vlibras.component';
+import { ImageUploadComponent } from '../image-upload/image-upload.component';
+import { MatDialog } from '@angular/material/dialog';
+import { PictureService } from '../Services/picture-service/picture.service';
 
 @Component({
   selector: 'app-cadastros',
@@ -25,12 +28,11 @@ import { VlibrasComponent } from '../../vlibras/vlibras.component';
     FormsModule,
     HeaderComponent,
     NgxMaskPipe,
-    RouterLink,
     NgxMaskDirective,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './cadastros.component.html',
-  styleUrl: './cadastros.component.css',
+  styleUrls: ['./cadastros.component.css'], // Corrigido o nome da propriedade para styleUrls
 })
 export class CadastrosComponent implements OnInit {
   imgSRC: string | ArrayBuffer | null = null;
@@ -42,17 +44,24 @@ export class CadastrosComponent implements OnInit {
   erroBusca: boolean = false;
   descricaoBusca: string = '';
 
+
+  criancaId: string = '';
+  imagens: { [key: string]: string } = {}; // Para armazenar as imagens como Base64
+
   constructor(
     private dados: CadastroUnicoService,
+    private pictureService: PictureService,
     private salasService: SalasService,
+    private dialog: MatDialog
   ) {}
+
   ngOnInit(): void {
     this.loadSalas();
     this.searchCriancas();
-    this.getCriancas();
+    this.loadImages();
   }
 
-  getCriancas() {
+  getCriancas(): void {
     this.dados.getCadastrados().subscribe({
       next: (response) => {
         this.dadosCriancas = response.map((crianca) => ({
@@ -73,18 +82,45 @@ export class CadastrosComponent implements OnInit {
             nome: crianca.sala.nome,
             capacidade: crianca.sala.capacidade,
           },
+          // A URL da imagem, com um fallback
+          imageUrl: crianca.imageUrl || '../../../assets/user.png',
         }));
+
+        // Se houver crianças carregadas, atualiza o criancaId para o primeiro da lista
+        if (this.dadosCriancas.length > 0) {
+          this.criancaId = this.dadosCriancas[0].id; // Atualiza com o ID da primeira criança
+        }
+
+        // Carregar imagens para cada criança
+        // this.loadImages();
+
         console.log('Crianças carregadas com sucesso!', this.dadosCriancas);
       },
-      error: console.error,
+      error: (err) => console.error('Erro ao carregar crianças:', err),
     });
   }
 
-  searchConsole(){
+  // loadImages(): void {
+  //   this.dadosCriancas.forEach((crianca) => {
+  //     this.dados.getImageBase64(crianca.id).subscribe(
+  //       (response) => {
+  //         if (response && response.Image) {
+  //           this.imagens[crianca.id] = response.Image; // Armazene a imagem no dicionário
+  //         }
+  //       },
+  //       (error) => {
+  //         console.error('Erro ao carregar a imagem:', error);
+  //       }
+  //     );
+  //   });
+  // }
+
+  searchConsole(): void {
     console.log('Buscando crianças...');
     console.log(this.dadosCriancas);
     this.searchCriancas();
   }
+
   loadSalas(): void {
     this.salasService.getSalas().subscribe({
       next: (response) => {
@@ -112,12 +148,20 @@ export class CadastrosComponent implements OnInit {
 
     this.dados.getCriancasByQuery(salaId, this.codigo, this.nomeCrianca)
       .subscribe(
-        data => {
+        (data) => {
           this.dadosCriancas = data;
           this.erroBusca = data.length === 0;
           console.log('Crianças encontradas:', data);
+
+          // Atualiza criancaId com o ID da primeira criança encontrada
+          if (data.length > 0) {
+            this.criancaId = data[0].id; // Atualiza com o ID da primeira criança encontrada
+          }
+
+          // Carregar imagens para as crianças encontradas
+          this.loadImages(); // Chama o método para carregar as imagens
         },
-        error => {
+        (error) => {
           this.erroBusca = true;
           if (error.status === 404) {
             console.log('Nenhuma criança encontrada com os filtros aplicados.');
@@ -127,10 +171,36 @@ export class CadastrosComponent implements OnInit {
         }
       );
 
+    // Limpa os filtros após a busca
     this.nomeCrianca = '';
     this.idsala = undefined;
     this.codigo = '';
   }
+
+  // Nova função para carregar as imagens
+  loadImages(): void {
+    this.dadosCriancas.forEach((crianca) => {
+      this.pictureService.getFoto(crianca.id).subscribe(
+        (response) => {
+          console.log('Resposta da imagem:', response);  // Mostra a resposta recebida no console
+          crianca.foto = response.foto;  // Atribui a imagem Base64 à propriedade 'foto'
+
+          // Verifica se a foto foi retornada
+          if (response.foto) {
+            crianca.imageUrl = response.foto;  // 'response.foto' já deve estar no formato correto
+          } else {
+            crianca.imageUrl = '../../../assets/user.png'; // Imagem padrão caso não haja foto
+          }
+        },
+        (error) => {
+          console.log('Erro ao carregar a foto da criança:', error);
+          crianca.imageUrl = '../../../assets/user.png'; // Define imagem padrão em caso de erro
+        }
+      );
+    });
+  }
+
+
   fileSelect(event: Event): void {
     const input = event.target as HTMLInputElement;
 
@@ -143,6 +213,32 @@ export class CadastrosComponent implements OnInit {
       };
 
       reader.readAsDataURL(file);
+    }
+  }
+
+  openImageUploadModal(criancaId: string): void {
+    // Verifica se a imagem existe antes de tentar acessá-la
+    const imageUrl = this.imagens[criancaId] || '../../../assets/user.png'; // Usa a imagem padrão se não houver imagem
+    const dialogRef = this.dialog.open(ImageUploadComponent, {
+      data: { id: criancaId, imageUrl: imageUrl }, // Passa a URL da imagem para o modal
+      panelClass: 'custom-modal', // Se você estiver usando uma classe CSS personalizada
+      width: '600px', // Largura do modal, ajuste conforme necessário
+    });
+
+    console.log(`Abrindo modal para a criança com ID: ${criancaId} e URL da imagem: ${imageUrl}`);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      // Lógica para tratar o resultado do modal, se necessário
+    });
+  }
+
+  dataNascimento: string = "";
+
+  processarDataNascimento() {
+    if (this.dataNascimento) {
+      const [dia, mes, ano] = this.dataNascimento.split('-');
+      const data = new Date(+ano, +mes - 1, +dia); 
+      console.log(data);
     }
   }
 }

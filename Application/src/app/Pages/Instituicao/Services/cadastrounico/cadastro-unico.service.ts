@@ -4,6 +4,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DadosCriancas } from '../../../../Models/InstituicaoModels/DadosCrianca';
 import { CriancaInstDTO } from '../../../../Models/CriancaInstDTO.model';
+import { CriancaImagem } from '../../../../Models/CriancaImagem.model';
+import { ImageResponse } from '../../../../Models/ImageResponse.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,7 @@ import { CriancaInstDTO } from '../../../../Models/CriancaInstDTO.model';
 export class CadastroUnicoService {
   private apiUrl = 'https://localhost:5200/CriancaInst';
   private apiUrlfilters = 'https://localhost:5200/CriancaInst/filter';
+
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +24,7 @@ export class CadastroUnicoService {
   getCadastrados(): Observable<GetCriancas[]> {
     return this.http.get<GetCriancas[]>(`${this.apiUrl}`);
   }
+  
 
   getCriancasByQuery(idsala?: string, codigo?: string, nomeCrianca?: string): Observable<GetCriancas[]> {
     let params = new HttpParams();
@@ -47,4 +51,5 @@ export class CadastroUnicoService {
   editCrianca(criancaId: string, crianca: GetCriancas): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${criancaId}`, crianca);
   }
+
 }

@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace VisualEssence.Domain.Models
+﻿namespace VisualEssence.Domain.Models
 {
     public class Contato
     {
@@ -14,26 +11,10 @@ namespace VisualEssence.Domain.Models
             Descricao = descricao;
             DataEnvio = dataEnvio = DateTime.Now;
         }
-
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
-        [Required]
-        [MaxLength(255)]
         public string Nome { get; set; }
-
-        [Required]
-        [EmailAddress]
-        [MaxLength(255)]
         public string Email { get; set; }
-
-        [Required]
-        [MaxLength(255)]
         public string Assunto { get; set; }
-
-        [Required]
-        [MaxLength(500)]
         public string Descricao { get; set; }
         public DateTime DataEnvio { get; set; } = DateTime.Now;
     }

@@ -1,4 +1,6 @@
-﻿using VisualEssence.Domain.Models;
+﻿using Microsoft.AspNetCore.Http;
+using VisualEssence.Domain.DTOs.GamesDTO;
+using VisualEssence.Domain.Models;
 
 namespace VisualEssence.Domain.DTOs
 {
@@ -18,5 +20,4 @@ namespace VisualEssence.Domain.DTOs
         public Guid IdSala { get; set; }
         public Guid UserInstId { get; set; }
     }
-
 }

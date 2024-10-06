@@ -14,63 +14,79 @@
       </div>
       <div class="f-cod">
         <label for="cod">CNS:</label>
-        <input type="text" id="cod" [showMaskTyped]="false" mask="000 0000 0000 0000" [(ngModel)]="codigo" name="cod" />
+        <input
+          type="text"
+          id="cod"
+          [showMaskTyped]="false"
+          mask="000 0000 0000 0000"
+          [(ngModel)]="codigo"
+          name="cod"
+        />
       </div>
       <div class="f-nome">
         <label for="nome">NOME:</label>
         <input type="text" id="nome" [(ngModel)]="nomeCrianca" name="nome" />
         <button class="icon-button" type="submit">
-          <img type="submit"
+          <img
             src="../../../assets/lupa.png"
             width="30px"
             height="30px"
-            alt="o"
+            alt="Buscar"
           />
         </button>
       </div>
     </form>
 
-
-    <div class="cadastros" >
+    <div class="cadastros">
       <div class="blocos" *ngIf="dadosCriancas.length > 0">
-        <div *ngIf="erroBusca && dadosCriancas.length <= 0" class="no-results">
-          Nenhuma criança encontrada com os filtros aplicados.
-        </div>
-        <div class="info-crianca" *ngFor="let crianca of dadosCriancas">
-          <div class="cadastro-img">
-            <img src="../../../assets/user.png" alt="#" />
-          </div>
-          <div class="dados-crianca">
-            <div class="line-content">
-              <div class="d-left">
-                <div class="l-name">
-                  <a [routerLink]="['/instituicao/dados-cadastro', crianca.id]" >{{ crianca.nome }}</a>
+        <ng-container *ngFor="let crianca of dadosCriancas">
+          <div class="info-crianca">
+            <div class="cadastro-img">
+              <img
+              [src]="crianca.imageUrl || '../../../assets/user.png'"
+              (click)="openImageUploadModal(crianca.id)"
+              class="img-crianca"
+            />
+            </div>
+            <div class="dados-crianca">
+              <div class="line-content">
+                <div class="d-left">
+                  <div class="l-name">
+                    <a [routerLink]="['/instituicao/dados-cadastro', crianca.id]">
+                      {{ crianca.nome }}
+                    </a>
+                  </div>
+                  <div class="l-infos">
+                    <p>Data de Nascimento: {{ crianca.dataNascimento | date:'dd/MM/yyyy' }}</p>
+                    <p>CNS: {{ crianca.cns | mask: '000 0000 0000 0000' }}</p>
+                    <p>Tel 1: {{ crianca.tel1 | mask: '(00) 0000-0000' }}</p>
+                    <p>Tel 2: {{ crianca.tel2 | mask: '(00) 0000-0000' }}</p>
+                    <p>Sexo: {{ crianca.sexo }}</p>
+                  </div>
                 </div>
-                <div class="l-infos">
-                  <p>Data de Nascimento: {{ crianca.dataNascimento }}</p>
-                  <p>CNS: {{ crianca.cns | mask: '000 0000 0000 0000'}}</p>
-                  <p>Tel 1: {{ crianca.tel1 | mask: '(00) 0000-0000'}}</p>
-                  <p>Tel 2: {{ crianca.tel2 | mask: '(00) 0000-0000' }}</p>
-                  <p>Sexo: {{ crianca.sexo }}</p>
-                </div>
-              </div>
-              <div class="d-right">
-                <div class="r-textos" *ngIf="crianca?.sala">
-                  <p>SALA: {{ crianca.sala.nome }}</p>
-                  <p>Capacidade: {{ crianca.sala.capacidade }}</p>
-                </div>
-                <div class="r-edit">
-                    <img [routerLink]="['/instituicao/editar-dados', crianca.id]"
-                        src="../../../assets/lapis.png"
-                        width="30px"
-                        height="30px"
-                        alt="Editar"
-                      />
+                <div class="d-right">
+                  <div class="r-textos" *ngIf="crianca?.sala">
+                    <p>SALA: {{ crianca.sala.nome }}</p>
+                    <p>Capacidade: {{ crianca.sala.capacidade }}</p>
+                  </div>
+                  <div class="r-edit">
+                    <img
+                      [routerLink]="['/instituicao/editar-dados', crianca.id]"
+                      src="../../../assets/lapis.png"
+                      width="30px"
+                      height="30px"
+                      alt="Editar"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </ng-container>
+      </div>
+
+      <div *ngIf="dadosCriancas.length === 0" class="no-results">
+        Nenhuma criança encontrada com os filtros aplicados.
       </div>
     </div>
   </div>

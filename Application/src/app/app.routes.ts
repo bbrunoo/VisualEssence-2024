@@ -13,6 +13,7 @@ import { EsquecerSenhaComponent } from './Pages/Conta/esquecer-senha/esquecer-se
 
 import { OpcEntrarComponent } from './Pages/Conta/opc-entrar/opc-entrar.component';
 
+import { ImageUploadComponent } from './Pages/Instituicao/image-upload/image-upload.component';
 
 // import { HomeComponent } from './Pages/Home/home.component';
 
@@ -78,6 +79,7 @@ export const routes: Routes = [
 
   {path: 'login-pais', component: LoginPaisComponent},
   {path: 'cadastro-pais', component: CadastroPaisComponent},
+  {path: 'instituicao/imagem', component: ImageUploadComponent, canActivate: [AuthGuard]},
 
   {path: 'login-inst', component: LoginInstComponent},
   {path: 'cadastro-inst', component: CadastroInstComponent},

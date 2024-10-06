@@ -1,24 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VisualEssence.Domain.Models.Jogada;
+﻿using VisualEssence.Domain.Models.Jogada;
 
 namespace VisualEssence.Domain.Models
 {
     public class Jogo
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
-        [Required]
-        [MaxLength(100)]
         public string Nome { get; set; }
-
-        public ICollection<JogadaInst> Jogadas { get; set; }
     }
 }

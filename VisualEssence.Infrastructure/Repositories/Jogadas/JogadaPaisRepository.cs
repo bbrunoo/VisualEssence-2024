@@ -4,7 +4,7 @@ using VisualEssence.Domain.Interfaces.GenericRepository;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
 using VisualEssence.Domain.Models.Jogada;
-using VisualEssence.Infrastructure.Context;
+using VisualEssence.Infrastructure.Data;
 
 namespace VisualEssence.Infrastructure.Repositories.Jogadas
 {

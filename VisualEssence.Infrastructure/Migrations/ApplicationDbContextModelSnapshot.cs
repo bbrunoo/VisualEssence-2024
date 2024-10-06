@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using VisualEssence.Infrastructure.Context;
+using VisualEssence.Infrastructure.Data;
 
 #nullable disable
 
@@ -17,7 +17,7 @@ namespace VisualEssence.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -32,8 +32,8 @@ namespace VisualEssence.Infrastructure.Migrations
 
                     b.Property<string>("Assunto")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("DataEnvio")
                         .HasColumnType("datetime2");
@@ -45,20 +45,17 @@ namespace VisualEssence.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.ToTable("Contato");
+                    b.ToTable("Contato", (string)null);
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.CriancaInst", b =>
@@ -79,13 +76,15 @@ namespace VisualEssence.Infrastructure.Migrations
 
                     b.Property<string>("DataNascimento")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Endereco")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Foto")
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid>("IdSala")
                         .HasColumnType("uniqueidentifier");
@@ -102,11 +101,8 @@ namespace VisualEssence.Infrastructure.Migrations
 
                     b.Property<string>("Rg")
                         .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
-
-                    b.Property<Guid?>("SalaId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Sexo")
                         .IsRequired()
@@ -130,11 +126,9 @@ namespace VisualEssence.Infrastructure.Migrations
 
                     b.HasIndex("IdSala");
 
-                    b.HasIndex("SalaId");
-
                     b.HasIndex("UserInstId");
 
-                    b.ToTable("CriancaInst");
+                    b.ToTable("CriancaInst", (string)null);
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.CriancaPais", b =>
@@ -148,11 +142,12 @@ namespace VisualEssence.Infrastructure.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("CriancaPais");
+                    b.ToTable("CriancaPais", (string)null);
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.Jogada.JogadaInst", b =>
@@ -170,12 +165,10 @@ namespace VisualEssence.Infrastructure.Migrations
                     b.Property<Guid>("IdCrianca")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("JogoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("NomeJogo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Pontuacao")
                         .HasColumnType("int");
@@ -186,18 +179,13 @@ namespace VisualEssence.Infrastructure.Migrations
 
                     b.HasIndex("IdCrianca");
 
-                    b.HasIndex("JogoId");
-
-                    b.ToTable("JogadaInst");
+                    b.ToTable("JogadaInst", (string)null);
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.Jogada.JogadaPais", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CriancaPaisId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataJogo")
@@ -208,18 +196,17 @@ namespace VisualEssence.Infrastructure.Migrations
 
                     b.Property<string>("NomeJogo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Pontuacao")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CriancaPaisId");
-
                     b.HasIndex("IdCrianca");
 
-                    b.ToTable("JogadaPais");
+                    b.ToTable("JogadaPais", (string)null);
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.Jogo", b =>
@@ -251,11 +238,12 @@ namespace VisualEssence.Infrastructure.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sala");
+                    b.ToTable("Sala", (string)null);
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.UserInst", b =>
@@ -266,20 +254,25 @@ namespace VisualEssence.Infrastructure.Migrations
 
                     b.Property<string>("CNPJ")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(14)
+                        .HasColumnType("nvarchar(14)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
                     b.Property<string>("NomeInst")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("SenhaHash")
                         .IsRequired()
@@ -291,10 +284,7 @@ namespace VisualEssence.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.ToTable("UserInst");
+                    b.ToTable("UserInst", (string)null);
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.UserPais", b =>
@@ -305,16 +295,21 @@ namespace VisualEssence.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<byte[]>("SenhaHash")
                         .IsRequired()
@@ -326,23 +321,16 @@ namespace VisualEssence.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.ToTable("UserPais");
+                    b.ToTable("UserPais", (string)null);
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.CriancaInst", b =>
                 {
                     b.HasOne("VisualEssence.Domain.Models.Sala", "Sala")
-                        .WithMany()
-                        .HasForeignKey("IdSala")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("VisualEssence.Domain.Models.Sala", null)
                         .WithMany("CriancaInst")
-                        .HasForeignKey("SalaId");
+                        .HasForeignKey("IdSala")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("VisualEssence.Domain.Models.UserInst", "UserInst")
                         .WithMany("Criancas")
@@ -364,26 +352,18 @@ namespace VisualEssence.Infrastructure.Migrations
                     b.HasOne("VisualEssence.Domain.Models.CriancaInst", "CriancaInst")
                         .WithMany()
                         .HasForeignKey("IdCrianca")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("VisualEssence.Domain.Models.Jogo", null)
-                        .WithMany("Jogadas")
-                        .HasForeignKey("JogoId");
 
                     b.Navigation("CriancaInst");
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.Jogada.JogadaPais", b =>
                 {
-                    b.HasOne("VisualEssence.Domain.Models.CriancaPais", null)
-                        .WithMany("JogadaPais")
-                        .HasForeignKey("CriancaPaisId");
-
                     b.HasOne("VisualEssence.Domain.Models.CriancaPais", "CriancaPais")
-                        .WithMany()
+                        .WithMany("JogadaPais")
                         .HasForeignKey("IdCrianca")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("CriancaPais");
@@ -397,11 +377,6 @@ namespace VisualEssence.Infrastructure.Migrations
             modelBuilder.Entity("VisualEssence.Domain.Models.CriancaPais", b =>
                 {
                     b.Navigation("JogadaPais");
-                });
-
-            modelBuilder.Entity("VisualEssence.Domain.Models.Jogo", b =>
-                {
-                    b.Navigation("Jogadas");
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.Sala", b =>

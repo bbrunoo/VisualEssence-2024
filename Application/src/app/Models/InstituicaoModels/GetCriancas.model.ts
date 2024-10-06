@@ -16,6 +16,8 @@ export interface GetCriancas {
   tel1: string;
   tel2: string;
   endereco: string;
-  idSala: string;
+  idSala: string
   sala: Sala;
+  imageUrl?: string; // Adicione esta linha
+  foto?: string; // Adicione esta linha
 }

@@ -13,5 +13,10 @@ namespace VisualEssence.Domain.Interfaces.NormalRepositories
     {
         Task<IEnumerable<RequestCriancaInstDTO>> GetCriancasByQuery(Guid? sala, string? codigo, string? nome);
         Task<CriancaInst> PostCrianca(CriancaInst crianca);
+        Task<CriancaInst> UpdateCrianca(Guid id, CriancaInst crianca);
+        Task<bool> AtualizarFoto(Guid id,string foto);
+        Task<IEnumerable<CriancaInst>> GetAllByUserIdAsync(Guid userId);
+        Task<CriancaInst> GetByIdAsyncUser(Guid id);
+
     }
 }
