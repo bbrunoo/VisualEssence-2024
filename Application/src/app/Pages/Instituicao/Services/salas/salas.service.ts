@@ -25,4 +25,8 @@ export class SalasService {
   getSalaById(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
+
+  deleteSala(sala: Sala): Observable<Sala> {
+    return this.http.delete<Sala>(`${this.apiUrl}/${sala.id}`);
+  }
 }

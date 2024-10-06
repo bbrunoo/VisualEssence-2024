@@ -8,7 +8,7 @@ using System.Text;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.Authenticate;
 using VisualEssence.Domain.Models;
-using VisualEssence.Infrastructure.Context;
+using VisualEssence.Infrastructure.Data;
 
 namespace VisualEssence.Infrastructure.Repositories.Identity
 {

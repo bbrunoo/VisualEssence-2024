@@ -1,20 +1,30 @@
 <app-logo-menu-inst></app-logo-menu-inst>
 <div class="container">
-  <app-vlibras></app-vlibras>
   <div class="conteudo">
-    <div class="left">
-      <img src="../../../../assets/astro.png">
-    </div>
-    <div class="right">
-      <label for="criancas">Selecione uma criança:</label>
-      <select id="criancas" [(ngModel)]="selectedCriancaId">
-        <option value="" disabled selected>- Selecione -</option>
-        <option *ngFor="let crianca of criancas" [value]="crianca.id">
-          Nome: {{ crianca.nome }}  ||
-          Sala: - {{ crianca.sala.nome }}
-        </option>
-      </select>
-      <button (click)="onSubmit()">Enviar</button>
-    </div>
+      <div class="img">
+          <img src="../../../../assets/astronauta.png" alt="">
+      </div>
+      <div class="forms">
+          <div class="cadastro">
+              <div class="form1">
+                  <img class="image_forms" src="../../../../assets/olhosmenu.png" alt="">
+                  <select class="input_nome" id="salas" [(ngModel)]="selectedSalaId" (change)="onSalaChange()">
+                      <option value="" disabled selected>Selecione uma sala</option>
+                      <option *ngFor="let sala of salas" [value]="sala.id">
+                      {{ sala.nome }}
+                      </option>
+                  </select>
+                  <select class="input_nome" id="criancas" [(ngModel)]="selectedCriancaId" [disabled]="!selectedSalaId">
+                      <option value="" disabled selected>Seleciona uma Crianca</option>
+                      <option *ngFor="let crianca of criancasFiltradas" [value]="crianca.id">
+                      {{ crianca.nome }}
+                      </option>
+                  </select>
+                  <button (click)="onSubmit()" class="input_submit">Salvar</button>
+              </div>
+          </div>
+      </div>
   </div>
 </div>
+
+

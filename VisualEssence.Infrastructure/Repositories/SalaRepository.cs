@@ -1,13 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
-using VisualEssence.Infrastructure.Context;
+using VisualEssence.Infrastructure.Data;
 
 namespace VisualEssence.Infrastructure.Repositories
 {

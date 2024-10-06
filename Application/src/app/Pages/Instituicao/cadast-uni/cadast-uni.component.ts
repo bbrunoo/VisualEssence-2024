@@ -1,7 +1,7 @@
 import { UserInst } from './../../../Models/UserInst.Model';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { NgIf, CommonModule } from '@angular/common';
+import { NgIf, CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { OpcCadastComponent } from '../opc-cadast/opc-cadast.component';
@@ -36,8 +36,9 @@ export class CadastUniComponent implements OnInit {
     private salaService: SalasService,
     private dadosC: CadastroUnicoService,
     private router: Router,
-    private userService: AuthService
+    private userService: AuthService,
   ) {}
+
 
   salas: GetSala[] =[]
   ngOnInit() {
@@ -103,58 +104,67 @@ export class CadastUniComponent implements OnInit {
       }
     );
   }
+
+
   cadastrarCrianca() {
     if (this.dadosCriancas.idSala && this.user) {
-      // Criação do objeto CriancaInstDTO
-      const criancaDTO: CriancaInstDTO = {
-        nome: this.dadosCriancas.nome,
-        sexo: this.dadosCriancas.sexo,
-        nomeResp: this.dadosCriancas.nomeResp,
-        cpf: this.dadosCriancas.cpf,
-        endereco: this.dadosCriancas.endereco,
-        cns: this.dadosCriancas.cns,
-        dataNascimento: this.dadosCriancas.dataNascimento,
-        rg: this.dadosCriancas.rg,
-        tel1: this.dadosCriancas.tel1,
-        tel2: this.dadosCriancas.tel2,
-        idSala: this.dadosCriancas.idSala, // Apenas o ID da sala
-        userInstId: this.user.id // Apenas o ID do usuário
-      };
+        const criancaDTO: CriancaInstDTO = {
+            nome: this.dadosCriancas.nome,
+            sexo: this.dadosCriancas.sexo,
+            nomeResp: this.dadosCriancas.nomeResp,
+            cpf: this.dadosCriancas.cpf,
+            endereco: this.dadosCriancas.endereco,
+            cns: this.dadosCriancas.cns,
+            dataNascimento: this.dadosCriancas.dataNascimento,
+            rg: this.dadosCriancas.rg,
+            tel1: this.dadosCriancas.tel1,
+            tel2: this.dadosCriancas.tel2,
+            idSala: this.dadosCriancas.idSala,
+            userInstId: this.user.id
+        };
 
-      console.log('Dados da criança a serem enviados:', criancaDTO);
-      this.dadosC.cadastrarUnico(criancaDTO).subscribe(
-        response => {
-          Swal.fire({
-            title: 'Sucesso!',
-            text: 'Criança cadastrada com sucesso.',
-            imageUrl: '../../../../assets/icons/check.png',
-            imageWidth: 100,
-            imageHeight: 100,
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#0abf2f',
-            heightAuto: false,
-          });
-          this.changePage();
-          console.log('Criança cadastrada com sucesso:', response);
-        },
-        error => {
-          Swal.fire({
-            title: 'Falha!',
-            text: 'Não foi possível cadastrar a criança.',
+        this.dadosC.cadastrarUnico(criancaDTO).subscribe({
+            next: (response) => {
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Cadastrado com sucesso!',
+                    imageUrl: '../../../../assets/icons/check.png',
+                    imageWidth: 100,
+                    imageHeight: 100,
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#3085d6',
+                    heightAuto: false
+                }).then(() => {
+                    this.changePage(); // Mude a página aqui conforme necessário
+                });
+            },
+            error: (error) => {
+                Swal.fire({
+                    title: 'Falha!',
+                    text: 'Erro ao cadastrar! Verifique a capacidade da sala!',
+                    imageUrl: '../../../../assets/icons/cancel.png',
+                    imageWidth: 100,
+                    imageHeight: 100,
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#3085d6',
+                    heightAuto: false
+                });
+            }
+        });
+    } else {
+        Swal.fire({
+            title: 'Erro!',
+            text: 'Por favor, preencha todos os campos obrigatórios.',
             imageUrl: '../../../../assets/icons/cancel.png',
             imageWidth: 100,
             imageHeight: 100,
             confirmButtonText: 'OK',
-            confirmButtonColor: '#d9534f',
-            heightAuto: false,
-          });
-          console.error('Erro ao cadastrar criança:', error);
-        }
-      );
-    } else {
-      console.error('ID da sala ou usuário não fornecido.');
+            confirmButtonColor: '#3085d6',
+            heightAuto: false
+        });
     }
-  }
+}
+
 
 
   changePage(){

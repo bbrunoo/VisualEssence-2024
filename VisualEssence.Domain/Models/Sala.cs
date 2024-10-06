@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace VisualEssence.Domain.Models
 {
@@ -18,15 +11,10 @@ namespace VisualEssence.Domain.Models
             Capacidade = capacidade;
         }
         public Sala() { }
-
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        [Required]
         public string Nome { get; set; }
-        [Required]
         public int Capacidade { get; set; }
-
+        [JsonIgnore]
         public ICollection<CriancaInst> CriancaInst { get; set; }
     }
 }

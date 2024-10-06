@@ -1,5 +1,5 @@
 export interface GetSala {
-  id:string;
+  id: string;
   nome: string;
   capacidade: number;
 }

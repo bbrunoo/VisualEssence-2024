@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 using VisualEssence.Domain.Models;
 
 namespace VisualEssence.Domain.DTOs
@@ -22,5 +18,6 @@ namespace VisualEssence.Domain.DTOs
         public string Tel2 { get; set; }
         public Guid IdSala { get; set; }
         public Sala Sala { get; set; }
+        public IFormFile? Foto { get; set; }
     }
 }

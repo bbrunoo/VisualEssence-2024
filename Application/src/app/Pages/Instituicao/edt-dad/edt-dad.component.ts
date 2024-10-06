@@ -4,10 +4,9 @@ import { Sala } from './../../../Models/InstituicaoModels/Sala.model';
 import { Component, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InstMenuComponent } from '../shared-menu/inst-menu/inst-menu.component';
 import { CadastroUnicoService } from '../Services/cadastrounico/cadastro-unico.service';
-import { Route } from '@angular/router';
 import { SalasService } from '../Services/salas/salas.service';
 import { CommonModule } from '@angular/common';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
@@ -19,16 +18,12 @@ import Swal from 'sweetalert2';
   standalone: true,
   imports: [VlibrasComponent, RouterLink, NgIf, FormsModule, InstMenuComponent, CommonModule, NgxMaskPipe, NgxMaskDirective, ReactiveFormsModule],
   templateUrl: './edt-dad.component.html',
-  styleUrl: './edt-dad.component.css'
+  styleUrls: ['./edt-dad.component.css']
 })
 export class EdtDadComponent implements OnInit {
-
-  constructor(private criancaService: CadastroUnicoService, private salaService: SalasService,private route: ActivatedRoute, private routerGo: Router){}
-
   criancaId!: string;
-  tipoSala: Sala[] = [];
   selectedCrianca: GetCriancas | null = null;
-  salas: GetSala[] = [];
+  salas: GetSala[] = []; // Array de salas recebidas
   crianca!: GetCriancas;
 
   sexos = [
@@ -36,16 +31,22 @@ export class EdtDadComponent implements OnInit {
     { valor: 'M', texto: 'Masculino' }
   ];
 
+  constructor(
+    private criancaService: CadastroUnicoService,
+    private salaService: SalasService,
+    private route: ActivatedRoute,
+    private routerGo: Router
+  ) {}
+
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.criancaId = id;
-      this.loadCriancaData();
+      this.criancaId = id;  // Armazena o ID do parâmetro da URL
+      this.loadCriancaData();  // Carrega os dados da criança com o ID
     } else {
       console.error('ID não encontrado na rota');
     }
-    this.getSalas();
-    console.log("id" + this.selectedCrianca?.id)
+    this.getSalas(); // Carrega a lista de salas
   }
 
   loadCriancaData(): void {
@@ -53,7 +54,6 @@ export class EdtDadComponent implements OnInit {
       (c: GetCriancas) => {
         console.log("Criança carregada:", c);
         this.crianca = c;
-        this.selectedCrianca = { ...this.crianca };
       },
       error => {
         console.error('Erro ao carregar criança:', error);
@@ -68,86 +68,77 @@ export class EdtDadComponent implements OnInit {
       },
       error => {
         console.error('Não foi possível carregar as salas!', error);
-        throw error;
       }
     );
   }
 
-  getCriancas(){
-    this.criancaService.getCadastrados().subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => {
-        console.error('error:', error);
-      }
-    })
+  onSalaChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedValue = selectElement.value;
+
+    console.log('Sala selecionada:', selectedValue);
   }
 
   updateCrianca(): void {
-    if (this.selectedCrianca) {
-      this.selectedCrianca.idSala = this.selectedCrianca.sala.id;
-      console.log(this.selectedCrianca.id); // Certifique-se de que 'this.crianca' não é undefined
+    console.log("ID da sala a ser atualizada:", this.crianca.idSala);
 
-      Swal.fire({
-        title: 'Confirmação',
-        text: 'Você realmente deseja atualizar essas informações?',
-        imageUrl: '../../../../assets/icons/danger.png',
-        imageWidth: 100,
-        imageHeight: 100,
-        showCancelButton: true,
-        confirmButtonText: 'Confirmar',
-        cancelButtonText: 'Cancelar',
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        heightAuto: false
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.criancaService.editCrianca(this.criancaId, this.crianca).subscribe(
-            response => {
-              console.log("Dados para atualizar:", this.criancaId, this.crianca);
-              console.log("Criança atualizada:", response);
-              Swal.fire({
-                title: 'Sucesso!',
-                text: 'Dados atualizados com sucesso.',
-                imageUrl: '../../../../assets/icons/check.png',
-                imageWidth: 100,
-                imageHeight: 100,
-                confirmButtonText: 'OK',
-                confirmButtonColor: '#3085d6',
-                heightAuto: false
-              }).then(() => {
-                this.routerGo.navigate(['/instituicao/cadastros']);
-                this.selectedCrianca = null;
-              });
-            },
-            error => {
-              console.error('Erro ao atualizar criança:', error);
-              Swal.fire({
-                title: 'Erro',
-                text: 'Não foi possível atualizar os dados.',
-                imageUrl: '../../../../assets/icons/cancel.png',
-                imageWidth: 100,
-                imageHeight: 100,
-                confirmButtonText: 'OK',
-                confirmButtonColor: '#3085d6',
-                heightAuto: false
-              });
-            }
-          );
-        } else {
-          Swal.fire({
-            title: 'Cancelado',
-            text: 'Dados não atualizados.',
-            imageUrl: '../../../../assets/icons/cancel.png',
-            imageWidth: 100,
-            imageHeight: 100,
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#3085d6',
-            heightAuto: false
-          });
-        }
-      });
-    }
+    Swal.fire({
+      title: 'Confirmação',
+      text: 'Você realmente deseja atualizar essas informações?',
+      imageUrl: '../../../../assets/icons/danger.png',
+      imageWidth: 100,
+      imageHeight: 100,
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      heightAuto: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.criancaService.editCrianca(this.criancaId, this.crianca).subscribe(
+          response => {
+            console.log("Criança atualizada:", response);
+            Swal.fire({
+              title: 'Sucesso!',
+              text: 'Dados atualizados com sucesso.',
+              imageUrl: '../../../../assets/icons/check.png',
+              imageWidth: 100,
+              imageHeight: 100,
+              confirmButtonText: 'OK',
+              confirmButtonColor: '#3085d6',
+              heightAuto: false
+            }).then(() => {
+              this.routerGo.navigate(['/instituicao/cadastros']);
+              this.selectedCrianca = null;
+            });
+          },
+          error => {
+            console.error('Erro ao atualizar criança:', error);
+            Swal.fire({
+              title: 'Erro',
+              text: 'Não foi possível atualizar os dados.',
+              imageUrl: '../../../../assets/icons/cancel.png',
+              imageWidth: 100,
+              imageHeight: 100,
+              confirmButtonText: 'OK',
+              confirmButtonColor: '#3085d6',
+              heightAuto: false
+            });
+          }
+        );
+      } else {
+        Swal.fire({
+          title: 'Cancelado',
+          text: 'Dados não atualizados.',
+          imageUrl: '../../../../assets/icons/cancel.png',
+          imageWidth: 100,
+          imageHeight: 100,
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#3085d6',
+          heightAuto: false
+        });
+      }
+    });
   }
 }
