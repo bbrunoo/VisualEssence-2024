@@ -8,10 +8,9 @@ namespace VisualEssence.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<CriancaPais> builder)
         {
-            // Tabela
+            
             builder.ToTable("CriancaPais");
 
-            // Propriedades
             builder.Property(e => e.Id)
                 .ValueGeneratedOnAdd();
 
@@ -22,7 +21,6 @@ namespace VisualEssence.Infrastructure.Configurations
             builder.Property(e => e.Idade)
                 .IsRequired();
 
-            // Relacionamento com JogadaPais
             builder.HasMany(e => e.JogadaPais)
                 .WithOne()
                 .HasForeignKey(j => j.IdCrianca)

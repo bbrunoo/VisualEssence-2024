@@ -1,13 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+﻿using Microsoft.AspNetCore.Mvc;
 using VisualEssence.API.ViewModel;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.Authenticate;
-using VisualEssence.Domain.Interfaces.GenericRepository;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
 using VisualEssenceAPI.Services;
@@ -187,20 +181,17 @@ namespace VisualEssence.API
         [HttpGet("user-infos")]
         public async Task<ActionResult<UserInfoViewModel>> GetProfileUser()
         {
-            // Verifica se o token contém a claim "id"
             var userClaim = User.FindFirst("id");
             if (userClaim == null)
             {
                 return Unauthorized("Usuário não autenticado.");
             }
 
-            // Tenta fazer o parse do valor da claim "id" para Guid
             if (!Guid.TryParse(userClaim.Value, out var userId))
             {
                 return BadRequest("ID de usuário inválido.");
             }
 
-            // Verifica se o usuário é institucional ou pais
             bool isUsuarioInstitucional = await _usuarioInstRepository.Exists(userId);
             bool isUsuarioPais = await _usuarioPaisRepository.Exists(userId);
 
@@ -209,7 +200,6 @@ namespace VisualEssence.API
                 return NotFound("Usuário não encontrado.");
             }
 
-            // Monta o UserInfoViewModel com base no tipo de usuário
             UserInfoViewModel viewModel;
 
             if (isUsuarioInstitucional)

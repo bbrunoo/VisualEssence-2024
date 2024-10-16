@@ -17,25 +17,39 @@ import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.componen
 
 })
 export class LoginPaisComponent {
-
   showPassword: boolean = false;
+  isLoading: boolean = false;
+  errorMessage: string = '';
+
+  CredentialsPais: CredentialsPais = { email: '', senha: '' };
 
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
   }
 
-  CredentialsPais: CredentialsPais = {email: '', senha: ''};
-
   constructor(private authService: AuthService, private router: Router) { }
 
-  login(){
+  login() {
+    // Verifica se os campos estão preenchidos corretamente
+    if (!this.CredentialsPais.email || !this.CredentialsPais.senha) {
+      this.errorMessage = 'Por favor, preencha todos os campos.';
+      return;
+    }
+
+    this.isLoading = true;
     this.authService.loginPais(this.CredentialsPais).subscribe(
       (response) => {
-      console.log('Logado com sucesso', response);
-      this.router.navigate(['/Pais/Home']);
-    }, error => {
-      console.log('Não foi possivel realizar o login', error);
-    });
+        this.isLoading = false;
+        console.log('Logado com sucesso', response);
+        this.router.navigate(['/Pais/Home']);
+      },
+      (error) => {
+        this.isLoading = false;
+        this.errorMessage = 'Não foi possível realizar o login. Verifique suas credenciais.';
+        console.log('Erro ao fazer login', error);
+      }
+    );
   }
+
 }
 

@@ -32,6 +32,7 @@ export class InstMenuComponent implements OnInit{
       }
     )
   }
+  
   logout() {
     localStorage.removeItem('token');
   }

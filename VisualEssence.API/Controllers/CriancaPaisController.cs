@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
-using VisualEssence.Domain.Models;
 
 namespace VisualEssence.API.Controllers
 {

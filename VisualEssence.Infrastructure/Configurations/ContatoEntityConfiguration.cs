@@ -8,13 +8,10 @@ namespace VisualEssence.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Contato> builder)
         {
-            // Tabela
             builder.ToTable("Contato");
 
-            // Chave primária
             builder.HasKey(c => c.Id);
 
-            // Propriedades
             builder.Property(c => c.Id)
                 .ValueGeneratedOnAdd();
 

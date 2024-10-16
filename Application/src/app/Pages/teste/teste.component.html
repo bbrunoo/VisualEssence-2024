@@ -1,0 +1,16 @@
+<div class="container">
+  <app-inst-menu></app-inst-menu>
+
+  <div *ngIf="loading">Carregando...</div>
+  <div *ngIf="error">{{ error }}</div>
+
+  <div *ngIf="!loading && !error && criancas.length === 0">
+    Nenhuma criança encontrada para este usuário.
+  </div>
+
+  <ul *ngIf="criancas.length > 0">
+    <li *ngFor="let crianca of criancas">
+      {{ crianca.nome }} ({{ crianca.dataNascimento }} anos)
+    </li>
+  </ul>
+</div>

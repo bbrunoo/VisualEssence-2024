@@ -40,10 +40,9 @@ namespace VisualEssence.Infrastructure.Repositories
             _context.CriancaPais.Add(crianca);
             await _context.SaveChangesAsync();
 
-            // Retorna o DTO com o ID gerado
             return new CriancaPaisDTO
             {
-                Id = crianca.Id, // Inclui o ID gerado após a inserção
+                Id = crianca.Id,
                 Nome = crianca.Nome,
                 Idade = crianca.Idade
             };

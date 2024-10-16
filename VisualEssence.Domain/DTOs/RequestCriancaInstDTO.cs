@@ -19,5 +19,6 @@ namespace VisualEssence.Domain.DTOs
         public Guid IdSala { get; set; }
         public Sala Sala { get; set; }
         public IFormFile? Foto { get; set; }
+        public Guid UserInstId { get; set; }
     }
 }

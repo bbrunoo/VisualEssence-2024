@@ -1,15 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.Authenticate;
 using VisualEssence.Domain.Models;
 using VisualEssence.Infrastructure.Data;
@@ -65,7 +60,7 @@ namespace VisualEssence.Infrastructure.Repositories.Identity
 
             var credentials = new SigningCredentials(privateKey, SecurityAlgorithms.HmacSha256);
 
-            var expiration = DateTime.UtcNow.AddMinutes(10);
+            var expiration = DateTime.UtcNow.AddDays(10);
 
             JwtSecurityToken token = new JwtSecurityToken(
                 issuer: _configuration["jwt:issuer"],

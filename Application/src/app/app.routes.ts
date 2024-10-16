@@ -69,10 +69,12 @@ import { AuthGuard } from './guards/user-authenticated.guard';
 import { HistoricoComponent } from './Pages/Instituicao/historico/historico.component';
 import { HistoricoPaisComponent } from './Pages/PaisHome/historico-pais/historico-pais.component';
 
+import { TesteComponent } from './Pages/teste/teste.component';
 
 export const routes: Routes = [
   // {path: '', component: EntrarComponent},
   {path: 'opc-entrar', component: OpcEntrarComponent},
+  {path: 'teste', component: TesteComponent, canActivate: [AuthGuard]},
   {path: '', component: OpcEntrarComponent},
 
   {path: 'contato', component: ContatoComponent},

@@ -24,29 +24,31 @@ export class AuthService {
   }
 
   loginInst(CredentialsInst: CredentialsInst): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login-inst`, CredentialsInst)
-      .pipe(map((response: any) => {
+    return this.http.post(`${this.apiUrl}/login-inst`, CredentialsInst).pipe(
+      map((response: any) => {
         localStorage.setItem('token', response.token);
-        localStorage.setItem('refreshToken', response.refreshToken); // Armazena o refresh token
+        localStorage.setItem('refreshToken', response.refreshToken);
         return response;
-      }));
+      })
+    );
   }
 
   loginPais(CredentialsPais: CredentialsPais): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login-pais`, CredentialsPais)
-      .pipe(map((response: any) => {
+    return this.http.post(`${this.apiUrl}/login-pais`, CredentialsPais).pipe(
+      map((response: any) => {
         localStorage.setItem('token', response.token);
-        localStorage.setItem('refreshToken', response.refreshToken); // Armazena o refresh token
+        localStorage.setItem('refreshToken', response.refreshToken);
         return response;
-      }));
+      })
+    );
   }
 
   logout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('refreshToken'); // Remove o refresh token
+    localStorage.removeItem('refreshToken');
   }
 
-  private getToken() {
+  public getToken() {
     return localStorage.getItem('token');
   }
 
@@ -61,33 +63,32 @@ export class AuthService {
   getUserProfile(): Observable<loggedUser> {
     const token = this.getToken();
     if (!token) {
-        console.error('Token JWT não encontrado no localStorage');
-        return new Observable<loggedUser>(); // Retorna um observable vazio
+      console.error('Token JWT não encontrado no localStorage');
+      return new Observable<loggedUser>();
     }
 
     const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<loggedUser>(`${this.apiUrl}/user-infos`, { headers })
-        .pipe(
-            catchError((error) => {
-                if (error.status === 401) { 
-                    return this.refreshToken().pipe(
-                        switchMap(() => this.getUserProfile())
-                    );
-                }
-                throw error;
-            })
-        );
-}
+    return this.http.get<loggedUser>(`${this.apiUrl}/user-infos`, { headers }).pipe(
+      catchError((error) => {
+        if (error.status === 401) {
+          return this.refreshToken().pipe(
+            switchMap(() => this.getUserProfile())
+          );
+        }
+        throw error;
+      })
+    );
+  }
 
-  private refreshToken(): Observable<any> {
+  public refreshToken(): Observable<any> {
     const refreshToken = this.getRefreshToken();
     if (!refreshToken) {
       console.error('Refresh token não encontrado');
-      return new Observable(); // Retorna um observable vazio
+      return new Observable();
     }
 
     const headers = new HttpHeaders({
@@ -95,19 +96,37 @@ export class AuthService {
       'Authorization': `Bearer ${refreshToken}`
     });
 
-    return this.http.post<any>(`${this.apiUrl}/refresh-token`, {}, { headers })
-      .pipe(map((response: any) => {
-        localStorage.setItem('token', response.token); // Atualiza o token
+    return this.http.post<any>(`${this.apiUrl}/refresh-token`, {}, { headers }).pipe(
+      map((response: any) => {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('refreshToken', response.refreshToken);
         return response;
-      }));
+      })
+    );
+  }
+
+  isTokenExpired(): boolean {
+    const token = this.getToken();
+    if (!token) return true;
+
+    const decodedToken: any = jwtDecode(token);
+    const expirationTime = decodedToken.exp * 1000;
+    return Date.now() > expirationTime;
   }
 
   getUserIdFromToken(): string | null {
     const token = this.getToken();
     if (!token) {
+      console.error('Token não encontrado no localStorage');
       return null;
     }
-    const decoded: any = jwtDecode(token);
-    return decoded.id;
+
+    try {
+      const decodedToken: any = jwtDecode(token);
+      return decodedToken['id']; // A chave exata pode variar de acordo com a configuração do seu JWT
+    } catch (error) {
+      console.error('Erro ao decodificar o token', error);
+      return null;
+    }
   }
 }
