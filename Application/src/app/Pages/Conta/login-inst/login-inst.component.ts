@@ -18,24 +18,36 @@ import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.componen
 
 export class LoginInstComponent {
   showPassword: boolean = false;
+  isLoading: boolean = false;
+  errorMessage: string = '';
 
-  CredentialsInst: CredentialsInst = {emailInst: '', senha: ''};
-
+  CredentialsInst: CredentialsInst = { emailInst: '', senha: '' };
 
   toggleShowPassword() {
-    this.showPassword =!this.showPassword;
+    this.showPassword = !this.showPassword;
   }
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  login(){
-    console.log('Tentando fazer login com as credenciais:', this.CredentialsInst);
+  login() {
+    // Verifica se os campos estão preenchidos corretamente
+    if (!this.CredentialsInst.emailInst || !this.CredentialsInst.senha) {
+      this.errorMessage = 'Por favor, preencha todos os campos.';
+      return;
+    }
+
+    this.isLoading = true;
     this.authService.loginInst(this.CredentialsInst).subscribe(
       (response) => {
-      console.log('Logado com sucesso', response);
-      this.router.navigate(['/instituicao/home']);
-    }, error => {
-      console.log('Não foi possivel realizar o login', error);
-    });
+        this.isLoading = false;
+        console.log('Logado com sucesso', response);
+        this.router.navigate(['/instituicao/home']);
+      },
+      (error) => {
+        this.isLoading = false;
+        this.errorMessage = 'Não foi possível realizar o login. Verifique suas credenciais.';
+        console.log('Erro ao fazer login', error);
+      }
+    );
   }
-  }
+}

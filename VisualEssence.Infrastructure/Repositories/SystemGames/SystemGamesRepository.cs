@@ -27,7 +27,6 @@ namespace VisualEssence.Infrastructure.Repositories.SystemGames
             var jogo = await _context.Jogo.FindAsync(id);
             if (jogo == null)
             {
-                // Handle the case when the item is not found (e.g., throw an exception or return a default value)
                 throw new KeyNotFoundException($"Jogo with ID {id} not found.");
             }
             return jogo;
@@ -35,7 +34,6 @@ namespace VisualEssence.Infrastructure.Repositories.SystemGames
 
         public async Task<Jogo> Post(JogoDTO newJogo)
         {
-            // Validate the input (e.g., check if Nome is null or empty)
             if (string.IsNullOrWhiteSpace(newJogo.Nome))
             {
                 throw new ArgumentException("Nome is required.");
@@ -53,7 +51,6 @@ namespace VisualEssence.Infrastructure.Repositories.SystemGames
 
         public async Task<Jogo> Delete(Jogo jogo)
         {
-            // Check if the game exists before attempting to delete
             var jogoInData = await _context.Jogo.FindAsync(jogo.Id);
             if (jogoInData == null)
             {

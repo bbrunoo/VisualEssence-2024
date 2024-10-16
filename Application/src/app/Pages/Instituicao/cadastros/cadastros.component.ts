@@ -1,3 +1,5 @@
+import { GetCriancas } from './../../../Models/InstituicaoModels/GetCriancas.model';
+import { AuthService } from './../../../../Services/Auth/AuthService/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIf, CommonModule, NgFor } from '@angular/common';
@@ -5,7 +7,6 @@ import { InstMenuComponent } from '../shared-menu/inst-menu/inst-menu.component'
 import { CadastroUnicoService } from '../Services/cadastrounico/cadastro-unico.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Sala } from '../../../Models/InstituicaoModels/Sala.model';
-import { GetCriancas } from '../../../Models/InstituicaoModels/GetCriancas.model';
 import { SalasService } from '../Services/salas/salas.service';
 import { HeaderComponent } from '../../PaisHome/Shared-Pais/header/header.component';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
@@ -44,76 +45,29 @@ export class CadastrosComponent implements OnInit {
   erroBusca: boolean = false;
   descricaoBusca: string = '';
 
-
   criancaId: string = '';
-  imagens: { [key: string]: string } = {}; // Para armazenar as imagens como Base64
+  imagens: { [key: string]: string } = {};
+  userId = this.authService.getUserIdFromToken();
 
   constructor(
     private dados: CadastroUnicoService,
     private pictureService: PictureService,
     private salasService: SalasService,
+    private authService: AuthService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.loadSalas();
     this.searchCriancas();
+    if (this.userId) {
+      this.searchCriancas(); // Chama getCriancas com o userId
+    } else {
+      console.error('User ID não encontrado');
+    }
     this.loadImages();
   }
 
-  getCriancas(): void {
-    this.dados.getCadastrados().subscribe({
-      next: (response) => {
-        this.dadosCriancas = response.map((crianca) => ({
-          id: crianca.id,
-          nome: crianca.nome,
-          nomeResp: crianca.nomeResp,
-          sexo: crianca.sexo,
-          cpf: crianca.cpf,
-          cns: crianca.cns,
-          dataNascimento: crianca.dataNascimento,
-          rg: crianca.rg,
-          tel1: crianca.tel1,
-          tel2: crianca.tel2,
-          endereco: crianca.endereco,
-          idSala: crianca.idSala,
-          sala: {
-            id: crianca.sala.id,
-            nome: crianca.sala.nome,
-            capacidade: crianca.sala.capacidade,
-          },
-          // A URL da imagem, com um fallback
-          imageUrl: crianca.imageUrl || '../../../assets/user.png',
-        }));
-
-        // Se houver crianças carregadas, atualiza o criancaId para o primeiro da lista
-        if (this.dadosCriancas.length > 0) {
-          this.criancaId = this.dadosCriancas[0].id; // Atualiza com o ID da primeira criança
-        }
-
-        // Carregar imagens para cada criança
-        // this.loadImages();
-
-        console.log('Crianças carregadas com sucesso!', this.dadosCriancas);
-      },
-      error: (err) => console.error('Erro ao carregar crianças:', err),
-    });
-  }
-
-  // loadImages(): void {
-  //   this.dadosCriancas.forEach((crianca) => {
-  //     this.dados.getImageBase64(crianca.id).subscribe(
-  //       (response) => {
-  //         if (response && response.Image) {
-  //           this.imagens[crianca.id] = response.Image; // Armazene a imagem no dicionário
-  //         }
-  //       },
-  //       (error) => {
-  //         console.error('Erro ao carregar a imagem:', error);
-  //       }
-  //     );
-  //   });
-  // }
 
   searchConsole(): void {
     console.log('Buscando crianças...');
@@ -139,6 +93,16 @@ export class CadastrosComponent implements OnInit {
     this.searchCriancas();
   }
 
+  getSalaNameById(salaId?: string): string {
+    const sala = this.salas.find(s => s.id === salaId);
+    return sala ? sala.nome : 'Sala não encontrada';
+  }
+
+  getSalaCapacidadeById(salaId?: string): string {
+    const sala = this.salas.find(s => s.id === salaId);
+    return sala ? sala.capacidade.toString() : 'Capacidade não encontrada'; // Garantindo que retorne uma string
+  }
+
   searchCriancas(): void {
     const salaId = this.idsala !== undefined ? this.idsala : undefined;
 
@@ -151,14 +115,12 @@ export class CadastrosComponent implements OnInit {
         (data) => {
           this.dadosCriancas = data;
           this.erroBusca = data.length === 0;
-          console.log('Crianças encontradas:', data);
+          console.log('Crianças encontradasaaaaaaaa:', data);
 
-          // Atualiza criancaId com o ID da primeira criança encontrada
           if (data.length > 0) {
             this.criancaId = data[0].id; // Atualiza com o ID da primeira criança encontrada
           }
 
-          // Carregar imagens para as crianças encontradas
           this.loadImages(); // Chama o método para carregar as imagens
         },
         (error) => {
@@ -171,30 +133,25 @@ export class CadastrosComponent implements OnInit {
         }
       );
 
-    // Limpa os filtros após a busca
     this.nomeCrianca = '';
     this.idsala = undefined;
     this.codigo = '';
   }
 
-  // Nova função para carregar as imagens
   loadImages(): void {
     this.dadosCriancas.forEach((crianca) => {
       this.pictureService.getFoto(crianca.id).subscribe(
         (response) => {
-          console.log('Resposta da imagem:', response);  // Mostra a resposta recebida no console
-          crianca.foto = response.foto;  // Atribui a imagem Base64 à propriedade 'foto'
-
-          // Verifica se a foto foi retornada
-          if (response.foto) {
-            crianca.imageUrl = response.foto;  // 'response.foto' já deve estar no formato correto
+          console.log('Resposta da imagem:', response); // Verifique o que está sendo retornado
+          if (response && response.foto) {
+            crianca.imageUrl = response.foto; // Atribui a imagem retornada
           } else {
-            crianca.imageUrl = '../../../assets/user.png'; // Imagem padrão caso não haja foto
+            crianca.imageUrl = '../../../assets/user.png'; // URL padrão
           }
         },
         (error) => {
           console.log('Erro ao carregar a foto da criança:', error);
-          crianca.imageUrl = '../../../assets/user.png'; // Define imagem padrão em caso de erro
+          crianca.imageUrl = '../../../assets/user.png'; // URL padrão em caso de erro
         }
       );
     });
@@ -217,12 +174,11 @@ export class CadastrosComponent implements OnInit {
   }
 
   openImageUploadModal(criancaId: string): void {
-    // Verifica se a imagem existe antes de tentar acessá-la
-    const imageUrl = this.imagens[criancaId] || '../../../assets/user.png'; // Usa a imagem padrão se não houver imagem
+    const imageUrl = this.imagens[criancaId] || '../../../assets/user.png';
     const dialogRef = this.dialog.open(ImageUploadComponent, {
-      data: { id: criancaId, imageUrl: imageUrl }, // Passa a URL da imagem para o modal
-      panelClass: 'custom-modal', // Se você estiver usando uma classe CSS personalizada
-      width: '600px', // Largura do modal, ajuste conforme necessário
+      data: { id: criancaId, imageUrl: imageUrl },
+      panelClass: 'custom-modal',
+      width: '600px',
     });
 
     console.log(`Abrindo modal para a criança com ID: ${criancaId} e URL da imagem: ${imageUrl}`);
@@ -237,7 +193,7 @@ export class CadastrosComponent implements OnInit {
   processarDataNascimento() {
     if (this.dataNascimento) {
       const [dia, mes, ano] = this.dataNascimento.split('-');
-      const data = new Date(+ano, +mes - 1, +dia); 
+      const data = new Date(+ano, +mes - 1, +dia);
       console.log(data);
     }
   }

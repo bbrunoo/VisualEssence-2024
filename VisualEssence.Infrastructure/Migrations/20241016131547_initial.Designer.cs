@@ -12,7 +12,7 @@ using VisualEssence.Infrastructure.Data;
 namespace VisualEssence.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241006203922_initial")]
+    [Migration("20241016131547_initial")]
     partial class initial
     {
         /// <inheritdoc />

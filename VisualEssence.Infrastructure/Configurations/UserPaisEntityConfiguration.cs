@@ -27,7 +27,6 @@ namespace VisualEssence.Infrastructure.Configurations
             builder.Property(e => e.IsAdmin)
                 .IsRequired();
 
-            // Configuração das propriedades SenhaHash e SenhaSalt
             builder.Property(e => e.SenhaHash)
                 .IsRequired();
 

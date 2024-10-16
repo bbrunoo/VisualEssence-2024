@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Mvc;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
-using VisualEssence.Infrastructure.Repositories;
 using static VisualEssence.Domain.Models.CriancaInst;
-//using VisualEssence.Domain.Services;
 
 namespace VisualEssence.API.Controllers
 {
@@ -16,13 +12,11 @@ namespace VisualEssence.API.Controllers
     {
         private readonly ICriancaInstRepository _repository;
         private readonly ISalaRepository _salaRepository;
-        //private readonly IExcelService _excelService;
 
-        public CriancaInstController(ICriancaInstRepository repository, ISalaRepository salaRepository /*, IExcelService excelService*/)
+        public CriancaInstController(ICriancaInstRepository repository, ISalaRepository salaRepository)
         {
             _repository = repository;
             _salaRepository = salaRepository;
-            //_excelService = excelService;
         }
 
         [HttpGet]
@@ -43,6 +37,27 @@ namespace VisualEssence.API.Controllers
 
             return Ok(crianca);
         }
+
+        [HttpGet("ByUser/{userId}")]
+        public async Task<IActionResult> GetAllByUserId(Guid userId)
+        {
+            var criancas = await _repository.GetAllByUserIdAsync(userId);
+
+            if (criancas == null || !criancas.Any())
+            {
+                return NotFound("Nenhuma criança encontrada para este usuário.");
+            }
+
+            bool todasCriancasPertencemAoUsuario = criancas.All(c => c.UserInstId == userId);
+
+            if (!todasCriancasPertencemAoUsuario)
+            {
+                return Forbid("Usuário não autorizado a acessar esses dados.");
+            }
+
+            return Ok(criancas);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Create(CriancaInstDTO criancaDto)
@@ -115,17 +130,14 @@ namespace VisualEssence.API.Controllers
             return CreatedAtAction(nameof(GetCrianca), new { id = novaCrianca.Id }, novaCrianca);
         }
 
-
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, CriancaInstDTO criancaDto)
         {
-            // Verificação se o DTO é nulo
             if (criancaDto == null)
             {
                 return BadRequest("Os dados da criança não podem ser nulos.");
             }
 
-            // Verificação de campos obrigatórios
             if (string.IsNullOrWhiteSpace(criancaDto.Nome) ||
                 string.IsNullOrWhiteSpace(criancaDto.Sexo) ||
                 string.IsNullOrWhiteSpace(criancaDto.NomeResp) ||
@@ -141,44 +153,37 @@ namespace VisualEssence.API.Controllers
                 return BadRequest("Todos os campos obrigatórios devem ser preenchidos.");
             }
 
-            // Busca a criança existente pelo ID
             var criancaExiste = await _repository.GetByIdAsync(id);
             if (criancaExiste == null)
             {
                 return NotFound("Criança não encontrada.");
             }
 
-            // Verifica se a nova sala existe
             var novaSala = await _salaRepository.GetByIdAsync(criancaDto.IdSala);
             if (novaSala == null)
             {
                 return BadRequest("Nova sala não existe.");
             }
 
-            // Verifica se a lista de crianças na nova sala foi inicializada
             if (novaSala.CriancaInst == null)
             {
                 novaSala.CriancaInst = new List<CriancaInst>();
             }
 
-            // Verifica se a nova sala tem capacidade
             if (novaSala.Capacidade <= novaSala.CriancaInst.Count)
             {
                 return BadRequest("Capacidade máxima da nova sala atingida.");
             }
 
-            // Remove a criança da sala anterior, se necessário
             if (criancaExiste.IdSala != criancaDto.IdSala)
             {
-                // Lógica para remover a criança da sala anterior
                 var salaAnterior = await _salaRepository.GetByIdAsync(criancaExiste.IdSala);
                 if (salaAnterior != null && salaAnterior.CriancaInst != null)
                 {
-                    salaAnterior.CriancaInst.Remove(criancaExiste); // Remove a criança da sala anterior
+                    salaAnterior.CriancaInst.Remove(criancaExiste);
                 }
             }
 
-            // Atualiza os dados da criança
             criancaExiste.Nome = criancaDto.Nome;
             criancaExiste.Sexo = criancaDto.Sexo;
             criancaExiste.NomeResp = criancaDto.NomeResp;
@@ -189,17 +194,13 @@ namespace VisualEssence.API.Controllers
             criancaExiste.Rg = criancaDto.Rg;
             criancaExiste.Tel1 = criancaDto.Tel1;
             criancaExiste.Tel2 = criancaDto.Tel2;
-
-            // Atualiza o ID da sala para a nova sala
             criancaExiste.IdSala = criancaDto.IdSala;
 
-            // Adiciona a criança à nova sala
             novaSala.CriancaInst.Add(criancaExiste);
 
             await _repository.UpdateCrianca(id, criancaExiste);
             return Ok(new { message = "Editado com sucesso" });
         }
-
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
@@ -211,14 +212,86 @@ namespace VisualEssence.API.Controllers
         }
 
         [HttpGet("filter")]
-        public async Task<ActionResult<IEnumerable<RequestCriancaInstDTO>>> FilterChildren([FromQuery] Guid? idSala, [FromQuery] string? codigo, [FromQuery] string? nomeCrianca)
+        public async Task<ActionResult<IEnumerable<CriancaInst>>> FilterChildren(
+    [FromQuery] Guid? idSala,
+    [FromQuery] string? codigo,
+    [FromQuery] string? nomeCrianca)
         {
-            var criancas = await _repository.GetCriancasByQuery(idSala, codigo, nomeCrianca);
+            var userClaim = User.FindFirst("id");
+            if (userClaim == null)
+            {
+                return Unauthorized("Usuário não autenticado.");
+            }
 
-            if (criancas == null) return Ok(Enumerable.Empty<RequestCriancaInstDTO>());
+            if (!Guid.TryParse(userClaim.Value, out var userId))
+            {
+                return BadRequest("ID de usuário inválido.");
+            }
 
-            return Ok(criancas);
+            if (!idSala.HasValue && string.IsNullOrEmpty(codigo) && string.IsNullOrEmpty(nomeCrianca))
+            {
+                var criancas = await _repository.GetAllByUserIdAsync(userId);
+
+                if (criancas == null || !criancas.Any())
+                {
+                    return NotFound("Nenhuma criança encontrada para este usuário.");
+                }
+
+                var criancasDTO = criancas.Select(c => new CriancaInst
+                {
+                    Id = c.Id,
+                    Nome = c.Nome,
+                    Sexo = c.Sexo,
+                    NomeResp = c.NomeResp,
+                    Cpf = c.Cpf,
+                    Cns = c.Cns,
+                    DataNascimento = c.DataNascimento,
+                    Endereco = c.Endereco,
+                    Rg = c.Rg,
+                    Tel1 = c.Tel1,
+                    Tel2 = c.Tel2,
+                    IdSala = c.IdSala,
+                    Sala = c.Sala,
+                    UserInst = c.UserInst,
+                    UserInstId = c.UserInstId,
+                });
+
+                return Ok(criancasDTO);
+            }
+            else
+            {
+                var criancasFiltradas = await _repository.GetCriancasByQuery(idSala, codigo, nomeCrianca, userId);
+
+                if (criancasFiltradas == null || !criancasFiltradas.Any())
+                {
+                    return Ok(Enumerable.Empty<CriancaInst>());
+                }
+
+                var criancasDTO = criancasFiltradas.Select(c => new CriancaInst
+                {
+                    Id = c.Id,
+                    Nome = c.Nome,
+                    Sexo = c.Sexo,
+                    NomeResp = c.NomeResp,
+                    Cpf = c.Cpf,
+                    Cns = c.Cns,
+                    DataNascimento = c.DataNascimento,
+                    Endereco = c.Endereco,
+                    Rg = c.Rg,
+                    Tel1 = c.Tel1,
+                    Tel2 = c.Tel2,
+                    IdSala = c.IdSala,
+                    Sala = c.Sala,
+                    UserInst = c.UserInst,
+                    UserInstId = c.UserInstId,
+                });
+
+                return Ok(criancasDTO);
+            }
         }
+
+
+
 
         [HttpPut("upload-foto/{id}")]
         public async Task<IActionResult> UploadFoto(Guid id, IFormFile file)
@@ -234,13 +307,11 @@ namespace VisualEssence.API.Controllers
                     return NotFound("Criança não encontrada.");
                 }
 
-                // Lê o conteúdo do arquivo como um array de bytes
                 using (var memoryStream = new MemoryStream())
                 {
                     await file.CopyToAsync(memoryStream);
                     var fotoBytes = memoryStream.ToArray();
 
-                    // Armazena a foto como string hexadecimal (se isso for necessário)
                     crianca.Foto = BitConverter.ToString(fotoBytes).Replace("-", string.Empty);
                     await _repository.UpdateCrianca(id, crianca);
                 }
@@ -263,17 +334,13 @@ namespace VisualEssence.API.Controllers
                 return NotFound("Foto não encontrada.");
             }
 
-            // Converte a string hexadecimal de volta para um array de bytes
             byte[] fotoBytes = Enumerable.Range(0, crianca.Foto.Length)
                                          .Where(x => x % 2 == 0)
                                          .Select(x => Convert.ToByte(crianca.Foto.Substring(x, 2), 16))
                                          .ToArray();
 
-            // Converte o array de bytes para uma string Base64
             var base64Foto = Convert.ToBase64String(fotoBytes);
             return Ok(new { foto = $"data:image/jpeg;base64,{base64Foto}" });
         }
-
     }
 }
-

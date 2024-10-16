@@ -5,7 +5,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.Authenticate;
 using VisualEssence.Domain.Models;
 using VisualEssence.Infrastructure.Data;
@@ -62,7 +61,7 @@ namespace VisualEssence.Infrastructure.Repositories.Identity
 
             var credentials = new SigningCredentials(privateKey, SecurityAlgorithms.HmacSha256);
 
-            var expiration = DateTime.UtcNow.AddMinutes(10);
+            var expiration = DateTime.UtcNow.AddDays(10);
 
             JwtSecurityToken token = new JwtSecurityToken(
                 issuer: _configuration["jwt:issuer"],
@@ -72,7 +71,7 @@ namespace VisualEssence.Infrastructure.Repositories.Identity
                 signingCredentials: credentials
                 );
 
-            return new JwtSecurityTokenHandler().WriteToken(token); 
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         public async Task<UserInst> GetUserByEmail(string email)

@@ -10,7 +10,6 @@ namespace VisualEssence.Domain.DTOs
     public class EditUserPaisDTO
     {
         public string Nome { get; set; }
-        [EmailAddress]
         public string Email { get; set; }
     }
 }

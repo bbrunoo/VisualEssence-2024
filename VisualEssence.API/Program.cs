@@ -7,15 +7,12 @@ using System.Text;
 using VisualEssence.Domain.Interfaces.Authenticate;
 using VisualEssence.Domain.Interfaces.Games.SystemGamesRepository;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
-using VisualEssence.Domain.Services;
 using VisualEssence.Infrasctructure.Mappings;
 using VisualEssence.Infrastructure.Data;
 using VisualEssence.Infrastructure.Repositories;
 using VisualEssence.Infrastructure.Repositories.Identity;
 using VisualEssence.Infrastructure.Repositories.Jogadas;
 using VisualEssence.Infrastructure.Repositories.SystemGames;
-
-//using VisualEssence.Infrastructure.Service;
 using VisualEssenceAPI.Repositories;
 using VisualEssenceAPI.Services;
 
@@ -27,37 +24,40 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme()
+    var securityScheme = new OpenApiSecurityScheme
     {
         Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey,
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "Utilizando JSON Web Token (JWT) para verificacao de usuarios"
-    });
+        Description = "Insira o token JWT desta forma: Bearer {seu token}"
+    };
 
-    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement()
+    c.AddSecurityDefinition("Bearer", securityScheme);
+
+    var securityRequirement = new OpenApiSecurityRequirement
     {
         {
-            new OpenApiSecurityScheme()
+            new OpenApiSecurityScheme
             {
-                Reference = new OpenApiReference()
+                Reference = new OpenApiReference
                 {
-                    Type= ReferenceType.SecurityScheme,
-                    Id= "Bearer"
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
                 }
             },
-            new string[] {}
+            Array.Empty<string>()
         }
-    });
-});
+    };
 
+    c.AddSecurityRequirement(securityRequirement);
+});
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
 
 builder.Services.AddScoped<IUsuarioInstRepository, UsuarioInstRepository>();
 builder.Services.AddScoped<IUsuarioPaisRepository, UsuarioPaisRepository>();
@@ -66,10 +66,7 @@ builder.Services.AddScoped<ICriancaInstRepository, CriancaInstRepository>();
 builder.Services.AddScoped<ICriancaPaisRepository, CriancaPaisRepository>();
 builder.Services.AddScoped<IJogadaPaisRepository, JogadaPaisRepository>();
 builder.Services.AddScoped<IJogadaInstRepository, JogadaInstRepository>();
-
 builder.Services.AddScoped<ISalaRepository, SalaRepository>();
-//builder.Services.AddScoped<IExcelService, ExcelService>();
-
 builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
 builder.Services.AddScoped<IAuthenticateInst, AuthenticateInst>();
 builder.Services.AddScoped<IAuthenticatePais, AuthenticatePais>();
@@ -117,11 +114,23 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = jwtSettings["audience"],
         IssuerSigningKey = new SymmetricSecurityKey(key)
     };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnAuthenticationFailed = context =>
+        {
+            if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+            {
+                context.Response.Headers.Add("Token-Expired", "true");
+            }
+            return Task.CompletedTask;
+        }
+    };
+
 });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

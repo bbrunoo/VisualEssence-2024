@@ -11,7 +11,7 @@ namespace VisualEssence.Domain.Interfaces.NormalRepositories
 {
     public interface ICriancaInstRepository : IRepository<CriancaInst, CriancaInstDTO>
     {
-        Task<IEnumerable<RequestCriancaInstDTO>> GetCriancasByQuery(Guid? sala, string? codigo, string? nome);
+        Task<IEnumerable<CriancaInst>> GetCriancasByQuery(Guid? idSala, string? codigo, string? nomeCrianca, Guid userId);
         Task<CriancaInst> PostCrianca(CriancaInst crianca);
         Task<CriancaInst> UpdateCrianca(Guid id, CriancaInst crianca);
         Task<bool> AtualizarFoto(Guid id,string foto);

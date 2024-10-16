@@ -37,19 +37,8 @@ namespace VisualEssence.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new SalaEntityConfiguration());
             modelBuilder.ApplyConfiguration(new UserInstEntityConfiguration());
             modelBuilder.ApplyConfiguration(new UserPaisEntityConfiguration());
-            //modelBuilder.ApplyConfiguration(new CriancaImagemEntityConfiguration());
-
 
             base.OnModelCreating(modelBuilder);
-
         }
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder); // Sempre bom chamar o base
-
-        //    // Aplicar todas as configurações de entidade na assembly atual
-        //    modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-        //}
     }
 }

@@ -22,11 +22,10 @@ namespace VisualEssence.Infrastructure.Configurations
             builder.Property(e => e.DataJogo)
                 .IsRequired();
 
-            // Configurando o relacionamento com a entidade CriancaPais
             builder.HasOne(e => e.CriancaPais)
                 .WithMany(c => c.JogadaPais)
                 .HasForeignKey(e => e.IdCrianca)
-                .OnDelete(DeleteBehavior.Cascade); // Comportamento ao deletar a criança
+                .OnDelete(DeleteBehavior.Cascade); 
         }
     }
 }

@@ -23,6 +23,8 @@
           name="cod"
         />
       </div>
+
+
       <div class="f-nome">
         <label for="nome">NOME:</label>
         <input type="text" id="nome" [(ngModel)]="nomeCrianca" name="nome" />
@@ -62,12 +64,13 @@
                     <p>Tel 1: {{ crianca.tel1 | mask: '(00) 0000-0000' }}</p>
                     <p>Tel 2: {{ crianca.tel2 | mask: '(00) 0000-0000' }}</p>
                     <p>Sexo: {{ crianca.sexo }}</p>
+
                   </div>
                 </div>
                 <div class="d-right">
-                  <div class="r-textos" *ngIf="crianca?.sala">
-                    <p>SALA: {{ crianca.sala.nome }}</p>
-                    <p>Capacidade: {{ crianca.sala.capacidade }}</p>
+                  <div class="r-textos">
+                    <p>SALA: {{ getSalaNameById(crianca.idSala) }}</p>
+                    <p>Capacidade: {{ getSalaCapacidadeById(crianca.idSala) }}</p>
                   </div>
                   <div class="r-edit">
                     <img

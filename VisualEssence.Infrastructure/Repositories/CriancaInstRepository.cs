@@ -35,10 +35,12 @@ namespace VisualEssence.Infrastructure.Repositories
         public async Task<IEnumerable<CriancaInst>> GetAllByUserIdAsync(Guid userId)
         {
             return await _context.CriancaInst
-                .Include(c => c.Sala)
-                .Where(c => c.UserInstId == userId) 
+                .Include(c => c.Sala) 
+                .Where(c => c.UserInstId == userId)
                 .ToListAsync();
         }
+
+
         public async Task<CriancaInst> PostCrianca(CriancaInst crianca)
         {
             bool isUsuarioInstitucional = await _context.UserInst.AnyAsync(u => u.Id == crianca.UserInstId);
@@ -59,7 +61,6 @@ namespace VisualEssence.Infrastructure.Repositories
                 throw new Exception("Capacidade máxima da sala atingida. Não é possível adicionar a criança.");
             }
 
-            // Adicionar a nova criança
             _context.CriancaInst.Add(crianca);
             await _context.SaveChangesAsync();
 
@@ -83,46 +84,26 @@ namespace VisualEssence.Infrastructure.Repositories
             return crianca;
         }
 
-        public async Task<IEnumerable<RequestCriancaInstDTO>> GetCriancasByQuery(Guid? idsala, string? codigo, string? nome)
+        public async Task<IEnumerable<CriancaInst>> GetCriancasByQuery(Guid? idSala, string? codigo, string? nomeCrianca, Guid userId)
         {
-            Console.WriteLine($"Nome recebido: {nome}");
+            var query = _context.CriancaInst.Where(c => c.UserInstId == userId);
 
-            var query = _context.CriancaInst.Include(c => c.Sala).AsQueryable();
-
-            if (idsala.HasValue)
+            if (idSala.HasValue)
             {
-                query = query.Where(c => c.IdSala == idsala.Value);
+                query = query.Where(c => c.IdSala == idSala.Value);
             }
 
             if (!string.IsNullOrEmpty(codigo))
             {
-                query = query.Where(a => a.Cns.ToLower().Contains(codigo));
+                query = query.Where(c => c.Cns.Contains(codigo));
             }
 
-            if (!string.IsNullOrEmpty(nome))
+            if (!string.IsNullOrEmpty(nomeCrianca))
             {
-                var nomeTrimmed = nome.Trim().ToLower();
-                query = query.Where(x => x.Nome != null && x.Nome.ToLower().Contains(nomeTrimmed));
+                query = query.Where(c => c.Nome.Contains(nomeCrianca));
             }
 
-            var criancasDTO = await query.Select(c => new RequestCriancaInstDTO
-            {
-                Id = c.Id,
-                Nome = c.Nome,
-                Sexo = c.Sexo,
-                NomeResp = c.NomeResp,
-                Cpf = c.Cpf,
-                Cns = c.Cns,
-                DataNascimento = c.DataNascimento,
-                Endereco = c.Endereco,
-                Rg = c.Rg,
-                Tel1 = c.Tel1,
-                Tel2 = c.Tel2,
-                IdSala = c.IdSala,
-                Sala = c.Sala,
-
-            }).ToListAsync();
-            return criancasDTO;
+            return await query.ToListAsync();
         }
 
 
@@ -185,25 +166,27 @@ namespace VisualEssence.Infrastructure.Repositories
             return criancaInst;
         }
 
-    public async Task<bool> AtualizarFoto(Guid id, string foto)
-    {
-        var crianca = await _context.CriancaInst.FirstOrDefaultAsync(c => c.Id == id);
-        if (crianca == null)
+        public async Task<bool> AtualizarFoto(Guid id, string foto)
         {
-            throw new KeyNotFoundException("Criança não encontrada.");
+            var crianca = await _context.CriancaInst.FirstOrDefaultAsync(c => c.Id == id);
+            if (crianca == null)
+            {
+                throw new KeyNotFoundException("Criança não encontrada.");
+            }
+
+            crianca.Foto = foto;
+            _context.CriancaInst.Update(crianca);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
-
-        crianca.Foto = foto;
-        _context.CriancaInst.Update(crianca);
-        await _context.SaveChangesAsync();
-
-        return true;
-    }
 
         public Task<CriancaInst> GetByIdAsyncUser(Guid id)
         {
             throw new NotImplementedException();
         }
+
+     
     }
 
 }
