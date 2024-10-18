@@ -1,6 +1,6 @@
-export interface Jogada {
+
+export interface JogadaPais {
   NomeJogo: string;
   idCrianca: string;
   pontuacao: number;
-  userInstId:string;
 }

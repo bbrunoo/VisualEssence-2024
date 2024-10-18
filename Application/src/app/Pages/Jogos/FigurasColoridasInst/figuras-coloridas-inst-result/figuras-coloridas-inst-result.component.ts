@@ -5,6 +5,7 @@ import { LogoMenuComponent } from '../../../SharedMenu/logo-menu/logo-menu.compo
 import { NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-menu-inst.component";
+import { AuthService } from '../../../../../Services/Auth/AuthService/auth.service';
 
 @Component({
   selector: 'app-figuras-coloridas-inst-result',
@@ -15,14 +16,17 @@ import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-m
 })
 export class FigurasColoridasInstResultComponent {
   result: { score: number } = { score: 0 };
-
+  userInstId = String(this.authService.getUserIdFromToken());
+  
   jogada: Jogada = {
     NomeJogo: "Figuras Coloridas",
     idCrianca: '',
-    pontuacao: 0
+    pontuacao: 0,
+    userInstId: this.userInstId
+
   };
 
-  constructor(private gameService: MiopiaInstService) {
+  constructor(private gameService: MiopiaInstService, private authService: AuthService) {
     // Ler resultado do localStorage
     const storedResult = localStorage.getItem('Cores-Acertos-Inst');
     if (storedResult) {

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MiopiaResult } from '../../../../Models/MiopiaGame/miopiaResult.model';
-import { MiopiaGame } from '../../../../Models/MiopiaGame/miopiaGame.model';
 import { MiopiaGameService } from '../Services/miopia-game.service';
 import { RouterLink } from '@angular/router';
-import { Jogada } from '../../../../Models/MiopiaGame/jogada.model';
 import { CriancaPais } from '../../../../Models/MiopiaGame/criancapais.model';
 import { LogoMenuComponent } from '../../../SharedMenu/logo-menu/logo-menu.component';
 import { NgIf } from '@angular/common';
 import { VlibrasComponent } from '../../../vlibras/vlibras.component';
+import { JogadaPais } from '../../../../Models/MiopiaGame/jogadaPais.model';
 
 @Component({
   selector: 'app-miopia-result',
@@ -19,7 +18,7 @@ import { VlibrasComponent } from '../../../vlibras/vlibras.component';
 export class MiopiaResultComponent implements OnInit {
   result: MiopiaResult;
 
-  jogada: Jogada = {
+  jogada: JogadaPais = {
     NomeJogo: "Miopia",
     idCrianca: '',
     pontuacao: 0

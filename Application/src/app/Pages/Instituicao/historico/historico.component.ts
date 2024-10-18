@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { HistoricoService } from '../Services/historico-service/historico.service';
 import { NgFor, NgIf } from '@angular/common';
 import { Historico } from '../../../Models/historico.model';
+import { Jogada } from '../../../Models/MiopiaGame/jogada.model';
 
 @Component({
   selector: 'app-historico',

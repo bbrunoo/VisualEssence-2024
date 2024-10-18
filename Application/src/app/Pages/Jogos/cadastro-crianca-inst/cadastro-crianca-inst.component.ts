@@ -8,6 +8,7 @@ import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.componen
 import { VlibrasComponent } from '../../vlibras/vlibras.component';
 import { LogoMenuInstComponent } from "../../SharedMenu/logo-menu-inst/logo-menu-inst.component";
 import { SalasService } from '../../Instituicao/Services/salas/salas.service';
+import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 
 @Component({
   selector: 'app-cadastro-crianca-inst',
@@ -22,8 +23,9 @@ export class CadastroCriancaInstComponent implements OnInit {
   criancasFiltradas: GetCriancas[] = []; // Crianças filtradas por sala
   selectedSalaId: string = ''; // ID da sala selecionada
   selectedCriancaId: string = ''; // ID da criança selecionada
+  userInstId: string = String(this.authService.getUserIdFromToken());
 
-  constructor(private router: Router, private service: CadastroUnicoService, private salasServices: SalasService) {}
+  constructor(private router: Router, private service: CadastroUnicoService, private salasServices: SalasService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.getCriancas();
@@ -43,8 +45,7 @@ export class CadastroCriancaInstComponent implements OnInit {
   }
 
   getSalas() {
-    // Supondo que você tenha um método no seu serviço para obter salas
-    this.salasServices.getSalas().subscribe({
+    this.salasServices.getSalaByUserId(this.userInstId).subscribe({
       next: (response) => {
         this.salas = response;
         console.log('Salas carregadas:', this.salas);

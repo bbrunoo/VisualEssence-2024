@@ -11,5 +11,6 @@ namespace VisualEssence.Domain.Interfaces.NormalRepositories
 {
     public interface ISalaRepository : IRepository<Sala, SalaDTO>
     {
+        Task<IEnumerable<Sala>> GetAllByUserIdAsync(Guid userId);
     }
 }

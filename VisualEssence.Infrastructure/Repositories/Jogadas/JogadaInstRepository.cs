@@ -26,7 +26,7 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
         {
             return await _context.JogadaInst.FindAsync(id);
         }
-
+      
         public async Task<JogadaInstDTO> Post(JogadaInstDTO dto)
         {
             if (dto == null)
@@ -42,7 +42,8 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
                 IdCrianca = dto.IdCrianca,
                 Pontuacao = dto.Pontuacao,
                 DataJogo = DateTime.UtcNow,
-                CriancaInst = criancaInst
+                CriancaInst = criancaInst,
+                UserInstId = dto.UserInstId
             };
 
             _context.JogadaInst.Add(jogadaInst);
@@ -53,10 +54,10 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
                 NomeJogo = jogadaInst.NomeJogo,
                 IdCrianca = jogadaInst.IdCrianca,
                 Pontuacao = jogadaInst.Pontuacao,
-                DataJogo = jogadaInst.DataJogo
+                DataJogo = jogadaInst.DataJogo,
+                UserInstId = jogadaInst.UserInstId
             };
         }
-
         public async Task<JogadaInstDTO> Update(Guid id, JogadaInstDTO dto)
         {
             if (dto == null)
@@ -70,6 +71,7 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
             jogadaInstExistente.IdCrianca = dto.IdCrianca;
             jogadaInstExistente.Pontuacao = dto.Pontuacao;
             jogadaInstExistente.DataJogo = dto.DataJogo;
+            jogadaInstExistente.UserInstId = dto.UserInstId;
 
             _context.JogadaInst.Update(jogadaInstExistente);
             await _context.SaveChangesAsync();
@@ -79,10 +81,10 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
                 NomeJogo = jogadaInstExistente.NomeJogo,
                 IdCrianca = jogadaInstExistente.IdCrianca,
                 Pontuacao = jogadaInstExistente.Pontuacao,
-                DataJogo = jogadaInstExistente.DataJogo
+                DataJogo = jogadaInstExistente.DataJogo,
+                UserInstId = jogadaInstExistente.UserInstId,
             };
         }
-
         public async Task<JogadaInst> Delete(JogadaInst jogada)
         {
             if (jogada == null)
@@ -97,11 +99,10 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
 
             return jogadaExistente;
         }
-
-        public async Task<IEnumerable<JogadaInst>> ObterHistoricoPorNomeJogo(string nomeJogo)
+        public async Task<IEnumerable<JogadaInst>> ObterHistoricoPorNomeJogo(string nomeJogo, Guid userId)
         {
             return await _context.JogadaInst
-                .Where(j => j.NomeJogo == nomeJogo)
+                .Where(j => j.NomeJogo == nomeJogo && j.UserInstId == userId)
                 .ToListAsync();
         }
     }

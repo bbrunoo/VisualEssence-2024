@@ -13,7 +13,6 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
 
-    // Se existir um token, clonamos a requisição e adicionamos o cabeçalho de autorização
     if (token) {
       const clonedReq = req.clone({
         headers: req.headers.set('Authorization', `Bearer ${token}`)
@@ -22,7 +21,6 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(clonedReq).pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 401) {
-            // Se houver um erro 401 (não autorizado), tenta refrescar o token
             return this.authService.refreshToken().pipe(
               switchMap(() => {
                 const newToken = this.authService.getToken();
@@ -30,12 +28,11 @@ export class AuthInterceptor implements HttpInterceptor {
                   const retryReq = req.clone({
                     headers: req.headers.set('Authorization', `Bearer ${newToken}`)
                   });
-                  return next.handle(retryReq); // Refaz a requisição com o novo token
+                  return next.handle(retryReq);
                 }
                 return throwError(() => error);
               }),
               catchError((refreshError) => {
-                // Se a tentativa de refresh falhar, faz logout e redireciona
                 this.authService.logout();
                 this.router.navigate(['/login']);
                 return throwError(() => refreshError);
@@ -46,7 +43,6 @@ export class AuthInterceptor implements HttpInterceptor {
         })
       );
     }
-
-    return next.handle(req); // Se não houver token, apenas passa a requisição adiante
+    return next.handle(req);
   }
 }

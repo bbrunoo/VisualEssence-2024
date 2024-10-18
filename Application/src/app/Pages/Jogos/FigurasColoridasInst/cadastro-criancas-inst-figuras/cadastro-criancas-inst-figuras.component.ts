@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-menu-inst.component";
 import { SalasService } from '../../../Instituicao/Services/salas/salas.service';
+import { AuthService } from '../../../../../Services/Auth/AuthService/auth.service';
 
 @Component({
   selector: 'app-cadastro-criancas-inst-figuras',
@@ -22,8 +23,9 @@ export class CadastroCriancasInstFigurasComponent implements OnInit {
   criancasFiltradas: GetCriancas[] = [];
   selectedSalaId: string = '';
   selectedCriancaId: string = '';
+  userInstId: string = String(this.authService.getUserIdFromToken());
 
-  constructor(private router: Router, private service:CadastroUnicoService, private salasServices:SalasService) {}
+  constructor(private router: Router, private service:CadastroUnicoService, private salasServices:SalasService, private authService:AuthService) {}
 
   ngOnInit(): void {
     this.getCriancas();
@@ -43,7 +45,7 @@ export class CadastroCriancasInstFigurasComponent implements OnInit {
 }
 
 getSalas() {
-  this.salasServices.getSalas().subscribe({
+  this.salasServices.getSalaByUserId(this.userInstId).subscribe({
     next: (response) => {
       this.salas = response;
       console.log('Salas carregadas:', this.salas);

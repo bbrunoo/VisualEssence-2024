@@ -28,6 +28,7 @@ namespace VisualEssence.Infrastructure.Repositories
             {
                 Capacidade = salaDto.Capacidade,
                 Nome = salaDto.Nome,
+                UserInstId = salaDto.UserInstId
             };
 
             await _context.Sala.AddAsync(sala);
@@ -35,6 +36,15 @@ namespace VisualEssence.Infrastructure.Repositories
            
             return salaDto;
         }
+
+        public async Task<IEnumerable<Sala>> GetAllByUserIdAsync(Guid userId)
+        {
+            return await _context.Sala
+                .Where(c => c.UserInstId == userId)
+                .ToListAsync();
+        }
+
+
         public async Task<SalaDTO> Update(Guid id, SalaDTO sala)
         {
             var salaExistente = await _context.Sala.FindAsync(id);
@@ -42,6 +52,7 @@ namespace VisualEssence.Infrastructure.Repositories
 
             salaExistente.Nome = sala.Nome;
             salaExistente.Capacidade = sala.Capacidade;
+            salaExistente.UserInstId = sala.UserInstId;
 
             _context.Sala.Update(salaExistente);
             await _context.SaveChangesAsync();

@@ -40,7 +40,6 @@ namespace VisualEssence.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-
         public async Task<CriancaInst> PostCrianca(CriancaInst crianca)
         {
             bool isUsuarioInstitucional = await _context.UserInst.AnyAsync(u => u.Id == crianca.UserInstId);
@@ -185,8 +184,6 @@ namespace VisualEssence.Infrastructure.Repositories
         {
             throw new NotImplementedException();
         }
-
-     
     }
 
 }

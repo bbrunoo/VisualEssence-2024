@@ -8,5 +8,8 @@
         public CriancaInst CriancaInst { get; set; }
         public int Pontuacao { get; set; }
         public DateTime DataJogo { get; set; } = DateTime.Now;
+        public Guid UserInstId { get; set; }
+        public UserInst UserInst { get; set; }
+
     }
 }

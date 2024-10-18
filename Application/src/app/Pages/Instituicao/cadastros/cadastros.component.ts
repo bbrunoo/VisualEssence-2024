@@ -47,7 +47,7 @@ export class CadastrosComponent implements OnInit {
 
   criancaId: string = '';
   imagens: { [key: string]: string } = {};
-  userId = this.authService.getUserIdFromToken();
+  userInstId: string = String(this.authService.getUserIdFromToken());
 
   constructor(
     private dados: CadastroUnicoService,
@@ -60,7 +60,7 @@ export class CadastrosComponent implements OnInit {
   ngOnInit(): void {
     this.loadSalas();
     this.searchCriancas();
-    if (this.userId) {
+    if (this.userInstId) {
       this.searchCriancas(); // Chama getCriancas com o userId
     } else {
       console.error('User ID não encontrado');
@@ -76,7 +76,7 @@ export class CadastrosComponent implements OnInit {
   }
 
   loadSalas(): void {
-    this.salasService.getSalas().subscribe({
+    this.salasService.getSalaByUserId(this.userInstId).subscribe({
       next: (response) => {
         this.salas = response;
       },

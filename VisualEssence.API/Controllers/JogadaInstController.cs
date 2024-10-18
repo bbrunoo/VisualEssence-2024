@@ -79,26 +79,42 @@ namespace VisualEssence.API.Controllers
             }
         }
 
-        [HttpGet("historico/miopia")]
-        public async Task<IActionResult> ObterHistoricoMiopia()
+        [HttpGet("historico/miopia/{userId}")]
+        public async Task<IActionResult> ObterHistoricoMiopia(Guid userId)
         {
-            var historico = await _repository.ObterHistoricoPorNomeJogo("Miopia");
+            if (userId == Guid.Empty)
+            {
+                return BadRequest("O ID do usuário é obrigatório.");
+            }
+
+            var historico = await _repository.ObterHistoricoPorNomeJogo("Miopia", userId);
             return Ok(historico);
         }
 
-        [HttpGet("historico/daltonismo")]
-        public async Task<IActionResult> ObterHistoricoDaltonismo()
+        [HttpGet("historico/daltonismo/{userId}")]
+        public async Task<IActionResult> ObterHistoricoDaltonismo(Guid userId)
         {
-            var historico = await _repository.ObterHistoricoPorNomeJogo("Daltonismo");
+            if (userId == Guid.Empty)
+            {
+                return BadRequest("O ID do usuário é obrigatório.");
+            }
+
+            var historico = await _repository.ObterHistoricoPorNomeJogo("Daltonismo", userId);
             return Ok(historico);
         }
 
-        [HttpGet("historico/figuras-coloridas")]
-        public async Task<IActionResult> ObterHistoricoPorNomeJogo()
+        [HttpGet("historico/figuras-coloridas/{userId}")]
+        public async Task<IActionResult> ObterHistoricoPorNomeJogo(Guid userId)
         {
-            var historico = await _repository.ObterHistoricoPorNomeJogo("Figuras Coloridas");
+            if (userId == Guid.Empty)
+            {
+                return BadRequest("O ID do usuário é obrigatório.");
+            }
+
+            var historico = await _repository.ObterHistoricoPorNomeJogo("Figuras Coloridas", userId);
             return Ok(historico);
         }
+
     }
 }
 

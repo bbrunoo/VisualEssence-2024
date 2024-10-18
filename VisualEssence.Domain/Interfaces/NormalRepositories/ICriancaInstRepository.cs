@@ -17,6 +17,5 @@ namespace VisualEssence.Domain.Interfaces.NormalRepositories
         Task<bool> AtualizarFoto(Guid id,string foto);
         Task<IEnumerable<CriancaInst>> GetAllByUserIdAsync(Guid userId);
         Task<CriancaInst> GetByIdAsyncUser(Guid id);
-
     }
 }
