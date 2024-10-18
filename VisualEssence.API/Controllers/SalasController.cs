@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
@@ -27,6 +28,26 @@ namespace VisualEssence.API.Controllers
         public async Task<IActionResult> GetById(Guid id)
         {
             var salas = await _repository.GetByIdAsync(id);
+            return Ok(salas);
+        }
+
+        [HttpGet("User/{userId}")]
+        public async Task<IActionResult> GetAllByUserId(Guid userId)
+        {
+            var salas = await _repository.GetAllByUserIdAsync(userId);
+
+            if (salas == null || !salas.Any())
+            {
+                return NotFound("Nenhuma sala encontrada para este usuário.");
+            }
+
+            bool todasSalasPertencemAoUsuario = salas.All(c => c.UserInstId == userId);
+
+            if (!todasSalasPertencemAoUsuario)
+            {
+                return Forbid("Usuário não autorizado a acessar esses dados.");
+            }
+
             return Ok(salas);
         }
 

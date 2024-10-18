@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { GetSala } from '../../../Models/InstituicaoModels/GetSala.model';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 
 @Component({
   selector: 'app-edt-dad',
@@ -25,6 +26,7 @@ export class EdtDadComponent implements OnInit {
   selectedCrianca: GetCriancas | null = null;
   salas: GetSala[] = []; // Array de salas recebidas
   crianca!: GetCriancas;
+  userInstId: string = String(this.authService.getUserIdFromToken());
 
   sexos = [
     { valor: 'F', texto: 'Feminino' },
@@ -35,6 +37,7 @@ export class EdtDadComponent implements OnInit {
     private criancaService: CadastroUnicoService,
     private salaService: SalasService,
     private route: ActivatedRoute,
+    private authService: AuthService,
     private routerGo: Router
   ) {}
 
@@ -62,7 +65,7 @@ export class EdtDadComponent implements OnInit {
   }
 
   getSalas(): void {
-    this.salaService.getSalas().subscribe(
+    this.salaService.getSalaByUserId(this.userInstId).subscribe(
       response => {
         this.salas = response;
       },

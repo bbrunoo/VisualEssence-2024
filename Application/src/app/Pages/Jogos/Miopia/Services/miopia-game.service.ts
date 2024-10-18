@@ -4,6 +4,7 @@ import { MiopiaGame } from '../../../../Models/MiopiaGame/miopiaGame.model';
 import { Observable } from 'rxjs';
 import { CriancaPais } from '../../../../Models/MiopiaGame/criancapais.model';
 import { Jogada } from '../../../../Models/MiopiaGame/jogada.model';
+import { JogadaPais } from '../../../../Models/MiopiaGame/jogadaPais.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class MiopiaGameService {
     return this.http.post<CriancaPais>(`${this.criancaUrl}`, crianca)
   }
 
-  addJogada(jogada: Jogada): Observable<Jogada> {
-    return this.http.post<Jogada>(`${this.jogadaUrl}`, jogada)
+  addJogada(jogada: JogadaPais): Observable<JogadaPais> {
+    return this.http.post<JogadaPais>(`${this.jogadaUrl}`, jogada)
   }
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GetCriancas } from '../../../../Models/InstituicaoModels/GetCriancas.model';
 import { forkJoin, map, mergeMap, Observable, of, catchError } from 'rxjs';
+import { AuthService } from '../../../../../Services/Auth/AuthService/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +12,16 @@ export class HistoricoService {
   private apiUrl = 'https://localhost:5200/CriancaInst';
   private api = 'https://localhost:5200';
 
-  constructor(private http: HttpClient) {}
+  userInstId = String(this.authService.getUserIdFromToken());
+
+  constructor(private http: HttpClient, private authService: AuthService) {}
+
 
   getCriancaById(criancaId: string): Observable<GetCriancas> {
     return this.http.get<GetCriancas>(`${this.apiUrl}/${criancaId}`).pipe(
       catchError(error => {
         console.error(`Erro ao obter criança com ID ${criancaId}`, error);
-        return of(); // Corrigido
+        return of();
       })
     );
   }
@@ -26,14 +30,13 @@ export class HistoricoService {
     return this.http.get<any[]>(`${this.apiUrl}/JogadaInst`).pipe(
       catchError(error => {
         console.error('Erro ao obter todas as jogadas', error);
-        return of([]); // Corrigido
+        return of([]);
       })
     );
   }
 
-  // Métodos para obter histórico de cada jogo
   getHistoricoMiopia(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.api}/JogadaInst/historico/miopia`).pipe(
+    return this.http.get<any[]>(`${this.api}/JogadaInst/historico/miopia/${this.userInstId}`).pipe(
       catchError(error => {
         console.error('Erro ao obter histórico de Miopia', error);
         return of([]);
@@ -42,7 +45,7 @@ export class HistoricoService {
   }
 
   getHistoricoDaltonismo(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.api}/JogadaInst/historico/daltonismo`).pipe(
+    return this.http.get<any[]>(`${this.api}/JogadaInst/historico/daltonismo/${this.userInstId}`).pipe(
       catchError(error => {
         console.error('Erro ao obter histórico de Daltonismo', error);
         return of([]);
@@ -51,7 +54,7 @@ export class HistoricoService {
   }
 
   getHistoricoFigurasColoridas(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.api}/JogadaInst/historico/figuras-coloridas`).pipe(
+    return this.http.get<any[]>(`${this.api}/JogadaInst/historico/figuras-coloridas/${this.userInstId}`).pipe(
       catchError(error => {
         console.error('Erro ao obter histórico de Figuras Coloridas', error);
         return of([]);
@@ -59,7 +62,6 @@ export class HistoricoService {
     );
   }
 
-  // Métodos para histórico com criança para cada jogo
   getHistoricoComCriancaMiopia(): Observable<any[]> {
     return this.getHistoricoMiopia().pipe(
       mergeMap(jogadas => {
@@ -68,7 +70,7 @@ export class HistoricoService {
             map(crianca => ({
               nomeJogo: jogada.nomeJogo,
               nomeCrianca: crianca?.nome ?? 'Desconhecido',
-              acertos: jogada.pontuacao
+              acertos: jogada.pontuacao,
             })),
             catchError(error => {
               console.error(`Erro ao obter dados da criança ${jogada.idCrianca}`, error);

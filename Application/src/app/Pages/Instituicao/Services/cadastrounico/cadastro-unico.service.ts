@@ -15,9 +15,11 @@ export class CadastroUnicoService {
   private apiUrl = 'https://localhost:5200/CriancaInst';
   private apiUrlfilters = 'https://localhost:5200/CriancaInst/filter';
 
+  userInstId = String(this.authService.getUserIdFromToken())
+
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  // Cadastrar uma nova criança
+
   cadastrarUnico(dados: CriancaInstDTO): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getToken()}`
@@ -25,7 +27,13 @@ export class CadastroUnicoService {
     return this.http.post(`${this.apiUrl}`, dados, { headers });
   }
 
-  // Obter todas as crianças cadastradas para o usuário autenticado
+  getAllByUserId(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    });
+    return this.http.get<any>(`${this.apiUrl}/ByUser/${this.userInstId}`, { headers })
+  }
+
   getCadastrados(): Observable<GetCriancas[]> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getToken()}`
@@ -33,7 +41,6 @@ export class CadastroUnicoService {
     return this.http.get<GetCriancas[]>(`${this.apiUrl}`, { headers });
   }
 
-  // Buscar crianças filtradas (sem passar o userId explicitamente)
   getCriancasByQuery(idsala?: string, codigo?: string, nomeCrianca?: string): Observable<GetCriancas[]> {
     let params = new HttpParams();  // Params para filtros opcionais
     const headers = new HttpHeaders({
@@ -55,7 +62,6 @@ export class CadastroUnicoService {
     return this.http.get<GetCriancas[]>(`${this.apiUrlfilters}`, { params, headers });
   }
 
-  // Obter uma criança por ID
   getById(criancaId: string): Observable<GetCriancas> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getToken()}`
@@ -63,7 +69,6 @@ export class CadastroUnicoService {
     return this.http.get<GetCriancas>(`${this.apiUrl}/${criancaId}`, { headers });
   }
 
-  // Editar uma criança existente
   editCrianca(criancaId: string, crianca: GetCriancas): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getToken()}`

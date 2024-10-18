@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using VisualEssence.Domain.Models.Jogada;
 
 namespace VisualEssence.Domain.Models
 {
@@ -17,6 +18,8 @@ namespace VisualEssence.Domain.Models
         public bool IsAdmin { get; set; }
         public string Senha { get; set; }
         public ICollection<CriancaInst> Criancas { get; set; }
+        public ICollection<Sala> Salas { get; set; }
+        public ICollection<JogadaInst> Jogadas { get; set; }
 
         public UserInst(string nomeInst, string email, string cnpj, byte[] senhaHash, byte[] senhaSalt, bool isAdmin)
         {

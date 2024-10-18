@@ -7,7 +7,6 @@ import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { LogoMenuComponent } from "../../../SharedMenu/logo-menu/logo-menu.component";
 import { AuthService } from '../../../../../Services/Auth/AuthService/auth.service';
-import { loggedUser } from '../../../../Models/LoggedUser/user.model';
 import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-menu-inst.component";
 
 @Component({
@@ -19,14 +18,16 @@ import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-m
 })
 export class MiopiaInstResultComponent {
   result: MiopiaResult;
+  userInstId =  String(this.authService.getUserIdFromToken())
 
   jogada: Jogada = {
     NomeJogo: "Miopia",
     idCrianca: '',
-    pontuacao: 0
+    pontuacao: 0,
+    userInstId: this.userInstId
   };
 
-  constructor(private gameService: MiopiaInstService) {
+  constructor(private gameService: MiopiaInstService, private authService: AuthService) {
     this.result = history.state.data;
   }
 
@@ -35,6 +36,7 @@ export class MiopiaInstResultComponent {
       this.jogada.pontuacao = this.result.score;
       this.processGameResult();
     }
+    console.log("userid para adicionar jogada:", this.userInstId)
   }
 
   processGameResult(): void {

@@ -15,6 +15,7 @@ export interface CriancaInstDTO {
     id: string;
     nome: string;
     capacidade: number;
+    userInstId: string;
   };
   jogadaInst?: {
     id: string;

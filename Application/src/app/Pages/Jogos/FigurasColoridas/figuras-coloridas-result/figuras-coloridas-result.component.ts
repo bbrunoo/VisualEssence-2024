@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { LogoMenuComponent } from '../../../SharedMenu/logo-menu/logo-menu.component';
 import { NgIf } from '@angular/common';
-import { MiopiaResult } from '../../../../Models/MiopiaGame/miopiaResult.model';
-import { Jogada } from '../../../../Models/MiopiaGame/jogada.model';
 import { MiopiaGameService } from '../../Miopia/Services/miopia-game.service';
 import { CriancaPais } from '../../../../Models/MiopiaGame/criancapais.model';
-import { MiopiaInstService } from '../../MiopiaInst/Services/miopia-inst.service';
 import { RouterLink } from '@angular/router';
+import { JogadaPais } from '../../../../Models/MiopiaGame/jogadaPais.model';
 
 @Component({
   selector: 'app-figuras-coloridas-result',
@@ -18,7 +16,7 @@ import { RouterLink } from '@angular/router';
 export class FigurasColoridasResultComponent {
   result: { score: number } = { score: 0 };
 
-  jogada: Jogada = {
+  jogada: JogadaPais = {
     NomeJogo: "Figuras Coloridas",
     idCrianca: '',
     pontuacao: 0

@@ -25,7 +25,7 @@ namespace VisualEssence.Infrastructure.Configurations
 
             builder.Property(u => u.CNPJ)
                 .IsRequired()
-                .HasMaxLength(14); 
+                .HasMaxLength(14);
 
             builder.Property(u => u.SenhaHash)
                 .IsRequired();
@@ -38,8 +38,19 @@ namespace VisualEssence.Infrastructure.Configurations
 
             builder.HasMany(u => u.Criancas)
                 .WithOne(c => c.UserInst)
-                .HasForeignKey(c => c.UserInstId) 
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(c => c.UserInstId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasMany(u => u.Salas)
+              .WithOne(s => s.UserInst)
+              .HasForeignKey(s => s.UserInstId)
+              .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasMany(u => u.Jogadas)
+              .WithOne(s => s.UserInst)
+              .HasForeignKey(s => s.UserInstId)
+              .OnDelete(DeleteBehavior.NoAction);
+
         }
     }
 }

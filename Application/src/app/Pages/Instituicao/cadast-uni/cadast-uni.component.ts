@@ -31,24 +31,23 @@ import { VlibrasComponent } from '../../vlibras/vlibras.component';
   ],
 })
 export class CadastUniComponent implements OnInit {
+  userInstId: string = String(this.authService.getUserIdFromToken());
 
   constructor(
     private salaService: SalasService,
     private dadosC: CadastroUnicoService,
     private router: Router,
-    private userService: AuthService,
+    private authService: AuthService,
   ) {}
 
 
   salas: GetSala[] =[]
   ngOnInit() {
-    this.salaService.getSalas().subscribe(salas => {
+    this.salaService.getSalaByUserId(this.userInstId).subscribe(salas => {
       this.salas = salas;
     }, error => {
       console.error('Erro ao buscar salas:', error);
     });
-
-    this.getUser();
   }
 
 
@@ -68,7 +67,8 @@ export class CadastUniComponent implements OnInit {
     sala: {
       id: '',
       nome: '',
-      capacidade: 0
+      capacidade: 0,
+      userInstId: ''
     }
   };
 
@@ -79,7 +79,7 @@ export class CadastUniComponent implements OnInit {
 
 
   getSalas(){
-    this.salaService.getSalas().subscribe(
+    this.salaService.getSalaByUserId(this.userInstId).subscribe(
       response => {
         this.salas = response;
       },
@@ -91,12 +91,13 @@ export class CadastUniComponent implements OnInit {
   }
 
   atualizarDadosSala(idSala: string) {
-    this.salaService.getSalaById(idSala).subscribe(
+    this.salaService.getSalaByUserId(idSala).subscribe(
       sala => {
         this.dadosCriancas.sala = {
           id: sala.id,
           nome: sala.nome,
-          capacidade: sala.capacidade
+          capacidade: sala.capacidade,
+          userInstId: sala.userInstId
         };
       },
       error => {
@@ -107,7 +108,7 @@ export class CadastUniComponent implements OnInit {
 
 
   cadastrarCrianca() {
-    if (this.dadosCriancas.idSala && this.user) {
+    if (this.dadosCriancas.idSala && this.userInstId) {
         const criancaDTO: CriancaInstDTO = {
             nome: this.dadosCriancas.nome,
             sexo: this.dadosCriancas.sexo,
@@ -120,7 +121,7 @@ export class CadastUniComponent implements OnInit {
             tel1: this.dadosCriancas.tel1,
             tel2: this.dadosCriancas.tel2,
             idSala: this.dadosCriancas.idSala,
-            userInstId: this.user.id
+            userInstId: this.userInstId
         };
 
         this.dadosC.cadastrarUnico(criancaDTO).subscribe({
@@ -174,19 +175,5 @@ export class CadastUniComponent implements OnInit {
   showNew = false;
   toggleContent() {
     this.showNew = !this.showNew;
-  }
-
-  user: loggedUser = {id: '', nome:'', email: '', isInstitucional: false, isPais: false}
-  getUser(){
-    this.userService.getUserProfile().subscribe(
-      (data) => {
-        this.user = data;
-        console.log('dados do usuario', this.user);
-      },
-      (error) =>
-      {
-        console.log('Erro ao recuperar dados do usuario', error);
-      }
-    )
   }
 }

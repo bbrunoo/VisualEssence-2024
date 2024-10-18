@@ -2,6 +2,7 @@ export interface Sala {
   id: string;
   nome: string;
   capacidade: number;
+  userInstId: string;
 }
 
 export interface GetCriancas {
@@ -18,6 +19,6 @@ export interface GetCriancas {
   endereco: string;
   idSala: string
   sala: Sala;
-  imageUrl?: string; // Adicione esta linha
-  foto?: string; // Adicione esta linha
+  imageUrl?: string;
+  foto?: string;
 }

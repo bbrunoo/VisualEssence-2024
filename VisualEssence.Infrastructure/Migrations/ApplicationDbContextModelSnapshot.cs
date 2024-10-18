@@ -173,11 +173,16 @@ namespace VisualEssence.Infrastructure.Migrations
                     b.Property<int>("Pontuacao")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("UserInstId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CriancaInstId");
 
                     b.HasIndex("IdCrianca");
+
+                    b.HasIndex("UserInstId");
 
                     b.ToTable("JogadaInst", (string)null);
                 });
@@ -241,7 +246,12 @@ namespace VisualEssence.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<Guid>("UserInstId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserInstId");
 
                     b.ToTable("Sala", (string)null);
                 });
@@ -329,13 +339,13 @@ namespace VisualEssence.Infrastructure.Migrations
                     b.HasOne("VisualEssence.Domain.Models.Sala", "Sala")
                         .WithMany("CriancaInst")
                         .HasForeignKey("IdSala")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("VisualEssence.Domain.Models.UserInst", "UserInst")
                         .WithMany("Criancas")
                         .HasForeignKey("UserInstId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Sala");
@@ -355,7 +365,15 @@ namespace VisualEssence.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("VisualEssence.Domain.Models.UserInst", "UserInst")
+                        .WithMany("Jogadas")
+                        .HasForeignKey("UserInstId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("CriancaInst");
+
+                    b.Navigation("UserInst");
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.Jogada.JogadaPais", b =>
@@ -367,6 +385,17 @@ namespace VisualEssence.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("CriancaPais");
+                });
+
+            modelBuilder.Entity("VisualEssence.Domain.Models.Sala", b =>
+                {
+                    b.HasOne("VisualEssence.Domain.Models.UserInst", "UserInst")
+                        .WithMany("Salas")
+                        .HasForeignKey("UserInstId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("UserInst");
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.CriancaInst", b =>
@@ -387,6 +416,10 @@ namespace VisualEssence.Infrastructure.Migrations
             modelBuilder.Entity("VisualEssence.Domain.Models.UserInst", b =>
                 {
                     b.Navigation("Criancas");
+
+                    b.Navigation("Jogadas");
+
+                    b.Navigation("Salas");
                 });
 #pragma warning restore 612, 618
         }

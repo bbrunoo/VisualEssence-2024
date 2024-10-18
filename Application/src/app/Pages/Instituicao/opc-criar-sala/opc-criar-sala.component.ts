@@ -9,6 +9,7 @@ import { CadastMassaComponent } from '../cadast-massa/cadast-massa.component';
 import { CadastUniComponent } from '../cadast-uni/cadast-uni.component';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 
 @Component({
   selector: 'app-opc-criar-sala',
@@ -26,16 +27,19 @@ import Swal from 'sweetalert2';
   ],
 })
 export class OpcCriarSalaComponent {
-  constructor(private salaService: SalasService) { }
+  constructor(private salaService: SalasService, private authService: AuthService) { }
   ngOnInit(): void {
     this.getSalas();
+    console.log("UserInstId:", this.userInstId);
   }
 
   salas?: Sala[]
+  userInstId: string = String(this.authService.getUserIdFromToken());
 
   sala = {
     nome: '',
-    capacidade: 0
+    capacidade: 0,
+    userInstId: this.userInstId
   }
 
   addSala() {
@@ -73,7 +77,7 @@ export class OpcCriarSalaComponent {
   }
 
   getSalas() {
-    this.salaService.getSalas().subscribe(
+    this.salaService.getSalaByUserId(this.userInstId).subscribe(
       response => {
         console.log('Salas carregadas com sucesso!', response);
         this.salas = response;
@@ -131,7 +135,8 @@ export class OpcCriarSalaComponent {
   clearForm() {
     this.sala = {
       nome: '',
-      capacidade: 0
+      capacidade: 0,
+      userInstId: this.userInstId
     };
   }
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace VisualEssence.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class initia : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,19 +52,6 @@ namespace VisualEssence.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Jogo", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Sala",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Capacidade = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sala", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -124,6 +111,25 @@ namespace VisualEssence.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Sala",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Capacidade = table.Column<int>(type: "int", nullable: false),
+                    UserInstId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sala", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Sala_UserInst_UserInstId",
+                        column: x => x.UserInstId,
+                        principalTable: "UserInst",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CriancaInst",
                 columns: table => new
                 {
@@ -149,14 +155,12 @@ namespace VisualEssence.Infrastructure.Migrations
                         name: "FK_CriancaInst_Sala_IdSala",
                         column: x => x.IdSala,
                         principalTable: "Sala",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_CriancaInst_UserInst_UserInstId",
                         column: x => x.UserInstId,
                         principalTable: "UserInst",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -168,6 +172,7 @@ namespace VisualEssence.Infrastructure.Migrations
                     IdCrianca = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Pontuacao = table.Column<int>(type: "int", nullable: false),
                     DataJogo = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserInstId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CriancaInstId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
@@ -184,6 +189,11 @@ namespace VisualEssence.Infrastructure.Migrations
                         principalTable: "CriancaInst",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_JogadaInst_UserInst_UserInstId",
+                        column: x => x.UserInstId,
+                        principalTable: "UserInst",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -207,9 +217,19 @@ namespace VisualEssence.Infrastructure.Migrations
                 column: "IdCrianca");
 
             migrationBuilder.CreateIndex(
+                name: "IX_JogadaInst_UserInstId",
+                table: "JogadaInst",
+                column: "UserInstId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_JogadaPais_IdCrianca",
                 table: "JogadaPais",
                 column: "IdCrianca");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sala_UserInstId",
+                table: "Sala",
+                column: "UserInstId");
         }
 
         /// <inheritdoc />
