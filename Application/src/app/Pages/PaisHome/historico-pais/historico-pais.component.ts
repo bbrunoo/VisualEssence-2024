@@ -15,16 +15,17 @@ import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.componen
 })
 export class HistoricoPaisComponent {
   historico: Historico[] = [];
-  jogoSelecionado: string = ''; // Para controlar qual jogo está sendo exibido
+  jogoSelecionado: string = '';
 
   constructor(private historicoService: HistoricoService) {}
 
   ngOnInit(): void {
     this.getHistoricoMiopia();
+    this.getHistoricoFigurasColoridas();
   }
 
   getHistoricoMiopia(): void {
-    this.historicoService.getHistoricoComCriancaMiopia().subscribe({
+    this.historicoService.getHistoricoMiopia().subscribe({
       next: (dadosTratados) => {
         this.historico = dadosTratados;
         this.jogoSelecionado = 'Miopia';
@@ -47,7 +48,7 @@ export class HistoricoPaisComponent {
   }
 
   getHistoricoDaltonismo(): void {
-    this.historicoService.getHistoricoComCriancaDaltonismo().subscribe({
+    this.historicoService.getHistoricoDaltonismo().subscribe({
       next: (dadosTratados) => {
         this.historico = dadosTratados;
         this.jogoSelecionado = 'Daltonismo';
@@ -59,7 +60,7 @@ export class HistoricoPaisComponent {
   }
 
   getHistoricoFigurasColoridas(): void {
-    this.historicoService.getHistoricoComCriancaFigurasColoridas().subscribe({
+    this.historicoService.getHistoricoFigurasColoridas().subscribe({
       next: (dadosTratados) => {
         this.historico = dadosTratados;
         this.jogoSelecionado = 'Figuras Coloridas';

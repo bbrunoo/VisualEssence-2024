@@ -1,4 +1,6 @@
-﻿namespace VisualEssence.Domain.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace VisualEssence.Domain.Models
 {
     public class UserPais
     {

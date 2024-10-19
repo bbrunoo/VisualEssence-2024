@@ -33,17 +33,16 @@ export class HomeInstComponent {
   delayed: boolean = false;
 
   ngOnInit() {
-    // Registrando os componentes necessários
     Chart.register(PieController, ArcElement, BarController, BarElement, LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
-    const data_count = 4;
-    const number_cfg = { count: data_count, min: 0, max: 2000 };
+    const data_count = 3;
+    const number_cfg = { count: data_count, min: 0, max: 500 };
 
-    const DATA_COUNT = 4;
-    const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 2000 };
+    const DATA_COUNT = 3;
+    const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 500 };
 
     const data1 = {
-      labels: ['Risco de Daltonismo', 'Risco de Miopia', 'Sem Risco', 'Não Finalizado'],
+      labels: ['Risco de Daltonismo', 'Risco de Miopia', 'Sem Risco'],
       datasets: [
         {
           data: Utils.numbers(number_cfg),
@@ -52,7 +51,7 @@ export class HomeInstComponent {
       ]
     };
 
-    const labels = Utils.age({ count: 4 });
+    const labels = Utils.age({ count: 3 });
     const data2 = {
       labels: labels,
       datasets: [
@@ -74,12 +73,7 @@ export class HomeInstComponent {
           borderColor: Utils.CHART_COLORS.green,
           backgroundColor: Utils.CHART_COLORS.green,
         },
-        {
-          label: 'Não Finalizado',
-          data: Utils.numbers(NUMBER_CFG),
-          borderColor: Utils.CHART_COLORS.yellow,
-          backgroundColor: Utils.CHART_COLORS.yellow,
-        },
+
       ]
     };
 
@@ -92,20 +86,19 @@ export class HomeInstComponent {
           tooltip: {
             callbacks: {
               label: function (context) {
-                const label = context.chart.data.labels![context.dataIndex];//usar
+                const label = context.chart.data.labels![context.dataIndex];
                 const value = context.raw;
 
                 //return `Valor: ${label} - ${value}`;
                 return ` Valor: ${value}`;
               },
               beforeLabel: function (context) {
-                const dataset = context.dataset;//usar
-                const index = context.dataIndex;//usar
+                const dataset = context.dataset;
+                const index = context.dataIndex;
               }
             },
             titleFont: {
               size: 14,
-              //family:'',
             },
             bodyFont: {
               size: 14,
@@ -116,7 +109,6 @@ export class HomeInstComponent {
             labels: {
               font: {
                 size: 15,
-                //family: '', //Bruno, se precisar adicionar a fonte!
               },
               color: 'white',
             }

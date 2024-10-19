@@ -46,11 +46,12 @@
 
       <!-- Caixa Rolável de Histórico -->
       <div class="box-oveflow">
+        <div class="none-info" *ngIf="!historico || historico.length === 0">
+          <p>Nenhuma informação encontrada!</p>
+        </div>
         <div class="list-content">
-          <div
-            class="conteudo-historico"
-            *ngFor="let item of historico"
-          >
+
+          <div class="conteudo-historico" *ngFor="let item of historico">
             <div class="Opcoes-hist">
               <div class="titulo">
                 <img
@@ -64,11 +65,13 @@
 
               <div class="row">
                 <div class="list">
-                  <p><strong>Nome:</strong> {{ truncateName(item.nomeCrianca) }}</p>
+                  <p>
+                    <strong>Nome:</strong> {{ truncateName(item.nomeCrianca) }}
+                  </p>
                 </div>
 
                 <div class="list">
-                  <p><strong>Pontuação Total:</strong> {{ item.acertos }}</p>
+                  <p><strong>Pontuação Total:</strong> {{ item.pontuacao }}</p>
                 </div>
               </div>
 

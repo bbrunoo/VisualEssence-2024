@@ -20,10 +20,6 @@ namespace VisualEssence.Infrastructure.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.Property(e => e.Senha)
-                .IsRequired()
-                .HasMaxLength(100);
-
             builder.Property(e => e.IsAdmin)
                 .IsRequired();
 
@@ -32,6 +28,8 @@ namespace VisualEssence.Infrastructure.Configurations
 
             builder.Property(e => e.SenhaSalt)
                 .IsRequired();
+
+            builder.Ignore(e => e.Senha);
         }
     }
 }

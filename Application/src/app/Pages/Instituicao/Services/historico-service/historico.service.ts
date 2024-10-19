@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { GetCriancas } from '../../../../Models/InstituicaoModels/GetCriancas.model';
 import { forkJoin, map, mergeMap, Observable, of, catchError } from 'rxjs';
 import { AuthService } from '../../../../../Services/Auth/AuthService/auth.service';
+import { Historico } from '../../../../Models/historico.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class HistoricoService {
 
   userInstId = String(this.authService.getUserIdFromToken());
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
 
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getCriancaById(criancaId: string): Observable<GetCriancas> {
     return this.http.get<GetCriancas>(`${this.apiUrl}/${criancaId}`).pipe(
@@ -35,93 +36,96 @@ export class HistoricoService {
     );
   }
 
-  getHistoricoMiopia(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.api}/JogadaInst/historico/miopia/${this.userInstId}`).pipe(
+  getHistoricoMiopia(game: string, userId: string): Observable<Historico[]> {
+    return this.http.get<Historico[]>(`${this.api}/JogadaInst/historico/${game}/${userId}`).pipe(
       catchError(error => {
-        console.error('Erro ao obter histórico de Miopia', error);
+        console.error(`Erro ao obter histórico de miopia`, error);
+        console.log("UserId DA CHAMADA:", this.userInstId);
         return of([]);
       })
     );
   }
 
-  getHistoricoDaltonismo(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.api}/JogadaInst/historico/daltonismo/${this.userInstId}`).pipe(
+  getHistoricoDaltonismo(game: string, userId: string): Observable<Historico[]> {
+    return this.http.get<Historico[]>(`${this.api}/JogadaInst/historico/${game}/${userId}`).pipe(
       catchError(error => {
-        console.error('Erro ao obter histórico de Daltonismo', error);
+        console.error(`Erro ao obter histórico de dalt`, error);
+        console.log("UserId DA CHAMADA:", this.userInstId);
         return of([]);
       })
     );
   }
 
-  getHistoricoFigurasColoridas(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.api}/JogadaInst/historico/figuras-coloridas/${this.userInstId}`).pipe(
+  getHistoricoFigurasColoridas(game: string, userId: string): Observable<Historico[]> {
+    return this.http.get<Historico[]>(`${this.api}/JogadaInst/historico/${game}/${userId}`).pipe(
       catchError(error => {
-        console.error('Erro ao obter histórico de Figuras Coloridas', error);
+        console.error(`Erro ao obter histórico de figu`, error);
+        console.log("UserId DA CHAMADA:", this.userInstId);
         return of([]);
       })
     );
   }
 
-  getHistoricoComCriancaMiopia(): Observable<any[]> {
-    return this.getHistoricoMiopia().pipe(
-      mergeMap(jogadas => {
-        const observables = jogadas.map(jogada =>
-          this.getCriancaById(jogada.idCrianca).pipe(
-            map(crianca => ({
-              nomeJogo: jogada.nomeJogo,
-              nomeCrianca: crianca?.nome ?? 'Desconhecido',
-              acertos: jogada.pontuacao,
-            })),
-            catchError(error => {
-              console.error(`Erro ao obter dados da criança ${jogada.idCrianca}`, error);
-              return of([{ nomeJogo: jogada.nomeJogo, nomeCrianca: 'Desconhecido', idade: 'Desconhecida', acertos: jogada.pontuacao }]);
-            })
-          )
-        );
-        return forkJoin(observables);
-      })
-    );
-  }
+  // getHistoricoComCriancaMiopia(): Observable<any[]> {
+  //   return this.getHistoricoMiopia().pipe(
+  //     mergeMap(jogadas => {
+  //       const observables = jogadas.map(jogada =>
+  //         this.getCriancaById(jogada.idCrianca).pipe(
+  //           map(crianca => ({
+  //             nomeJogo: jogada.nomeJogo,
+  //             nomeCrianca: crianca?.nome ?? 'Desconhecido',
+  //             acertos: jogada.pontuacao,
+  //           })),
+  //           catchError(error => {
+  //             console.error(`Erro ao obter dados da criança ${jogada.idCrianca}`, error);
+  //             return of([{ nomeJogo: jogada.nomeJogo, nomeCrianca: 'Desconhecido', idade: 'Desconhecida', acertos: jogada.pontuacao }]);
+  //           })
+  //         )
+  //       );
+  //       return forkJoin(observables);
+  //     })
+  //   );
+  // }
 
-  getHistoricoComCriancaDaltonismo(): Observable<any[]> {
-    return this.getHistoricoDaltonismo().pipe(
-      mergeMap(jogadas => {
-        const observables = jogadas.map(jogada =>
-          this.getCriancaById(jogada.idCrianca).pipe(
-            map(crianca => ({
-              nomeJogo: jogada.nomeJogo,
-              nomeCrianca: crianca?.nome ?? 'Desconhecido',
-              acertos: jogada.pontuacao
-            })),
-            catchError(error => {
-              console.error(`Erro ao obter dados da criança ${jogada.idCrianca}`, error);
-              return of([{ nomeJogo: jogada.nomeJogo, nomeCrianca: 'Desconhecido', acertos: jogada.pontuacao }]);
-            })
-          )
-        );
-        return forkJoin(observables);
-      })
-    );
-  }
+  // getHistoricoComCriancaDaltonismo(): Observable<any[]> {
+  //   return this.getHistoricoDaltonismo().pipe(
+  //     mergeMap(jogadas => {
+  //       const observables = jogadas.map(jogada =>
+  //         this.getCriancaById(jogada.idCrianca).pipe(
+  //           map(crianca => ({
+  //             nomeJogo: jogada.nomeJogo,
+  //             nomeCrianca: crianca?.nome ?? 'Desconhecido',
+  //             acertos: jogada.pontuacao
+  //           })),
+  //           catchError(error => {
+  //             console.error(`Erro ao obter dados da criança ${jogada.idCrianca}`, error);
+  //             return of([{ nomeJogo: jogada.nomeJogo, nomeCrianca: 'Desconhecido', acertos: jogada.pontuacao }]);
+  //           })
+  //         )
+  //       );
+  //       return forkJoin(observables);
+  //     })
+  //   );
+  // }
 
-  getHistoricoComCriancaFigurasColoridas(): Observable<any[]> {
-    return this.getHistoricoFigurasColoridas().pipe(
-      mergeMap(jogadas => {
-        const observables = jogadas.map(jogada =>
-          this.getCriancaById(jogada.idCrianca).pipe(
-            map(crianca => ({
-              nomeJogo: jogada.nomeJogo,
-              nomeCrianca: crianca?.nome ?? 'Desconhecido',
-              acertos: jogada.pontuacao
-            })),
-            catchError(error => {
-              console.error(`Erro ao obter dados da criança ${jogada.idCrianca}`, error);
-              return of([{ nomeJogo: jogada.nomeJogo, nomeCrianca: 'Desconhecido', acertos: jogada.pontuacao }]);
-            })
-          )
-        );
-        return forkJoin(observables);
-      })
-    );
-  }
+  // getHistoricoComCriancaFigurasColoridas(): Observable<any[]> {
+  //   return this.getHistoricoFigurasColoridas().pipe(
+  //     mergeMap(jogadas => {
+  //       const observables = jogadas.map(jogada =>
+  //         this.getCriancaById(jogada.idCrianca).pipe(
+  //           map(crianca => ({
+  //             nomeJogo: jogada.nomeJogo,
+  //             nomeCrianca: crianca?.nome ?? 'Desconhecido',
+  //             acertos: jogada.pontuacao
+  //           })),
+  //           catchError(error => {
+  //             console.error(`Erro ao obter dados da criança ${jogada.idCrianca}`, error);
+  //             return of([{ nomeJogo: jogada.nomeJogo, nomeCrianca: 'Desconhecido', acertos: jogada.pontuacao }]);
+  //           })
+  //         )
+  //       );
+  //       return forkJoin(observables);
+  //     })
+  //   );
+  // }
 }

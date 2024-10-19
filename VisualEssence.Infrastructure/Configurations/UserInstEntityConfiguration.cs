@@ -51,6 +51,8 @@ namespace VisualEssence.Infrastructure.Configurations
               .HasForeignKey(s => s.UserInstId)
               .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Ignore(u => u.Senha);
+
         }
     }
 }

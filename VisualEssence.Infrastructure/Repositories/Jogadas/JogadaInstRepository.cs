@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.DTOs.GamesDTO;
 using VisualEssence.Domain.Interfaces.GenericRepository;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
@@ -99,11 +100,22 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
 
             return jogadaExistente;
         }
-        public async Task<IEnumerable<JogadaInst>> ObterHistoricoPorNomeJogo(string nomeJogo, Guid userId)
+
+        public async Task<IEnumerable<HistoricoJogadasDTO>> ObterHistoricoPorNomeJogo(string nomeJogo, Guid userId)
         {
-            return await _context.JogadaInst
+            var historicoJogadas = await _context.JogadaInst
+                .Include(j => j.CriancaInst) // Certifique-se de incluir a criança
                 .Where(j => j.NomeJogo == nomeJogo && j.UserInstId == userId)
+                .Select(j => new HistoricoJogadasDTO
+                {
+                    NomeCrianca = j.CriancaInst.Nome,
+                    NomeJogo = j.NomeJogo,
+                    DataJogo = j.DataJogo,
+                    Pontuacao= j.Pontuacao,
+                })
                 .ToListAsync();
+
+            return historicoJogadas;
         }
     }
 }
