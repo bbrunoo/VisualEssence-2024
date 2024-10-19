@@ -28,25 +28,35 @@ import { AuthService } from '../../../../Services/Auth/AuthService/auth.service'
 })
 export class OpcCriarSalaComponent {
   constructor(private salaService: SalasService, private authService: AuthService) { }
-  ngOnInit(): void {
-    this.getSalas();
-    console.log("UserInstId:", this.userInstId);
-  }
 
-  salas?: Sala[]
+  salas?: Sala[];
   userInstId: string = String(this.authService.getUserIdFromToken());
+  isFormValid: boolean = false; // Flag para validação do formulário
+  isSubmitting: boolean = false; // Flag para bloqueio durante o envio
 
   sala = {
     nome: '',
     capacidade: 0,
     userInstId: this.userInstId
+  };
+
+  ngOnInit(): void {
+    this.getSalas();
+  }
+
+  validateForm() {
+    this.isFormValid = this.sala.nome.trim().length > 0 && this.sala.capacidade > 0;
   }
 
   addSala() {
-    console.log(this.sala)
+    if (!this.isFormValid) {
+      return; // Não envia o formulário se não for válido
+    }
+
+    this.isSubmitting = true; // Bloqueia o botão durante o envio
+
     this.salaService.createSala(this.sala).subscribe(
       response => {
-        console.log('Sala criada com sucesso!', response);
         Swal.fire({
           title: 'Sucesso!',
           text: 'Sala criada com sucesso.',
@@ -61,7 +71,6 @@ export class OpcCriarSalaComponent {
         this.getSalas();
       },
       error => {
-        console.error('Não foi possível criar a sala!', error);
         Swal.fire({
           title: 'Falha!',
           text: 'Não foi possível criar a sala.',
@@ -73,20 +82,31 @@ export class OpcCriarSalaComponent {
           heightAuto: false,
         });
       }
-    )
+    ).add(() => {
+      this.isSubmitting = false; // Desbloqueia o botão após o envio
+    });
   }
 
   getSalas() {
     this.salaService.getSalaByUserId(this.userInstId).subscribe(
       response => {
-        console.log('Salas carregadas com sucesso!', response);
         this.salas = response;
       },
       error => {
         console.error('Não foi possível carregar as salas!', error);
       }
-    )
+    );
   }
+
+  clearForm() {
+    this.sala = {
+      nome: '',
+      capacidade: 0,
+      userInstId: this.userInstId
+    };
+    this.isFormValid = false; // Reseta a validação do formulário
+  }
+
 
   deleteSala(salaDel: Sala): void {
     Swal.fire({
@@ -131,14 +151,6 @@ export class OpcCriarSalaComponent {
         }
     });
 }
-
-  clearForm() {
-    this.sala = {
-      nome: '',
-      capacidade: 0,
-      userInstId: this.userInstId
-    };
-  }
 
   showCriarS = false;
   showOpCad = false;

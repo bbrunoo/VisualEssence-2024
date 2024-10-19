@@ -1,6 +1,6 @@
 export interface Historico {
   nomeCrianca: string;
-  acertos: number;
+  pontuacao: number;
   nomeJogo: string;
   userInstId: string;
 }

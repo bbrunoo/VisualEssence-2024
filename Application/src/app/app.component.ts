@@ -1,6 +1,6 @@
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { provideNgxMask } from 'ngx-mask';
@@ -16,7 +16,8 @@ import { CommonModule } from '@angular/common';
     RouterOutlet,
     FormsModule,
     HttpClientModule,
-    MatSidenavModule
+    MatSidenavModule,
+    RouterLink
   ],
   providers: [
     provideNgxMask(),

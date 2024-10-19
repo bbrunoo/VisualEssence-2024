@@ -32,6 +32,7 @@ import { VlibrasComponent } from '../../vlibras/vlibras.component';
 })
 export class CadastUniComponent implements OnInit {
   userInstId: string = String(this.authService.getUserIdFromToken());
+  isSubmitting: boolean = false; // Nova variável para controlar o estado do envio
 
   constructor(
     private salaService: SalasService,
@@ -109,64 +110,72 @@ export class CadastUniComponent implements OnInit {
 
   cadastrarCrianca() {
     if (this.dadosCriancas.idSala && this.userInstId) {
-        const criancaDTO: CriancaInstDTO = {
-            nome: this.dadosCriancas.nome,
-            sexo: this.dadosCriancas.sexo,
-            nomeResp: this.dadosCriancas.nomeResp,
-            cpf: this.dadosCriancas.cpf,
-            endereco: this.dadosCriancas.endereco,
-            cns: this.dadosCriancas.cns,
-            dataNascimento: this.dadosCriancas.dataNascimento,
-            rg: this.dadosCriancas.rg,
-            tel1: this.dadosCriancas.tel1,
-            tel2: this.dadosCriancas.tel2,
-            idSala: this.dadosCriancas.idSala,
-            userInstId: this.userInstId
-        };
+      // Impedir envios duplicados
+      if (this.isSubmitting) {
+        return;
+      }
 
-        this.dadosC.cadastrarUnico(criancaDTO).subscribe({
-            next: (response) => {
-                Swal.fire({
-                    title: 'Sucesso!',
-                    text: 'Cadastrado com sucesso!',
-                    imageUrl: '../../../../assets/icons/check.png',
-                    imageWidth: 100,
-                    imageHeight: 100,
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#3085d6',
-                    heightAuto: false
-                }).then(() => {
-                    this.changePage(); // Mude a página aqui conforme necessário
-                });
-            },
-            error: (error) => {
-                Swal.fire({
-                    title: 'Falha!',
-                    text: 'Erro ao cadastrar! Verifique a capacidade da sala!',
-                    imageUrl: '../../../../assets/icons/cancel.png',
-                    imageWidth: 100,
-                    imageHeight: 100,
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#3085d6',
-                    heightAuto: false
-                });
-            }
-        });
-    } else {
-        Swal.fire({
-            title: 'Erro!',
-            text: 'Por favor, preencha todos os campos obrigatórios.',
+      this.isSubmitting = true; // Definir como verdadeiro durante o envio
+
+      const criancaDTO: CriancaInstDTO = {
+        nome: this.dadosCriancas.nome,
+        sexo: this.dadosCriancas.sexo,
+        nomeResp: this.dadosCriancas.nomeResp,
+        cpf: this.dadosCriancas.cpf,
+        endereco: this.dadosCriancas.endereco,
+        cns: this.dadosCriancas.cns,
+        dataNascimento: this.dadosCriancas.dataNascimento,
+        rg: this.dadosCriancas.rg,
+        tel1: this.dadosCriancas.tel1,
+        tel2: this.dadosCriancas.tel2,
+        idSala: this.dadosCriancas.idSala,
+        userInstId: this.userInstId
+      };
+
+      this.dadosC.cadastrarUnico(criancaDTO).subscribe({
+        next: (response) => {
+          Swal.fire({
+            title: 'Sucesso!',
+            text: 'Cadastrado com sucesso!',
+            imageUrl: '../../../../assets/icons/check.png',
+            imageWidth: 100,
+            imageHeight: 100,
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#3085d6',
+            heightAuto: false
+          }).then(() => {
+            this.changePage(); // Redirecionar após sucesso
+          });
+        },
+        error: (error) => {
+          Swal.fire({
+            title: 'Falha!',
+            text: 'Erro ao cadastrar! Verifique a capacidade da sala!',
             imageUrl: '../../../../assets/icons/cancel.png',
             imageWidth: 100,
             imageHeight: 100,
             confirmButtonText: 'OK',
             confirmButtonColor: '#3085d6',
             heightAuto: false
-        });
+          });
+        },
+        complete: () => {
+          this.isSubmitting = false; // Permitir novos envios após completar
+        }
+      });
+    } else {
+      Swal.fire({
+        title: 'Erro!',
+        text: 'Por favor, preencha todos os campos obrigatórios.',
+        imageUrl: '../../../../assets/icons/cancel.png',
+        imageWidth: 100,
+        imageHeight: 100,
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#3085d6',
+        heightAuto: false
+      });
     }
-}
-
-
+  }
 
   changePage(){
     this.router.navigate(['/instituicao/cadastros']);

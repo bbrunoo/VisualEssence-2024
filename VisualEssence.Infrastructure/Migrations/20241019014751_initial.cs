@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace VisualEssence.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class initia : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -64,8 +64,7 @@ namespace VisualEssence.Infrastructure.Migrations
                     CNPJ = table.Column<string>(type: "nvarchar(14)", maxLength: 14, nullable: false),
                     SenhaHash = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     SenhaSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    IsAdmin = table.Column<bool>(type: "bit", nullable: false),
-                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    IsAdmin = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -79,7 +78,6 @@ namespace VisualEssence.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Senha = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     SenhaHash = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     SenhaSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     IsAdmin = table.Column<bool>(type: "bit", nullable: false)

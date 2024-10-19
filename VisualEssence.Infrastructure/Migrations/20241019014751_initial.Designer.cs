@@ -12,8 +12,8 @@ using VisualEssence.Infrastructure.Data;
 namespace VisualEssence.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241018021601_initia")]
-    partial class initia
+    [Migration("20241019014751_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -283,10 +283,6 @@ namespace VisualEssence.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<byte[]>("SenhaHash")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
@@ -315,11 +311,6 @@ namespace VisualEssence.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Senha")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");

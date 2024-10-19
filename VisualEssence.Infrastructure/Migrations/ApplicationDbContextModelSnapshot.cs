@@ -280,10 +280,6 @@ namespace VisualEssence.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<byte[]>("SenhaHash")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
@@ -312,11 +308,6 @@ namespace VisualEssence.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Senha")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
