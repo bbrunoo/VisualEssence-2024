@@ -1,0 +1,598 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+* {
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-image: url("../../../../assets/HomeImages/star1.png"),
+        url("../../../../assets/HomeImages/background.png");
+    background-repeat: no-repeat;
+    background-color: #010029;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    color: #f6f5f0;
+    font-family: Montserrat;
+    font-weight: 400;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    width: 40%;
+}
+
+.titulo {
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 2em 0;
+}
+
+hr {
+    width: 80px;
+}
+
+.grafico {
+    width: 100%;
+    display: flex;
+    margin-top: 5%;
+}
+
+.txGrafico {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    text-indent: 20px;
+    line-height: 2;
+    font-size: 19px;
+    padding: 50px;
+    text-align: justify;
+    color: white;
+
+}
+
+.graficofora {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+
+.graPizza,
+.graBarra {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parte2 {
+    width: 100%;
+    height: 50vh;
+    background-color: #DAFBFF;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.imageOlho img {
+    width: 40%;
+    height: 85%;
+}
+
+.imageOlho {
+    width: 35%;
+    height: 100%;
+    margin-right: 15px;
+    overflow-y: hidden;
+}
+
+.txOlho {
+    width: 40%;
+    height: 100%;
+    margin-left: 15px;
+    color: black;
+    text-indent: 20px;
+    line-height: 2;
+    font-size: 18px;
+    overflow-y: hidden;
+    text-align: justify;
+    padding: 40px 20px;
+}
+
+.tiOlho h2 {
+    color: black;
+    font-size: 1.2rem;
+}
+
+.tiOlho {
+    width: 50%;
+    margin-left: 25%;
+}
+
+.parte3 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.txLavandomao {
+    width: 40%;
+    height: 90%;
+    margin-left: 15px;
+    color: white;
+    text-indent: 20px;
+    line-height: 2;
+    font-size: 20px;
+    text-align: justify;
+    padding: 40px 0px;
+    margin-right: 10%;
+}
+
+.tiLavandomao {
+    display: flex;
+    align-items: center;
+    width: 75%;
+    padding-left: 15%;
+    margin-bottom: 5%;
+}
+
+.tiLavandomao h2 {
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.lavandomao img {
+    transform: rotate(100deg);
+    transform: scaleX(-1);
+}
+
+.parte4 {
+    width: 100%;
+    height: 50vh;
+    background-color: #f5efef;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.tiCuidando h2 {
+    color: black;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.tiCuidando {
+    width: 80%;
+    padding-left: 15%;
+    margin-bottom: 5%;
+}
+
+.txCuidando {
+    width: 40%;
+    height: 100%;
+    margin-left: 15px;
+    color: black;
+    text-indent: 20px;
+    line-height: 2;
+    font-size: 16px;
+    text-align: justify;
+    padding: 40px 0px;
+    margin-left: 5%;
+    overflow-y: hidden;
+}
+
+.imageCuidando {
+    overflow-y: hidden;
+}
+
+.imageCuidando img {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.tiLupa {
+    width: 70%;
+    margin: 0 0 5% 5%;
+    padding-left: 50px;
+}
+
+.tiLupa h2 {
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.txLupa {
+    width: 40%;
+    height: 90%;
+    margin-left: 15%;
+    color: white;
+    text-indent: 20px;
+    line-height: 2;
+    font-size: 19px;
+    text-align: justify;
+    padding: 40px 0px;
+    margin-right: 8%;
+}
+
+.lupa img {
+    width: 50%;
+    height: 85%;
+}
+
+.parte33 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2% 0 5% 0;
+}
+
+/*----------------------------------------------*/
+
+@media screen and (max-width: 1450px) {
+    .container {
+        background-size: 100%;
+    }
+
+    h1 {
+        font-size: 2.8rem;
+    }
+
+    .grafico {
+        margin-top: 5%;
+    }
+
+    .txGrafico {
+        padding: 10px 30px;
+        font-size: 22px;
+    }
+
+    .imageOlho img {
+        width: 55%;
+    }
+
+    .txOlho {
+        width: 50%;
+        margin-top: 2%;
+        padding: 20px 0px;
+        font-size: 22px;
+    }
+
+    .tiOlho h2 {
+        margin-left: 25%;
+        font-size: 1.7rem;
+    }
+
+    .tiOlho {
+        margin: 0;
+        width: 80%;
+    }
+
+    .txLavandomao {
+        width: 60%;
+        padding: 30px 0px 15px 0px;
+        margin-left: 10%;
+        font-size: 22px;
+    }
+
+    .tiLavandomao {
+        display: flex;
+        justify-content: center;
+    }
+
+    .tiLavandomao h2 {
+        font-size: 1.7rem;
+    }
+
+    .lavandomao img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .lavandomao {
+        margin: 8% 10% 0% 0%;
+    }
+
+    .tiCuidando h2 {
+        font-size: 1.7rem;
+        margin: 0;
+    }
+
+    .tiCuidando {
+        width: 100%;
+        padding: 0;
+    }
+
+    .txCuidando {
+        width: 50%;
+        padding: 20px 0px;
+        margin: 1% 2% 0 3%;
+        font-size: 22px;
+    }
+
+    .parte2 {
+        overflow-y: hidden;
+    }
+
+    .imageCuidando {
+        margin-left: 5%;
+        width: 30%;
+    }
+
+    .tiLupa {
+        padding: 0;
+        text-align: center;
+        font-size: 10px;
+        width: 80%;
+    }
+
+    .tiLupa h2 {
+        font-size: 2.6em;
+    }
+
+    .txLupa {
+        width: 80%;
+        margin: 0 5% 0 8%;
+        padding: 20px 25px;
+        font-size: 22px;
+    }
+
+    .lupa img {
+        width: 70%;
+        height: 100%;
+    }
+
+    .lupa {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .container {
+        background-size: 100%;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .grafico {
+        margin-top: 5%;
+    }
+
+    .txGrafico {
+        padding: 10px 30px;
+        font-size: 18px;
+    }
+
+    .imageOlho img {
+        width: 55%;
+    }
+
+    .txOlho {
+        width: 50%;
+        margin-top: 2%;
+        padding: 20px 0px;
+        font-size: 17px;
+    }
+
+    .tiOlho h2 {
+        margin-left: 25%;
+        font-size: 1.2rem;
+    }
+
+    .tiOlho {
+        margin: 0;
+        width: 80%;
+    }
+
+    .txLavandomao {
+        width: 80%;
+        padding: 30px 0px 15px 0px;
+        margin-left: 10%;
+        font-size: 19px;
+    }
+
+    .tiLavandomao {
+        display: flex;
+        justify-content: center;
+    }
+
+    .tiLavandomao h2 {
+        font-size: 1.2rem;
+    }
+
+    .lavandomao img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .lavandomao {
+        margin: 8% 10% 0% 0%;
+    }
+
+    .tiCuidando h2 {
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    .tiCuidando {
+        width: 100%;
+        padding: 0;
+    }
+
+    .txCuidando {
+        width: 50%;
+        padding: 20px 0px;
+        margin: 1% 2% 0 3%;
+        font-size: 15px;
+    }
+
+    .parte2 {
+        overflow-y: hidden;
+    }
+
+    .imageCuidando {
+        margin-left: 5%;
+        width: 30%;
+    }
+
+    .tiLupa {
+        width: 90%;
+        padding: 0;
+        text-align: center;
+        font-size: 10px;
+    }
+
+    .tiLupa h2 {
+        font-size: 1.8em;
+    }
+
+    .txLupa {
+        width: 80%;
+        margin: 0 5% 0 8%;
+        padding: 20px 0px;
+        font-size: 18px;
+    }
+
+    .lupa img {
+        width: 70%;
+        height: 100%;
+    }
+
+    .lupa {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        background-size: 100%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .grafico {
+        margin-top: 2%;
+    }
+
+    .txGrafico {
+        padding: 10px 30px;
+        font-size: 13px;
+    }
+
+    .imageOlho img {
+        width: 55%;
+    }
+
+    .txOlho {
+        width: 50%;
+        padding: 20px 0px;
+        font-size: 14px;
+    }
+
+    .tiOlho h2 {
+        font-size: 0.9rem;
+    }
+
+    .tiOlho {
+        width: 80%;
+    }
+
+    .txLavandomao {
+        width: 80%;
+        padding: 30px 0px;
+        margin-left: 10%;
+        font-size: 14px;
+    }
+
+    .tiLavandomao {
+        display: flex;
+        justify-content: center;
+    }
+
+    .tiLavandomao h2 {
+        font-size: 0.9rem;
+    }
+
+    .lavandomao img {
+        width: 80%;
+        height: 80%;
+    }
+
+    .lavandomao {
+        margin: 8% 5% 0% 0%;
+    }
+
+    .tiCuidando h2 {
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .tiCuidando {
+        width: 100%;
+        padding: 0;
+    }
+
+    .txCuidando {
+        width: 55%;
+        padding: 20px 0px;
+        margin: 1% 2% 0 3%;
+        font-size: 14px;
+    }
+
+    .parte2 {
+        overflow-y: hidden;
+    }
+
+    .imageCuidando {
+        width: 40%;
+    }
+
+    .tiLupa {
+        width: 90%;
+        padding: 0;
+        text-align: center;
+        font-size: 10px;
+    }
+
+    .tiLupa h2 {
+        font-size: 1.6em;
+    }
+
+    .txLupa {
+        width: 80%;
+        margin: 0 5% 0 8%;
+        padding: 20px 0px;
+        font-size: 14px;
+    }
+
+    .lupa img {
+        width: 60%;
+        height: 90%;
+    }
+
+    .lupa {
+        width: 40%;
+    }
+}
