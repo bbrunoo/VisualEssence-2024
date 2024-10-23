@@ -153,7 +153,8 @@ namespace VisualEssence.Infrastructure.Migrations
                         name: "FK_CriancaInst_Sala_IdSala",
                         column: x => x.IdSala,
                         principalTable: "Sala",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CriancaInst_UserInst_UserInstId",
                         column: x => x.UserInstId,

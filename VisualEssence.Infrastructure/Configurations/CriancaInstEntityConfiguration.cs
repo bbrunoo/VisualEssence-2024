@@ -22,12 +22,12 @@ namespace VisualEssence.Infrastructure.Configurations
             builder.Property(c => c.Rg).IsRequired().HasMaxLength(20);
             builder.Property(c => c.Tel1).IsRequired().HasMaxLength(15);
             builder.Property(c => c.Tel2).HasMaxLength(15);
-            builder.Property(c => c.Foto).HasColumnType("TEXT"); 
+            builder.Property(c => c.Foto).HasColumnType("TEXT");
 
             builder.HasOne(c => c.Sala)
-                   .WithMany()
-                   .HasForeignKey(c => c.IdSala)
-                   .OnDelete(DeleteBehavior.Cascade);
+            .WithMany()
+            .HasForeignKey(c => c.IdSala)
+            .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(c => c.UserInst)
                    .WithMany()
