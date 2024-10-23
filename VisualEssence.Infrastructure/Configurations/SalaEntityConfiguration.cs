@@ -25,7 +25,7 @@ namespace VisualEssence.Infrastructure.Configurations
             builder.HasMany(s => s.CriancaInst)
                 .WithOne(c => c.Sala)
                 .HasForeignKey(c => c.IdSala)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(s => s.UserInst)
                  .WithMany(u => u.Salas)

@@ -330,7 +330,7 @@ namespace VisualEssence.Infrastructure.Migrations
                     b.HasOne("VisualEssence.Domain.Models.Sala", "Sala")
                         .WithMany("CriancaInst")
                         .HasForeignKey("IdSala")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("VisualEssence.Domain.Models.UserInst", "UserInst")
