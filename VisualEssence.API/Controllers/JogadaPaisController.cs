@@ -34,22 +34,15 @@ namespace VisualEssence.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<JogadaPaisDTO>> Post([FromBody] JogadaPaisDTO dto)
+        public async Task<ActionResult<JogadaPaisDTO>> Post(JogadaPaisDTO dto)
         {
             if (dto == null)
             {
                 return BadRequest("Dados inválidos.");
             }
 
-            try
-            {
-                var jogadaPais = await _repository.Post(dto);
-                return CreatedAtAction(nameof(GetById), new { id = jogadaPais.Id }, jogadaPais);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            var jogadaPais = await _repository.Post(dto);
+            return CreatedAtAction(nameof(GetById), new { id = jogadaPais.NomeJogo }, jogadaPais);
         }
 
 
@@ -86,26 +79,16 @@ namespace VisualEssence.API.Controllers
                 return NotFound("JogadaPais não encontrada.");
             }
         }
-
-        [HttpGet("historico/miopia")]
-        public async Task<IActionResult> ObterHistoricoMiopia()
+        [HttpGet("historico/{nomeJogo}/{userId}")]
+        public async Task<IActionResult> ObterHistoricoPorNomeJogo(string nomeJogo, Guid userId)
         {
-            var historico = await _repository.ObterHistoricoPorNomeJogo("Miopia");
-            return Ok(historico);
-        }
+            if (userId == Guid.Empty)
+            {
+                return BadRequest("O ID do usuário é obrigatório.");
+            }
 
-        [HttpGet("historico/daltonismo")]
-        public async Task<IActionResult> ObterHistoricoDaltonismo()
-        {
-            var historico = await _repository.ObterHistoricoPorNomeJogo("Daltonismo");
-            return Ok(historico);
-        }
-
-        [HttpGet("historico/figuras-coloridas")]
-        public async Task<IActionResult> ObterHistoricoPorNomeJogo()
-        {
-            var historico = await _repository.ObterHistoricoPorNomeJogo("Figuras Coloridas");
-            return Ok(historico);
+            var historicoJogadas = await _repository.ObterHistoricoPorNomeJogo(nomeJogo, userId);
+            return Ok(historicoJogadas);
         }
     }
 }

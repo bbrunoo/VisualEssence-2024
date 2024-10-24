@@ -12,9 +12,9 @@
 
 .container {
   background-image: url("../../../../assets/HomeImages/star1.png"),
-      url("../../../../assets/HomeImages/allplanets1.png"),
-      url("../../../../assets/HomeImages/planeta2.png"),
-      url("../../../../assets/HomeImages/background.png");
+    url("../../../../assets/HomeImages/allplanets1.png"),
+    url("../../../../assets/HomeImages/planeta2.png"),
+    url("../../../../assets/HomeImages/background.png");
   background-size: cover, cover, 25% 50%;
   background-position: 0 0, right -20px top -100px, left -125px bottom -75px;
   background-repeat: no-repeat;
@@ -51,25 +51,22 @@
 
 }
 
+
 .criarS_Cont {
-  width: 99%;
-  height: 77%;
+  width: 100%;
   display: flex;
+  flex-direction: row;
+  padding: 20px;
+  gap: 10em;
+  align-items: center;
+  justify-content: center;
   opacity: 1;
   animation: fadeOut 0.5s forwards;
 }
 
-.novaSala {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-}
-
 .novaSala form {
-  background-color: red;
-  width: 78%;
-  height: 70%;
-  margin-top: 25px;
+  width: 30em;
+  height: 28em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -153,19 +150,9 @@ h3 {
   font-weight: bold;
 }
 
-.salasExist {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
 .Salas {
-  width: 62%;
-  height: 95%;
-  margin-top: 25px;
-  margin-right: 35px;
+  width: 30em;
+  height: 28em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -175,6 +162,16 @@ h3 {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.8px);
   -webkit-backdrop-filter: blur(3.8px);
+}
+
+.content {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
 .salaInf {
@@ -187,6 +184,13 @@ h3 {
   border: 1px solid white;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.salaExist{
+  width: 35em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .barra {
@@ -242,7 +246,7 @@ label {
   color: aquamarine;
 }
 
-.botoes{
+.botoes {
   width: 50%;
   display: flex;
   flex-direction: row;
@@ -285,11 +289,15 @@ label {
 }
 
 .swal-container {
-  max-width: 400px; /* Limita a largura máxima */
-  padding: 0; /* Remove o padding extra */
-  box-shadow: none; /* Remove a sombra para evitar overflow */
+  max-width: 400px;
+  /* Limita a largura máxima */
+  padding: 0;
+  /* Remove o padding extra */
+  box-shadow: none;
+  /* Remove a sombra para evitar overflow */
 }
 
 .swal2-popup {
-  overflow: hidden !important; /* Garante que não haverá overflow */
+  overflow: hidden !important;
+  /* Garante que não haverá overflow */
 }

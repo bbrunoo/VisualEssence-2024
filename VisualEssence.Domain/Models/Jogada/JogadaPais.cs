@@ -8,6 +8,9 @@
         public CriancaPais CriancaPais { get; set; }
         public int Pontuacao { get; set; }
         public DateTime DataJogo { get; set; } = DateTime.UtcNow;
+        public Guid UserPaisId { get; set; }
+        public UserPais UserPais { get; set; }
+
     }
 
 }

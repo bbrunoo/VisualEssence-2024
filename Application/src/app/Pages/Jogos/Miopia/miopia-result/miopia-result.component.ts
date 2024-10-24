@@ -7,6 +7,7 @@ import { LogoMenuComponent } from '../../../SharedMenu/logo-menu/logo-menu.compo
 import { NgIf } from '@angular/common';
 import { VlibrasComponent } from '../../../vlibras/vlibras.component';
 import { JogadaPais } from '../../../../Models/MiopiaGame/jogadaPais.model';
+import { AuthService } from '../../../../../Services/Auth/AuthService/auth.service';
 
 @Component({
   selector: 'app-miopia-result',
@@ -17,14 +18,16 @@ import { JogadaPais } from '../../../../Models/MiopiaGame/jogadaPais.model';
 })
 export class MiopiaResultComponent implements OnInit {
   result: MiopiaResult;
+  userPaisId =  String(this.authService.getUserIdFromToken())
 
   jogada: JogadaPais = {
     NomeJogo: "Miopia",
     idCrianca: '',
-    pontuacao: 0
+    pontuacao: 0,
+    userPaisId: this.userPaisId
   };
 
-  constructor(private gameService: MiopiaGameService) {
+  constructor(private gameService: MiopiaGameService, private authService: AuthService) {
     this.result = history.state.data;
   }
 
@@ -33,6 +36,8 @@ export class MiopiaResultComponent implements OnInit {
       this.jogada.pontuacao = this.result.score;
       this.processGameResult();
     }
+    console.log('userid>', this.userPaisId);
+
   }
 
   processGameResult(): void {
@@ -42,7 +47,8 @@ export class MiopiaResultComponent implements OnInit {
     if (nomeCrianca && idadeCrianca) {
       const novaCrianca: CriancaPais = {
         nome: nomeCrianca,
-        idade: Number(idadeCrianca)
+        idade: Number(idadeCrianca),
+        userPaisId: this.userPaisId
       };
 
       this.gameService.cadastrarCrianca(novaCrianca).subscribe(

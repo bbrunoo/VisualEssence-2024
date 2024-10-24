@@ -3,7 +3,6 @@
   <app-vlibras></app-vlibras>
 
   <div class="alinhamento">
-    <!-- Seção de Jogos -->
     <div class="jogos">
       <div class="titulo-jogo">
         <h1>Jogos</h1>
@@ -11,7 +10,6 @@
 
       <div class="opcoes-jogo">
         <div class="contjogos">
-          <!-- Botão Miopia -->
           <div class="btn-opc">
             <p>Miopia</p>
             <img
@@ -23,7 +21,6 @@
             />
           </div>
 
-          <!-- Botão Figuras Coloridas -->
           <div class="btn-opc">
             <p>Figuras</p>
             <img
@@ -38,19 +35,16 @@
       </div>
     </div>
 
-    <!-- Seção de Histórico -->
     <div class="historico">
       <div class="titulo-hist">
         <h1>Histórico</h1>
       </div>
 
-      <!-- Caixa Rolável de Histórico -->
       <div class="box-oveflow">
         <div class="none-info" *ngIf="!historico || historico.length === 0">
           <p>Nenhuma informação encontrada!</p>
         </div>
         <div class="list-content">
-
           <div class="conteudo-historico" *ngFor="let item of historico">
             <div class="Opcoes-hist">
               <div class="titulo">

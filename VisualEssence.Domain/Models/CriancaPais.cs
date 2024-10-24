@@ -15,6 +15,8 @@ namespace VisualEssence.Domain.Models
         public Guid Id { get; set; }
         public string Nome { get; set; }
         public int Idade { get; set; }
+        public Guid UserPaisId { get; set; }
+        public UserPais UserPais{ get; set; }
         public ICollection<JogadaPais> JogadaPais { get; set; } = new List<JogadaPais>();
     }
 }

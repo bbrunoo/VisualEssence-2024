@@ -21,26 +21,61 @@ import { VlibrasComponent } from '../../../vlibras/vlibras.component';
   ],
 })
 export class MiopiaGameComponent {
+  lastCorrectImage: string | null = null;
+  remainingImages: string[];
 
   constructor(private router: Router) {
+    this.remainingImages = [...this.allImages];
+    this.validateImageCount();
     this.startGame();
   }
 
   allImages: string[] = [
+    '../../../../../assets/MiopiaImages/alien.png',
+    '../../../../../assets/MiopiaImages/arvore.png',
+    '../../../../../assets/MiopiaImages/astronauta.png',
     '../../../../../assets/MiopiaImages/balao.png',
     '../../../../../assets/MiopiaImages/baleia.png',
-    '../../../../../assets/MiopiaImages/sol.png',
-    '../../../../../assets/MiopiaImages/carro.png',
-    '../../../../../assets/MiopiaImages/girassol.png',
-    '../../../../../assets/MiopiaImages/pirulito.png',
-    '../../../../../assets/MiopiaImages/guarda-chuva.png',
-    '../../../../../assets/MiopiaImages/sorvete.png',
-    '../../../../../assets/MiopiaImages/astronauta.png',
+    '../../../../../assets/MiopiaImages/barco.png',
+    '../../../../../assets/MiopiaImages/bicicleta.png',
+    '../../../../../assets/MiopiaImages/boi.png',
     '../../../../../assets/MiopiaImages/bola.png',
+    '../../../../../assets/MiopiaImages/bolinho.png',
+    '../../../../../assets/MiopiaImages/bone.png',
+    '../../../../../assets/MiopiaImages/cachorro.png',
     '../../../../../assets/MiopiaImages/camera.png',
-    '../../../../../assets/MiopiaImages/arvore.png',
+    '../../../../../assets/MiopiaImages/chave.png',
+    '../../../../../assets/MiopiaImages/controle.png',
+    '../../../../../assets/MiopiaImages/coracao.png',
+    '../../../../../assets/MiopiaImages/flor.png',
+    '../../../../../assets/MiopiaImages/foguete.png',
+    '../../../../../assets/MiopiaImages/fone.png',
     '../../../../../assets/MiopiaImages/galinha.png',
-    '../../../../../assets/MiopiaImages/urso.png'
+    '../../../../../assets/MiopiaImages/gato.png',
+    '../../../../../assets/MiopiaImages/girassol.png',
+    '../../../../../assets/MiopiaImages/lapis.png',
+    '../../../../../assets/MiopiaImages/lata.png',
+    '../../../../../assets/MiopiaImages/lupa.png',
+    '../../../../../assets/MiopiaImages/maca.png',
+    '../../../../../assets/MiopiaImages/martelo.png',
+    '../../../../../assets/MiopiaImages/microfone.png',
+    '../../../../../assets/MiopiaImages/mouse.png',
+    '../../../../../assets/MiopiaImages/osso.png',
+    '../../../../../assets/MiopiaImages/sino.png',
+    '../../../../../assets/MiopiaImages/sorvete.png',
+    '../../../../../assets/MiopiaImages/spray.png',
+    '../../../../../assets/MiopiaImages/tenis.png',
+    '../../../../../assets/MiopiaImages/trevo.png',
+    '../../../../../assets/MiopiaImages/tucano.png',
+    '../../../../../assets/MiopiaImages/urso.png',
+    '../../../../../assets/MiopiaImages/vassoura.png',
+    '../../../../../assets/MiopiaImages/violao.png',
+    '../../../../../assets/MiopiaImages/visao.png',
+    '../../../../../assets/MiopiaImages/moto.png',
+    '../../../../../assets/MiopiaImages/ventilador.png',
+    '../../../../../assets/MiopiaImages/capacete.png',
+    '../../../../../assets/MiopiaImages/caixa.png',
+    '../../../../../assets/MiopiaImages/computador.png',
   ];
 
   fase: MiopiaGamePhase[] = [
@@ -72,6 +107,13 @@ export class MiopiaGameComponent {
     return `${newSize}em`;
   }
 
+  validateImageCount() {
+    const totalImagesRequired = this.fase.length * 3;
+    if (this.remainingImages.length < totalImagesRequired) {
+      throw new Error(`Não há imagens suficientes para ${this.fase.length} fases. Imagens disponíveis: ${this.remainingImages.length}, Imagens necessárias: ${totalImagesRequired}.`);
+    }
+  }
+
   startGame() {
     this.fase.forEach((fase, index) => {
       fase.questionImage = this.getRandomImages(3);
@@ -81,17 +123,17 @@ export class MiopiaGameComponent {
   }
 
   getRandomImages(count: number): string[] {
-    const shuffledImages = [...this.allImages];
-    for (let i = shuffledImages.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledImages[i], shuffledImages[j]] = [shuffledImages[j], shuffledImages[i]];
-    }
-    return shuffledImages.slice(0, count);
+    const selectedImages = this.remainingImages.slice(0, count);
+    this.remainingImages = this.remainingImages.slice(count);
+
+    return selectedImages;
   }
+
   setQuestionImage() {
     const options = this.fase[this.faseAtual].questionImage;
     const randomIndex = Math.floor(Math.random() * options.length);
     this.fase[this.faseAtual].correctQuestion = options[randomIndex];
+    this.lastCorrectImage = this.fase[this.faseAtual].correctQuestion;
   }
 
   shuffleOptions() {
@@ -117,12 +159,10 @@ export class MiopiaGameComponent {
       this.setQuestionImage();
       this.shuffleOptions();
     } else {
-      this.router.navigate(['/Pais/jogos/miopia/result'], { state: { data: this.result } });
-    }
+      this.router.navigate(['/Pais/jogos/miopia/result'], { state: { data: this.result } });    }
   }
 
-  skipPhase(){
+  skipPhase() {
     this.nextPhase();
   }
-
 }

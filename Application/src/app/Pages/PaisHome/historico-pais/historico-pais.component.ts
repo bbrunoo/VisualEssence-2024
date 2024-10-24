@@ -5,6 +5,7 @@ import { VlibrasComponent } from '../../vlibras/vlibras.component';
 import { HeaderComponent } from '../Shared-Pais/header/header.component';
 import { NgFor, NgIf } from '@angular/common';
 import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.component";
+import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 
 @Component({
   selector: 'app-historico-pais',
@@ -15,26 +16,17 @@ import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.componen
 })
 export class HistoricoPaisComponent {
   historico: Historico[] = [];
+  miopia = "Miopia";
+  daltonismo = "Daltonismo";
+  figurascoloridas = "Figuras Coloridas";
   jogoSelecionado: string = '';
+  userInstId = String(this.authService.getUserIdFromToken());
 
-  constructor(private historicoService: HistoricoService) {}
+  constructor(private historicoService: HistoricoService, private authService:AuthService) {}
 
   ngOnInit(): void {
     this.getHistoricoMiopia();
     this.getHistoricoFigurasColoridas();
-  }
-
-  getHistoricoMiopia(): void {
-    this.historicoService.getHistoricoMiopia().subscribe({
-      next: (dadosTratados) => {
-        this.historico = dadosTratados;
-        this.jogoSelecionado = 'Miopia';
-        console.log("dados cianca", this.historico);
-      },
-      error: (err) => {
-        console.error("Erro ao obter o histórico de Miopia", err);
-      }
-    });
   }
 
   truncateName(name: string): string {
@@ -47,28 +39,42 @@ export class HistoricoPaisComponent {
     return name;
   }
 
-  getHistoricoDaltonismo(): void {
-    this.historicoService.getHistoricoDaltonismo().subscribe({
-      next: (dadosTratados) => {
-        this.historico = dadosTratados;
-        this.jogoSelecionado = 'Daltonismo';
+  getHistoricoMiopia() {
+    this.historicoService.getHistoricoMiopia(this.miopia, this.userInstId).subscribe(
+      response => {
+        console.log('Salas carregadas com sucesso!', response);
+        this.historico = response;
+        console.log("miopia: ", response);
       },
-      error: (err) => {
-        console.error("Erro ao obter o histórico de Daltonismo", err);
+      error => {
+        console.error('Não foi possível carregar as salas!', error);
       }
-    });
+    )
   }
 
-  getHistoricoFigurasColoridas(): void {
-    this.historicoService.getHistoricoFigurasColoridas().subscribe({
-      next: (dadosTratados) => {
-        this.historico = dadosTratados;
-        this.jogoSelecionado = 'Figuras Coloridas';
-        console.log("dados cianca", this.historico);
+  getHistoricoDaltonismo() {
+    this.historicoService.getHistoricoDaltonismo(this.daltonismo, this.userInstId).subscribe(
+      response => {
+        console.log('Salas carregadas com sucesso!', response);
+        this.historico = response;
+        console.log("daltno: ", response);
       },
-      error: (err) => {
-        console.error("Erro ao obter o histórico de Figuras Coloridas", err);
+      error => {
+        console.error('Não foi possível carregar as salas!', error);
       }
-    });
+    )
+  }
+
+  getHistoricoFigurasColoridas() {
+    this.historicoService.getHistoricoFigurasColoridas(this.figurascoloridas, this.userInstId).subscribe(
+      response => {
+        console.log('Salas carregadas com sucesso!', response);
+        this.historico = response;
+        console.log("Figuras coloridas: ", response);
+      },
+      error => {
+        console.error('Não foi possível carregar as salas!', error);
+      }
+    )
   }
 }

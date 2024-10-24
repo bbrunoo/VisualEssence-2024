@@ -30,6 +30,11 @@ namespace VisualEssence.Infrastructure.Configurations
                 .IsRequired();
 
             builder.Ignore(e => e.Senha);
+
+             builder.HasMany(u => u.Criancas)
+                .WithOne(c => c.UserPais)
+                .HasForeignKey(c => c.UserPaisId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

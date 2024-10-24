@@ -12,12 +12,12 @@ import { AuthService } from '../../../../../Services/Auth/AuthService/auth.servi
   standalone: true,
   imports: [LogoMenuComponent, NgIf, RouterLink, LogoMenuInstComponent],
   templateUrl: './figuras-coloridas-inst-result.component.html',
-  styleUrls: ['./figuras-coloridas-inst-result.component.css'] // Corrigido de styleUrl para styleUrls
+  styleUrls: ['./figuras-coloridas-inst-result.component.css']
 })
 export class FigurasColoridasInstResultComponent {
   result: { score: number } = { score: 0 };
   userInstId = String(this.authService.getUserIdFromToken());
-  
+
   jogada: Jogada = {
     NomeJogo: "Figuras Coloridas",
     idCrianca: '',
@@ -27,7 +27,6 @@ export class FigurasColoridasInstResultComponent {
   };
 
   constructor(private gameService: MiopiaInstService, private authService: AuthService) {
-    // Ler resultado do localStorage
     const storedResult = localStorage.getItem('Cores-Acertos-Inst');
     if (storedResult) {
       this.result = JSON.parse(storedResult);

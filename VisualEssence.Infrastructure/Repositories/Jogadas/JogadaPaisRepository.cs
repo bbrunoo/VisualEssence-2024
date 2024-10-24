@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.DTOs.GamesDTO;
 using VisualEssence.Domain.Interfaces.GenericRepository;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
@@ -41,7 +42,8 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
                 NomeJogo = dto.NomeJogo,
                 IdCrianca = dto.IdCrianca,
                 Pontuacao = dto.Pontuacao,
-                DataJogo = DateTime.UtcNow
+                DataJogo = DateTime.UtcNow,
+                UserPaisId = dto.UserPaisId
             };
 
             _context.JogadaPais.Add(jogadaPais);
@@ -53,7 +55,8 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
                 NomeJogo = jogadaPais.NomeJogo,
                 IdCrianca = jogadaPais.IdCrianca,
                 Pontuacao = jogadaPais.Pontuacao,
-                DataJogo = jogadaPais.DataJogo
+                DataJogo = jogadaPais.DataJogo,
+                UserPaisId = dto.UserPaisId
             };
         }
 
@@ -99,11 +102,23 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
             return jogadaExistente;
         }
 
-        public async Task<IEnumerable<JogadaPais>> ObterHistoricoPorNomeJogo(string nomeJogo)
+        public async Task<IEnumerable<HistoricoJogadasDTO>> ObterHistoricoPorNomeJogo(string nomeJogo, Guid userId)
         {
-            return await _context.JogadaPais
-                           .Where(j => j.NomeJogo == nomeJogo)
-                           .ToListAsync();
+            var historicoJogadas = await _context.JogadaPais
+                .Include(j => j.CriancaPais)
+                .Where(j => j.NomeJogo == nomeJogo && j.UserPaisId == userId)
+                .Select(j => new HistoricoJogadasDTO
+                {
+                    NomeCrianca = j.CriancaPais.Nome,
+                    NomeJogo = j.NomeJogo,
+                    DataJogo = j.DataJogo,
+                    Pontuacao = j.Pontuacao,
+                })
+                .ToListAsync();
+
+            return historicoJogadas;
         }
+
+
     }
 }

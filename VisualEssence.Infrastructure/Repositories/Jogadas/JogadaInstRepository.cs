@@ -104,7 +104,7 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
         public async Task<IEnumerable<HistoricoJogadasDTO>> ObterHistoricoPorNomeJogo(string nomeJogo, Guid userId)
         {
             var historicoJogadas = await _context.JogadaInst
-                .Include(j => j.CriancaInst) // Certifique-se de incluir a criança
+                .Include(j => j.CriancaInst)
                 .Where(j => j.NomeJogo == nomeJogo && j.UserInstId == userId)
                 .Select(j => new HistoricoJogadasDTO
                 {

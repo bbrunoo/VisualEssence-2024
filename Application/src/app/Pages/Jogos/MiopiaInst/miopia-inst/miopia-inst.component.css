@@ -44,8 +44,8 @@
 }
 
 .imgQuestion {
-  width: 18em;
-  height: 18em;
+  width: 13em;
+  height: 13em;
   transition: width 0.2s, height 0.2s;
 }
 
@@ -65,21 +65,22 @@
 }
 
 .btn-imagem{
-  border-radius: 2em;
+  border-radius: .8em;
   border: none;
   transition: .1s ease-in-out;
 }
 
 .btn-imagem:hover{
   background-color: rgb(171, 197, 219);
-  border-radius: 5em;
+  border-radius: 2em;
   border: none;
   transition: .3s ease-in-out;
 }
 
 .btnImg {
-
-  padding: 1em;
-  width: 7em;
-  height: 7em;
+  padding: .6em;
+  width: 6em;
+  height: 6em;
+  display: flex;
+  align-items: center;
 }
