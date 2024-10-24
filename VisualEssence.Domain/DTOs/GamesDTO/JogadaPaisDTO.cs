@@ -14,5 +14,6 @@ namespace VisualEssence.Domain.DTOs.GamesDTO
         public Guid IdCrianca { get; set; }
         public int Pontuacao { get; set; }
         public DateTime DataJogo { get; set; }
+        public Guid UserPaisId { get; set; }
     }
 }

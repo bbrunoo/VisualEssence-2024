@@ -5,6 +5,7 @@ import { MiopiaGameService } from '../../Miopia/Services/miopia-game.service';
 import { CriancaPais } from '../../../../Models/MiopiaGame/criancapais.model';
 import { RouterLink } from '@angular/router';
 import { JogadaPais } from '../../../../Models/MiopiaGame/jogadaPais.model';
+import { AuthService } from '../../../../../Services/Auth/AuthService/auth.service';
 
 @Component({
   selector: 'app-figuras-coloridas-result',
@@ -15,14 +16,16 @@ import { JogadaPais } from '../../../../Models/MiopiaGame/jogadaPais.model';
 })
 export class FigurasColoridasResultComponent {
   result: { score: number } = { score: 0 };
+  userPaisId =  String(this.authService.getUserIdFromToken())
 
   jogada: JogadaPais = {
     NomeJogo: "Figuras Coloridas",
     idCrianca: '',
-    pontuacao: 0
+    pontuacao: 0,
+    userPaisId: this.userPaisId
   };
 
-  constructor(private gameService: MiopiaGameService) {
+  constructor(private gameService: MiopiaGameService, private authService:AuthService) {
     const storedResult = localStorage.getItem('Cores-Acertos-Pais');
     if (storedResult) {
       this.result = JSON.parse(storedResult);
@@ -42,7 +45,8 @@ export class FigurasColoridasResultComponent {
     if (nomeCrianca && idadeCrianca) {
       const novaCrianca: CriancaPais = {
         nome: nomeCrianca,
-        idade: Number(idadeCrianca)
+        idade: Number(idadeCrianca),
+        userPaisId: this.userPaisId
       };
 
       this.gameService.cadastrarCrianca(novaCrianca).subscribe(

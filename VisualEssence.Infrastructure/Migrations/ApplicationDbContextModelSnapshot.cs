@@ -145,7 +145,12 @@ namespace VisualEssence.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<Guid>("UserPaisId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserPaisId");
 
                     b.ToTable("CriancaPais", (string)null);
                 });
@@ -207,9 +212,14 @@ namespace VisualEssence.Infrastructure.Migrations
                     b.Property<int>("Pontuacao")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("UserPaisId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IdCrianca");
+
+                    b.HasIndex("UserPaisId");
 
                     b.ToTable("JogadaPais", (string)null);
                 });
@@ -344,6 +354,17 @@ namespace VisualEssence.Infrastructure.Migrations
                     b.Navigation("UserInst");
                 });
 
+            modelBuilder.Entity("VisualEssence.Domain.Models.CriancaPais", b =>
+                {
+                    b.HasOne("VisualEssence.Domain.Models.UserPais", "UserPais")
+                        .WithMany("Criancas")
+                        .HasForeignKey("UserPaisId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("UserPais");
+                });
+
             modelBuilder.Entity("VisualEssence.Domain.Models.Jogada.JogadaInst", b =>
                 {
                     b.HasOne("VisualEssence.Domain.Models.CriancaInst", null)
@@ -375,7 +396,15 @@ namespace VisualEssence.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("VisualEssence.Domain.Models.UserPais", "UserPais")
+                        .WithMany("Jogadas")
+                        .HasForeignKey("UserPaisId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("CriancaPais");
+
+                    b.Navigation("UserPais");
                 });
 
             modelBuilder.Entity("VisualEssence.Domain.Models.Sala", b =>
@@ -411,6 +440,13 @@ namespace VisualEssence.Infrastructure.Migrations
                     b.Navigation("Jogadas");
 
                     b.Navigation("Salas");
+                });
+
+            modelBuilder.Entity("VisualEssence.Domain.Models.UserPais", b =>
+                {
+                    b.Navigation("Criancas");
+
+                    b.Navigation("Jogadas");
                 });
 #pragma warning restore 612, 618
         }

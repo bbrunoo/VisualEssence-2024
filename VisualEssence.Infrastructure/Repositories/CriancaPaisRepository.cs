@@ -22,31 +22,54 @@ namespace VisualEssence.Infrastructure.Repositories
         {
             return await _context.CriancaPais.ToListAsync();
         }
+
+        public async Task<IEnumerable<CriancaPais>> GetAllByUserIdAsync(Guid userId)
+        {
+            return await _context.CriancaPais
+                .Where(c => c.UserPaisId == userId)
+                .ToListAsync();
+        }
         public async Task<CriancaPais> GetByIdAsync(Guid id)
         {
             return await _context.CriancaPais.FindAsync(id);
         }
         public async Task<CriancaPaisDTO> Post(CriancaPaisDTO criancaDto)
         {
-            if (criancaDto == null)
-                throw new ArgumentNullException(nameof(criancaDto));
+            //if (criancaDto == null)
+            //    throw new ArgumentNullException(nameof(criancaDto));
 
-            var crianca = new CriancaPais
+            //var crianca = new CriancaPais
+            //{
+            //    Nome = criancaDto.Nome,
+            //    Idade = criancaDto.Idade,
+            //};
+
+            //_context.CriancaPais.Add(crianca);
+            //await _context.SaveChangesAsync();
+
+            //return new CriancaPaisDTO
+            //{
+            //    Id = crianca.Id,
+            //    Nome = crianca.Nome,
+            //    Idade = crianca.Idade
+            //};
+            throw new NotImplementedException();
+        }
+
+        public async Task<CriancaPais> PostCrianca(CriancaPais crianca)
+        {
+            bool isUsuarioInstitucional = await _context.UserPais.AnyAsync(u => u.Id == crianca.UserPaisId);
+            if (!isUsuarioInstitucional)
             {
-                Nome = criancaDto.Nome,
-                Idade = criancaDto.Idade,
-            };
+                throw new Exception("Usuário não encontrado.");
+            }
 
             _context.CriancaPais.Add(crianca);
             await _context.SaveChangesAsync();
 
-            return new CriancaPaisDTO
-            {
-                Id = crianca.Id,
-                Nome = crianca.Nome,
-                Idade = crianca.Idade
-            };
+            return crianca;
         }
+
         public async Task<CriancaPaisDTO> Update(Guid id, CriancaPaisDTO criancaDto)
         {
             var criancaExistente = await _context.CriancaPais.FindAsync(id);

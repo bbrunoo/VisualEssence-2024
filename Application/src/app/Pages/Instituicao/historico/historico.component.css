@@ -124,7 +124,7 @@
 
 .historico {
   padding: 20px;
-  width: 38em;
+  width: 40em;
   height: 25em;
 
   background: rgba(255, 255, 255, 0.02);
@@ -166,8 +166,8 @@
 }
 
 .box-oveflow{
-  width: 100%;
-  height: 100%;
+  width: 35em;
+  height: 30em;
   display: flex;
 
 }

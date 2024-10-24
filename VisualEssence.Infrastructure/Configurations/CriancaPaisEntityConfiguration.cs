@@ -25,6 +25,11 @@ namespace VisualEssence.Infrastructure.Configurations
                 .WithOne()
                 .HasForeignKey(j => j.IdCrianca)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(c => c.UserPais)
+                   .WithMany()
+                   .HasForeignKey(c => c.UserPaisId)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

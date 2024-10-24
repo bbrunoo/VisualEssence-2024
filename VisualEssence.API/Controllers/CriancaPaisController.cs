@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
+using VisualEssence.Domain.Models;
 
 namespace VisualEssence.API.Controllers
 {
@@ -29,14 +30,24 @@ namespace VisualEssence.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCrianca([FromBody] CriancaPaisDTO criancaDto)
+        public async Task<IActionResult> CreateCrianca(CriancaPaisDTO criancaDto)
         {
             if (criancaDto == null)
                 return BadRequest("O corpo da requisição não pode ser nulo.");
 
-            var createdCrianca = await _repository.Post(criancaDto);
+            if (string.IsNullOrWhiteSpace(criancaDto.Nome) || criancaDto.Idade <= 0 || criancaDto.UserPaisId == Guid.Empty)
+                return BadRequest("Todos os campos obrigatórios devem ser preenchidos.");
 
-            return CreatedAtAction(nameof(GetById), new { id = createdCrianca.Id }, createdCrianca);
+            var novaCrianca = new CriancaPais
+            {
+                Nome = criancaDto.Nome,
+                Idade = criancaDto.Idade,
+                UserPaisId = criancaDto.UserPaisId
+            };
+
+            await _repository.PostCrianca(novaCrianca);
+
+            return Ok(novaCrianca);
         }
 
         [HttpPut("{id}")]

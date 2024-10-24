@@ -28,8 +28,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 85vh;
   gap: 2em;
-  height: 60%;
 }
 
 .jogos-container h1{
@@ -38,7 +38,7 @@
 }
 
 .jogos-container p{
-  font-size: 20px;
+  font-size: 15px;
   width: 30em;
   text-align: center;
 }
