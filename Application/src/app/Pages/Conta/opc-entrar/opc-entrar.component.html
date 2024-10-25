@@ -1,10 +1,15 @@
 <div class="container">
-  <app-logo-menu></app-logo-menu>
+  <div class="menuIdi">
+    <button><img src="assets/bdEUA.webp" /></button>
+  </div>
   <app-vlibras></app-vlibras>
   <div class="conteudo-central">
     <div class="both-cont">
       <div class="cont-img">
         <img [src]="imagemFundo">
+        <div class="logo">
+          <img src="../../../assets/HomeImages/VisualEssenceLogo.svg" routerLink="/Pais/Home" />
+        </div>
       </div>
       <div class="box-opc">
         <div class="opc-texto">
@@ -17,6 +22,6 @@
           <a routerLink="/login-inst" routerLinkActive="active" ariaCurrentWhenActive="page">Instituição</a> <br>
           <a routerLink="/login-pais" routerLinkActive="active" ariaCurrentWhenActive="page">Pais</a>
         </div>
-        </div>
+      </div>
     </div>
-</div>
+  </div>

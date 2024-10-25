@@ -12,24 +12,44 @@
   position: relative;
   background-image: url("../../../../assets/fundoUsuario.png");
   background-size: cover;
-  background-position: center ;
+  background-position: center;
   background-repeat: repeat;
   height: 100vmin;
 }
 
-.conteudo-central
-{
+.menuIdi {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+  position: fixed;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.conteudo-central {
   width: 100vw;
   height: 100%;
-  display: flex ;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.both-cont{
+.both-cont {
   width: 100%;
   height: 100vh;
-  display: flex ;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -37,7 +57,7 @@
 }
 
 
-.opc-texto{
+.opc-texto {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +66,7 @@
   padding: 20px;
 }
 
-.opc-botoes{
+.opc-botoes {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -55,11 +75,11 @@
   padding: 20px;
 }
 
-.cont-img img{
+.cont-img img {
   width: 40em;
 }
 
-.cont-img{
+.cont-img {
   width: 30em;
   display: flex;
   align-items: center;
@@ -68,19 +88,38 @@
   animation-iteration-count: infinite;
 }
 
+.logo {
+  position: relative;
+  right: 78%;
+  margin-bottom: 44%;
+  width: 25%;
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 4em;
+  height: 4em;
+  cursor: pointer;
+  transform: rotate(23deg);
+}
+
 @keyframes animation {
   0% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateY(-10%) rotate(-10deg);
   }
+
   100% {
     transform: translateX(0);
   }
 }
 
-.box-opc{
+.box-opc {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,11 +128,11 @@
   border-radius: 60px;
   width: 28em;
   height: 32em;
-  box-shadow: 10px 10px 26px 1px rgba(0,0,0,0.5);
+  box-shadow: 10px 10px 26px 1px rgba(0, 0, 0, 0.5);
   padding: 3em 0 3em 0;
 }
 
-.p1{
+.p1 {
   font-size: 35px;
 }
 
@@ -106,7 +145,7 @@
   background-color: #563994;
   text-align: center;
   justify-content: center;
-  color:#FFFFFF;
+  color: #FFFFFF;
   width: 12em;
   padding: 10px;
   font-size: 25px;
@@ -119,7 +158,7 @@
 }
 
 @media screen and (max-width: 1366px) {
-  .both-cont{
+  .both-cont {
     width: 100%;
     height: 100%;
     display: flex;
@@ -132,32 +171,31 @@
     width: 120%;
   }
 
-  .box-opc
-  {
+  .box-opc {
     width: 25em;
     font-size: 20px;
     height: 28em;
-    box-shadow: 10px 10px 26px 1px rgba(0,0,0,0.5);
+    box-shadow: 10px 10px 26px 1px rgba(0, 0, 0, 0.5);
 
-    .p1{
+    .p1 {
       font-size: 45px;
-      }
+    }
 
-      .p2 {
-        font-size: 30px;
-      }
+    .p2 {
+      font-size: 30px;
+    }
 
-      a {
-        width: 12em;
-        font-size: 30px;
-        transition: transform 0.5s ease-in-out;
+    a {
+      width: 12em;
+      font-size: 30px;
+      transition: transform 0.5s ease-in-out;
 
-      }
+    }
   }
 }
 
-@media screen and (max-width: 768px ) {
-  .both-cont{
+@media screen and (max-width: 768px) {
+  .both-cont {
     width: 100%;
     height: 100%;
     display: flex;
@@ -170,27 +208,26 @@
     width: 120%;
   }
 
-  .box-opc
-  {
+  .box-opc {
     width: 15em;
     font-size: 20px;
     height: 18em;
-    box-shadow: 10px 10px 26px 1px rgba(0,0,0,0.5);
+    box-shadow: 10px 10px 26px 1px rgba(0, 0, 0, 0.5);
 
-    .p1{
+    .p1 {
       font-size: 25px;
-      }
+    }
 
-      .p2 {
-        font-size: 15px;
-      }
+    .p2 {
+      font-size: 15px;
+    }
 
-      a {
-        width: 12em;
-        font-size: 18px;
-        transition: transform 0.5s ease-in-out;
+    a {
+      width: 12em;
+      font-size: 18px;
+      transition: transform 0.5s ease-in-out;
 
-      }
+    }
   }
 }
 
