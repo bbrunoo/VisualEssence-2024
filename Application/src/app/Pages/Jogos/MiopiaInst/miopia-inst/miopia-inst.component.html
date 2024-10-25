@@ -20,17 +20,32 @@
 
       <div class="btnContent">
         <ul class="botoes">
-          <li *ngFor="let option of fase[faseAtual].questionImage">
-            <button class="btn-imagem" (click)="checkAnswer(option)">
-              <img class="btnImg" [src]="option" alt="Opção" />
+          <li>
+            <button class="btn-imagem-right" (click)="checkAnswer('correto')">
+              <img class="btnImg" src="../../../../../assets/MiopiaImages/correto.png" alt="Correto" />
             </button>
           </li>
           <li>
-            <button class="btn-imagem" (click)="checkAnswer('nao-enxergo')">
-              <img class="btnImg" src="../../../../../assets/MiopiaImages/question.png" alt="Não Enxergo" />
+            <button class="btn-imagem-wrong" (click)="checkAnswer('errado')">
+              <img class="btnImg" src="../../../../../assets/MiopiaImages/erro.png" alt="Errado" />
             </button>
           </li>
         </ul>
+      </div>
+    </div>
+  </div>
+  <div class="modal-auxilio">
+    <div class="conteudo-modal">
+      <div class="texto" *ngIf="!isEyeOpen">
+        Verificar a resposta correta!
+      </div>
+
+      <div class="resposta">
+        <span *ngIf="isEyeOpen">{{ descricaoImagemAtual }}</span>
+      </div>
+
+      <div class="imagem">
+        <img [src]="isEyeOpen ? '../../../../../assets/MiopiaImages/tip.png' : '../../../../../assets/MiopiaImages/no-tip.png'"   alt="Olho" (click)="toggleEye()"/>
       </div>
 
     </div>

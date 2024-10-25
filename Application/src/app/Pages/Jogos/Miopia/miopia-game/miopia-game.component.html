@@ -1,6 +1,5 @@
 <div class="container">
-<app-logo-menu></app-logo-menu>
-<app-vlibras></app-vlibras>
+  <app-logo-menu></app-logo-menu>
   <div class="conteudo-geral">
 
     <div class="gameContent" *ngIf="fase.length">
@@ -10,31 +9,45 @@
       <div class="imagem-game">
         <div class="questionImage">
           <img
-          class="imgQuestion"
-          [src]="fase[faseAtual].correctQuestion"
-          [style.width]="getQuestionImageSize()"
-          [style.height]="getQuestionImageSize()"
-          alt="Imagem da Pergunta"
+            class="imgQuestion"
+            [src]="fase[faseAtual].correctQuestion"
+            [style.width]="getQuestionImageSize()"
+            [style.height]="getQuestionImageSize()"
+            alt="Imagem da Pergunta"
           />
         </div>
       </div>
 
       <div class="btnContent">
         <ul class="botoes">
-          <li *ngFor="let option of fase[faseAtual].questionImage">
-            <button class="btn-imagem" (click)="checkAnswer(option)">
-              <img class="btnImg" [src]="option" alt="Opção" />
+          <li>
+            <button class="btn-imagem-right" (click)="checkAnswer('correto')">
+              <img class="btnImg" src="../../../../../assets/MiopiaImages/correto.png" alt="Correto" />
             </button>
           </li>
-          <button (click)="skipPhase()" class="btn-imagem">
-            <img class="btnImg" src="../../../../../assets/MiopiaImages/question.png" alt="">
-          </button>
+          <li>
+            <button class="btn-imagem-wrong" (click)="checkAnswer('errado')">
+              <img class="btnImg" src="../../../../../assets/MiopiaImages/erro.png" alt="Errado" />
+            </button>
+          </li>
         </ul>
+      </div>
+    </div>
+  </div>
+  <div class="modal-auxilio">
+    <div class="conteudo-modal">
+      <div class="texto" *ngIf="!isEyeOpen">
+        Verificar a resposta correta!
+      </div>
+
+      <div class="resposta">
+        <span *ngIf="isEyeOpen">{{ descricaoImagemAtual }}</span>
+      </div>
+
+      <div class="imagem">
+        <img [src]="isEyeOpen ? '../../../../../assets/MiopiaImages/tip.png' : '../../../../../assets/MiopiaImages/no-tip.png'"   alt="Olho" (click)="toggleEye()"/>
       </div>
 
     </div>
-
   </div>
-
-
 </div>

@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+*{
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
 .container {
   background-image: url("../../../../../assets/fundo.png");
   background-size: cover;
@@ -44,8 +55,8 @@
 }
 
 .imgQuestion {
-  width: 18em;
-  height: 18em;
+  width: 13em;
+  height: 13em;
   transition: width 0.2s, height 0.2s;
 }
 
@@ -62,28 +73,78 @@
   align-items: center;
   padding: 1.5em;
   gap: 1.5em;
-
 }
 
-
-.btn-imagem{
-  border-radius: 2em;
+.btn-imagem-right, .btn-imagem-wrong{
+  border-radius: 1.3em;
   border: none;
   transition: .1s ease-in-out;
+
 }
 
-.btn-imagem:hover{
-  background-color: rgb(171, 197, 219);
-  border-radius: 5em;
+.btn-imagem-right:hover{
+  background-color: rgb(86, 255, 114);
+  border-radius: 6em;
   border: none;
   transition: .3s ease-in-out;
 }
 
-
+.btn-imagem-wrong:hover{
+  background-color: rgb(255, 73, 97);
+  border-radius: 6em;
+  border: none;
+  transition: .3s ease-in-out;
+}
 
 .btnImg {
+  padding: .6em;
+  width: 6em;
+  height: 6em;
+  display: flex;
+  align-items: center;
+}
 
+.modal-auxilio {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.911);
   padding: 1em;
-  width: 7em;
-  height: 7em;
+  border-radius: 1em;
+  color: rgb(2, 2, 2);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.conteudo-modal{
+  display: flex;
+  flex-direction: row;
+  gap: .5em;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagem{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resposta p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-auxilio img {
+  cursor: pointer;
+  width: 2em;
+  height: 2em;
+}
+
+.modal-auxilio p {
+  margin-top: 1em;
+  font-size: 1em;
 }
