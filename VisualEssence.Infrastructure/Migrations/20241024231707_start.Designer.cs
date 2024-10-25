@@ -12,8 +12,8 @@ using VisualEssence.Infrastructure.Data;
 namespace VisualEssence.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241024012921_changes-history")]
-    partial class changeshistory
+    [Migration("20241024231707_start")]
+    partial class start
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
