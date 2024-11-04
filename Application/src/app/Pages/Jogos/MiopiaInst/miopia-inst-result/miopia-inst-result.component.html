@@ -3,13 +3,13 @@
   <div class="conteudo">
     <div class="resultados">
       <h2>RESULTADO</h2>
-      <p *ngIf="result.score > 8">
+      <p *ngIf="result.score >= 12">
         Pelo resultado é possivel que tenha a 'Visao Normal'. Para um resultado
         preciso aconselhamos consultar um especialista.
       </p>
-      <p *ngIf="result.score < 8">
+      <p *ngIf="result.score <= 12">
         É possivel que voce tenha algum 'Problema de Visão'. Recomendados tratar
-        com um especioalista para diagnosticos precisos.
+        com um especialista para diagnosticos precisos.
       </p>
       <h3>Acertos: {{ result.score }}/20</h3>
       <div class="botoes">

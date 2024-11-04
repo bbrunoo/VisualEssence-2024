@@ -1,87 +1,99 @@
 <div class="container">
-  <app-inst-menu></app-inst-menu>
   <app-vlibras></app-vlibras>
-
-  <div class="alinhamento">
-    <div class="jogos">
-      <div class="titulo-jogo">
-        <h1>Jogos</h1>
+  <app-inst-menu></app-inst-menu>
+  <div class="conteudo">
+    <div class="barFiltro">
+      <div class="conjJogo">
+        <label for="selectJogo">JOGO: </label>
+        <select class="selectJogo" [(ngModel)]="nomeJogo" name="selectJogo">
+          <option disabled value="">Selecione o jogo</option>
+          <option value="Miopia">Miopia</option>
+          <option value="Daltonismo">Daltonismo</option>
+          <option value="Figuras Coloridas">Figuras Coloridas</option>
+        </select>
       </div>
-
-      <div class="opcoes-jogo">
-        <div class="contjogos">
-          <div class="btn-opc">
-            <p>Miopia</p>
-            <img
-              src="../../../../assets/InstHistorico/img1.png"
-              (click)="getHistoricoMiopia()"
-              width="70px"
-              height="70px"
-              alt="Icone Miopia"
-            />
-          </div>
-
-          <div class="btn-opc">
-            <p>Figuras</p>
-            <img
-              src="../../../../assets/InstHistorico/img3.png"
-              (click)="getHistoricoFigurasColoridas()"
-              width="70px"
-              height="70px"
-              alt="Icone Figuras Coloridas"
-            />
-          </div>
-        </div>
+      <div class="conjNome">
+        <label for="inputNome">NOME:</label>
+        <input
+          type="text"
+          class="inpNome"
+          name="inputNome"
+          [(ngModel)]="nomeCrianca"
+        />
+      </div>
+      <div class="btnLupa">
+        <button (click)="onSearch()">
+          <img src="../../assets/lupa.png" alt="Buscar" />
+        </button>
       </div>
     </div>
 
-    <div class="historico">
-      <div class="titulo-hist">
-        <h1>Histórico</h1>
-      </div>
-
-      <div class="box-oveflow">
-        <div class="none-info" *ngIf="!historico || historico.length === 0">
-          <p>Nenhuma informação encontrada!</p>
-        </div>
-        <div class="list-content">
-          <div class="conteudo-historico" *ngFor="let item of historico">
-            <div class="Opcoes-hist">
-              <div class="titulo">
-                <img
-                  src="../../../../assets/InstHistorico/lupa.png"
-                  width="20px"
-                  height="20px"
-                  alt="Icone lupa"
-                />
-                <h3>{{ item.nomeJogo }}</h3>
-              </div>
-
-              <div class="row">
-                <div class="list">
-                  <p>
-                    <strong>Nome:</strong> {{ truncateName(item.nomeCrianca) }}
-                  </p>
+    <div class="conteudo-historico">
+      <div *ngIf="historico.length > 0" id="custom-bar">
+        <div *ngFor="let item of historico" class="box" id="custom-bar">
+          <div class="card">
+            <div class="left">
+              <img [src]="item.foto || '../../../assets/user.png'" alt="" />
+            </div>
+            <div class="right">
+              <div class="content-r-left">
+                <div class="p-nome">
+                  <p>{{ item.nomeCrianca }}</p>
                 </div>
-
-                <div class="list">
-                  <p><strong>Pontuação Total:</strong> {{ item.pontuacao }}</p>
+                <div *ngFor="let jogo of item.jogos" class="p-undetailed">
+                  <p>Jogo: {{ jogo.nomeJogo }}</p>
+                  <p>Data: {{ jogo.dataJogo | date : "dd/MM/yyyy" }}</p>
+                  <div *ngIf="jogo.nomeJogo === 'Miopia'">
+                    <p>Pontuação: {{ jogo.pontuacao }}/20</p>
+                  </div>
+                  <div *ngIf="jogo.nomeJogo === 'Daltonismo'">
+                    <p>Pontuação: {{ jogo.pontuacao }}/10</p>
+                  </div>
+                  <div *ngIf="jogo.nomeJogo === 'Figuras Coloridas'">
+                    <p>Pontuação: {{ jogo.pontuacao }}/20</p>
+                  </div>
+                </div>
+                <div class="p-more-details">
+                  <a>Mais detalhes</a>
                 </div>
               </div>
-
-              <div class="download">
-                <img
-                  src="../../../../assets/InstHistorico/download.png"
-                  width="20px"
-                  height="20px"
-                  alt="Icone download"
-                />
-                <p>Baixar Diagnóstico</p>
+              <div class="content-r-right">
+                <div class="p-imagem">
+                  <p>SALA: {{item.salaNome}}</p>
+                </div>
+                <div class="p-download">
+                  <img src="../../../../assets/imgUpl.png" width="20px" height="20px" alt="" />
+                  <p>Baixar Diagnóstico</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div *ngIf="historico.length === 0">
+        <p>Nenhum resultado encontrado.</p>
+      </div>
     </div>
-  </div>
+
+    <div class="pagination">
+      <button class="button-change" (click)="goToFirstPage()" [disabled]="pageNumber === 1">
+        <img src="../../../../assets/back.png" width="15px" height="15px" alt="">
+      </button>
+      <button class="button-change" (click)="prevPage()" [disabled]="pageNumber === 1">
+        <img src="../../../../assets/left-arrow.png" width="15px" height="15px" alt="">
+      </button>
+      <input class="page-input"
+             type="text"
+             [(ngModel)]="pageNumber"
+             (ngModelChange)="onPageChange($event)"
+             (keypress)="validateInput($event)" />
+      <button class="button-change" (click)="nextPage()" [disabled]="pageNumber === totalPages">
+        <img src="../../../../assets/right-arrow.png" width="15px" height="15px" alt="">
+      </button>
+      <button class="button-change" (click)="goToLastPage()" [disabled]="pageNumber === totalPages">
+        <img src="../../../../assets/forward.png" width="15px" height="15px" alt="">
+      </button>
+    </div>
+
 </div>

@@ -32,13 +32,8 @@
 
         <div class="MenuAcco">
           <div *ngIf="user" class="MenuConta">
-            <img
-              [src]="Perfil"
-              alt=""
-              (click)="openSidenav()"
-              class="profile-img"
-            />
-            <p>{{ user.nome }}</p>
+            <img mat-button (click)="openSideModal(userId)" [src]="userInfo?.foto || '../../../../../assets/user.png'"  alt=""/>
+            <p>{{ userInfo?.nome }}</p>
           </div>
 
           <div class="MenuLogout">
@@ -53,21 +48,4 @@
       </div>
     </div>
   </header>
-
-  <!-- Sidebar Menu -->
-  <mat-sidenav #sidenav position="end" mode="over" class="sidenav">
-    <div class="profile-sidebar-content">
-      <img [src]="Perfil" alt="Profile Image" class="sidebar-profile-img" />
-      <button mat-raised-button color="primary">Configurações</button>
-      <button
-        mat-raised-button
-        color="warn"
-        (click)="logout()"
-        [routerLink]="['/opc-entrar']"
-      >
-        Logout
-      </button>
-      <button routerLink="/Pais/Jogos/Historico">historico</button>
-    </div>
-  </mat-sidenav>
 </mat-sidenav-container>

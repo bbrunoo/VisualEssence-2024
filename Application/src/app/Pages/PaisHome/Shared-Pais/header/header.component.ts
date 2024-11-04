@@ -9,6 +9,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { PaisProfileComponent } from '../../../Shared-Profile/pais-profile/pais-profile.component';
+import { MatDialog } from '@angular/material/dialog';
+import { UserPais } from '../../../../Models/User/GetUserPais.model';
+import { AccountPictureService } from '../../../Instituicao/Services/profile-picture-service/account-picture.service';
+import { UserInfosService } from '../../../Instituicao/Services/user-infos/user-infos.service';
 
 declare var google: any;
 
@@ -22,20 +27,56 @@ declare var google: any;
 export class HeaderComponent implements OnInit {
 
   user: loggedUser = {id: '', nome:'', email: '', isInstitucional: false, isPais: false}
+  userInfo: UserPais | null = null;
+  userId = String(this.userService.getUserIdFromToken());
 
-  constructor(private userService: AuthService){
+  constructor(private userService: AuthService, private dialog: MatDialog, private accountPicture: AccountPictureService, private userInfoService: UserInfosService){
   }
+
   ngOnInit(): void {
-    this.userService.getUserProfile().subscribe(
-      (data) => {
-        this.user = data;
-        console.log('dados do usuario', this.user);
+    this.getUserInfos(this.userId);
+  }
+
+  getUserInfos(userId: string): void {
+    this.userInfoService.getUserInfoPaisById(userId).subscribe(
+      (response) => {
+        console.log("User info:", response);
+        this.userInfo = response;
+        this.loadImage();
       },
-      (error) =>
-      {
-        console.log('Erro ao recuperar dados do usuario', error);
+      (error) => {
+        console.log("Erro ao obter informações do usuário:", error);
       }
-    )
+    );
+  }
+
+  openSideModal(userInstId: string) {
+    this.dialog.open(PaisProfileComponent, {
+      width: '250px',
+      hasBackdrop: false,
+      position: { top: '0', right: '0' },
+      data: { userId: userInstId }
+    });
+  }
+
+
+  loadImage(): void {
+    this.accountPicture.getFotoPais(this.userId).subscribe(
+      (response) => {
+        console.log('Resposta da imagem:', response);
+        if (response && response.url) {
+          this.userInfo!.foto = response.url;
+        } else {
+          this.userInfo!.foto = '../../../../../assets/user.png';
+        }
+      },
+      (error) => {
+        console.log('Erro ao carregar a foto do usuário:', error);
+        if (this.userInfo) {
+          this.userInfo.foto = '../../../../../assets/user.png';
+        }
+      }
+    );
   }
 
   logout() {
@@ -44,29 +85,8 @@ export class HeaderComponent implements OnInit {
 
   Logo: string = 'assets/HomeImages/VisualEssenceLogo.svg';
   Logout: string = 'assets/HomeImages/logout.png';
-  Perfil: string = 'assets/HomeImages/miopia.png';
 
   scrollTo(section: string) {
     document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  @ViewChild('sidenav') sidenav!: MatSidenav; // Asserção não nula
-
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    if (target && !target.closest('.mat-sidenav') && !target.closest('.profile-img')) {
-      this.closeSidenav();
-    }
-  }
-
-  openSidenav() {
-    this.sidenav.open();
-    document.querySelector('.sidenav')?.classList.add('open');
-  }
-
-  closeSidenav() {
-    this.sidenav.close();
-    document.querySelector('.sidenav')?.classList.remove('open');
   }
 }

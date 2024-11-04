@@ -35,6 +35,8 @@ namespace VisualEssence.Infrastructure.Configurations
                 .WithOne(c => c.UserPais)
                 .HasForeignKey(c => c.UserPaisId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Property(c => c.Foto).HasMaxLength(200);
         }
     }
 }
