@@ -1,96 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
 
 * {
-    font-family: "Montserrat", sans-serif;
-    color: white;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
 }
 
 .container {
-    background-image: url("../../../../assets/HomeImages/star1.png"),
-        url("../../../../assets/HomeImages/allplanets1.png"),
-        url("../../../../assets/HomeImages/planeta2.png"),
-        url("../../../../assets/HomeImages/background.png");
-    background-size: cover, cover, 25% 50%;
-    background-position: 0 0, right -20px top -100px, left -125px bottom -75px;
-    background-repeat: no-repeat;
-    background-color: #010029;
-    width: 100%;
-    height: 100%;
+  background-image: url("../../../../assets/HomeImages/star1.png"),
+    url("../../../../assets/HomeImages/allplanets1.png"),
+    url("../../../../assets/HomeImages/planeta2.png"),
+    url("../../../../assets/HomeImages/background.png");
+  background-size: cover, cover, 25% 50%;
+  background-position: 0 0, right -20px top -100px, left -125px bottom -75px;
+  background-repeat: no-repeat;
+  background-color: #010029;
+  width: 100%;
+  height: 100%;
 }
 
 .conteudo {
-    width: 100%;
-    height: 85%;
-    display: flex;
-    align-items: center;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .grafico {
-    height: 100%;
-    width: 60%;
-    margin-left: 10px;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2em;
+}
+
+.text {
+  font-size: 15px;
 }
 
 .twoGra {
-    width: 100%;
-    height: 88%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 25em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .graPizza {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .graBarra {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .legendGra {
-    width: 100%;
-    height: 12%;
-    font-size: 15px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: justify;
-    padding: 10px;
-    text-indent: 20px;
-    position: relative;
-    bottom: 10px;
+  width: 100%;
+  font-size: 10px;
+  padding: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  position: relative;
+}
+
+.legendGra p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5em;
+  font-size: 12x;
 }
 
 .infDesen {
-    height: 100%;
-    width: 40%;
-    display: flex;
-    align-items: center;
-    text-align: justify;
-    line-height: 1.5;
-    overflow: hidden;
-  }
+  height: 100%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  line-height: 1.5;
+  overflow: hidden;
+}
 
 .infDesen p {
-    margin: 5px 60px 5px 60px;
-    padding: 5px;
-    height: 100%;
-    text-indent: 20px;
-    display: grid;
-    place-items: center;
-    font-size: 17px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  text-align: justify;
+  height: 100%;
+  text-indent: 20px;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
 }

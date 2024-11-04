@@ -53,6 +53,7 @@ namespace VisualEssence.Infrastructure.Configurations
 
             builder.Ignore(u => u.Senha);
 
+            builder.Property(c => c.Foto).HasMaxLength(200);
         }
     }
 }

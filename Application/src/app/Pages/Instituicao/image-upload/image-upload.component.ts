@@ -29,7 +29,7 @@ export class ImageUploadComponent {
   }
 
   onConfirm(): void {
-    console.log('Método onConfirm chamado'); // Adicione esta linha para verificar se o método é chamado
+    console.log('Método onConfirm chamado');
 
     if (this.selectedFile) {
       const formData = new FormData();
@@ -39,6 +39,7 @@ export class ImageUploadComponent {
         response => {
           console.log('Upload da imagem foi bem-sucedido:', response);
           this.dialogRef.close();
+          window.location.reload();
         },
         error => {
           console.error('Erro ao fazer upload da imagem:', error);

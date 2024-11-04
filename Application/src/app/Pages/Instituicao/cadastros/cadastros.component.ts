@@ -33,7 +33,7 @@ import { PictureService } from '../Services/picture-service/picture.service';
     ReactiveFormsModule,
   ],
   templateUrl: './cadastros.component.html',
-  styleUrls: ['./cadastros.component.css'], // Corrigido o nome da propriedade para styleUrls
+  styleUrls: ['./cadastros.component.css'],
 })
 export class CadastrosComponent implements OnInit {
   imgSRC: string | ArrayBuffer | null = null;
@@ -61,18 +61,11 @@ export class CadastrosComponent implements OnInit {
     this.loadSalas();
     this.searchCriancas();
     if (this.userInstId) {
-      this.searchCriancas(); // Chama getCriancas com o userId
+      this.searchCriancas();
     } else {
       console.error('User ID não encontrado');
     }
     this.loadImages();
-  }
-
-
-  searchConsole(): void {
-    console.log('Buscando crianças...');
-    console.log(this.dadosCriancas);
-    this.searchCriancas();
   }
 
   loadSalas(): void {
@@ -100,7 +93,7 @@ export class CadastrosComponent implements OnInit {
 
   getSalaCapacidadeById(salaId?: string): string {
     const sala = this.salas.find(s => s.id === salaId);
-    return sala ? sala.capacidade.toString() : 'Capacidade não encontrada'; // Garantindo que retorne uma string
+    return sala ? sala.capacidade.toString() : 'Capacidade não encontrada';
   }
 
   searchCriancas(): void {
@@ -118,10 +111,10 @@ export class CadastrosComponent implements OnInit {
           console.log('Crianças encontradasaaaaaaaa:', data);
 
           if (data.length > 0) {
-            this.criancaId = data[0].id; // Atualiza com o ID da primeira criança encontrada
+            this.criancaId = data[0].id;
           }
 
-          this.loadImages(); // Chama o método para carregar as imagens
+          this.loadImages();
         },
         (error) => {
           this.erroBusca = true;
@@ -142,21 +135,20 @@ export class CadastrosComponent implements OnInit {
     this.dadosCriancas.forEach((crianca) => {
       this.pictureService.getFoto(crianca.id).subscribe(
         (response) => {
-          console.log('Resposta da imagem:', response); // Verifique o que está sendo retornado
-          if (response && response.foto) {
-            crianca.imageUrl = response.foto; // Atribui a imagem retornada
+          console.log('Resposta da imagem:', response);
+          if (response && response.url) {
+            crianca.foto = response.url;
           } else {
-            crianca.imageUrl = '../../../assets/user.png'; // URL padrão
+            crianca.foto = '../../../assets/user.png';
           }
         },
         (error) => {
           console.log('Erro ao carregar a foto da criança:', error);
-          crianca.imageUrl = '../../../assets/user.png'; // URL padrão em caso de erro
+          crianca.foto = '../../../assets/user.png';
         }
       );
     });
   }
-
 
   fileSelect(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -184,7 +176,6 @@ export class CadastrosComponent implements OnInit {
     console.log(`Abrindo modal para a criança com ID: ${criancaId} e URL da imagem: ${imageUrl}`);
 
     dialogRef.afterClosed().subscribe((result) => {
-      // Lógica para tratar o resultado do modal, se necessário
     });
   }
 

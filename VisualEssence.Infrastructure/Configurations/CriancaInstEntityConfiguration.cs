@@ -22,7 +22,7 @@ namespace VisualEssence.Infrastructure.Configurations
             builder.Property(c => c.Rg).IsRequired().HasMaxLength(20);
             builder.Property(c => c.Tel1).IsRequired().HasMaxLength(15);
             builder.Property(c => c.Tel2).HasMaxLength(15);
-            builder.Property(c => c.Foto).HasColumnType("TEXT");
+            builder.Property(c => c.Foto).HasMaxLength(200);
 
             builder.HasOne(c => c.Sala)
             .WithMany()

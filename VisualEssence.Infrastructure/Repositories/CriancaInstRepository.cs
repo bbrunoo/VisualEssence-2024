@@ -1,16 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Amazon.S3;
+using Amazon.S3.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.Data;
+using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
-using VisualEssence.Domain.DTOs;
-using System.Data;
-using Microsoft.Extensions.FileProviders;
 using VisualEssence.Infrastructure.Data;
 
 namespace VisualEssence.Infrastructure.Repositories
@@ -18,10 +14,12 @@ namespace VisualEssence.Infrastructure.Repositories
     public class CriancaInstRepository : ICriancaInstRepository
     {
         private readonly ApplicationDbContext _context;
-
-        public CriancaInstRepository(ApplicationDbContext context)
+        private readonly IAmazonS3 _s3Client;
+        
+        public CriancaInstRepository(ApplicationDbContext context, IAmazonS3 s3Client)
         {
             _context = context;
+            _s3Client = s3Client;
         }
         public async Task<IEnumerable<CriancaInst>> GetAllAsync()
         {
@@ -31,15 +29,14 @@ namespace VisualEssence.Infrastructure.Repositories
         {
             return await _context.CriancaInst.Include(c => c.Sala).FirstOrDefaultAsync(e => e.Id == id);
         }
-
         public async Task<IEnumerable<CriancaInst>> GetAllByUserIdAsync(Guid userId)
         {
             return await _context.CriancaInst
-                .Include(c => c.Sala) 
+                .Include(c => c.Sala)
+                .Include(c => c.JogadaInst)
                 .Where(c => c.UserInstId == userId)
                 .ToListAsync();
         }
-
         public async Task<CriancaInst> PostCrianca(CriancaInst crianca)
         {
             bool isUsuarioInstitucional = await _context.UserInst.AnyAsync(u => u.Id == crianca.UserInstId);
@@ -65,12 +62,10 @@ namespace VisualEssence.Infrastructure.Repositories
 
             return crianca;
         }
-
         public async Task<CriancaInstDTO> Update(Guid id, CriancaInstDTO criancaDto)
         {
             throw new NotImplementedException();
         }
-
         public async Task<CriancaInst> Delete(CriancaInst crianca)
         {
             var sala = await _context.Sala.FindAsync(crianca.IdSala);
@@ -82,7 +77,6 @@ namespace VisualEssence.Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return crianca;
         }
-
         public async Task<IEnumerable<CriancaInst>> GetCriancasByQuery(Guid? idSala, string? codigo, string? nomeCrianca, Guid userId)
         {
             var query = _context.CriancaInst.Where(c => c.UserInstId == userId);
@@ -104,13 +98,10 @@ namespace VisualEssence.Infrastructure.Repositories
 
             return await query.ToListAsync();
         }
-
-
         public Task<CriancaInstDTO> Post(CriancaInstDTO dto)
         {
             throw new NotImplementedException();
         }
-
         public async Task<CriancaInst> UpdateCrianca(Guid id, CriancaInst criancaInst)
         {
             Console.WriteLine($"Atualizando criança com ID: {id}");
@@ -164,26 +155,65 @@ namespace VisualEssence.Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return criancaInst;
         }
-
-        public async Task<bool> AtualizarFoto(Guid id, string foto)
+        public async Task<bool> UploadFotoAsync(Guid criancaId, IFormFile file, string bucketName)
         {
-            var crianca = await _context.CriancaInst.FirstOrDefaultAsync(c => c.Id == id);
+            var crianca = await _context.CriancaInst.FirstOrDefaultAsync(c => c.Id == criancaId);
             if (crianca == null)
             {
                 throw new KeyNotFoundException("Criança não encontrada.");
             }
 
-            crianca.Foto = foto;
+            var bucketExist = await Amazon.S3.Util.AmazonS3Util.DoesS3BucketExistV2Async(_s3Client, bucketName);
+            if (!bucketExist) throw new Exception($"Bucket {bucketName} não existe.");
+
+            if (!string.IsNullOrEmpty(crianca.Foto))
+            {
+                var deleteRequest = new DeleteObjectRequest
+                {
+                    BucketName = bucketName,
+                    Key = crianca.Foto
+                };
+                await _s3Client.DeleteObjectAsync(deleteRequest);
+            }
+
+            var key = $"{criancaId}/{file.FileName}";
+
+            var request = new PutObjectRequest
+            {
+                BucketName = bucketName,
+                Key = key,
+                InputStream = file.OpenReadStream()
+            };
+            request.Metadata.Add("Content-Type", file.ContentType);
+            await _s3Client.PutObjectAsync(request);
+
+            crianca.Foto = key;
             _context.CriancaInst.Update(crianca);
             await _context.SaveChangesAsync();
 
             return true;
         }
+        public async Task<string> GetFotoUrlAsync(Guid criancaId, string bucketName)
+        {
+            var crianca = await _context.CriancaInst.FirstOrDefaultAsync(c => c.Id == criancaId);
+            if (crianca == null || string.IsNullOrEmpty(crianca.Foto))
+            {
+                throw new KeyNotFoundException("Criança ou imagem não encontrada.");
+            }
 
+            var urlRequest = new GetPreSignedUrlRequest
+            {
+                BucketName = bucketName,
+                Key = crianca.Foto,
+                Expires = DateTime.UtcNow.AddMinutes(5) 
+            };
+
+            var url = _s3Client.GetPreSignedURL(urlRequest);
+            return url;
+        }
         public Task<CriancaInst> GetByIdAsyncUser(Guid id)
         {
             throw new NotImplementedException();
         }
     }
-
 }

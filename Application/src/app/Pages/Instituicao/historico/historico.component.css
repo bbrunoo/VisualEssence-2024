@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
 
 * {
   font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: #d9d9d9;
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -19,256 +21,279 @@
   background-repeat: no-repeat;
   background-color: #010029;
   width: 100%;
-  height: 100%;
-}
-
-.none-info p {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
+  height: 100vh;
 }
 
 .conteudo {
-  width: 100%;
-  height: 75%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 90vh;
+  gap: 2em;
 }
 
-.fundo-nav {
-  width: 100%;
-  height: 100vh;
-  position: absolute;
+#custom-bar::-webkit-scrollbar {
+  width: 6px;
+  padding: 20px;
+}
+
+#custom-bar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.barFiltro {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.alinhamento {
-  width: 100%;
-  height: 80vh;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 5em;
-}
-
-.jogos {
-  padding: 20px;
-  width: 12em;
-  height: 25em;
-
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 15px;
+  gap: 2em;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(2.8px);
-  -webkit-backdrop-filter: blur(2.8px);
-  border: 1px solid rgb(255, 255, 255);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  gap: 5%;
-
-  background: rgb(34, 84, 150);
-  background: linear-gradient(180deg,
-      rgba(34, 84, 150, 0.0802696078431373) 22%,
-      rgba(255, 255, 255, 0.16430322128851538) 100%);
+  backdrop-filter: blur(3.8px);
+  -webkit-backdrop-filter: blur(3.8px);
+  width: 60em;
+  height: 5em;
 }
 
-.titulo-jogo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 4em;
-  font-size: 12px;
-  color: white;
+.barFiltro label {
+  font-size: 18px;
+  padding-right: 10px;
   font-weight: 500;
+  color: white;
 }
 
-.opcoes-jogo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  color: white;
+.barFiltro input {
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
   font-weight: 600;
 }
 
-.teste {
-  height: 100%;
-}
-
-.btn-opc {
-  margin-top: 50%;
+.conjJogo,
+.conjNome {
+  width: 25em;
+  font-weight: 600;
   display: flex;
-  align-items: center;
-  flex-direction: column;
   justify-content: center;
-
-  img {
-    margin-top: 0.5em;
-    border-radius: 100%;
-    border: 2px;
-    border-style: solid;
-    cursor: pointer;
-  }
-}
-
-.historico {
-  padding: 20px;
-  width: 40em;
-  height: 25em;
-
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 15px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(2.8px);
-  -webkit-backdrop-filter: blur(2.8px);
-  border: 1px solid rgb(255, 255, 255);
-
-  background: rgb(34, 84, 150);
-  background: linear-gradient(180deg,
-      rgba(34, 84, 150, 0.0802696078431373) 22%,
-      rgba(255, 255, 255, 0.16430322128851538) 100%);
-
-  display: flex;
-  flex-direction: column;
   align-items: center;
+  text-decoration: none;
+  border-radius: 10px;
+}
+.conjJogo select,
+.conjNome input {
+  border-radius: 10px;
+  width: 20em;
+  display: flex;
   justify-content: center;
-
-
   align-items: center;
-  gap: 20px;
+  text-decoration: none;
 }
 
-.jogos {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.selectJogo {
+  font-weight: 600;
+  font-size: 15px;
+  width: 20em;
+  height: 2em;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  color: #000000;
 }
 
-.titulo-hist {
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  justify-content: center;
-  width: 100%;
-  overflow: hidden;
-  color: white;
+.selectJogo option {
+  color: #252525;
+  font-weight: 500;
+}
+.selectJogo:focus {
+  border: solid 2px #007bff;
+  outline: none;
 }
 
-.box-oveflow{
-  width: 35em;
-  height: 30em;
-  display: flex;
+.btnLupa button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
 
+.btnLupa img {
+  width: 35px;
+  height: 35px;
 }
 
 .conteudo-historico {
-  width: 100%;
-  padding-top: 15px;
-}
-
-.list-content{
-  max-height: 300px;
-  overflow-y: auto;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-.Opcoes-hist {
+  width: 60em;
+  height: 32em;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  gap: 1.2em;
-
-  width: 100%;
-  height: 150px;
-  background: rgba(255, 255, 255, 0.02);
+  align-items: center;
+  padding-top: 15px;
+  justify-content: start;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(2.8px);
-  -webkit-backdrop-filter: blur(2.8px);
-  border: 1px solid rgb(255, 255, 255);
-  background-color: rgba(84, 108, 140, 0.5);
-
-  color: white;
-  padding: 10px;
-
-  .titulo {
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    flex-direction: row;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .row {
-    font-size: 14px;
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
-    width: 100%;
-    gap: 10px;
-  }
-
-  .list {
-    font-size: 1.1em;
-    display: flex;
-    flex-direction: row;
-    gap: 0.5em;
-  }
-
-  .download {
-    font-size: 14px;
-  }
-
-  .download:hover {
-    text-decoration: underline;
-  }
+  backdrop-filter: blur(3.8px);
+  -webkit-backdrop-filter: blur(3.8px);
+  overflow-y: auto;
 }
 
-.download {
+.box {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  margin: 5px;
+  width: 56em;
+  height: 13em;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
 }
 
-.box-oveflow {
+.left {
+  width: 12em;
+  height: 12em;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.left img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.right {
+  width: 42em;
+  height: 12em;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px;
+}
+
+.content-r-left {
   display: flex;
   flex-direction: column;
-  gap: 2em;
-  overflow: auto;
-  padding: 20px;
+  align-items: start;
+  justify-content: space-between;
+  width: 30em;
+  height: 8em;
+  margin: 14px;
 }
 
-
-@supports (scrollbar-color: auto) {
-  .box-oveflow {
-    scrollbar-color: #ffffff transparent;
-  }
+.p-nome {
+  width: 100%;
+  height: 25px;
+  display: flex;
+  align-items: center;
 }
 
-@supports selector(::-webkit-scrollbar) {
-  .box-oveflow::-webkit-scrollbar {
-    background: rgb(255, 255, 255);
-  }
+.p-nome {
+  font-size: 20px;
+  font-weight: 700;
+}
 
-  .box-oveflow::-webkit-scrollbar-thumb {
-    background: transparent;
-  }
+.p-undetailed {
+  font-size: 13px;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  width: 100%;
+  align-items: center;
+  font-weight: 600;
+}
+
+.p-more-details {
+  font-weight: 400;
+  font-size: 13px;
+  display: flex;
+  justify-content: start;
+  width: 100%;
+  height: 20px;
+}
+
+.p-more-details a {
+  color: #80eedf;
+}
+
+.p-more-details a:hover {
+  border-bottom: 1px solid;
+  cursor: pointer;
+}
+
+.content-r-right {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  padding: 5px;
+  justify-content: space-between;
+  text-align: justify;
+  width: 10em;
+  height: 8em;
+  margin: 10px;
+}
+
+.p-download {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  height: 25px;
+  font-weight: 500;
+  font-size: 10px;
+}
+
+.p-download p:hover {
+  cursor: pointer;
+  border-bottom: solid 1px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  height:3em;
+}
+
+.page-input {
+  width: 30px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px;
+  color: black;
+  background-color: green;
+}
+
+.button-change {
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  text-decoration: none;
+  border: none;
+  transition: transform 0.3s;
+}
+
+.button-change:hover {
+  transform: scale(1.2);
 }
