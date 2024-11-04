@@ -8,23 +8,18 @@
   </div>
   <footer class="rodape">
     <div class="redes-sociais">
-      <h3>Visual Essence</h3>
-      <div class="redes">
-        <img [src]="Insta" alt="">
-        <img [src]="X" alt="">
-        <img [src]="Face" alt="">
-      </div>
+      <img class="visual" loading="lazy" src="../../../assets/HomeImages/VisualEssenceLogo.svg"/>
     </div>
     <div class="other-pages">
       <div class="pages">
         <ul>
-          <li>Sobre nós</li>
-          <li>Painel Educativo</li>
-          <li>
+          <li routerLink="/Pais/Sobre-nos">Sobre nós</li>
+          <li routerLink="/Pais/Painel-Educativo">Painel Educativo</li>
+          <!-- <li>
             <a [routerLink]="['/contato']" routerLinkActive="router-link-active">
               Contato
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
       <span class="regua"></span>

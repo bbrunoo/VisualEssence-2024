@@ -13,18 +13,9 @@ export class SalasService {
 
   apiUrl = 'https://localhost:5200/Salas'
 
-  // getSalas(): Observable<GetSala[]>
-  // {
-  //   return this.http.get<GetSala[]>(`${this.apiUrl}`);
-  // }
-
   createSala(sala: Sala): Observable<Sala>{
     return this.http.post<Sala>(`${this.apiUrl}`, sala);
   }
-
-  // getSalaById(id: string): Observable<any> {
-  //   return this.http.get<any>(`${this.apiUrl}/${id}`);
-  // }
 
   getSalaByUserId(userId: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/User/${userId}`);

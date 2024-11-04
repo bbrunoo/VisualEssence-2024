@@ -1,3 +1,4 @@
+import { DoePageComponent } from './Pages/PaisHome/doe-page/doe-page.component';
 import { DoeInfoComponent } from './Pages/PaisHome/doe-info/doe-info.component';
 import { Routes } from '@angular/router';
 
@@ -7,21 +8,14 @@ import { CadastroPaisComponent } from './Pages/Conta/cadastro-pais/cadastro-pais
 import { LoginInstComponent } from './Pages/Conta/login-inst/login-inst.component';
 import { CadastroInstComponent } from './Pages/Conta/cadastro-inst/cadastro-inst.component';
 
-import { EntrarComponent } from './Pages/Conta/entrar/entrar.component';
-
-import { EsquecerSenhaComponent } from './Pages/Conta/esquecer-senha/esquecer-senha.component';
-
 import { OpcEntrarComponent } from './Pages/Conta/opc-entrar/opc-entrar.component';
 
 import { ImageUploadComponent } from './Pages/Instituicao/image-upload/image-upload.component';
-
-// import { HomeComponent } from './Pages/Home/home.component';
 
 import { SobreNosComponent } from './Pages/PaisHome/sobre-nos/sobre-nos.component';
 import { PainelEducativoComponent } from './Pages/PaisHome/painel-educativo/painel-educativo.component';
 
 import { AdminContatoComponent } from './Pages/admin-contato/admin-contato.component';
-
 
 import { HomeInstComponent } from './Pages/Instituicao/home-inst/home-inst.component';
 import { CriarSalaComponent } from './Pages/Instituicao/criar-sala/criar-sala.component';
@@ -68,13 +62,14 @@ import { ContatoComponent } from './Pages/Contato/contato.component';
 import { AuthGuard } from './guards/user-authenticated.guard';
 import { HistoricoComponent } from './Pages/Instituicao/historico/historico.component';
 import { HistoricoPaisComponent } from './Pages/PaisHome/historico-pais/historico-pais.component';
+import { OpcoesDaltonismoComponent } from './Pages/PaisHome/opcoes-daltonismo/opcoes-daltonismo.component';
+import { OpcoesMiopiaComponent } from './Pages/PaisHome/opcoes-miopia/opcoes-miopia.component';
+import { OpcoesDaltonismoInstComponent } from './Pages/Instituicao/opcoes-daltonismo-inst/opcoes-daltonismo-inst.component';
+import { OpcoesMiopiaInstComponent } from './Pages/Instituicao/opcoes-miopia-inst/opcoes-miopia-inst.component';
 
-import { TesteComponent } from './Pages/teste/teste.component';
 
 export const routes: Routes = [
-  // {path: '', component: EntrarComponent},
   {path: 'opc-entrar', component: OpcEntrarComponent},
-  {path: 'teste', component: TesteComponent, canActivate: [AuthGuard]},
   {path: '', component: OpcEntrarComponent},
 
   {path: 'contato', component: ContatoComponent},
@@ -88,16 +83,15 @@ export const routes: Routes = [
 
   {path: 'admin-contato', component: AdminContatoComponent},
 
-  // {path: 'opc-entrar', component: OpcEntrarComponent},
-
-  {path: 'esquecer-senha', component: EsquecerSenhaComponent},
-
   {path: 'doe-info', component: DoeInfoComponent},
 
   {path: 'Pais/Home', component: HomeComponent},
   {path: 'Pais/Painel-Educativo', component: PainelEducativoComponent},
   {path: 'Pais/Sobre-nos', component: SobreNosComponent},
   {path: 'Pais/Jogos/Historico', component: HistoricoPaisComponent},
+  {path: 'Pais/Jogos/Opcoes-Daltonismo', component: OpcoesDaltonismoComponent},
+  {path: 'Pais/Jogos/Opcoes-Miopia', component: OpcoesMiopiaComponent},
+  {path: 'Pais/Doe', component: DoePageComponent},
 
   {path: 'instituicao/home', component: HomeInstComponent, canActivate: [AuthGuard]},
   {path: 'instituicao/criar-sala', component: CriarSalaComponent, canActivate: [AuthGuard]},
@@ -108,6 +102,8 @@ export const routes: Routes = [
   {path: 'instituicao/dados-cadastro/:id', component: DadCadastComponent, canActivate: [AuthGuard]},
   {path: 'instituicao/editar-dados/:id', component: EdtDadComponent, canActivate: [AuthGuard]},
   {path: 'instituicao/jogos', component: HomeGameSectionComponent, canActivate: [AuthGuard]},
+  {path: 'instituicao/jogos/opcoes-daltonismo', component: OpcoesDaltonismoInstComponent, canActivate: [AuthGuard]},
+  {path: 'instituicao/jogos/opcoes-miopia', component: OpcoesMiopiaInstComponent, canActivate: [AuthGuard]},
   {path: 'instituicao/historico', component: HistoricoComponent, canActivate: [AuthGuard]},
 
   {path: 'instituicao/jogos/cadastrar-crianca-inst', component: CadastroCriancaInstComponent, canActivate: [AuthGuard]},
@@ -128,5 +124,7 @@ export const routes: Routes = [
   {path: 'Pais/jogos/cadastrar-crianca-figuras', component: CadastroCriancaFigurasComponent, canActivate: [AuthGuard]},
   {path: 'Pais/jogos/figuras-coloridas/instrucoes', component: FigurasColoridasInstrucoesComponent, canActivate: [AuthGuard]},
   {path: 'Pais/jogos/figuras-coloridas', component: FigurasColoridasComponent, canActivate: [AuthGuard]},
-  {path: 'Pais/jogos/figuras-coloridas/result', component: FigurasColoridasResultComponent}
+  {path: 'Pais/jogos/figuras-coloridas/result', component: FigurasColoridasResultComponent},
+
+
 ];

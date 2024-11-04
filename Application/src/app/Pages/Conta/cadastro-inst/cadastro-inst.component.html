@@ -39,7 +39,7 @@
                   <label>Confirmar Senha</label>
                   <div class="hide-show">
                     <input [type]="showPassword2 ? 'text' : 'password'" name="confirmarSenha" [(ngModel)]="confirmarSenha" required/>
-                      <img class="toggle-password" width="20px" height="20px" (click)="toggleShowPasswordConfirm()" [src]="showPassword2 ? 'assets/olho.png' : 'assets/ocultar.png'">
+                      <img loading="lazy" class="toggle-password" width="20px" height="20px" (click)="toggleShowPasswordConfirm()" [src]="showPassword2 ? 'assets/olho.png' : 'assets/ocultar.png'">
                   </div>
 
                   <div class="errorMessage" *ngIf="confirmarSenha !== UserInst.senha && cadastroForm.controls['confirmarSenha']?.touched">

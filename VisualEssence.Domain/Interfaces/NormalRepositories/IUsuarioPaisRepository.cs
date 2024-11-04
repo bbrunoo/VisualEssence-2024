@@ -1,4 +1,5 @@
-﻿using VisualEssence.Domain.DTOs;
+﻿using Microsoft.AspNetCore.Http;
+using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.GenericRepository;
 using VisualEssence.Domain.Models;
 
@@ -14,8 +15,7 @@ namespace VisualEssence.Domain.Interfaces.NormalRepositories
         Task<IEnumerable<UserPais>> GetUser();
         Task<UserPais> Delete(UserPais userPais);
         Task<bool> Exists(Guid id);
-
-
-
+        Task<bool> UploadFotoAsync(Guid userId, IFormFile file, string bucketName);
+        Task<string> GetFotoUrlAsync(Guid userId, string bucketName);
     }
 }

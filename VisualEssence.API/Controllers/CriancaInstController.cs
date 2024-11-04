@@ -13,11 +13,13 @@ namespace VisualEssence.API.Controllers
     {
         private readonly ICriancaInstRepository _repository;
         private readonly ISalaRepository _salaRepository;
+        private readonly string _bucketName;
 
-        public CriancaInstController(ICriancaInstRepository repository, ISalaRepository salaRepository)
+        public CriancaInstController(ICriancaInstRepository repository, ISalaRepository salaRepository, IConfiguration configuration)
         {
             _repository = repository;
             _salaRepository = salaRepository;
+            _bucketName = configuration["AWS:BucketName"];
         }
 
         [HttpGet]
@@ -55,10 +57,13 @@ namespace VisualEssence.API.Controllers
             {
                 return Forbid("Usuário não autorizado a acessar esses dados.");
             }
+            foreach (var c in criancas)
+            {
+                Console.WriteLine(c.JogadaInst.Count);
+            }
 
             return Ok(criancas);
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Create(CriancaInstDTO criancaDto)
@@ -214,10 +219,7 @@ namespace VisualEssence.API.Controllers
         }
 
         [HttpGet("filter")]
-        public async Task<ActionResult<IEnumerable<CriancaInst>>> FilterChildren(
-    [FromQuery] Guid? idSala,
-    [FromQuery] string? codigo,
-    [FromQuery] string? nomeCrianca)
+        public async Task<ActionResult<IEnumerable<CriancaInst>>> FilterChildren([FromQuery] Guid? idSala, [FromQuery] string? codigo, [FromQuery] string? nomeCrianca)
         {
             var userClaim = User.FindFirst("id");
             if (userClaim == null)
@@ -292,57 +294,43 @@ namespace VisualEssence.API.Controllers
             }
         }
 
-
-
-
-        [HttpPut("upload-foto/{id}")]
-        public async Task<IActionResult> UploadFoto(Guid id, IFormFile file)
+        [HttpPut("upload-foto/{criancaId}")]
+        public async Task<IActionResult> UploadFotoAsync(Guid criancaId, IFormFile file)
         {
-            if (file == null || file.Length == 0)
-                return BadRequest("Nenhuma imagem enviada.");
+            await _repository.UploadFotoAsync(criancaId, file, _bucketName);
+            return Ok("Foto adicionada com sucesso.");
+        }
 
+        [HttpGet("foto/{criancaId}")]
+        public async Task<IActionResult> GetFotoUrlAsync(Guid criancaId)
+        {
             try
             {
-                var crianca = await _repository.GetByIdAsync(id);
-                if (crianca == null)
-                {
-                    return NotFound("Criança não encontrada.");
-                }
-
-                using (var memoryStream = new MemoryStream())
-                {
-                    await file.CopyToAsync(memoryStream);
-                    var fotoBytes = memoryStream.ToArray();
-
-                    crianca.Foto = BitConverter.ToString(fotoBytes).Replace("-", string.Empty);
-                    await _repository.UpdateCrianca(id, crianca);
-                }
-
-                return Ok("Upload realizado com sucesso!");
+                var fotoUrl = await _repository.GetFotoUrlAsync(criancaId, _bucketName);
+                return Ok(new { Url = fotoUrl });
             }
-            catch (Exception ex)
+            catch (KeyNotFoundException e)
             {
-                Console.WriteLine($"Erro ao fazer upload da foto: {ex.Message}");
-                return StatusCode(500, "Erro interno ao processar o upload.");
+                return NotFound(e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, $"Erro ao obter a foto: {e.Message}");
             }
         }
 
-        [HttpGet("foto/{id}")]
-        public async Task<IActionResult> GetFoto(Guid id)
-        {
-            var crianca = await _repository.GetByIdAsync(id);
-            if (crianca == null || crianca.Foto == null)
-            {
-                return NotFound("Foto não encontrada.");
-            }
+        //[HttpGet("crianças-com-jogadas")]
+        //public async Task<IActionResult> GetCriancasComJogadas([FromQuery] Guid userId)
+        //{
+        //    if (userId == Guid.Empty)
+        //    {
+        //        return BadRequest("O ID do usuário é obrigatório.");
+        //    }
 
-            byte[] fotoBytes = Enumerable.Range(0, crianca.Foto.Length)
-                                         .Where(x => x % 2 == 0)
-                                         .Select(x => Convert.ToByte(crianca.Foto.Substring(x, 2), 16))
-                                         .ToArray();
+        //    var criancasComJogadas = await _repository.GetAllCriancasComJogadasByUserIdAsync(userId);
 
-            var base64Foto = Convert.ToBase64String(fotoBytes);
-            return Ok(new { foto = $"data:image/jpeg;base64,{base64Foto}" });
-        }
+        //    return Ok(criancasComJogadas);
+        //}
+
     }
 }

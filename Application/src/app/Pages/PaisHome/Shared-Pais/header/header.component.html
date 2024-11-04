@@ -3,7 +3,7 @@
     <div class="menu">
       <div class="content-menu">
         <div class="logo">
-          <img
+          <img loading="lazy"
             (click)="scrollTo('sobre')"
             src="../../../assets/HomeImages/VisualEssenceLogo.svg"
           />
@@ -20,10 +20,9 @@
             <li><a (click)="scrollTo('sobre')">HOME</a></li>
             <li><a (click)="scrollTo('doe-info')">ONGs</a></li>
             <li><a (click)="scrollTo('jogos')">JOGOS</a></li>
-            <li><a routerLink="/Pais/Jogos/Historico">HISTORICO</a></li>
             <li>
               <button class="btnIdi">
-                <img src="assets/bdEUA.webp" alt="Inglês" />
+                <img loading="lazy" src="assets/bdEUA.webp" alt="Inglês" />
               </button>
 
             </li>
@@ -32,17 +31,12 @@
 
         <div class="MenuAcco">
           <div *ngIf="user" class="MenuConta">
-            <img
-              [src]="Perfil"
-              alt=""
-              (click)="openSidenav()"
-              class="profile-img"
-            />
-            <p>{{ user.nome }}</p>
+            <img loading="lazy" mat-button (click)="openSideModal(userId)" [src]="userInfo?.foto || '../../../../../assets/user.png'"  alt=""/>
+            <p>{{ userInfo?.nome }}</p>
           </div>
 
           <div class="MenuLogout">
-            <img
+            <img loading="lazy"
               [src]="Logout"
               alt=""
               [routerLink]="['/opc-entrar']"
@@ -53,21 +47,4 @@
       </div>
     </div>
   </header>
-
-  <!-- Sidebar Menu -->
-  <mat-sidenav #sidenav position="end" mode="over" class="sidenav">
-    <div class="profile-sidebar-content">
-      <img [src]="Perfil" alt="Profile Image" class="sidebar-profile-img" />
-      <button mat-raised-button color="primary">Configurações</button>
-      <button
-        mat-raised-button
-        color="warn"
-        (click)="logout()"
-        [routerLink]="['/opc-entrar']"
-      >
-        Logout
-      </button>
-      <button routerLink="/Pais/Jogos/Historico">historico</button>
-    </div>
-  </mat-sidenav>
 </mat-sidenav-container>

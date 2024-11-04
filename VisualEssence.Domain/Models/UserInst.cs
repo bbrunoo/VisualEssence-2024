@@ -17,6 +17,7 @@ namespace VisualEssence.Domain.Models
         public byte[] SenhaSalt { get; set; }
         public bool IsAdmin { get; set; }
         public string Senha { get; set; }
+        public string? Foto { get; set; }
         public ICollection<CriancaInst> Criancas { get; set; }
         public ICollection<Sala> Salas { get; set; }
         public ICollection<JogadaInst> Jogadas { get; set; }

@@ -1,11 +1,11 @@
 <div class="container">
   <app-inst-menu></app-inst-menu>
   <app-vlibras></app-vlibras>
+  <app-chat-bot-icone></app-chat-bot-icone>
   <div class="conteudo" *ngIf="!showNew" [ngClass]="{ fade_In: !showNew }">
     <div class="formulario">
       <form #criancaForm="ngForm" (ngSubmit)="cadastrarCrianca()" novalidate>
         <legend>DADOS CRIANÇA</legend>
-
         <div class="I">
           <input
             type="text"
@@ -18,7 +18,6 @@
           />
           <label for="nomeC">Nome</label>
         </div>
-
         <br />
 
         <div class="linD">

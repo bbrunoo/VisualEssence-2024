@@ -2,12 +2,12 @@
 <div class="container">
   <div class="conteudo">
       <div class="img">
-          <img src="../../../../assets/astronauta.png" alt="">
+          <img loading="lazy" src="../../../../assets/astronauta.png" alt="">
       </div>
       <div class="forms">
           <div class="cadastro">
               <div class="form1">
-                  <img class="image_forms" src="../../../../assets/olhosmenu.png" alt="">
+                  <img loading="lazy" class="image_forms" src="../../../../assets/olhosmenu.png" alt="">
                   <select class="input_nome" id="salas" [(ngModel)]="selectedSalaId" (change)="onSalaChange()">
                       <option value="" disabled selected>Selecione uma sala</option>
                       <option *ngFor="let sala of salas" [value]="sala.id">

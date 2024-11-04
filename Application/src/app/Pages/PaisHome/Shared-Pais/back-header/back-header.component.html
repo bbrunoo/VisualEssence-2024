@@ -1,26 +1,26 @@
 <header>
   <div class="menu">
     <div class="back-opt">
-      <img [routerLink]="['/Pais/Home']" src="../../../../../assets/home.png" />
+      <img loading="lazy" [routerLink]="['/Pais/Home']" src="../../../../../assets/home.png" />
       <div class="back">Voltar</div>
     </div>
 
     <div class="MenuOpt">
       <ul>
         <div class="logo">
-          <img [routerLink]="['/Pais/Home']" src="../../../../../assets/home.png" src="../../../assets/HomeImages/VisualEssenceLogo.svg" />
+          <img loading="lazy" [routerLink]="['/Pais/Home']" src="../../../../../assets/home.png" src="../../../assets/HomeImages/VisualEssenceLogo.svg" />
         </div>
       </ul>
     </div>
 
     <div class="MenuAcco">
       <div *ngIf="user" class="MenuConta">
-        <img [src]="Perfil" alt="" />
+        <img loading="lazy" [src]="Perfil" alt="" />
         <p>{{ user.nome }}</p>
       </div>
 
       <div class="MenuLogout">
-        <img
+        <img loading="lazy"
           [src]="Logout"
           alt=""
           [routerLink]="['/opc-entrar']"
