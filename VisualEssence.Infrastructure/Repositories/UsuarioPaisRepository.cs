@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Amazon.S3;
+using Amazon.S3.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using System.Text;
 using VisualEssence.Domain.DTOs;
@@ -11,10 +14,12 @@ namespace VisualEssenceAPI.Repositories
     public class UsuarioPaisRepository : IUsuarioPaisRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly IAmazonS3 _s3Client;
 
-        public UsuarioPaisRepository(ApplicationDbContext context)
+        public UsuarioPaisRepository(ApplicationDbContext context, IAmazonS3 s3Client)
         {
             _context = context;
+            _s3Client = s3Client;
         }
 
         public async Task<bool> UsuarioExistente(string email)
@@ -75,6 +80,62 @@ namespace VisualEssenceAPI.Repositories
             _context.UserPais.Update(usuarioExistente);
             await _context.SaveChangesAsync();
             return userDto;
+        }
+        public async Task<bool> UploadFotoAsync(Guid userId, IFormFile file, string bucketName)
+        {
+            var user = await _context.UserPais.FirstOrDefaultAsync(c => c.Id == userId);
+            if (user == null)
+            {
+                throw new KeyNotFoundException("user não encontrado.");
+            }
+
+            var bucketExist = await Amazon.S3.Util.AmazonS3Util.DoesS3BucketExistV2Async(_s3Client, bucketName);
+            if (!bucketExist) throw new Exception($"Bucket {bucketName} não existe.");
+
+            if (!string.IsNullOrEmpty(user.Foto))
+            {
+                var deleteRequest = new DeleteObjectRequest
+                {
+                    BucketName = bucketName,
+                    Key = user.Foto
+                };
+                await _s3Client.DeleteObjectAsync(deleteRequest);
+            }
+
+            var key = $"{userId}/{file.FileName}";
+
+            var request = new PutObjectRequest
+            {
+                BucketName = bucketName,
+                Key = key,
+                InputStream = file.OpenReadStream()
+            };
+            request.Metadata.Add("Content-Type", file.ContentType);
+            await _s3Client.PutObjectAsync(request);
+
+            user.Foto = key;
+            _context.UserPais.Update(user);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+        public async Task<string> GetFotoUrlAsync(Guid userId, string bucketName)
+        {
+            var user = await _context.UserPais.FirstOrDefaultAsync(c => c.Id == userId);
+            if (user == null || string.IsNullOrEmpty(user.Foto))
+            {
+                throw new KeyNotFoundException("Criança ou imagem não encontrada.");
+            }
+
+            var urlRequest = new GetPreSignedUrlRequest
+            {
+                BucketName = bucketName,
+                Key = user.Foto,
+                Expires = DateTime.UtcNow.AddMinutes(5)
+            };
+
+            var url = _s3Client.GetPreSignedURL(urlRequest);
+            return url;
         }
     }
 }

@@ -7,21 +7,14 @@ import { CadastroPaisComponent } from './Pages/Conta/cadastro-pais/cadastro-pais
 import { LoginInstComponent } from './Pages/Conta/login-inst/login-inst.component';
 import { CadastroInstComponent } from './Pages/Conta/cadastro-inst/cadastro-inst.component';
 
-import { EntrarComponent } from './Pages/Conta/entrar/entrar.component';
-
-import { EsquecerSenhaComponent } from './Pages/Conta/esquecer-senha/esquecer-senha.component';
-
 import { OpcEntrarComponent } from './Pages/Conta/opc-entrar/opc-entrar.component';
 
 import { ImageUploadComponent } from './Pages/Instituicao/image-upload/image-upload.component';
-
-// import { HomeComponent } from './Pages/Home/home.component';
 
 import { SobreNosComponent } from './Pages/PaisHome/sobre-nos/sobre-nos.component';
 import { PainelEducativoComponent } from './Pages/PaisHome/painel-educativo/painel-educativo.component';
 
 import { AdminContatoComponent } from './Pages/admin-contato/admin-contato.component';
-
 
 import { HomeInstComponent } from './Pages/Instituicao/home-inst/home-inst.component';
 import { CriarSalaComponent } from './Pages/Instituicao/criar-sala/criar-sala.component';
@@ -69,12 +62,9 @@ import { AuthGuard } from './guards/user-authenticated.guard';
 import { HistoricoComponent } from './Pages/Instituicao/historico/historico.component';
 import { HistoricoPaisComponent } from './Pages/PaisHome/historico-pais/historico-pais.component';
 
-import { TesteComponent } from './Pages/teste/teste.component';
 
 export const routes: Routes = [
-  // {path: '', component: EntrarComponent},
   {path: 'opc-entrar', component: OpcEntrarComponent},
-  {path: 'teste', component: TesteComponent, canActivate: [AuthGuard]},
   {path: '', component: OpcEntrarComponent},
 
   {path: 'contato', component: ContatoComponent},
@@ -87,10 +77,6 @@ export const routes: Routes = [
   {path: 'cadastro-inst', component: CadastroInstComponent},
 
   {path: 'admin-contato', component: AdminContatoComponent},
-
-  // {path: 'opc-entrar', component: OpcEntrarComponent},
-
-  {path: 'esquecer-senha', component: EsquecerSenhaComponent},
 
   {path: 'doe-info', component: DoeInfoComponent},
 
@@ -128,5 +114,7 @@ export const routes: Routes = [
   {path: 'Pais/jogos/cadastrar-crianca-figuras', component: CadastroCriancaFigurasComponent, canActivate: [AuthGuard]},
   {path: 'Pais/jogos/figuras-coloridas/instrucoes', component: FigurasColoridasInstrucoesComponent, canActivate: [AuthGuard]},
   {path: 'Pais/jogos/figuras-coloridas', component: FigurasColoridasComponent, canActivate: [AuthGuard]},
-  {path: 'Pais/jogos/figuras-coloridas/result', component: FigurasColoridasResultComponent}
+  {path: 'Pais/jogos/figuras-coloridas/result', component: FigurasColoridasResultComponent},
+
+
 ];

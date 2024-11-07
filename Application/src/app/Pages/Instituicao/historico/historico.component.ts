@@ -1,80 +1,173 @@
+import { Historico } from './../../../Models/historico.model';
 import { AuthService } from './../../../../Services/Auth/AuthService/auth.service';
 import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { Component, OnInit } from '@angular/core';
 import { InstMenuComponent } from "../shared-menu/inst-menu/inst-menu.component";
 import { RouterLink } from '@angular/router';
 import { HistoricoService } from '../Services/historico-service/historico.service';
-import { NgFor, NgIf } from '@angular/common';
-import { Historico } from '../../../Models/historico.model';
-import { Jogada } from '../../../Models/MiopiaGame/jogada.model';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { SalasService } from '../Services/salas/salas.service';
+import { GetSala } from '../../../Models/InstituicaoModels/GetSala.model';
+import { CadastroUnicoService } from '../Services/cadastrounico/cadastro-unico.service';
+import { PictureService } from '../Services/picture-service/picture.service';
+import { GetCriancas } from '../../../Models/InstituicaoModels/GetCriancas.model';
+import { CriancaComJogosDTO, HistoricoJogadasDTO } from '../../../Models/HistoricoJogadas.model';
 
 @Component({
   selector: 'app-historico',
   standalone: true,
-  imports: [VlibrasComponent, InstMenuComponent, RouterLink, NgFor, NgIf],
+  imports: [
+    VlibrasComponent,
+    RouterLink,
+    NgIf,
+    CommonModule,
+    InstMenuComponent,
+    NgFor,
+    FormsModule,
+    NgxMaskPipe,
+    NgxMaskDirective,
+    ReactiveFormsModule,
+  ],
   templateUrl: './historico.component.html',
   styleUrl: './historico.component.css'
 })
 export class HistoricoComponent implements OnInit {
-  historico: Historico[] = [];
-  miopia = "Miopia";
-  daltonismo = "Daltonismo";
-  figurascoloridas = "Figuras Coloridas";
+  historico: CriancaComJogosDTO[] = [];
+  nomeJogo: string = '';
+  nomeCrianca: string = '';
+  pageNumber: number = 1;
+  pageSize: number = 10;
+  userInstId: string = String(this.authService.getUserIdFromToken());
+  salas: GetSala[] = [];
+  idsala?: string;
+  DataJogo: string = "";
 
-  userInstId = String(this.authService.getUserIdFromToken());
-
-  constructor(private historicoService: HistoricoService, private authService:AuthService) {}
+  constructor(
+    private historicoService: HistoricoService,
+    private salasService: SalasService,
+    private authService: AuthService,
+    private dados: CadastroUnicoService,
+    private pictureService: PictureService,
+  ) { }
 
   ngOnInit(): void {
-    this.getHistoricoMiopia();
+    this.getUltimosDoisJogos();
   }
 
-  truncateName(name: string): string {
-    const names = name.split(' ');
-    if (names.length > 1) {
-      const firstName = names[0];
-      const lastName = names[names.length - 1];
-      return `${firstName} ${lastName}`;
+  onSearch() {
+    console.log('onSearch chamado');
+    console.log('nomeJogo:', this.nomeJogo, 'nomeCrianca:', this.nomeCrianca);
+    this.pageNumber = 1;
+    this.getUltimosDoisJogos();
+  }
+
+  getUltimosDoisJogos() {
+    console.log('getUltimosDoisJogos chamado');
+    this.historicoService.getUltimosDoisJogosPorCrianca(this.nomeJogo, this.nomeCrianca, this.pageNumber, this.pageSize)
+      .subscribe(
+        response => {
+          console.log('Resposta da API:', response);
+          this.historico = response.items;
+          this.totalPages = response.totalPages;
+        },
+        error => {
+          console.error('Erro ao carregar os últimos dois jogos por criança!', error);
+        }
+      );
+  }
+
+
+  loadSalas(): void {
+    this.salasService.getSalaByUserId(this.userInstId).subscribe({
+      next: (response) => {
+        this.salas = response;
+      },
+      error: (err) => {
+        console.error('Não foi possível carregar as salas!', err);
+      },
+    });
+  }
+
+  loadImages(): void {
+    this.historico.forEach((crianca) => {
+      this.pictureService.getFoto(crianca.idCrianca).subscribe(
+        (response) => {
+          console.log('Resposta da imagem:', response);
+          if (response && response.url) {
+            crianca.foto = response.url;
+          } else {
+            crianca.foto = '../../../assets/user.png';
+          }
+        },
+        (error) => {
+          console.log('Erro ao carregar a foto da criança:', error);
+          crianca.foto = '../../../assets/user.png';
+        }
+      );
+    });
+  }
+
+
+  processarDataNascimento() {
+    if (this.DataJogo) {
+      const [dia, mes, ano] = this.DataJogo.split('-');
+      const data = new Date(+ano, +mes - 1, +dia);
+      console.log(data);
     }
-    return name;
   }
 
-  getHistoricoMiopia() {
-    this.historicoService.getHistoricoMiopia(this.miopia, this.userInstId).subscribe(
-      response => {
-        console.log('Salas carregadas com sucesso!', response);
-        this.historico = response;
-        console.log("miopia: ", response);
-      },
-      error => {
-        console.error('Não foi possível carregar as salas!', error);
-      }
-    )
+  clearFilters(): void {
+    this.nomeJogo = '';
+    this.nomeCrianca = '';
+    this.pageNumber = 1;
+    this.getUltimosDoisJogos();
   }
 
-  getHistoricoDaltonismo() {
-    this.historicoService.getHistoricoDaltonismo(this.daltonismo, this.userInstId).subscribe(
-      response => {
-        console.log('Salas carregadas com sucesso!', response);
-        this.historico = response;
-        console.log("daltno: ", response);
-      },
-      error => {
-        console.error('Não foi possível carregar as salas!', error);
-      }
-    )
+  totalPages: number = 10;
+
+  onPageChange(event: string) {
+    const newPageNumber = parseInt(event, 10);
+    if (!isNaN(newPageNumber) && newPageNumber >= 1 && newPageNumber <= this.totalPages) {
+      this.pageNumber = newPageNumber;
+    } else {
+      this.pageNumber = 1;
+    }
+    this.getUltimosDoisJogos();
   }
 
-  getHistoricoFigurasColoridas() {
-    this.historicoService.getHistoricoFigurasColoridas(this.figurascoloridas, this.userInstId).subscribe(
-      response => {
-        console.log('Salas carregadas com sucesso!', response);
-        this.historico = response;
-        console.log("Figuras coloridas: ", response);
-      },
-      error => {
-        console.error('Não foi possível carregar as salas!', error);
-      }
-    )
+  goToFirstPage() {
+    this.pageNumber = 1;
+    this.getUltimosDoisJogos();
+  }
+
+  goToLastPage() {
+    this.pageNumber = this.totalPages;
+    this.getUltimosDoisJogos();
+  }
+
+  nextPage() {
+    if (this.pageNumber < this.totalPages) {
+      this.pageNumber++;
+      this.getUltimosDoisJogos();
+    }
+  }
+
+  prevPage() {
+    if (this.pageNumber > 1) {
+      this.pageNumber--;
+      this.getUltimosDoisJogos();
+    }
+  }
+
+  validateInput(event: KeyboardEvent) {
+    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
+    if (allowedKeys.indexOf(event.key) !== -1) {
+      return;
+    }
+    if (!/^[0-9]$/.test(event.key)) {
+      event.preventDefault();
+    }
   }
 }

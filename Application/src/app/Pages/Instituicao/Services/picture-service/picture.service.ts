@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CriancaImagem } from '../../../../Models/CriancaImagem.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class PictureService {
     return this.http.put(`https://localhost:5200/CriancaInst/upload-foto/${id}`, formData, { responseType: 'text' });
   }
 
-  getFoto(id: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/foto/${id}`);
+  getFoto(id: string): Observable<CriancaImagem> {
+    return this.http.get<CriancaImagem>(`${this.apiUrl}/foto/${id}`);
   }
 
 }

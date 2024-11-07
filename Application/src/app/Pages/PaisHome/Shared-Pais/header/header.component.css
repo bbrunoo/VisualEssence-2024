@@ -2,51 +2,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
 
 * {
-    font-family: "Montserrat", sans-serif;
-    color: white;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-img{
+img {
   cursor: pointer;
 }
 
-a{
+a {
   cursor: pointer;
 }
 
 .container {
-    background-image: url("/src/assets/HomeImages/star1.png"),
-        url("/src/assets/HomeImages/allplanets1.png"),
-        url("/src/assets/HomeImages/planeta2.png"),
-        url("/src/assets/HomeImages/background.png");
-    background-size: cover, cover, 25% 50%;
-    background-position: 0 0, right -20px top -100px, left -125px bottom -75px;
-    background-repeat: no-repeat;
-    background-color: #010029;
-    width: 100%;
-    height: 100%;
+  background-image: url("/src/assets/HomeImages/star1.png"),
+    url("/src/assets/HomeImages/allplanets1.png"),
+    url("/src/assets/HomeImages/planeta2.png"),
+    url("/src/assets/HomeImages/background.png");
+  background-size: cover, cover, 25% 50%;
+  background-position: 0 0, right -20px top -100px, left -125px bottom -75px;
+  background-repeat: no-repeat;
+  background-color: #010029;
+  width: 100%;
+  height: 100%;
 }
 
-.logo img {
-    width: 100px;
-    height: 80px;
-}
 
 .menu {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: start;
   width: 100%;
-  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
@@ -54,69 +49,92 @@ a{
   pointer-events: none;
 }
 
-.menu a, button, img {
-  pointer-events: auto; /* Garante que os botões possam ser clicados */
+.menu a,
+button,
+img {
+  pointer-events: auto;
 }
 
-.content-menu{
+.logo {
+  width: 20%;
+}
+
+.logo img {
+  width: 100px;
+  height: 80px;
+}
+
+.content-menu {
   display: flex;
   flex-direction: row;
   width: 100%;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 20px 0 20px;
 }
 
-  .MenuOpt ul {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    font-size: 17px;
-    flex-direction: row;
-    width: 50em;
-    font-weight: bold;
+.MenuOpt {
+  width: 40%;
+  height: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MenuOpt ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 17px;
+  flex-direction: row;
+  font-weight: bold;
+  width: 100%;
 }
 
 .btnIdi {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 
-    img {
-        width: 30px;
-        height: 30px;
-    }
+  img {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 a {
-    position: relative;
-    letter-spacing: 0.5px;
+  position: relative;
+  letter-spacing: 0.5px;
 }
 
 
 .MenuAcco {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 2em;
-    align-items: center;
-    font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 2em;
+  align-items: center;
+  font-weight: bold;
+  width: 20%;
+}
 
-    img {
-        width: 35px;
-        height: 35px;
-    }
+.MenuAcco img {
+  width: 35px;
+  height: 35px;
+  margin-right:20px;
 }
 
 .MenuConta {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
 }
 
 .MenuConta img {
-    border-radius: 100%;
+  border-radius: 100%;
 }
+
 .AumDim {
   display: flex;
   gap: 3px;
@@ -132,7 +150,6 @@ a {
   letter-spacing: 0.5px;
 }
 
-/* CSS para a transição do sidenav */
 .sidenav {
   position: fixed;
   right: 0;
@@ -150,4 +167,3 @@ a {
 .sidenav.open {
   transform: translateX(0);
 }
-

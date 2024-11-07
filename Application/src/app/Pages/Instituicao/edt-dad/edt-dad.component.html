@@ -5,8 +5,6 @@
     <div class="formulario">
       <form (ngSubmit)="updateCrianca()">
         <legend>EDITAR DADOS CRIANÇA</legend>
-
-        <!-- Nome -->
         <div class="I">
           <input
             type="text"
@@ -15,14 +13,11 @@
             id="nomeC"
             required
             [(ngModel)]="crianca.nome"
-            [ngModelOptions]="{standalone: true}"
+            [ngModelOptions]="{ standalone: true }"
           />
           <label for="nomeC">Nome</label>
         </div>
-
         <br />
-
-        <!-- Data de Nascimento e CNS -->
         <div class="linD">
           <div class="E">
             <input
@@ -32,7 +27,7 @@
               id="dataNas"
               required
               [(ngModel)]="crianca.dataNascimento"
-              [ngModelOptions]="{standalone: true}"
+              [ngModelOptions]="{ standalone: true }"
             />
             <label for="dataNas" class="esquerdoLabel">Data Nasc.</label>
           </div>
@@ -47,15 +42,12 @@
               [showMaskTyped]="false"
               mask="000 0000 0000 0000"
               [(ngModel)]="crianca.cns"
-              [ngModelOptions]="{standalone: true}"
+              [ngModelOptions]="{ standalone: true }"
             />
             <label for="cns" class="direitoLabel">CNS</label>
           </div>
         </div>
-
         <br />
-
-        <!-- Sexo -->
         <div class="linD">
           <select
             [(ngModel)]="crianca.sexo"
@@ -70,10 +62,7 @@
             </option>
           </select>
         </div>
-
         <br />
-
-        <!-- Nome do Responsável -->
         <div class="I">
           <input
             type="text"
@@ -82,7 +71,7 @@
             id="nomeRes"
             required
             [(ngModel)]="crianca.nomeResp"
-            [ngModelOptions]="{standalone: true}"
+            [ngModelOptions]="{ standalone: true }"
           />
           <label for="nomeRes">Nome Responsável</label>
         </div>
@@ -101,7 +90,7 @@
               [showMaskTyped]="false"
               mask="000.000.000-00"
               [(ngModel)]="crianca.cpf"
-              [ngModelOptions]="{standalone: true}"
+              [ngModelOptions]="{ standalone: true }"
             />
             <label for="cpf" class="esquerdoLabel">CPF</label>
           </div>
@@ -116,7 +105,7 @@
               [showMaskTyped]="false"
               mask="00.000.000-0"
               [(ngModel)]="crianca.rg"
-              [ngModelOptions]="{standalone: true}"
+              [ngModelOptions]="{ standalone: true }"
             />
             <label for="rg" class="direitoLabel">RG</label>
           </div>
@@ -136,7 +125,7 @@
               [showMaskTyped]="false"
               mask="(00)0000-0000"
               [(ngModel)]="crianca.tel1"
-              [ngModelOptions]="{standalone: true}"
+              [ngModelOptions]="{ standalone: true }"
             />
             <label for="tel1" class="esquerdoLabel">Telefone 1</label>
           </div>
@@ -149,7 +138,7 @@
               id="end"
               required
               [(ngModel)]="crianca.endereco"
-              [ngModelOptions]="{standalone: true}"
+              [ngModelOptions]="{ standalone: true }"
             />
             <label for="end" class="direitoLabel">Endereço</label>
           </div>
@@ -169,26 +158,24 @@
               [showMaskTyped]="false"
               mask="(00)0000-0000"
               [(ngModel)]="crianca.tel2"
-              [ngModelOptions]="{standalone: true}"
+              [ngModelOptions]="{ standalone: true }"
             />
             <label for="tel2" class="esquerdoLabel">Telefone 2</label>
-
-
           </div>
 
           <select
-          name="sala"
-          id="sala"
-          required
-          [(ngModel)]="crianca.idSala"
-          [ngModelOptions]="{standalone: true}"
-          (change)="onSalaChange($event)"
-        >
-          <option value="" selected disabled>Salas</option>
-          <option *ngFor="let sala of salas" [value]="sala.id">
-            {{ sala.nome }} - Capacidade: {{ sala.capacidade }}
-          </option>
-        </select>
+            name="sala"
+            id="sala"
+            required
+            [(ngModel)]="crianca.idSala"
+            [ngModelOptions]="{ standalone: true }"
+            (change)="onSalaChange($event)"
+          >
+            <option value="" selected disabled>Salas</option>
+            <option *ngFor="let sala of salas" [value]="sala.id">
+              {{ sala.nome }} - Capacidade: {{ sala.capacidade }}
+            </option>
+          </select>
         </div>
 
         <br />
@@ -196,10 +183,7 @@
         <!-- Botões -->
         <div class="btns">
           <button type="submit" class="btnSalvar">Salvar</button>
-          <button
-            [routerLink]="['/instituicao/cadastros']"
-            class="btnCancelar"
-          >
+          <button [routerLink]="['/instituicao/cadastros']" class="btnCancelar">
             Cancelar
           </button>
         </div>

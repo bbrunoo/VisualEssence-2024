@@ -2,6 +2,7 @@
 using VisualEssence.API.ViewModel;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.Authenticate;
+using VisualEssence.Domain.Interfaces.GenericRepository;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
 using VisualEssenceAPI.Services;
@@ -20,8 +21,9 @@ namespace VisualEssence.API
         private readonly CadastroPais _cadastroPais;
         private readonly IAuthenticatePais _authenticatePais;
         private readonly IAuthenticateInst _authenticateInst;
+        private readonly string _bucketName;
 
-        public AccountController(IUsuarioInstRepository usuarioInstRepository, CadastroInst cadastroInst, IUsuarioPaisRepository usuarioPaisRepository, CadastroPais cadastroPais, IAuthenticatePais authenticatePais, IAuthenticateInst authenticateInst)
+        public AccountController(IUsuarioInstRepository usuarioInstRepository, CadastroInst cadastroInst, IUsuarioPaisRepository usuarioPaisRepository, CadastroPais cadastroPais, IAuthenticatePais authenticatePais, IAuthenticateInst authenticateInst, IConfiguration configuration)
         {
             _usuarioInstRepository = usuarioInstRepository;
             _cadastroInst = cadastroInst;
@@ -29,6 +31,7 @@ namespace VisualEssence.API
             _cadastroPais = cadastroPais;
             _authenticatePais = authenticatePais;
             _authenticateInst = authenticateInst;
+            _bucketName = configuration["AWS:BucketName"];
         }
 
         [HttpGet("UsersInst")]
@@ -42,6 +45,10 @@ namespace VisualEssence.API
         public async Task<IActionResult> GetPais()
         {
             var users = await _usuarioPaisRepository.GetUser();
+            if (users == null)
+            {
+                throw new Exception("Usuário não encontrado.");
+            }
             return Ok(users);
         }
 
@@ -152,7 +159,7 @@ namespace VisualEssence.API
         }
 
         [HttpGet("instituicao/{id}")]
-        public async Task<ActionResult> GetInstById(Guid id)
+        public async Task<IActionResult> GetInstById(Guid id)
         {
             var usuario = await _usuarioInstRepository.GetUsuarioById(id);
 
@@ -172,7 +179,7 @@ namespace VisualEssence.API
         [HttpDelete("Inst/{id}")]
         public async Task<IActionResult> DeleteInst(Guid id)
         {
-            var usuario = await _usuarioInstRepository.GetUsuarioById(id);
+            var usuario = await _usuarioInstRepository.GetUsuarioByIdForDelete(id);
             if (usuario == null) return NotFound("Nao existe");
             await _usuarioInstRepository.Delete(usuario);
             return Ok();
@@ -246,6 +253,56 @@ namespace VisualEssence.API
             if (inst == null) return NotFound("crianca nao encontrada");
             await _usuarioInstRepository.UpdateUserInst(id, inst);
             return Ok(new { message = "editado com sucesso" });
+        }
+
+        [HttpPut("inst/upload-foto/{userId}")]
+        public async Task<IActionResult> UploadFotoAsync(Guid userId, IFormFile file)
+        {
+            await _usuarioInstRepository.UploadFotoAsync(userId, file, _bucketName);
+            return Ok("Foto adicionada com sucesso.");
+        }
+
+        [HttpGet("inst/foto/{userId}")]
+        public async Task<IActionResult> GetFotoUrlAsync(Guid userId)
+        {
+            try
+            {
+                var fotoUrl = await _usuarioInstRepository.GetFotoUrlAsync(userId, _bucketName);
+                return Ok(new { Url = fotoUrl });
+            }
+            catch (KeyNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, $"Erro ao obter a foto: {e.Message}");
+            }
+        }
+
+        [HttpPut("pais/upload-foto/{userId}")]
+        public async Task<IActionResult> UploadFotoAsyncPais(Guid userId, IFormFile file)
+        {
+            await _usuarioPaisRepository.UploadFotoAsync(userId, file, _bucketName);
+            return Ok("Foto adicionada com sucesso.");
+        }
+
+        [HttpGet("pais/foto/{userId}")]
+        public async Task<IActionResult> GetFotoUrlAsyncPais(Guid userId)
+        {
+            try
+            {
+                var fotoUrl = await _usuarioPaisRepository.GetFotoUrlAsync(userId, _bucketName);
+                return Ok(new { Url = fotoUrl });
+            }
+            catch (KeyNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, $"Erro ao obter a foto: {e.Message}");
+            }
         }
     }
 }

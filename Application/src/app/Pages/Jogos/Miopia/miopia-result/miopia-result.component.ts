@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { MiopiaResult } from '../../../../Models/MiopiaGame/miopiaResult.model';
 import { MiopiaGameService } from '../Services/miopia-game.service';
 import { RouterLink } from '@angular/router';
-import { CriancaPais } from '../../../../Models/MiopiaGame/criancapais.model';
+
 import { LogoMenuComponent } from '../../../SharedMenu/logo-menu/logo-menu.component';
 import { NgIf } from '@angular/common';
 import { VlibrasComponent } from '../../../vlibras/vlibras.component';
 import { JogadaPais } from '../../../../Models/MiopiaGame/jogadaPais.model';
 import { AuthService } from '../../../../../Services/Auth/AuthService/auth.service';
+import { CriancaPais } from '../../../../Models/MiopiaGame/criancapais.model';
 
 @Component({
   selector: 'app-miopia-result',

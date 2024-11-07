@@ -1,3 +1,4 @@
+import { DadosService } from './../Services/dados-graficos-service/dados.service';
 import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -18,65 +19,82 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
+import { DadosGraficos } from '../../../Models/DadosGraficos.model';
+import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 
 @Component({
   selector: 'app-home-inst',
   standalone: true,
   imports: [VlibrasComponent, RouterLink, NgIf, RouterLinkActive, InstMenuComponent],
   templateUrl: './home-inst.component.html',
-  styleUrl: './home-inst.component.css'
+  styleUrls: ['./home-inst.component.css']
 })
-export class HomeInstComponent {
+export class HomeInstComponent implements OnInit {
   @ViewChild('meuCanvas1', { static: true }) canvas1!: ElementRef<HTMLCanvasElement>;
   @ViewChild('meuCanvas2', { static: true }) canvas2!: ElementRef<HTMLCanvasElement>;
 
+  dadosGrafico: DadosGraficos | null = null;
+  userId = String(this.authService.getUserIdFromToken());
+
+  constructor(private dadosService: DadosService, private authService: AuthService) { }
+
   delayed: boolean = false;
 
-  ngOnInit() {
-    Chart.register(PieController, ArcElement, BarController, BarElement, LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
+  getDadosGrafico() {
+    this.dadosService.getDadosGrafico(this.userId).subscribe(
+      (response) => {
+        this.dadosGrafico = response;
+        console.log(this.dadosGrafico);
 
-    const data_count = 3;
-    const number_cfg = { count: data_count, min: 0, max: 500 };
+        this.updateCharts(); // Atualiza os gráficos com os dados recebidos
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
-    const DATA_COUNT = 3;
-    const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 500 };
-
+  updateCharts() {
     const data1 = {
       labels: ['Risco de Daltonismo', 'Risco de Miopia', 'Sem Risco'],
       datasets: [
         {
-          data: Utils.numbers(number_cfg),
+          data: [
+            this.dadosGrafico?.DaltonismoRuim || 0,
+            this.dadosGrafico?.MiopiaRuim || 0,
+            this.dadosGrafico?.NenhumRisco || 0,
+          ],
           backgroundColor: Object.values(Utils.CHART_COLORS),
         }
       ]
     };
 
-    const labels = Utils.age({ count: 3 });
     const data2 = {
-      labels: labels,
+      labels: ['Risco de Daltonismo', 'Risco de Miopia', 'Sem Risco'],
       datasets: [
         {
           label: 'Risco de Daltonismo',
-          data: Utils.numbers(NUMBER_CFG),
+          data: [this.dadosGrafico?.DaltonismoRuim || 0, null, null],
           borderColor: Utils.CHART_COLORS.red,
           backgroundColor: Utils.CHART_COLORS.red,
         },
         {
           label: 'Risco de Miopia',
-          data: Utils.numbers(NUMBER_CFG),
+          data: [null, this.dadosGrafico?.MiopiaRuim || 0, null],
           borderColor: Utils.CHART_COLORS.blue,
           backgroundColor: Utils.CHART_COLORS.blue,
         },
         {
           label: 'Sem Risco',
-          data: Utils.numbers(NUMBER_CFG),
+          data: [null, null, this.dadosGrafico?.NenhumRisco || 0],
           borderColor: Utils.CHART_COLORS.green,
           backgroundColor: Utils.CHART_COLORS.green,
         },
-
       ]
     };
 
+
+    // Criando o gráfico de pizza
     new Chart(this.canvas1.nativeElement, {
       type: 'pie',
       data: data1,
@@ -88,13 +106,7 @@ export class HomeInstComponent {
               label: function (context) {
                 const label = context.chart.data.labels![context.dataIndex];
                 const value = context.raw;
-
-                //return `Valor: ${label} - ${value}`;
                 return ` Valor: ${value}`;
-              },
-              beforeLabel: function (context) {
-                const dataset = context.dataset;
-                const index = context.dataIndex;
               }
             },
             titleFont: {
@@ -130,6 +142,7 @@ export class HomeInstComponent {
       }
     });
 
+    // Criando o gráfico de barras
     new Chart(this.canvas2.nativeElement, {
       type: 'bar',
       data: data2,
@@ -151,7 +164,6 @@ export class HomeInstComponent {
           tooltip: {
             titleFont: {
               size: 14,
-              //family:'',
             },
             bodyFont: {
               size: 14,
@@ -162,7 +174,6 @@ export class HomeInstComponent {
             labels: {
               font: {
                 size: 15,
-                //family: '', //A família Bruno kkk
               },
               color: 'white',
             }
@@ -202,10 +213,14 @@ export class HomeInstComponent {
             }
           }
         },
-        //parsing: false,
         indexAxis: 'x',
       }
     });
+  }
+
+  ngOnInit() {
+    this.getDadosGrafico();
+    Chart.register(PieController, ArcElement, BarController, BarElement, LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
   }
 }
 
