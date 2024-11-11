@@ -6,11 +6,12 @@ import { HeaderComponent } from '../Shared-Pais/header/header.component';
 import { NgFor, NgIf } from '@angular/common';
 import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.component";
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
+import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 
 @Component({
   selector: 'app-historico-pais',
   standalone: true,
-  imports: [VlibrasComponent, HeaderComponent, NgIf, NgFor, LogoMenuComponent],
+  imports: [VlibrasComponent, NgIf, NgFor, LogoMenuComponent, ChatBotIconeComponent],
   templateUrl: './historico-pais.component.html',
   styleUrl: './historico-pais.component.css'
 })

@@ -18,7 +18,7 @@
               <label>Senha</label>
               <div class="hide-show">
                 <input [type]="showPassword ? 'text' : 'password' " name="password" id="password" [(ngModel)]="CredentialsPais.senha" [ngModelOptions]="{standalone: true}"  required/>
-                  <img class="toggle-password" width="20px" height="20px" (click)="toggleShowPassword()" [src]="showPassword ? 'assets/olho.png' : 'assets/ocultar.png'">
+                  <img loading="lazy" class="toggle-password" width="20px" height="20px" (click)="toggleShowPassword()" [src]="showPassword ? 'assets/olho.png' : 'assets/ocultar.png'">
               </div>
             </div>
             <div class="b-cont-sub">

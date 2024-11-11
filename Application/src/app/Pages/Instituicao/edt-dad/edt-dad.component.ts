@@ -13,11 +13,12 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { GetSala } from '../../../Models/InstituicaoModels/GetSala.model';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
+import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
 
 @Component({
   selector: 'app-edt-dad',
   standalone: true,
-  imports: [VlibrasComponent, RouterLink, NgIf, FormsModule, InstMenuComponent, CommonModule, NgxMaskPipe, NgxMaskDirective, ReactiveFormsModule],
+  imports: [VlibrasComponent, RouterLink, NgIf, FormsModule, InstMenuComponent, CommonModule, NgxMaskPipe, NgxMaskDirective, ReactiveFormsModule, ChatBotIconeComponent],
   templateUrl: './edt-dad.component.html',
   styleUrls: ['./edt-dad.component.css']
 })

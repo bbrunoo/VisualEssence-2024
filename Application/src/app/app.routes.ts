@@ -1,3 +1,4 @@
+import { DoePageComponent } from './Pages/PaisHome/doe-page/doe-page.component';
 import { DoeInfoComponent } from './Pages/PaisHome/doe-info/doe-info.component';
 import { Routes } from '@angular/router';
 
@@ -61,6 +62,10 @@ import { ContatoComponent } from './Pages/Contato/contato.component';
 import { AuthGuard } from './guards/user-authenticated.guard';
 import { HistoricoComponent } from './Pages/Instituicao/historico/historico.component';
 import { HistoricoPaisComponent } from './Pages/PaisHome/historico-pais/historico-pais.component';
+import { OpcoesDaltonismoComponent } from './Pages/PaisHome/opcoes-daltonismo/opcoes-daltonismo.component';
+import { OpcoesMiopiaComponent } from './Pages/PaisHome/opcoes-miopia/opcoes-miopia.component';
+import { OpcoesDaltonismoInstComponent } from './Pages/Instituicao/opcoes-daltonismo-inst/opcoes-daltonismo-inst.component';
+import { OpcoesMiopiaInstComponent } from './Pages/Instituicao/opcoes-miopia-inst/opcoes-miopia-inst.component';
 
 
 export const routes: Routes = [
@@ -84,6 +89,9 @@ export const routes: Routes = [
   {path: 'Pais/Painel-Educativo', component: PainelEducativoComponent},
   {path: 'Pais/Sobre-nos', component: SobreNosComponent},
   {path: 'Pais/Jogos/Historico', component: HistoricoPaisComponent},
+  {path: 'Pais/Jogos/Opcoes-Daltonismo', component: OpcoesDaltonismoComponent},
+  {path: 'Pais/Jogos/Opcoes-Miopia', component: OpcoesMiopiaComponent},
+  {path: 'Pais/Doe', component: DoePageComponent},
 
   {path: 'instituicao/home', component: HomeInstComponent, canActivate: [AuthGuard]},
   {path: 'instituicao/criar-sala', component: CriarSalaComponent, canActivate: [AuthGuard]},
@@ -94,6 +102,8 @@ export const routes: Routes = [
   {path: 'instituicao/dados-cadastro/:id', component: DadCadastComponent, canActivate: [AuthGuard]},
   {path: 'instituicao/editar-dados/:id', component: EdtDadComponent, canActivate: [AuthGuard]},
   {path: 'instituicao/jogos', component: HomeGameSectionComponent, canActivate: [AuthGuard]},
+  {path: 'instituicao/jogos/opcoes-daltonismo', component: OpcoesDaltonismoInstComponent, canActivate: [AuthGuard]},
+  {path: 'instituicao/jogos/opcoes-miopia', component: OpcoesMiopiaInstComponent, canActivate: [AuthGuard]},
   {path: 'instituicao/historico', component: HistoricoComponent, canActivate: [AuthGuard]},
 
   {path: 'instituicao/jogos/cadastrar-crianca-inst', component: CadastroCriancaInstComponent, canActivate: [AuthGuard]},

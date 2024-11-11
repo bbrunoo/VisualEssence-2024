@@ -2,9 +2,10 @@
   <div class="modal-content" (click)="$event.stopPropagation()">
     <div class="conteudo-modal">
       <div class="img-modal">
-        <img [src]="user?.foto || '../../../../assets/user'" (click)="openImageUploadModal(userId)" alt="" width="150px" height="150px" />
+        <img loading="lazy" [src]="user?.foto || '../../../../assets/user'" (click)="openImageUploadModal(userId)" alt="" width="150px" height="150px" />
         <div class="edit-icon">
-          <img src="../../../../assets/edit-icon.png" (click)="openImageUploadModal(userId)" />
+          <img loading="lazy" src="../../../../assets/edit-icon.png" (click)="openImageUploadModal(userId)" />
+
         </div>
       </div>
       <div class="infos-modal">
@@ -12,7 +13,8 @@
         <p>{{user?.email}}</p>
       </div>
       <div class="botoes-modal">
-        <a routerLink="/instituicao/historico/" class="btn-modal">Histórico</a>
+        <a routerLink="/Pais/Jogos/Historico" class="btn-modal">Histórico</a>
+
       </div>
       <a [routerLink]="['/opc-entrar']"
       class="btn-modal-2" (click)="logout()">Sair</a>

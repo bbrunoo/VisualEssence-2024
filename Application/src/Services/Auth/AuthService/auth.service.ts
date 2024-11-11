@@ -123,7 +123,7 @@ export class AuthService {
 
     try {
       const decodedToken: any = jwtDecode(token);
-      return decodedToken['id']; // A chave exata pode variar de acordo com a configuração do seu JWT
+      return decodedToken['id']; 
     } catch (error) {
       console.error('Erro ao decodificar o token', error);
       return null;

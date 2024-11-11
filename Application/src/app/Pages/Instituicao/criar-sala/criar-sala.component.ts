@@ -9,11 +9,12 @@ import { SalasService } from '../Services/salas/salas.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Sala } from '../../../Models/InstituicaoModels/Sala.model';
 import { OpcCriarSalaComponent } from "../opc-criar-sala/opc-criar-sala.component";
+import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
 
 @Component({
   selector: 'app-criar-sala',
   standalone: true,
-  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, OpcCadastComponent, InstMenuComponent, FormsModule, ReactiveFormsModule, OpcCriarSalaComponent],
+  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, OpcCadastComponent, InstMenuComponent, FormsModule, ReactiveFormsModule, OpcCriarSalaComponent, ChatBotIconeComponent],
   templateUrl: './criar-sala.component.html',
   styleUrl: './criar-sala.component.css',
   animations: [

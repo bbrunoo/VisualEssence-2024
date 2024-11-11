@@ -5,11 +5,12 @@ import { NgFor, NgIf } from '@angular/common';
 import { InstMenuComponent } from "../shared-menu/inst-menu/inst-menu.component";
 import { CadastroUnicoService } from '../Services/cadastrounico/cadastro-unico.service';
 import { GetCriancas } from '../../../Models/InstituicaoModels/GetCriancas.model';
+import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
 
 @Component({
   selector: 'app-dad-cadast',
   standalone: true,
-  imports: [VlibrasComponent, RouterLink, NgIf, InstMenuComponent, NgFor],
+  imports: [VlibrasComponent, RouterLink, NgIf, InstMenuComponent, NgFor, ChatBotIconeComponent],
   templateUrl: './dad-cadast.component.html',
   styleUrl: './dad-cadast.component.css'
 })

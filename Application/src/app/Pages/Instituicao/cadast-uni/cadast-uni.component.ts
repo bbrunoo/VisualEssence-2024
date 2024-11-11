@@ -15,12 +15,14 @@ import { loggedUser } from '../../../Models/LoggedUser/user.model';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 import { CriancaInstDTO } from '../../../Models/CriancaInstDTO.model';
 import { VlibrasComponent } from '../../vlibras/vlibras.component';
+import { ChatBotComponent } from "../../chat-bot-conteudo/chat-bot/chat-bot.component";
+import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 
 
 @Component({
   selector: 'app-cadast-uni',
   standalone: true,
-  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, FormsModule, OpcCadastComponent, InstMenuComponent, NgxMaskPipe, NgxMaskDirective, ReactiveFormsModule],
+  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, FormsModule, OpcCadastComponent, InstMenuComponent, NgxMaskPipe, NgxMaskDirective, ReactiveFormsModule, ChatBotComponent, ChatBotIconeComponent],
   templateUrl: './cadast-uni.component.html',
   styleUrl: './cadast-uni.component.css',
   animations: [

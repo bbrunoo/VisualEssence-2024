@@ -8,7 +8,7 @@
 
       <div class="imagem-game">
         <div class="questionImage">
-          <img
+          <img loading="lazy"
             class="imgQuestion"
             [src]="fase[faseAtual].correctQuestion"
             [style.width]="getQuestionImageSize()"
@@ -22,12 +22,12 @@
         <ul class="botoes">
           <li>
             <button class="btn-imagem-right" (click)="checkAnswer('correto')">
-              <img class="btnImg" src="../../../../../assets/MiopiaImages/correto.png" alt="Correto" />
+              <img loading="lazy" class="btnImg" src="../../../../../assets/MiopiaImages/correto.png" alt="Correto" />
             </button>
           </li>
           <li>
             <button class="btn-imagem-wrong" (click)="checkAnswer('errado')">
-              <img class="btnImg" src="../../../../../assets/MiopiaImages/erro.png" alt="Errado" />
+              <img loading="lazy" class="btnImg" src="../../../../../assets/MiopiaImages/erro.png" alt="Errado" />
             </button>
           </li>
         </ul>
@@ -45,7 +45,7 @@
       </div>
 
       <div class="imagem">
-        <img [src]="isEyeOpen ? '../../../../../assets/MiopiaImages/tip.png' : '../../../../../assets/MiopiaImages/no-tip.png'"   alt="Olho" (click)="toggleEye()"/>
+        <img loading="lazy" [src]="isEyeOpen ? '../../../../../assets/MiopiaImages/tip.png' : '../../../../../assets/MiopiaImages/no-tip.png'"   alt="Olho" (click)="toggleEye()"/>
       </div>
 
     </div>

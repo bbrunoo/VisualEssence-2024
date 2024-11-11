@@ -1,4 +1,5 @@
 <section class="sec-jogos">
+  <app-header></app-header>
   <div class="jogos-container">
     <h1>JOGOS</h1>
     <p>Jogos que ajudam a identificar possíveis problemas visuais.
@@ -8,14 +9,14 @@
       <div class="jogos-daltonismo">
         <h2>Daltonismo</h2>
         <div class="jogos-img">
-          <img [routerLink]="['/Pais/jogos/cadastrar-crianca-figuras']" [src]="Dalt" />
+          <img  loading="lazy" class="dalto" routerLink="/Pais/Jogos/Opcoes-Daltonismo" [src]="Dalt" />
         </div>
       </div>
 
       <div class="jogos-miopia">
         <h2>Miopia</h2>
         <div class="jogos-img">
-          <img [routerLink]="['/Pais/jogos/cadastrar-crianca-pais']" [src]="Miop" routerLink="/Pais/jogos/cadastrar-crianca-pais"/>
+          <img loading="lazy" class="miopia" routerLink="/Pais/Jogos/Opcoes-Miopia" [src]="Miop" />
         </div>
 
       </div>
