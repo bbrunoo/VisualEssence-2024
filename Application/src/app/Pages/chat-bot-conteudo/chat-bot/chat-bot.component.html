@@ -1,0 +1,47 @@
+<div class="modal" id="chatModal">
+  <div class="header">
+    <img class="icone" loading="lazy" src="../../../../assets/chatbot/et.png" alt="icone chatbot" />
+    <div class="text">
+      <p>Eddy</p>
+      <span>ChatBot</span>
+    </div>
+    <button class="close-btn" (click)="closeDialog()">
+      <img loading="lazy" src="../../../assets/chatbot/close.png" alt="icon et" />
+    </button>
+  </div>
+  <div class="body">
+    <div class="mensag">
+      <div class="rolagem" id="custom-bar" #messageContainer>
+        <div *ngFor="let message of messages" [ngClass]="message.type">
+          <div class="mensagem-conteudo">
+            <ng-container *ngIf="message.type === 'mensagEt'">
+              <img loading="lazy" src="../../../assets/chatbot/et.png" alt="icon et" />
+              <p>{{ message.text }}</p>
+            </ng-container>
+
+            <ng-container *ngIf="message.type !== 'mensagEt'">
+              <p>{{ message.text }}</p>
+              <img loading="lazy" [src]="userInfo?.foto || '../../../../../assets/user.png'" alt="icon et" />
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <form (submit)="sendMessage($event)">
+      <input
+        id="userInput"
+        type="text"
+        [(ngModel)]="userMessage"
+        [ngModelOptions]="{ standalone: true }"
+        placeholder="Envie uma mensagem"
+        required
+        autocomplete="off"
+      />
+      <button class="button-send" type="submit">
+        <img class="send-img" loading="lazy" src="../../../../assets/chatbot/send.png" alt="" />
+      </button>
+    </form>
+  </div>
+</div>

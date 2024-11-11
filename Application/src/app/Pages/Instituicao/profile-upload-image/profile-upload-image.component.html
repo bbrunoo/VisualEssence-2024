@@ -6,7 +6,7 @@
       </div>
       <div class="box-select">
         <div *ngIf="selectedFile">
-          <img class="imagem-selecionada" [src]="imageUrl" alt="Imagem selecionada" />
+          <img loading="lazy" class="imagem-selecionada" [src]="imageUrl" alt="Imagem selecionada" />
         </div>
         <div class="input-box">
           <input type="file" (change)="onFileSelected($event)" />

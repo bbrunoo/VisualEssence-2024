@@ -1,0 +1,50 @@
+<div class="container">
+  <app-logo-menu></app-logo-menu>
+  <div class="sec-jogos">
+    <div class="jogos-container">
+      <div class="titulo-game">
+        <h1>MIOPIA</h1>
+        <p>Jogos que ajudam a identificar a miopia nas crianças.</p>
+      </div>
+
+      <div class="jogos-box">
+        <div class="jogos-daltonismo">
+          <div class="jogos-img">
+            <h2>Letras</h2>
+            <img
+              loading="lazy"
+              class="dalto"
+              routerLink="/Pais/jogos/cadastrar-crianca-figuras"
+              [src]="Dalt"
+            />
+          </div>
+          <div class="explicativo">
+            Este jogo divertido testa a miopia com letras que mudam de posição e
+            tamanho! Em cada fase, o jogador tenta identificar letras que
+            aparecem em diferentes ângulos, viradas para esquerda, direita, cima
+            ou baixo, enquanto diminuem de tamanho. É uma aventura visual que
+            desafia a visão e percepção de detalhes!
+          </div>
+        </div>
+
+        <div class="jogos-miopia">
+          <div class="jogos-img">
+            <h2>Objetos</h2>
+            <img
+              loading="lazy"
+              class="miopia"
+              routerLink="/Pais/jogos/cadastrar-crianca-pais"
+              [src]="Miop"
+            />
+          </div>
+          <div class="explicativo">
+            Este jogo divertido testa a miopia com desenhos que ficam cada vez
+            menores! Em cada fase, o jogador tenta identificar figuras que vão
+            diminuindo de tamanho, desafiando a visão. É uma jornada visual
+            divertida que ajuda a perceber como enxergamos detalhes de longe.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

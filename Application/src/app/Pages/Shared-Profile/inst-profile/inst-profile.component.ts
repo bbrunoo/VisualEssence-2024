@@ -11,7 +11,7 @@ import { ProfileUploadImageComponent } from '../../Instituicao/profile-upload-im
 @Component({
   selector: 'app-inst-profile',
   standalone: true,
-  imports: [MatSidenav, MatSidenavContainer, MatSidenavContent, RouterLink, NgFor],
+  imports: [RouterLink],
   templateUrl: './inst-profile.component.html',
   styleUrl: './inst-profile.component.css'
 })

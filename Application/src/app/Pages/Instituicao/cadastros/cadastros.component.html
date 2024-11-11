@@ -1,5 +1,6 @@
 <div class="container">
   <app-inst-menu></app-inst-menu>
+  <app-chat-bot-icone></app-chat-bot-icone>
   <app-vlibras></app-vlibras>
   <div class="conteudo-cadastros">
     <form class="filters" (ngSubmit)="searchCriancas()">
@@ -29,7 +30,7 @@
         <label for="nome">NOME:</label>
         <input type="text" id="nome" [(ngModel)]="nomeCrianca" name="nome" />
         <button class="icon-button" type="submit">
-          <img
+          <img loading="lazy"
             src="../../../assets/lupa.png"
             width="30px"
             height="30px"
@@ -44,7 +45,7 @@
         <ng-container *ngFor="let crianca of dadosCriancas">
           <div class="info-crianca">
             <div class="cadastro-img">
-              <img
+              <img loading="lazy"
               [src]="crianca.foto || '../../../assets/user.png'"
               (click)="openImageUploadModal(crianca.id)"
               class="img-crianca"
@@ -73,7 +74,7 @@
                     <p>Capacidade: {{ getSalaCapacidadeById(crianca.idSala) }}</p>
                   </div>
                   <div class="r-edit">
-                    <img
+                    <img loading="lazy"
                       [routerLink]="['/instituicao/editar-dados', crianca.id]"
                       src="../../../assets/lapis.png"
                       width="30px"

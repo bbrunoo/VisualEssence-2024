@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-doe-info',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './doe-info.component.html',
   styleUrl: './doe-info.component.css'
 })

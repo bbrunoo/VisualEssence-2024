@@ -2,9 +2,9 @@
   <div class="modal-content" (click)="$event.stopPropagation()">
     <div class="conteudo-modal">
       <div class="img-modal">
-        <img [src]="user?.foto || '../../../../assets/user'" (click)="openImageUploadModal(userId)" alt="" width="150px" height="150px" />
+        <img loading="lazy" [src]="user?.foto || '../../../../assets/user'" (click)="openImageUploadModal(userId)" alt="" width="150px" height="150px" />
         <div class="edit-icon">
-          <img class="plus-icon" src="../../../../assets/edit-icon.png" (click)="openImageUploadModal(userId)" />
+          <img loading="lazy" class="plus-icon" src="../../../../assets/edit-icon.png" (click)="openImageUploadModal(userId)" />
         </div>
       </div>
       <div class="infos-modal">

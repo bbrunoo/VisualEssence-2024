@@ -1,5 +1,6 @@
 <div class="sec-jogos">
   <app-inst-menu></app-inst-menu>
+  <app-chat-bot-icone></app-chat-bot-icone>
   <div class="jogos-container">
     <h1>JOGOS</h1>
     <p>Jogos que ajudam a identificar possíveis problemas visuais.
@@ -9,14 +10,14 @@
       <div class="jogos-daltonismo">
         <h2>Daltonismo</h2>
         <div class="jogos-img">
-          <img [src]="Dalt" [routerLink]="['/instituicao/jogos/cadastrar-crianca-figuras']" />
+          <img loading="lazy" [src]="Dalt" routerLink="/instituicao/jogos/opcoes-daltonismo" />
         </div>
       </div>
 
       <div class="jogos-miopia">
         <h2>Miopia</h2>
         <div class="jogos-img">
-          <img [routerLink]="['/instituicao/jogos/cadastrar-crianca-inst']" [src]="Miop" />
+          <img loading="lazy" routerLink="/instituicao/jogos/opcoes-miopia" [src]="Miop" />
         </div>
       </div>
     </div>

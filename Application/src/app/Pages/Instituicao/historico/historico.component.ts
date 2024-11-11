@@ -14,6 +14,7 @@ import { CadastroUnicoService } from '../Services/cadastrounico/cadastro-unico.s
 import { PictureService } from '../Services/picture-service/picture.service';
 import { GetCriancas } from '../../../Models/InstituicaoModels/GetCriancas.model';
 import { CriancaComJogosDTO, HistoricoJogadasDTO } from '../../../Models/HistoricoJogadas.model';
+import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
 
 @Component({
   selector: 'app-historico',
@@ -29,6 +30,7 @@ import { CriancaComJogosDTO, HistoricoJogadasDTO } from '../../../Models/Histori
     NgxMaskPipe,
     NgxMaskDirective,
     ReactiveFormsModule,
+    ChatBotIconeComponent
   ],
   templateUrl: './historico.component.html',
   styleUrl: './historico.component.css'

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EsquecerSenhaComponent } from './esquecer-senha.component';
+import { OpcoesMiopiaComponent } from './opcoes-miopia.component';
 
-describe('EsquecerSenhaComponent', () => {
-  let component: EsquecerSenhaComponent;
-  let fixture: ComponentFixture<EsquecerSenhaComponent>;
+describe('OpcoesMiopiaComponent', () => {
+  let component: OpcoesMiopiaComponent;
+  let fixture: ComponentFixture<OpcoesMiopiaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EsquecerSenhaComponent]
+      imports: [OpcoesMiopiaComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(EsquecerSenhaComponent);
+    fixture = TestBed.createComponent(OpcoesMiopiaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

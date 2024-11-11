@@ -1,6 +1,8 @@
 <div class="container">
   <app-vlibras></app-vlibras>
   <app-inst-menu></app-inst-menu>
+  <app-chat-bot-icone></app-chat-bot-icone>
+
   <div class="conteudo">
     <div class="barFiltro">
       <div class="conjJogo">
@@ -23,7 +25,7 @@
       </div>
       <div class="btnLupa">
         <button (click)="onSearch()">
-          <img src="../../assets/lupa.png" alt="Buscar" />
+          <img  loading="lazy" src="../../assets/lupa.png" alt="Buscar" />
         </button>
       </div>
     </div>
@@ -33,7 +35,7 @@
         <div *ngFor="let item of historico" class="box" id="custom-bar">
           <div class="card">
             <div class="left">
-              <img [src]="item.foto || '../../../assets/user.png'" alt="" />
+              <img loading="lazy" [src]="item.foto || '../../../assets/user.png'" alt="" />
             </div>
             <div class="right">
               <div class="content-r-left">
@@ -62,7 +64,7 @@
                   <p>SALA: {{item.salaNome}}</p>
                 </div>
                 <div class="p-download">
-                  <img src="../../../../assets/imgUpl.png" width="20px" height="20px" alt="" />
+                  <img loading="lazy" src="../../../../assets/imgUpl.png" width="20px" height="20px" alt="" />
                   <p>Baixar Diagnóstico</p>
                 </div>
               </div>

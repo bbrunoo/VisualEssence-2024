@@ -8,11 +8,12 @@ import { RouterLink } from '@angular/router';
 import { HeaderComponent } from "../PaisHome/Shared-Pais/header/header.component";
 import { BackHeaderComponent } from "../PaisHome/Shared-Pais/back-header/back-header.component";
 import Swal from 'sweetalert2';
+import { LogoMenuComponent } from "../SharedMenu/logo-menu/logo-menu.component";
 
 @Component({
   selector: 'app-contato',
   standalone: true,
-  imports: [VlibrasComponent, FormsModule, RouterLink, HeaderComponent, BackHeaderComponent],
+  imports: [VlibrasComponent, FormsModule, RouterLink, HeaderComponent, BackHeaderComponent, LogoMenuComponent],
   templateUrl: './contato.component.html',
   styleUrl: './contato.component.css',
   providers: [ContatoServiceService],

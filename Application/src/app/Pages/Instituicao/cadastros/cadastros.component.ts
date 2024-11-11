@@ -15,6 +15,7 @@ import { VlibrasComponent } from '../../vlibras/vlibras.component';
 import { ImageUploadComponent } from '../image-upload/image-upload.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PictureService } from '../Services/picture-service/picture.service';
+import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 
 @Component({
   selector: 'app-cadastros',
@@ -31,7 +32,8 @@ import { PictureService } from '../Services/picture-service/picture.service';
     NgxMaskPipe,
     NgxMaskDirective,
     ReactiveFormsModule,
-  ],
+    ChatBotIconeComponent
+],
   templateUrl: './cadastros.component.html',
   styleUrls: ['./cadastros.component.css'],
 })
