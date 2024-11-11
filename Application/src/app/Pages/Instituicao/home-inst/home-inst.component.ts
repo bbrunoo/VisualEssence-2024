@@ -23,6 +23,7 @@ import { DadosGraficos } from '../../../Models/DadosGraficos.model';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
 
+
 @Component({
   selector: 'app-home-inst',
   standalone: true,
@@ -38,6 +39,7 @@ export class HomeInstComponent implements OnInit {
   userId = String(this.authService.getUserIdFromToken());
   userMessage = '';
 
+
   constructor(private dadosService: DadosService, private authService: AuthService) { }
 
   delayed: boolean = false;
@@ -47,7 +49,6 @@ export class HomeInstComponent implements OnInit {
       (response) => {
         this.dadosGrafico = response;
         console.log(this.dadosGrafico);
-
         this.updateCharts();
       },
       (error) => {

@@ -16,6 +16,7 @@ import { GetCriancas } from '../../../Models/InstituicaoModels/GetCriancas.model
 import { CriancaComJogosDTO, HistoricoJogadasDTO } from '../../../Models/HistoricoJogadas.model';
 import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
 
+
 @Component({
   selector: 'app-historico',
   standalone: true,
@@ -31,6 +32,7 @@ import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/ch
     NgxMaskDirective,
     ReactiveFormsModule,
     ChatBotIconeComponent
+
   ],
   templateUrl: './historico.component.html',
   styleUrl: './historico.component.css'
