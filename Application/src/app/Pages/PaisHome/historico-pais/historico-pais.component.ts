@@ -18,6 +18,7 @@ import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/ch
 export class HistoricoPaisComponent {
   historico: Historico[] = [];
   miopia = "Miopia";
+  miopiaLetras = "Miopia Letras";
   daltonismo = "Daltonismo";
   figurascoloridas = "Figuras Coloridas";
   jogoSelecionado: string = '';
@@ -42,6 +43,19 @@ export class HistoricoPaisComponent {
 
   getHistoricoMiopia() {
     this.historicoService.getHistoricoMiopia(this.miopia, this.userInstId).subscribe(
+      response => {
+        console.log('Salas carregadas com sucesso!', response);
+        this.historico = response;
+        console.log("miopia: ", response);
+      },
+      error => {
+        console.error('Não foi possível carregar as salas!', error);
+      }
+    )
+  }
+
+  getHistoricoMiopiaLetras() {
+    this.historicoService.getHistoricoMiopia(this.miopiaLetras, this.userInstId).subscribe(
       response => {
         console.log('Salas carregadas com sucesso!', response);
         this.historico = response;

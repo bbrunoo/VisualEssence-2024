@@ -1,11 +1,8 @@
 <div class="container">
   <app-logo-menu-inst></app-logo-menu-inst>
   <div class="conteudo-geral">
-
     <div class="gameContent" *ngIf="fase.length">
-
       <h1>{{ fase[faseAtual].question }}</h1>
-
       <div class="imagem-game">
         <div class="questionImage">
           <img
@@ -17,7 +14,6 @@
           />
         </div>
       </div>
-
       <div class="btnContent">
         <ul class="botoes">
           <li>
@@ -39,15 +35,12 @@
       <div class="texto" *ngIf="!isEyeOpen">
         Verificar a resposta correta!
       </div>
-
       <div class="resposta">
         <span *ngIf="isEyeOpen">{{ descricaoImagemAtual }}</span>
       </div>
-
       <div class="imagem">
         <img [src]="isEyeOpen ? '../../../../../assets/MiopiaImages/tip.png' : '../../../../../assets/MiopiaImages/no-tip.png'"   alt="Olho" (click)="toggleEye()"/>
       </div>
-
     </div>
   </div>
 </div>

@@ -1,10 +1,7 @@
 <div class="container">
   <app-vlibras></app-vlibras>
   <app-inst-menu></app-inst-menu>
-
   <app-chat-bot-icone></app-chat-bot-icone>
-
-
   <div class="conteudo">
     <div class="barFiltro">
       <div class="conjJogo">
@@ -55,6 +52,9 @@
                     <p>Pontuação: {{ jogo.pontuacao }}/10</p>
                   </div>
                   <div *ngIf="jogo.nomeJogo === 'Figuras Coloridas'">
+                    <p>Pontuação: {{ jogo.pontuacao }}/20</p>
+                  </div>
+                  <div *ngIf="jogo.nomeJogo === 'Miopia Letras'">
                     <p>Pontuação: {{ jogo.pontuacao }}/20</p>
                   </div>
                 </div>

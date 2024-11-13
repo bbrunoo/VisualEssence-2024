@@ -1,0 +1,50 @@
+<app-logo-menu></app-logo-menu>
+<div class="container">
+  <div class="game-conteudo" *ngIf="phases[currentPhaseIndex] as currentPhase">
+    <p class="titulo">FASE {{ currentPhaseIndex + 1 }}</p>
+
+    <div class="image-container">
+      <div *ngFor="let image of currentPhase.images">
+        <img
+          [src]="image.img"
+          [style.width]="image.width"
+          [style.height]="image.height"
+          [style.transform]="getTransformStyle(image.currentAngle)"
+          alt="Imagem Miopia"
+        />
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="images-sequencia">
+        <p>Sequência de cliques:</p>
+        <div class="images">
+          <div  *ngFor="let angle of selectedOrder; let i = index" (click)="removeImageFromSequence(i)">
+            <img [src]="getImageForAngle(angle)" alt="Clique do Usuário" />
+          </div>
+        </div>
+      </div>
+      <button (click)="onAvancarClick()" class="avancar-button">
+        Avançar
+      </button>
+    </div>
+
+    <div class="controls">
+      <button (click)="onButtonClick(0)">
+        <img loading="lazy" src="../../../../../assets/miopiaLetras/seta-direita.png" alt="Direita">
+      </button>
+      <button (click)="onButtonClick(-180)">
+        <img loading="lazy" src="../../../../../assets/miopiaLetras/seta-esquerda.png" alt="Esquerda">
+      </button>
+      <button (click)="onButtonClick(90)">
+        <img loading="lazy" src="../../../../../assets/miopiaLetras/seta-baixo.png" alt="Baixo">
+      </button>
+      <button (click)="onButtonClick(-90)">
+        <img loading="lazy" src="../../../../../assets/miopiaLetras/seta-cima.png" alt="Cima">
+      </button>
+      <button (click)="confirmNaoEnxergo()">
+        <img loading="lazy" src="../../../../../assets/miopiaLetras/question-sign.png" alt="Não enxergo">
+      </button>
+    </div>
+  </div>
+</div>
