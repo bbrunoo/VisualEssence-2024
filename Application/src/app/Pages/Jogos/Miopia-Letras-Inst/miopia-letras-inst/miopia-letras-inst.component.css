@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../../../../../assets/miopiaLetras/NightDay.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+}
+
+.images-sequencia {
+  height: 7em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1em;
+  border: solid 1px rgba(255, 255, 255, 0.062);
+  background: rgba(228, 243, 255, 1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.images-sequencia p{
+  font-weight: 600;
+  color: black;
+  height: 15px;
+  font-size: 11px;
+}
+
+.avancar-button{
+  font-weight: 600;
+  color: black;
+  border: none;
+  padding: 10px;
+  width: 7em;
+  border-radius: 8px;
+  transition: .2s ease-in-out;
+}
+
+.avancar-button:hover{
+  transition: .2s ease-in-out;
+  background-color: rgb(213, 236, 255);
+}
+
+.images {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 1em;
+}
+
+
+.note img {
+  border-radius: 8px;
+  background-color: white;
+  width: 35px;
+  height: 35px;
+}
+
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35em;
+  height: 260px;
+  overflow: auto;
+  margin: 0 auto;
+  gap: 5px;
+  border: solid 1px rgba(255, 255, 255, 0.062);
+  background: rgba(228, 243, 255, 1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 10px;
+}
+
+.game-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+
+.game-conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  padding: 20px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  align-items: center;
+  justify-content: center;
+  width: 35em;
+  height: 8em;
+  border: solid 1px rgba(255, 255, 255, 0.062);
+  background: rgba(228, 243, 255, 1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 10px;
+}
+
+.titulo {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.controls button {
+  border: none;
+  border-radius: 20px;
+  width: 6em;
+  height: 6em;
+  border: solid 1px;
+  border: solid 1px rgba(255, 255, 255, 0.062);
+  background: rgba(228, 243, 255, 1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 10px;
+}
+
+.controls button:hover {
+  filter: brightness(1.1);
+  transform: scale(1.05);
+}
+
+.controls img {
+  border: none;
+  width: 5em;
+  height: 5em;
+  background-color: transparent;
+}

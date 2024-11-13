@@ -40,6 +40,12 @@ import { MiopiaInstructionsComponent } from './Pages/Jogos/Miopia/miopia-instruc
 import { MiopiaGameComponent } from './Pages/Jogos/Miopia/miopia-game/miopia-game.component';
 import { MiopiaResultComponent } from './Pages/Jogos/Miopia/miopia-result/miopia-result.component';
 
+//miopia-letras
+import { MiopiaLetrasCadastroPaisComponent } from './Pages/Jogos/Miopia-Letras-Pais/miopia-letras-cadastro-pais/miopia-letras-cadastro-pais.component';
+import { MiopiaLetrasPaisInstrucaoComponent } from './Pages/Jogos/Miopia-Letras-Pais/miopia-letras-pais-instrucao/miopia-letras-pais-instrucao.component';
+import { MiopiaLetrasPaisResultadoComponent } from './Pages/Jogos/Miopia-Letras-Pais/miopia-letras-pais-resultado/miopia-letras-pais-resultado.component';
+import { MiopiaLetrasPaisComponent } from './Pages/Jogos/Miopia-Letras-Pais/miopia-letras-pais/miopia-letras-pais.component';
+
 //figurascoloridas
 import { FigurasColoridasComponent } from './Pages/Jogos/FigurasColoridas/figuras-coloridas/figuras-coloridas.component';
 import { FigurasColoridasInstrucoesComponent } from './Pages/Jogos/FigurasColoridas/figuras-coloridas-instrucoes/figuras-coloridas-instrucoes.component';
@@ -66,65 +72,79 @@ import { OpcoesDaltonismoComponent } from './Pages/PaisHome/opcoes-daltonismo/op
 import { OpcoesMiopiaComponent } from './Pages/PaisHome/opcoes-miopia/opcoes-miopia.component';
 import { OpcoesDaltonismoInstComponent } from './Pages/Instituicao/opcoes-daltonismo-inst/opcoes-daltonismo-inst.component';
 import { OpcoesMiopiaInstComponent } from './Pages/Instituicao/opcoes-miopia-inst/opcoes-miopia-inst.component';
+import { MiopiaLetrasInstInstrucaoComponent } from './Pages/Jogos/Miopia-Letras-Inst/miopia-letras-inst-instrucao/miopia-letras-inst-instrucao.component';
+import { MiopiaLetrasCadastroInstComponent } from './Pages/Jogos/Miopia-Letras-Inst/miopia-letras-cadastro-inst/miopia-letras-cadastro-inst.component';
+import { MiopiaLetrasInstComponent } from './Pages/Jogos/Miopia-Letras-Inst/miopia-letras-inst/miopia-letras-inst.component';
+import { MiopiaLetrasInstResultadoComponent } from './Pages/Jogos/Miopia-Letras-Inst/miopia-letras-inst-resultado/miopia-letras-inst-resultado.component';
 
 
 export const routes: Routes = [
-  {path: 'opc-entrar', component: OpcEntrarComponent},
-  {path: '', component: OpcEntrarComponent},
+  { path: 'opc-entrar', component: OpcEntrarComponent },
+  { path: '', component: OpcEntrarComponent },
 
-  {path: 'contato', component: ContatoComponent},
+  { path: 'contato', component: ContatoComponent },
 
-  {path: 'login-pais', component: LoginPaisComponent},
-  {path: 'cadastro-pais', component: CadastroPaisComponent},
-  {path: 'instituicao/imagem', component: ImageUploadComponent, canActivate: [AuthGuard]},
+  { path: 'login-pais', component: LoginPaisComponent },
+  { path: 'cadastro-pais', component: CadastroPaisComponent },
+  { path: 'instituicao/imagem', component: ImageUploadComponent, canActivate: [AuthGuard] },
 
-  {path: 'login-inst', component: LoginInstComponent},
-  {path: 'cadastro-inst', component: CadastroInstComponent},
+  { path: 'login-inst', component: LoginInstComponent },
+  { path: 'cadastro-inst', component: CadastroInstComponent },
 
-  {path: 'admin-contato', component: AdminContatoComponent},
+  { path: 'admin-contato', component: AdminContatoComponent },
 
-  {path: 'doe-info', component: DoeInfoComponent},
+  { path: 'doe-info', component: DoeInfoComponent },
 
-  {path: 'Pais/Home', component: HomeComponent},
-  {path: 'Pais/Painel-Educativo', component: PainelEducativoComponent},
-  {path: 'Pais/Sobre-nos', component: SobreNosComponent},
-  {path: 'Pais/Jogos/Historico', component: HistoricoPaisComponent},
-  {path: 'Pais/Jogos/Opcoes-Daltonismo', component: OpcoesDaltonismoComponent},
-  {path: 'Pais/Jogos/Opcoes-Miopia', component: OpcoesMiopiaComponent},
-  {path: 'Pais/Doe', component: DoePageComponent},
+  { path: 'Pais/Home', component: HomeComponent },
+  { path: 'Pais/Painel-Educativo', component: PainelEducativoComponent },
+  { path: 'Pais/Sobre-nos', component: SobreNosComponent },
+  { path: 'Pais/Jogos/Historico', component: HistoricoPaisComponent },
+  { path: 'Pais/Jogos/Opcoes-Daltonismo', component: OpcoesDaltonismoComponent },
+  { path: 'Pais/Jogos/Opcoes-Miopia', component: OpcoesMiopiaComponent },
+  { path: 'Pais/Doe', component: DoePageComponent },
 
-  {path: 'instituicao/home', component: HomeInstComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/criar-sala', component: CriarSalaComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/opcao-cadastro', component: OpcCadastComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/cadastro-unico', component: CadastUniComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/cadastro-massa', component: CadastMassaComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/cadastros', component: CadastrosComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/dados-cadastro/:id', component: DadCadastComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/editar-dados/:id', component: EdtDadComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/jogos', component: HomeGameSectionComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/jogos/opcoes-daltonismo', component: OpcoesDaltonismoInstComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/jogos/opcoes-miopia', component: OpcoesMiopiaInstComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/historico', component: HistoricoComponent, canActivate: [AuthGuard]},
+  { path: 'instituicao/home', component: HomeInstComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/criar-sala', component: CriarSalaComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/opcao-cadastro', component: OpcCadastComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/cadastro-unico', component: CadastUniComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/cadastro-massa', component: CadastMassaComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/cadastros', component: CadastrosComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/dados-cadastro/:id', component: DadCadastComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/editar-dados/:id', component: EdtDadComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos', component: HomeGameSectionComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/opcoes-daltonismo', component: OpcoesDaltonismoInstComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/opcoes-miopia', component: OpcoesMiopiaInstComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/historico', component: HistoricoComponent, canActivate: [AuthGuard] },
 
-  {path: 'instituicao/jogos/cadastrar-crianca-inst', component: CadastroCriancaInstComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/jogos/miopia/instrucoes', component: MiopiaInstInstrucoesComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/jogos/miopia', component: MiopiaInstComponent , canActivate: [AuthGuard]},
-  {path: 'instituicao/jogos/miopia/result', component: MiopiaInstResultComponent, canActivate: [AuthGuard]},
+  { path: 'instituicao/jogos/cadastrar-crianca-inst', component: CadastroCriancaInstComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/miopia/instrucoes', component: MiopiaInstInstrucoesComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/miopia', component: MiopiaInstComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/miopia/result', component: MiopiaInstResultComponent, canActivate: [AuthGuard] },
 
-  {path: 'instituicao/jogos/cadastrar-crianca-figuras', component: CadastroCriancasInstFigurasComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/jogos/figuras-coloridas/instrucoes', component: FigurasColoridasInstInstrucoesComponent, canActivate: [AuthGuard]},
-  {path: 'instituicao/jogos/figuras-coloridas', component: FigurasColoridasInstComponent , canActivate: [AuthGuard]},
-  {path: 'instituicao/jogos/figuras-coloridas/result', component: FigurasColoridasInstResultComponent, canActivate: [AuthGuard]},
+  { path: 'instituicao/jogos/cadastrar-crianca-figuras', component: CadastroCriancasInstFigurasComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/figuras-coloridas/instrucoes', component: FigurasColoridasInstInstrucoesComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/figuras-coloridas', component: FigurasColoridasInstComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/figuras-coloridas/result', component: FigurasColoridasInstResultComponent, canActivate: [AuthGuard] },
 
-  {path: 'Pais/jogos/miopia/instrucoes', component: MiopiaInstructionsComponent, canActivate: [AuthGuard]},
-  {path: 'Pais/jogos/miopia', component: MiopiaGameComponent , canActivate: [AuthGuard]},
-  {path: 'Pais/jogos/miopia/result', component: MiopiaResultComponent, canActivate: [AuthGuard]},
-  {path: 'Pais/jogos/cadastrar-crianca-pais', component: CadastroCriancaPaisComponent, canActivate: [AuthGuard]},
+  { path: 'instituicao/jogos/letras/instrucoes', component: MiopiaLetrasInstInstrucaoComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/letras-cadastro', component: MiopiaLetrasCadastroInstComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/letras', component: MiopiaLetrasInstComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/letras/result', component: MiopiaLetrasInstResultadoComponent, canActivate: [AuthGuard] },
 
-  {path: 'Pais/jogos/cadastrar-crianca-figuras', component: CadastroCriancaFigurasComponent, canActivate: [AuthGuard]},
-  {path: 'Pais/jogos/figuras-coloridas/instrucoes', component: FigurasColoridasInstrucoesComponent, canActivate: [AuthGuard]},
-  {path: 'Pais/jogos/figuras-coloridas', component: FigurasColoridasComponent, canActivate: [AuthGuard]},
-  {path: 'Pais/jogos/figuras-coloridas/result', component: FigurasColoridasResultComponent},
+  { path: 'Pais/jogos/miopia/instrucoes', component: MiopiaInstructionsComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/miopia', component: MiopiaGameComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/miopia/result', component: MiopiaResultComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/cadastrar-crianca-pais', component: CadastroCriancaPaisComponent, canActivate: [AuthGuard] },
+
+  { path: 'Pais/jogos/cadastrar-crianca-figuras', component: CadastroCriancaFigurasComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/figuras-coloridas/instrucoes', component: FigurasColoridasInstrucoesComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/figuras-coloridas', component: FigurasColoridasComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/figuras-coloridas/result', component: FigurasColoridasResultComponent },
+
+  { path: 'Pais/jogos/letras-cadastro', component: MiopiaLetrasCadastroPaisComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/letras/instrucoes', component: MiopiaLetrasPaisInstrucaoComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/letras', component: MiopiaLetrasPaisComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/letras/result', component: MiopiaLetrasPaisResultadoComponent, canActivate: [AuthGuard] },
 
 
 ];
