@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
   font-family: "Montserrat", sans-serif;
@@ -15,17 +15,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('../../../../../assets/miopiaLetras/NightDay.png');
+  background-image: url("../../../../../assets/miopiaLetras/NightDay.png");
   background-size: cover;
   background-position: center;
-}
-
-.note {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  align-items: center;
-  justify-content: center;
 }
 
 .images-sequencia {
@@ -44,25 +36,25 @@
   padding: 18px;
 }
 
-.images-sequencia p{
+.images-sequencia p {
   font-weight: 600;
   color: black;
   height: 15px;
   font-size: 11px;
 }
 
-.avancar-button{
+.avancar-button {
   font-weight: 600;
   color: black;
   border: none;
   padding: 10px;
   width: 7em;
   border-radius: 8px;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
-.avancar-button:hover{
-  transition: .2s ease-in-out;
+.avancar-button:hover {
+  transition: 0.2s ease-in-out;
   background-color: rgb(213, 236, 255);
 }
 
@@ -74,21 +66,27 @@
   gap: 1em;
 }
 
+.note {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+}
 
 .note img {
   border-radius: 8px;
   background-color: white;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
 }
-
 
 .image-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 35em;
-  height: 260px;
+  height: 160px;
   overflow: auto;
   margin: 0 auto;
   gap: 5px;
@@ -106,7 +104,6 @@
   align-items: center;
   margin-right: 10px;
 }
-
 
 .game-conteudo {
   display: flex;
@@ -134,7 +131,7 @@
 }
 
 .titulo {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 600;
 }
 
@@ -159,7 +156,7 @@
 
 .controls img {
   border: none;
-  width: 5em;
-  height: 5em;
+  width: 4em;
+  height:4em;
   background-color: transparent;
 }
