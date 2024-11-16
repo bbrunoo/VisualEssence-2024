@@ -182,8 +182,6 @@ a {
   height: 40em;
 }
 
-
-
 label {
   font-size: 17px;
   cursor: text;
@@ -283,4 +281,3 @@ label {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-

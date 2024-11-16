@@ -3,7 +3,7 @@ import { AuthService } from './../../../../Services/Auth/AuthService/auth.servic
 import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { Component, OnInit } from '@angular/core';
 import { InstMenuComponent } from "../shared-menu/inst-menu/inst-menu.component";
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { HistoricoService } from '../Services/historico-service/historico.service';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -52,12 +52,16 @@ export class HistoricoComponent implements OnInit {
     private historicoService: HistoricoService,
     private salasService: SalasService,
     private authService: AuthService,
-    private dados: CadastroUnicoService,
     private pictureService: PictureService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.getUltimosDoisJogos();
+  }
+
+  verDetalhes(id: string): void {
+    this.router.navigate(['/instituicao/detalhes', id]);
   }
 
   onSearch() {
@@ -65,6 +69,7 @@ export class HistoricoComponent implements OnInit {
     console.log('nomeJogo:', this.nomeJogo, 'nomeCrianca:', this.nomeCrianca);
     this.pageNumber = 1;
     this.getUltimosDoisJogos();
+    this.clearFilters();
   }
 
   getUltimosDoisJogos() {
@@ -81,7 +86,6 @@ export class HistoricoComponent implements OnInit {
         }
       );
   }
-
 
   loadSalas(): void {
     this.salasService.getSalaByUserId(this.userInstId).subscribe({
@@ -112,7 +116,6 @@ export class HistoricoComponent implements OnInit {
       );
     });
   }
-
 
   processarDataNascimento() {
     if (this.DataJogo) {

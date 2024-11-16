@@ -25,10 +25,10 @@
 
 .sec-jogos {
   width: 100vw;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 3em;
 }
 
 .titulo-game {
@@ -45,7 +45,6 @@
   align-items: center;
   justify-content: center;
   gap: 2em;
-  height: 100vh;
   width: 100vw;
 }
 

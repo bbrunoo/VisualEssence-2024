@@ -1,5 +1,6 @@
+import { detalhes } from './../../../Models/detalhes.model';
 import { CommonModule } from '@angular/common';
-import { AfterViewChecked, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ChatbotService } from '../../../../Services/ChatBot/chatbot.service';
@@ -7,6 +8,7 @@ import { ChatbotResponse } from '../../../Models/chatbot.model';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 import { AccountPictureService } from '../../Instituicao/Services/profile-picture-service/account-picture.service';
 import { UserPais } from '../../../Models/User/GetUserPais.model';
+import { PictureService } from '../../Instituicao/Services/picture-service/picture.service';
 
 @Component({
   selector: 'app-chat-bot',
@@ -20,7 +22,7 @@ export class ChatBotComponent implements AfterViewChecked, OnInit {
   messages = [
     { type: 'mensagEt', text: 'Olá Humano, meu nome é Eddy, qual seria sua dúvida?' },
   ];
-
+  detalhes: detalhes[]=[];
   userInfo: UserPais | null = null;
   userId = String(this.userService.getUserIdFromToken());
 
@@ -31,10 +33,13 @@ export class ChatBotComponent implements AfterViewChecked, OnInit {
     private userService: AuthService,
     private accountPicture: AccountPictureService,
     public dialogRef: MatDialogRef<ChatBotComponent>,
+    public pictureService: AccountPictureService,
+    private cdr: ChangeDetectorRef,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
+    this.loadImages();
   }
 
   ngAfterViewChecked(): void {
@@ -50,6 +55,67 @@ export class ChatBotComponent implements AfterViewChecked, OnInit {
     }
   }
 
+  loadImages(): void {
+    this.detalhes.forEach((user) => {
+      console.log(`Carregando foto para usuário com ID: ${this.userId}`);
+
+      // Primeira tentativa: Verificar foto no endpoint `/inst`
+      this.pictureService.getFoto(this.userId).subscribe(
+        (response) => {
+          if (response && response.url) {
+            user.foto = response.url; // Atribui a URL da foto diretamente
+            console.log(`Foto carregada com sucesso (Inst) para ID: ${this.userId}`);
+          } else {
+            console.warn(`Foto não encontrada no endpoint (Inst) para ID: ${this.userId}. Tentando no endpoint (Pais)...`);
+
+            // Segunda tentativa: Verificar foto no endpoint `/pais`
+            this.pictureService.getFotoPais(this.userId).subscribe(
+              (responsePais) => {
+                if (responsePais && responsePais.url) {
+                  user.foto = responsePais.url; // Atribui a URL da foto diretamente
+                  console.log(`Foto carregada com sucesso (Pais) para ID: ${this.userId}`);
+                } else {
+                  user.foto = '../../../assets/user.png'; // Foto padrão
+                  console.warn(`Foto não encontrada no endpoint (Pais) para ID: ${this.userId}. Usando imagem padrão.`);
+                }
+              },
+              (errorPais) => {
+                console.error(`Erro ao carregar foto no endpoint (Pais) para ID: ${this.userId}:`, errorPais);
+                user.foto = '../../../assets/user.png'; // Foto padrão
+              }
+            );
+          }
+        },
+        (error) => {
+          console.error(`Erro ao carregar foto no endpoint (Inst) para ID: ${this.userId}:`, error);
+
+          // Segunda tentativa em caso de erro no primeiro endpoint
+          this.pictureService.getFotoPais(this.userId).subscribe(
+            (responsePais) => {
+              if (responsePais && responsePais.url) {
+                user.foto = responsePais.url; // Atribui a URL da foto diretamente
+                console.log(`Foto carregada com sucesso (Pais) para ID: ${this.userId}`);
+              } else {
+                user.foto = '../../../assets/user.png'; // Foto padrão
+                console.warn(`Foto não encontrada no endpoint (Pais) para ID: ${this.userId}. Usando imagem padrão.`);
+              }
+            },
+            (errorPais) => {
+              console.error(`Erro ao carregar foto no endpoint (Pais) para ID: ${this.userId}:`, errorPais);
+              user.foto = '../../../assets/user.png'; // Foto padrão
+            }
+          );
+        }
+      );
+    });
+  }
+
+
+  onImageError(event: Event): void {
+    const imgElement = event.target as HTMLImageElement;
+    imgElement.src = '../../../../../assets/user.png';
+    console.error('Erro ao carregar a imagem, usando imagem padrão.');
+  }
 
   sendMessage(event: Event): void {
     event.preventDefault();

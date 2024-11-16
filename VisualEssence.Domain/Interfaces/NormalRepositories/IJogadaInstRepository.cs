@@ -21,7 +21,7 @@ namespace VisualEssence.Domain.Interfaces.NormalRepositories
         //Task<IEnumerable<HistoricoJogadasDTO>> ObterUltimoJogoPorCrianca(Guid userId);
 
         //Task<IEnumerable<HistoricoJogadasDTO>> ObterUltimosDoisJogosPorCrianca(Guid userId);
-
+        Task<List<JogadaDetalhadaDTO>> ObterJogadasPorCrianca(Guid idCrianca);
         Task<IDictionary<string, int>> CalcularQuantidadePorCategoriaAsync(Guid userId);
         Task<PaginatedResult<CriancaComJogosDTO>> ObterUltimosDoisJogosPorCrianca(
         Guid userId,

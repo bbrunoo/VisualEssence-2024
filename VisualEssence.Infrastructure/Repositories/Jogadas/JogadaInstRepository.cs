@@ -292,6 +292,34 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
             return resultado;
         }
 
+        public async Task<List<JogadaDetalhadaDTO>> ObterJogadasPorCrianca(Guid idCrianca)
+        {
+            var resultado = await _context.JogadaInst
+               .Include(j => j.CriancaInst)
+               .Include(j => j.CriancaInst.Sala)
+               .Where(j => j.CriancaInst.Id == idCrianca)
+               .GroupBy(j => j.CriancaInst.Id)
+               .Select(grupo => new JogadaDetalhadaDTO
+               {
+                   Nome = grupo.First().CriancaInst.Nome,
+                   DataNascimento = grupo.First().CriancaInst.DataNascimento,
+                   NomeResponsavel = grupo.First().CriancaInst.NomeResp,
+                   SalaNome = grupo.First().CriancaInst.Sala.Nome,
+                   Foto = grupo.First().CriancaInst.Foto,
+                   Jogadas = grupo
+                       .OrderByDescending(jogada => jogada.DataJogo)
+                       .Select(jogada => new JogadaGetDTO
+                       {
+                           NomeJogo = jogada.NomeJogo,
+                           Pontuacao = jogada.Pontuacao,
+                           DataJogo = jogada.DataJogo
+                       })
+                       .ToList()
+               })
+               .ToListAsync();
+
+            return resultado;
+        }
 
 
         private string GeneratePreSignedUrl(string fotoKey)

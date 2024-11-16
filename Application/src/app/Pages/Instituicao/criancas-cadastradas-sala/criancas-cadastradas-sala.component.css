@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: #d9d9d9;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.container {
+  background-image: url("../../../../assets/HomeImages/star1.png"),
+    url("../../../../assets/HomeImages/allplanets1.png"),
+    url("../../../../assets/HomeImages/planeta2.png"),
+    url("../../../../assets/HomeImages/background.png");
+  background-size: cover, cover, 25% 50%;
+  background-position: 0 0, right -20px top -100px, left -125px bottom -75px;
+  background-repeat: no-repeat;
+  background-color: #010029;
+  width: 100%;
+  height: 100vh;
+}
+
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding-top: 5em;
+  width: 100%;
+  height: 90vh;
+  gap: 2em;
+
+}
+
+#custom-bar::-webkit-scrollbar {
+  width: 6px;
+  padding: 20px;
+}
+
+#custom-bar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.criancas-box {
+  overflow-y: auto;
+  width: 45em;
+  margin: 10px;
+  max-height: calc(100vh - 80px);
+  padding: 10px;
+
+}
+
+.conteudo-criancas {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  width: 50em;
+  height: 30em;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.9px);
+  -webkit-backdrop-filter: blur(4.9px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.imagem-crianca img {
+  width: 10em;
+  height: 10em;
+}
+
+.imagem-crianca {
+  width: 10em;
+  height: 10em;
+  border-radius: 16px;
+}
+
+.info-criancas {
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.9px);
+  -webkit-backdrop-filter: blur(4.9px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  width: 30em;
+}
+
+.crianca {
+  gap: 1em;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+}
+
+.nodata{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h3 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 5px 0;
+}
+
+.no-data {
+  text-align: center;
+  font-size: 18px;
+  color: #999;
+}

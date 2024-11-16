@@ -31,8 +31,8 @@ export class OpcCriarSalaComponent {
 
   salas?: Sala[];
   userInstId: string = String(this.authService.getUserIdFromToken());
-  isFormValid: boolean = false; // Flag para validação do formulário
-  isSubmitting: boolean = false; // Flag para bloqueio durante o envio
+  isFormValid: boolean = false;
+  isSubmitting: boolean = false;
 
   sala = {
     nome: '',

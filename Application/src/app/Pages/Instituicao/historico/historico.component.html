@@ -10,7 +10,6 @@
           <option disabled value="">Selecione o jogo</option>
           <option value="Miopia">Miopia</option>
           <option value="Daltonismo">Daltonismo</option>
-          <option value="Figuras Coloridas">Figuras Coloridas</option>
         </select>
       </div>
       <div class="conjNome">
@@ -20,6 +19,7 @@
           class="inpNome"
           name="inputNome"
           [(ngModel)]="nomeCrianca"
+          (keydown.enter)="onSearch()"
         />
       </div>
       <div class="btnLupa">
@@ -59,7 +59,7 @@
                   </div>
                 </div>
                 <div class="p-more-details">
-                  <a>Mais detalhes</a>
+                  <a (click)="verDetalhes(item.idCrianca)">Mais detalhes</a>
                 </div>
               </div>
               <div class="content-r-right">

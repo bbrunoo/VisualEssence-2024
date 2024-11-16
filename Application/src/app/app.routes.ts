@@ -76,6 +76,8 @@ import { MiopiaLetrasInstInstrucaoComponent } from './Pages/Jogos/Miopia-Letras-
 import { MiopiaLetrasCadastroInstComponent } from './Pages/Jogos/Miopia-Letras-Inst/miopia-letras-cadastro-inst/miopia-letras-cadastro-inst.component';
 import { MiopiaLetrasInstComponent } from './Pages/Jogos/Miopia-Letras-Inst/miopia-letras-inst/miopia-letras-inst.component';
 import { MiopiaLetrasInstResultadoComponent } from './Pages/Jogos/Miopia-Letras-Inst/miopia-letras-inst-resultado/miopia-letras-inst-resultado.component';
+import { CriancasCadastradasSalaComponent } from './Pages/Instituicao/criancas-cadastradas-sala/criancas-cadastradas-sala.component';
+import { HistoricoDetalhadoComponent } from './Pages/Instituicao/historico-detalhado/historico-detalhado.component';
 
 
 export const routes: Routes = [
@@ -105,6 +107,8 @@ export const routes: Routes = [
 
   { path: 'instituicao/home', component: HomeInstComponent, canActivate: [AuthGuard] },
   { path: 'instituicao/criar-sala', component: CriarSalaComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/detalhes/:id', component: HistoricoDetalhadoComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/criancas-cadastradas/:id', component: CriancasCadastradasSalaComponent, canActivate: [AuthGuard] },
   { path: 'instituicao/opcao-cadastro', component: OpcCadastComponent, canActivate: [AuthGuard] },
   { path: 'instituicao/cadastro-unico', component: CadastUniComponent, canActivate: [AuthGuard] },
   { path: 'instituicao/cadastro-massa', component: CadastMassaComponent, canActivate: [AuthGuard] },

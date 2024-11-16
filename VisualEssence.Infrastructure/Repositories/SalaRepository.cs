@@ -44,6 +44,13 @@ namespace VisualEssence.Infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<CriancaInst>> GetChildrenBySalaIdAsync(Guid salaId)
+        {
+            return await _context.Sala
+                .Where(s => s.Id == salaId)
+                .SelectMany(s => s.CriancaInst) 
+                .ToListAsync();
+        }
 
         public async Task<SalaDTO> Update(Guid id, SalaDTO sala)
         {

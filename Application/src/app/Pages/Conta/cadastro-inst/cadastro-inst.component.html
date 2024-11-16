@@ -1,51 +1,50 @@
 <div class="container">
   <app-logo-menu></app-logo-menu>
   <app-vlibras></app-vlibras>
-
   <div class="conteudo">
     <div class="box-entrar">
       <div class="b-content">
         <div class="b-titulo">
-          <p>
-            Cadastrar
-          </p>
+          <p>Cadastrar</p>
         </div>
         <div class="b-form">
-          <form (ngSubmit)="register()" #cadastroForm="ngForm">
+          <form (ngSubmit)="register(cadastroForm)" #cadastroForm="ngForm">
             <div class="content-divide">
               <div class="esc-form">
                 <div class="input-style">
                   <label>Nome da Instituição</label>
-                  <input type="text" name="nome" [(ngModel)]="UserInst.nomeInst" [ngModelOptions]="{standalone: true}" required/>
+                  <input type="text" name="nome" [(ngModel)]="UserInst.nomeInst" [ngModelOptions]="{standalone: true}" required />
                 </div>
                 <div class="input-style">
-                  <label>CPNJ</label>
-                  <input type="text" [(ngModel)]="UserInst.cnpj" [ngModelOptions]="{standalone: true}" [showMaskTyped]="true" mask="00.000.000/0000-00"  required/>
+                  <label>CNPJ</label>
+                  <input type="text" [(ngModel)]="UserInst.cnpj" [ngModelOptions]="{standalone: true}" [showMaskTyped]="true" mask="00.000.000/0000-00" required />
                 </div>
               </div>
               <div class="dir-form">
                 <div class="input-style">
                   <label>Email</label>
-                  <input type="email" name="email" [(ngModel)]="UserInst.email" [ngModelOptions]="{standalone: true}" required/>
+                  <input type="email" name="email" [(ngModel)]="UserInst.email" [ngModelOptions]="{standalone: true}" required />
                 </div>
                 <div class="input-style">
-
                   <label>Senha</label>
                   <div class="hide-show">
-                    <input [type]="showPassword1 ? 'text' : 'password'" name="senha" [(ngModel)]="UserInst.senha" [ngModelOptions]="{standalone: true}" required/>
+                    <input [type]="showPassword1 ? 'text' : 'password'" name="senha" [(ngModel)]="UserInst.senha" [ngModelOptions]="{standalone: true}" required />
                     <img class="toggle-password" width="20px" height="20px" (click)="toggleShowPassword()" [src]="showPassword1 ? 'assets/olho.png' : 'assets/ocultar.png'">
                   </div>
 
                   <label>Confirmar Senha</label>
                   <div class="hide-show">
-                    <input [type]="showPassword2 ? 'text' : 'password'" name="confirmarSenha" [(ngModel)]="confirmarSenha" required/>
-                      <img loading="lazy" class="toggle-password" width="20px" height="20px" (click)="toggleShowPasswordConfirm()" [src]="showPassword2 ? 'assets/olho.png' : 'assets/ocultar.png'">
+                    <input [type]="showPassword2 ? 'text' : 'password'" name="confirmarSenha" [(ngModel)]="confirmarSenha" required />
+                    <img class="toggle-password" width="20px" height="20px" (click)="toggleShowPasswordConfirm()" [src]="showPassword2 ? 'assets/olho.png' : 'assets/ocultar.png'">
+                  </div>
+
+                  <div class="errorMessage" *ngIf="errorMessage">
+                    {{ errorMessage }}
                   </div>
 
                   <div class="errorMessage" *ngIf="confirmarSenha !== UserInst.senha && cadastroForm.controls['confirmarSenha']?.touched">
                     As senhas precisam ser iguais.
                   </div>
-
                 </div>
               </div>
             </div>
@@ -53,13 +52,14 @@
               <button class="b-submit" type="submit">Enviar</button>
             </div>
             <div class="b-cadastrar">
-              <p>Ja possuo uma conta
-              <a [routerLink]="['/login-inst']" routerLinkActive="router-link-active" >Entrar</a><br>
-              <a class="opc2" [routerLink]="['/opc-entrar']" routerLinkActive="router-link-active" >Voltar</a>
+              <p>Já possuo uma conta
+                <a [routerLink]="['/login-inst']" routerLinkActive="router-link-active">Entrar</a><br>
+                <a class="opc2" [routerLink]="['/opc-entrar']" routerLinkActive="router-link-active">Voltar</a>
               </p>
             </div>
-            </form>
-            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
