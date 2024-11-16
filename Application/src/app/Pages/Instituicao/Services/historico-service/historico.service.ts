@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { AuthService } from '../../../../../Services/Auth/AuthService/auth.service';
 import { Historico } from '../../../../Models/historico.model';
 import { CriancaComJogosDTO } from '../../../../Models/HistoricoJogadas.model';
+import { JogadaDetalhadaDTO } from '../../../../Models/JogadaDetalhadaDTO.model';
 
 interface PaginatedResult<T> {
   items: T[];
@@ -44,5 +45,9 @@ export class HistoricoService {
         return of({ items: [], totalPages: 0 });
       })
     );
+  }
+
+  getJogadasPorCrianca(idCrianca: string): Observable<JogadaDetalhadaDTO[]> {
+    return this.http.get<JogadaDetalhadaDTO[]>(`${this.api}/JogadaInst/jogadas-por-crianca/${idCrianca}`);
   }
 }

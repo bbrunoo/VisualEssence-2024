@@ -291,6 +291,7 @@
   text-decoration: none;
   border: none;
   transition: transform 0.3s;
+  cursor: pointer;
 }
 
 .button-change:hover {

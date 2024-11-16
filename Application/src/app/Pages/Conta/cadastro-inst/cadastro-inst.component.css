@@ -3,17 +3,17 @@
 
 * {
   font-family: "Montserrat", sans-serif;
-  /* font-family: "Joti One", serif; */
   font-weight: 700;
   font-style: normal;
 }
 
-.errorMessage
-  {
-    padding-top: 4px;
-    color: red;
-    font-size: 1em;
-  }
+.error-message, .errorMessage {
+  padding-top: 10px;
+  color: red;
+  font-size: 14px;
+  font-weight: 400;
+}
+
 
 .container {
   position: relative;
@@ -50,6 +50,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .box-entrar {
   background-color: white;
   flex-direction: column;
@@ -72,21 +73,21 @@
 
 }
 
-.b-form{
+.b-form {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.b-titulo{
+.b-titulo {
   width: 100%;
   display: flex;
-  align-items:  center;
+  align-items: center;
   justify-content: center;
 }
 
-.b-titulo p{
+.b-titulo p {
   font-size: 30px;
   font-weight: 700;
   color: #000000;
@@ -95,14 +96,14 @@
   align-items: center;
 }
 
-.hide-show{
+.hide-show {
   display: flex;
   align-items: center;
   width: 100% !important;
   position: relative;
 }
 
-.toggle-password{
+.toggle-password {
   position: absolute;
   z-index: 0;
   right: 5%;
@@ -156,7 +157,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin:10px 0 10px 0;
+  margin: 10px 0 10px 0;
 }
 
 .b-submit {
@@ -182,7 +183,7 @@ input {
   align-items: center;
   color: #000000;
 
-  p{
+  p {
     margin: 10px;
     font-size: 17px;
     font-weight: 700;
@@ -460,4 +461,3 @@ input {
     justify-content: center;
   }
 } */
-

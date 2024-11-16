@@ -19,6 +19,7 @@ namespace VisualEssence.Domain.Interfaces.NormalRepositories
         Task<string> GetFotoUrlAsync(Guid criancaId, string bucketName);
         Task<IEnumerable<CriancaInst>> GetAllByUserIdAsync(Guid userId);
         Task<CriancaInst> GetByIdAsyncUser(Guid id);
+        Task<CriancaDTO> ObterCriancaComSalaAsync(Guid idCrianca);
         //Task<IEnumerable<CriancaComJogadasDTO>> GetAllCriancasComJogadasByUserIdAsync(Guid userId);
     }
 }

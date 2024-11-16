@@ -21,7 +21,7 @@
 
             <ng-container *ngIf="message.type !== 'mensagEt'">
               <p>{{ message.text }}</p>
-              <img loading="lazy" [src]="userInfo?.foto || '../../../../../assets/user.png'" alt="icon et" />
+              <img [src]="'../../../assets/user.png'" alt="Foto do usuário no chat" />
             </ng-container>
           </div>
         </div>

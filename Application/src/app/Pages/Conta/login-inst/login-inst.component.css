@@ -24,6 +24,12 @@ height: 100vmin;
   align-items: center;
 }
 
+.error-message{
+  padding-top: 10px;
+  color: red;
+  font-weight: 400;
+}
+
 .box-entrar{
   background-color: white;
   display: flex;

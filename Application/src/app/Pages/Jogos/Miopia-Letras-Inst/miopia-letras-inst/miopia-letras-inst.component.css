@@ -20,6 +20,18 @@
   background-position: center;
 }
 
+h2#swal2-title
+{
+   font-size: 24px;
+   font-family: "Montserrat", sans-serif;
+   color:theme('colors.metal');
+}
+div#swal2-html-container{
+   font-size: 16px;
+   font-family: "Montserrat", sans-serif;
+   color: theme('colors.metal');
+}
+
 .images-sequencia {
   height: 7em;
   display: flex;

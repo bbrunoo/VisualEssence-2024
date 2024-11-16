@@ -189,7 +189,25 @@ namespace VisualEssence.API.Controllers
             }
         }
 
+        [HttpGet("jogadas-por-crianca/{criancaId}")]
+        public async Task<ActionResult<IEnumerable<JogadaDetalhadaDTO>>> GetJogadasPorCrianca(Guid criancaId)
+        {
+            try
+            {
+                var jogadas = await _repository.ObterJogadasPorCrianca(criancaId);
 
+                if (jogadas == null || !jogadas.Any())
+                {
+                    return NotFound("Nenhuma jogada encontrada para a criança informada.");
+                }
+
+                return Ok(jogadas);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro interno: {ex.Message}");
+            }
+        }
 
     }
 }

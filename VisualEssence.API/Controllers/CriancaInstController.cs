@@ -319,6 +319,22 @@ namespace VisualEssence.API.Controllers
             }
         }
 
+        [HttpGet("/plays/{id}")]
+        public async Task<IActionResult> GetCriancaBySala(Guid id)
+        {
+            try
+            {
+                var criancaViewModel = await _repository.ObterCriancaComSalaAsync(id);
+                return Ok(criancaViewModel);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+
+
         //[HttpGet("crianças-com-jogadas")]
         //public async Task<IActionResult> GetCriancasComJogadas([FromQuery] Guid userId)
         //{

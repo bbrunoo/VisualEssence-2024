@@ -25,7 +25,7 @@
           <div class="salaInf" *ngFor="let sala of salas">
             <label for="" id="titSala">{{sala.nome}}</label>
             <div class="dados">
-              <a [routerLink]="['/cadastros']">Crianças Cadastradas</a>
+              <a [routerLink]="['/instituicao/criancas-cadastradas', sala.id]">Crianças Cadastradas</a>
               <p>Quantidade:<label for="">{{sala.capacidade}}</label></p>
               <p><img loading="lazy" src="../../../../assets/lixo.png" (click)="deleteSala(sala)" width="22px" height="22px" style="cursor: pointer;" alt=""></p>
             </div>
@@ -33,6 +33,7 @@
         </div>
       </div>
     </div>
+
 
   </div>
 </div>

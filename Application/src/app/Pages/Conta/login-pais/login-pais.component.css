@@ -3,10 +3,10 @@
 
 * {
   font-family: "Montserrat", sans-serif;
-  /* font-family: "Joti One", serif; */
   font-weight: 700;
   font-style: normal;
 }
+
 .container {
 position: relative;
 background-image: url("../../../../assets/fundoUsuario.png");
@@ -22,6 +22,12 @@ height: 100vmin;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.error-message{
+  padding-top: 10px;
+  color: red;
+  font-weight: 400;
 }
 
 .box-entrar{

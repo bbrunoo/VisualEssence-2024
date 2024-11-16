@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 using VisualEssence.API.ViewModel;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.Authenticate;
@@ -55,11 +56,44 @@ namespace VisualEssence.API
         [HttpPost("cadastro-inst")]
         public async Task<ActionResult<UserInstToken>> RegisterInstituicao(InstRegisterViewmodel model)
         {
-            if (model == null) return BadRequest("Dados Invalidos");
+            if (model == null)
+                return BadRequest("Dados inválidos.");
+            if (string.IsNullOrWhiteSpace(model.NomeInst) ||
+                string.IsNullOrWhiteSpace(model.Email) ||
+                string.IsNullOrWhiteSpace(model.Senha) ||
+                string.IsNullOrWhiteSpace(model.CNPJ))
+            {
+                return BadRequest("Todos os campos são obrigatórios.");
+            }
+
+            if (model.Email.Contains(" "))
+            {
+                return BadRequest("O email não pode conter espaços em branco.");
+            }
+
+            if (model.Senha.Contains(" "))
+            {
+                return BadRequest("A senha não pode conter espaços em branco.");
+            }
+
+            if (!IsValidEmail(model.Email))
+            {
+                return BadRequest("O formato do email é inválido.");
+            }
+
+            if (model.Senha.Length < 8)
+            {
+                return BadRequest("A senha deve ter pelo menos 8 caracteres.");
+            }
+
+            if (model.CNPJ.Contains(" "))
+            {
+                return BadRequest("O CNPJ não pode conter espaços em branco.");
+            }
 
             var emailExistente = await _authenticateInst.UserExists(model.Email);
-
-            if (emailExistente) return BadRequest("Email ja cadastrado");
+            if (emailExistente)
+                return BadRequest("Email já cadastrado.");
 
             var userInst = new UserInst
             {
@@ -72,14 +106,15 @@ namespace VisualEssence.API
 
             var usuario = await _usuarioInstRepository.AddUsuarioInst(userInst);
 
-            if (usuario == null) return BadRequest("Ocorreu um erro a cadastrar");
+            if (usuario == null)
+                return BadRequest("Ocorreu um erro ao cadastrar o usuário.");
 
             var token = _authenticateInst.GenerateToken(usuario.Id, usuario.Email);
 
-            return new UserInstToken
+            return Ok(new UserInstToken
             {
                 Token = token
-            };
+            });
         }
 
         [HttpPost("login-inst")]
@@ -104,11 +139,39 @@ namespace VisualEssence.API
         [HttpPost("cadastro-pais")]
         public async Task<ActionResult<UserPaisToken>> RegisterPais(PaisRegisterViewModel model)
         {
-            if (model == null) return BadRequest("Dados Invalidos");
+            if (model == null)
+                return BadRequest("Dados inválidos.");
+
+            if (string.IsNullOrWhiteSpace(model.Nome) ||
+                string.IsNullOrWhiteSpace(model.Email) ||
+                string.IsNullOrWhiteSpace(model.Senha))
+            {
+                return BadRequest("Todos os campos são obrigatórios.");
+            }
+
+            if (model.Email.Contains(" "))
+            {
+                return BadRequest("O email não pode conter espaços em branco.");
+            }
+
+            if (model.Senha.Contains(" "))
+            {
+                return BadRequest("A senha não pode conter espaços em branco.");
+            }
+
+            if (!IsValidEmail(model.Email))
+            {
+                return BadRequest("O formato do email é inválido.");
+            }
+
+            if (model.Senha.Length < 8)
+            {
+                return BadRequest("A senha deve ter pelo menos 8 caracteres.");
+            }
 
             var emailExistente = await _authenticatePais.UserExists(model.Email);
-
-            if (emailExistente) return BadRequest("Email ja cadastrado");
+            if (emailExistente)
+                return BadRequest("Email já cadastrado.");
 
             var userPais = new UserPais
             {
@@ -120,14 +183,21 @@ namespace VisualEssence.API
 
             var usuario = await _usuarioPaisRepository.AddUsuarioPais(userPais);
 
-            if (usuario == null) return BadRequest("Ocorreu um erro a cadastrar");
+            if (usuario == null)
+                return BadRequest("Ocorreu um erro ao cadastrar o usuário.");
 
             var token = _authenticatePais.GenerateToken(usuario.Id, usuario.Email);
 
-            return new UserPaisToken
+            return Ok(new UserPaisToken
             {
                 Token = token
-            };
+            });
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            var emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+            return emailRegex.IsMatch(email);
         }
 
         [HttpPost("login-pais")]

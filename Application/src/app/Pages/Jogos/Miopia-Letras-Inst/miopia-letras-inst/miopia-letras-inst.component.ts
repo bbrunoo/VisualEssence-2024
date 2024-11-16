@@ -69,7 +69,6 @@ export class MiopiaLetrasInstComponent {
     }
   }
 
-
   generatePhase(imageCount: number, width: string, height: string): PhaseConfig {
     const angles = [0, -180, 90, -90];
     const images: ImageConfig[] = [];
@@ -156,11 +155,14 @@ export class MiopiaLetrasInstComponent {
     } else {
       this.result.score = this.acertos;
       this.result.errors = this.erros;
-
+  
       Swal.fire({
         title: 'Você finalizou o jogo!',
         text: 'Verificar diagnóstico.',
-        icon: 'success',
+        imageUrl: '../../../../../assets/miopiaLetras/worried.png',
+        imageWidth: 100,
+        imageHeight: 100,
+        imageAlt: 'Imagem de erro',
         showCancelButton: true,
         confirmButtonText: 'OK',
         cancelButtonText: 'Home'
@@ -178,7 +180,11 @@ export class MiopiaLetrasInstComponent {
     Swal.fire({
       title: 'Você não enxerga?',
       text: 'Tem certeza de que não consegue identificar a imagem?',
-      icon: 'warning',
+      imageUrl: '../../../../../assets/miopiaLetras/worried.png',
+      imageWidth: 100,
+      imageHeight: 100,
+      imageAlt: 'Imagem de erro',
+
       showCancelButton: true,
       confirmButtonText: 'Sim',
       cancelButtonText: 'Cancelar'

@@ -80,5 +80,18 @@ namespace VisualEssence.API.Controllers
             await _repository.Delete(sala);
             return Ok(new { message = "deletado com sucesso" });
         }
+
+        [HttpGet("Criancas/{salaId}")]
+        public async Task<IActionResult> GetChildrenBySalaId(Guid salaId)
+        {
+            var criancas = await _repository.GetChildrenBySalaIdAsync(salaId);
+
+            if (criancas == null || !criancas.Any())
+            {
+                return NotFound("Nenhuma criança encontrada para esta sala.");
+            }
+
+            return Ok(criancas);
+        }
     }
 }

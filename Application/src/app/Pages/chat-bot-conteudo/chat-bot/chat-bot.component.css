@@ -179,6 +179,18 @@ button {
   background-color: transparent;
 }
 
+.button-send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-send img {
+  width: 28px;
+  height: 25px;
+  padding-right: 5px;
+}
+
 .mensagEt p,
 .mensagUser p {
   padding: 10px;
@@ -213,5 +225,3 @@ button {
   padding: 10px;
   cursor: pointer;
 }
-
-

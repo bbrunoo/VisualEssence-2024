@@ -215,5 +215,28 @@ namespace VisualEssence.Infrastructure.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<CriancaDTO> ObterCriancaComSalaAsync(Guid idCrianca)
+        {
+            var crianca = await _context.CriancaInst
+                .Include(c => c.JogadaInst)
+                .Include(c => c.Sala) 
+                .FirstOrDefaultAsync(c => c.Id == idCrianca);
+
+            if (crianca == null)
+                throw new Exception("Criança não encontrada.");
+
+            return new CriancaDTO
+            {
+                IdCrianca = crianca.Id,
+                Foto = $"{crianca.Id}/CELULAR.png", 
+                Nome = crianca.Nome,
+                Jogadas = new List<object>(), 
+                Sala = new SalaViewModel
+                {
+                    NomeSala = crianca.Sala?.Nome 
+                }
+            };
+        }
     }
 }

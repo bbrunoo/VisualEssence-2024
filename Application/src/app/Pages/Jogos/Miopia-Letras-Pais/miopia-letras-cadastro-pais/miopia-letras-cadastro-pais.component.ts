@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { VlibrasComponent } from "../../../vlibras/vlibras.component";
 import { LogoMenuComponent } from "../../../SharedMenu/logo-menu/logo-menu.component";
 import { CommonModule, NgFor, NgIf } from '@angular/common';
@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-miopia-letras-cadastro-pais',
   standalone: true,
-  imports: [VlibrasComponent, LogoMenuComponent, CommonModule, NgIf, NgFor, FormsModule],
+  imports: [VlibrasComponent, LogoMenuComponent, CommonModule, FormsModule, RouterLink],
   templateUrl: './miopia-letras-cadastro-pais.component.html',
   styleUrl: './miopia-letras-cadastro-pais.component.css'
 })

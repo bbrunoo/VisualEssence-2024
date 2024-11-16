@@ -207,10 +207,6 @@
   height: 75%;
 }
 
-.l-name a {
-  color: rgb(107, 255, 203);
-  cursor: pointer;
-}
 
 .d-left {
   display: flex;
