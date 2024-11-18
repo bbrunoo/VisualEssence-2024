@@ -1,39 +1,50 @@
-
 <div class="container">
   <app-inst-menu></app-inst-menu>
   <div class="conteudo">
     <div class="cadastros">
       <div class="imgAluno">
-        <img loading="lazy" [src]="detalhes[0]?.foto || '../../../assets/user.png'" />
+        <img
+          loading="lazy"
+          [src]="detalhes[0].foto || '../../../assets/user.png'"
+        />
       </div>
       <div class="tudinho" *ngIf="detalhes.length > 0">
         <div class="one">
           <div class="two">
-            <label>NOME: {{ detalhes[0]?.nome }}</label>
+            <p>NOME: {{ detalhes[0].nome }}</p>
           </div>
           <div class="three">
-            <label>SALA: {{ detalhes[0]?.salaNome }}</label>
+            <p>SALA: {{ detalhes[0].salaNome }}</p>
           </div>
         </div>
         <div class="informacoes">
           <div class="barra">
             <div class="historico" *ngFor="let jogada of detalhes[0]?.jogadas">
               <label class="tabela-nome">Jogo: {{ jogada.nomeJogo }}</label>
-              <label class="tabela-pontos">Pontuação
-                <span *ngIf="jogada.nomeJogo === 'Miopia'">: {{ jogada.pontuacao }}/20</span>
-                <span *ngIf="jogada.nomeJogo === 'Miopia Letras'">: {{ jogada.pontuacao }}/10</span>
-                <span *ngIf="jogada.nomeJogo === 'Daltonismo'">: {{ jogada.pontuacao }}/10</span>
-                <span *ngIf="jogada.nomeJogo === 'Figuras Coloridas'">: {{ jogada.pontuacao }}/20</span>
+              <label class="tabela-pontos"
+                >Pontuação
+                <span *ngIf="jogada.nomeJogo === 'Miopia'"
+                  >: {{ jogada.pontuacao }}/20</span
+                >
+                <span *ngIf="jogada.nomeJogo === 'Miopia Letras'"
+                  >: {{ jogada.pontuacao }}/10</span
+                >
+                <span *ngIf="jogada.nomeJogo === 'Daltonismo'"
+                  >: {{ jogada.pontuacao }}/10</span
+                >
+                <span *ngIf="jogada.nomeJogo === 'Figuras Coloridas'"
+                  >: {{ jogada.pontuacao }}/20</span
+                >
               </label>
-              <label class="tabela-data">Data: {{ jogada.dataJogo | date }}</label>
+              <label class="tabela-data"
+                >Data: {{ jogada.dataJogo | date }}</label
+              >
             </div>
           </div>
         </div>
         <div class="dowload">
-          <button>
-            <img src="../../../../assets/imgUpl.png" alt="" />
-            BAIXAR DIAGNÓSTICO
-          </button>
+          <img src="../../../../assets/imgUpl.png" alt="" />
+          <p (click)="baixarPdf()">BAIXAR DIAGNÓSTICO</p>
         </div>
       </div>
     </div>

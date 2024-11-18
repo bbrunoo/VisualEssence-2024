@@ -5,6 +5,7 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { InstMenuComponent } from "../shared-menu/inst-menu/inst-menu.component";
 import { PictureService } from '../Services/picture-service/picture.service';
 import { JogadaDetalhadaDTO } from '../../../Models/JogadaDetalhadaDTO.model';
+import { PDFCreatorService } from '../../../../Services/PDFCreator/pdfcreator.service';
 
 @Component({
   selector: 'app-historico-detalhado',
@@ -18,7 +19,7 @@ export class HistoricoDetalhadoComponent {
   detalhes: JogadaDetalhadaDTO[] = [];
   historico: JogadaDetalhadaDTO[] = [];
 
-  constructor(private route: ActivatedRoute, private jogadaService: HistoricoService, private pictureService: PictureService ) {}
+  constructor(private route: ActivatedRoute, private jogadaService: HistoricoService, private pictureService: PictureService, private pdfService: PDFCreatorService ) {}
 
   ngOnInit(): void {
     this.idCrianca = this.route.snapshot.paramMap.get('id') || '';
@@ -41,6 +42,24 @@ export class HistoricoDetalhadoComponent {
         }
       );
     });
+  }
+
+  baixarPdf(): void {
+    this.pdfService.getJogadasPorCriancaPdf(this.idCrianca).subscribe(
+      (response) => {
+        // Criar um link para baixar o PDF
+        const blob = response;
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Relatorio_Crianca.pdf';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+      (error) => {
+        console.error('Erro ao baixar o PDF:', error);
+      }
+    );
   }
 
   carregarDetalhes(): void {
