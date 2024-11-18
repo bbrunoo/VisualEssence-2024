@@ -1,8 +1,6 @@
 import { DadosService } from './../Services/dados-graficos-service/dados.service';
 import { VlibrasComponent } from './../../vlibras/vlibras.component';
-import { Component, OnInit, ElementRef, ViewChild, Inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { InstMenuComponent } from '../shared-menu/inst-menu/inst-menu.component';
 import {
   Chart,
@@ -23,7 +21,6 @@ import { DadosGraficos } from '../../../Models/DadosGraficos.model';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
 
-
 @Component({
   selector: 'app-home-inst',
   standalone: true,
@@ -38,7 +35,6 @@ export class HomeInstComponent implements OnInit {
   dadosGrafico: DadosGraficos | null = null;
   userId = String(this.authService.getUserIdFromToken());
   userMessage = '';
-
 
   constructor(private dadosService: DadosService, private authService: AuthService) { }
 

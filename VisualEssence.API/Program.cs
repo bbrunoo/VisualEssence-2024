@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using QuestPDF.Infrastructure;
 using System.Text;
 using VisualEssence.Domain.Interfaces.Authenticate;
 using VisualEssence.Domain.Interfaces.Games.SystemGamesRepository;
@@ -24,6 +25,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddHttpClient();
+
+QuestPDF.Settings.License = LicenseType.Community;
 
 builder.Services.AddSwaggerGen(c =>
 {

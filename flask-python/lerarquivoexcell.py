@@ -5,7 +5,7 @@ import requests
 import os
 
 app = Flask(__name__)
-@app.route('/excell', methods=['POST'])
+@app.route('/excel', methods=['POST'])
 def receber_pergunta():
     data = request.json 
     nome_arquivo = data.get('arquivo') 
