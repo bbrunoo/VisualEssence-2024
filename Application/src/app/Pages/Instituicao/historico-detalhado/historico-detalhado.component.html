@@ -18,23 +18,15 @@
           </div>
         </div>
         <div class="informacoes">
-          <div class="barra">
+          <div class="barra" >
             <div class="historico" *ngFor="let jogada of detalhes[0]?.jogadas">
               <label class="tabela-nome">Jogo: {{ jogada.nomeJogo }}</label>
-              <label class="tabela-pontos"
-                >Pontuação
-                <span *ngIf="jogada.nomeJogo === 'Miopia'"
-                  >: {{ jogada.pontuacao }}/20</span
-                >
-                <span *ngIf="jogada.nomeJogo === 'Miopia Letras'"
-                  >: {{ jogada.pontuacao }}/10</span
-                >
-                <span *ngIf="jogada.nomeJogo === 'Daltonismo'"
-                  >: {{ jogada.pontuacao }}/10</span
-                >
-                <span *ngIf="jogada.nomeJogo === 'Figuras Coloridas'"
-                  >: {{ jogada.pontuacao }}/20</span
-                >
+              <label class="tabela-pontos">
+                Pontuação
+                <span *ngIf="jogada.nomeJogo === 'Miopia'">: {{ jogada.pontuacao }}/20</span>
+                <span *ngIf="jogada.nomeJogo === 'Miopia Letras'">: {{ jogada.pontuacao }}/10</span>
+                <span *ngIf="jogada.nomeJogo === 'Daltonismo'">: {{ jogada.pontuacao }}/10</span>
+                <span *ngIf="jogada.nomeJogo === 'Figuras Coloridas'">: {{ jogada.pontuacao }}/20</span>
               </label>
               <label class="tabela-data"
                 >Data: {{ jogada.dataJogo | date }}</label
