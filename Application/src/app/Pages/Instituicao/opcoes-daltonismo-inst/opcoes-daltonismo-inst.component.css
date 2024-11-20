@@ -25,10 +25,11 @@
 
 .sec-jogos {
   width: 100vw;
+  height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3em;
+  padding: .8em;
 }
 
 .titulo-game {
@@ -37,26 +38,30 @@
   justify-content: center;
   flex-direction: column;
   gap: 10px;
+  width: 24em;
+  height: 4.5em;
 }
 
 .jogos-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: 2em;
-  width: 100vw;
+  width: 100%;
+  height: 100%;
 }
 
 .jogos-container h1 {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bolder;
 }
 
 .jogos-container p {
-  font-size: 15px;
-  width: 30em;
+  font-size: 13px;
+  width: 35em;
   text-align: center;
+  padding: 0 10px 0 10px;
 }
 
 .jogos-box {
@@ -89,8 +94,8 @@
 
 .jogos-daltonismo h2,
 .jogos-miopia h2 {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .jogos-img {
@@ -111,11 +116,12 @@
 
 .explicativo {
   width: 30em;
-  padding: 10px;
   text-align: justify;
+  font-size: 15px;
 }
 
 .jogos-daltonismo img:hover,
 .jogos-miopia img:hover {
   filter: brightness(1.1);
 }
+

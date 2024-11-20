@@ -27,12 +27,13 @@
 .conteudo {
   display: flex;
   align-items: start;
+  height: 85vh;
   justify-content: center;
 }
 
 .cadastros {
   width: 60em;
-  height: 33em;
+  height: 85vh;
   gap: 3em;
   display: flex;
   justify-content: center;
@@ -65,20 +66,21 @@
 
 .tudinho {
   width: 45em;
-  height: 30em;
+  height: 78vh;
+  padding: 10px;
   padding: 50px;
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 1px;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .one {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: bolder;
 }
 
@@ -87,7 +89,7 @@
   align-items: center;
   justify-content: start;
   width: 25em;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .three {
@@ -95,24 +97,23 @@
   align-items: center;
   justify-content: end;
   width: 25em;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .informacoes {
   border: 1.3px solid white;
   border-radius: 20px;
   width: 100%;
-  height: 25em;
+  height: 85%;
   gap: 1em;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   padding: 10px;
 }
 
 .barra {
-  width:40em;
-  background-color: red;
+  width: 40em;
   overflow: auto;
   align-items: center;
   justify-content: center;
@@ -121,13 +122,15 @@
   gap: 1em;
 }
 
-.barra::-webkit-scrollbar {
+.informacoes::-webkit-scrollbar {
   background-color: gray;
-  border-radius: 10px;
   width: 5px;
+  height: 20em;
+  padding-right: 51px;
 }
 
-.barra::-webkit-scrollbar-thumb {
+.informacoes::-webkit-scrollbar-thumb {
+  height: 20em;
   background-color: white;
   border-radius: 10px;
   width: 5px;
@@ -146,17 +149,16 @@
   justify-content: center;
   align-items: center;
   gap: 2em;
-  padding: 20px;
 }
 
 .tabela-nome,
 .tabela-data,
 .tabela-pontos {
-  width: 13em;
+  width: 11.9em;
   font-size: 15px;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
 }
 
 .dowload {

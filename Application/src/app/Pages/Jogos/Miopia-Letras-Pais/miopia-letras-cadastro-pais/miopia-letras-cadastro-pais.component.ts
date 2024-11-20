@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class MiopiaLetrasCadastroPaisComponent {
   nomecrianca = '';
-  idadecrianca = 0;
+  idadecrianca: number | null = null;
 
   constructor(private router: Router) {}
   salvarCrianca(){

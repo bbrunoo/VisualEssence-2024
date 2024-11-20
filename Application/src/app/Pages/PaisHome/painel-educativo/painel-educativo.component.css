@@ -5,6 +5,8 @@
   font-family: "Montserrat", sans-serif;
   margin: 0;
   padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
 .container {
@@ -16,10 +18,22 @@
   z-index: -5;
 }
 
+.conteudo-painel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 svg {
-  display: block;
-  width: 100%;
+  transform: translateZ(0);
+}
+
+svg {
+  display: flex;
+  width: 100vw;
   height: auto;
+  height: 300px;
   margin: 0;
   padding: 0;
 }
@@ -29,15 +43,12 @@ svg path {
   padding: 0;
 }
 
-h1 {
+.titulo h1 {
   color: #f6f5f0;
   font-family: Montserrat;
   font-weight: 400;
-}
-
-h1 {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.5em;
   border-bottom: 1px solid white;
   border-top: 1px solid white;
   width: 40%;
@@ -60,30 +71,33 @@ hr {
 
 .parte2 {
   width: 100%;
-  height: 50vh;
   background-color: #DAFBFF;
   display: flex;
   text-align: center;
   justify-content: center;
-  gap: 2em;
-}
-
-.imageOlho img {
-  width: 20em;
-  height: 25em;
+  margin: 0;
+  padding: 0;
+  height: 30em;
 }
 
 .imageOlho {
-  width: 40em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25em;
+  gap: 1em;
   height: 100%;
-  margin-right: 15px;
-  overflow-y: hidden;
+}
+
+.imageOlho img{
+  width: 12em;
+  height: 13em;
 }
 
 .txOlho {
   color: black;
   font-size: 18px;
-  overflow-y: hidden;
   text-align: justify;
   width: 35em;
   display: flex;
@@ -95,11 +109,6 @@ hr {
 .tiOlho h2 {
   color: black;
   font-size: 1.2rem;
-}
-
-.tiOlho {
-  width: 50%;
-  margin-left: 25%;
 }
 
 .parte3 {
@@ -198,357 +207,4 @@ hr {
   display: flex;
   text-align: center;
   justify-content: center;
-}
-
-
-/*----------------------------------------------*/
-
-@media screen and (max-width: 1450px) {
-  .container {
-    background-size: 100%;
-  }
-
-  h1 {
-    font-size: 2.8rem;
-  }
-
-  .grafico {
-    margin-top: 5%;
-  }
-
-  .txGrafico {
-    padding: 10px 30px;
-    font-size: 22px;
-  }
-
-  .imageOlho img {
-    width: 55%;
-  }
-
-  .txOlho {
-    width: 50%;
-    margin-top: 2%;
-    padding: 20px 0px;
-    font-size: 22px;
-  }
-
-  .tiOlho h2 {
-    margin-left: 25%;
-    font-size: 1.7rem;
-  }
-
-  .tiOlho {
-    margin: 0;
-    width: 80%;
-  }
-
-  .txLavandomao {
-    width: 60%;
-    padding: 30px 0px 15px 0px;
-    margin-left: 10%;
-    font-size: 22px;
-  }
-
-  .tiLavandomao {
-    display: flex;
-    justify-content: center;
-  }
-
-  .tiLavandomao h2 {
-    font-size: 1.7rem;
-  }
-
-  .lavandomao img {
-    width: 100%;
-    height: 100%;
-  }
-
-  .lavandomao {
-    margin: 8% 10% 0% 0%;
-  }
-
-  .tiCuidando h2 {
-    font-size: 1.7rem;
-    margin: 0;
-  }
-
-  .tiCuidando {
-    width: 100%;
-    padding: 0;
-  }
-
-  .txCuidando {
-    width: 50%;
-    padding: 20px 0px;
-    margin: 1% 2% 0 3%;
-    font-size: 22px;
-  }
-
-  .parte2 {
-    overflow-y: hidden;
-  }
-
-  .imageCuidando {
-    margin-left: 5%;
-    width: 30%;
-  }
-
-  .tiLupa {
-    padding: 0;
-    text-align: center;
-    font-size: 10px;
-    width: 80%;
-  }
-
-  .tiLupa h2 {
-    font-size: 2.6em;
-  }
-
-  .txLupa {
-    width: 80%;
-    margin: 0 5% 0 8%;
-    padding: 20px 25px;
-    font-size: 22px;
-  }
-
-  .lupa img {
-    width: 70%;
-    height: 100%;
-  }
-
-  .lupa {
-    width: 40%;
-  }
-}
-
-@media screen and (max-width: 1080px) {
-  .container {
-    background-size: 100%;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  .grafico {
-    margin-top: 5%;
-  }
-
-  .txGrafico {
-    padding: 10px 30px;
-    font-size: 18px;
-  }
-
-  .imageOlho img {
-    width: 55%;
-  }
-
-  .txOlho {
-    width: 50%;
-    margin-top: 2%;
-    padding: 20px 0px;
-    font-size: 17px;
-  }
-
-  .tiOlho h2 {
-    margin-left: 25%;
-    font-size: 1.2rem;
-  }
-
-  .tiOlho {
-    margin: 0;
-    width: 80%;
-  }
-
-  .txLavandomao {
-    width: 80%;
-    padding: 30px 0px 15px 0px;
-    margin-left: 10%;
-    font-size: 19px;
-  }
-
-  .tiLavandomao {
-    display: flex;
-    justify-content: center;
-  }
-
-  .tiLavandomao h2 {
-    font-size: 1.2rem;
-  }
-
-  .lavandomao img {
-    width: 100%;
-    height: 100%;
-  }
-
-  .lavandomao {
-    margin: 8% 10% 0% 0%;
-  }
-
-  .tiCuidando h2 {
-    font-size: 1.2rem;
-    margin: 0;
-  }
-
-  .tiCuidando {
-    width: 100%;
-    padding: 0;
-  }
-
-  .txCuidando {
-    width: 50%;
-    padding: 20px 0px;
-    margin: 1% 2% 0 3%;
-    font-size: 15px;
-  }
-
-  .parte2 {
-    overflow-y: hidden;
-  }
-
-  .imageCuidando {
-    margin-left: 5%;
-    width: 30%;
-  }
-
-  .tiLupa {
-    width: 90%;
-    padding: 0;
-    text-align: center;
-    font-size: 10px;
-  }
-
-  .tiLupa h2 {
-    font-size: 1.8em;
-  }
-
-  .txLupa {
-    width: 80%;
-    margin: 0 5% 0 8%;
-    padding: 20px 0px;
-    font-size: 18px;
-  }
-
-  .lupa img {
-    width: 70%;
-    height: 100%;
-  }
-
-  .lupa {
-    width: 40%;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .container {
-    background-size: 100%;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .grafico {
-    margin-top: 2%;
-  }
-
-  .txGrafico {
-    padding: 10px 30px;
-    font-size: 13px;
-  }
-
-  .imageOlho img {
-    width: 55%;
-  }
-
-  .txOlho {
-    width: 50%;
-    padding: 20px 0px;
-    font-size: 14px;
-  }
-
-  .tiOlho h2 {
-    font-size: 0.9rem;
-  }
-
-  .tiOlho {
-    width: 80%;
-  }
-
-  .txLavandomao {
-    width: 80%;
-    padding: 30px 0px;
-    margin-left: 10%;
-    font-size: 14px;
-  }
-
-  .tiLavandomao {
-    display: flex;
-    justify-content: center;
-  }
-
-  .tiLavandomao h2 {
-    font-size: 0.9rem;
-  }
-
-  .lavandomao img {
-    width: 80%;
-    height: 80%;
-  }
-
-  .lavandomao {
-    margin: 8% 5% 0% 0%;
-  }
-
-  .tiCuidando h2 {
-    font-size: 0.9rem;
-    margin: 0;
-  }
-
-  .tiCuidando {
-    width: 100%;
-    padding: 0;
-  }
-
-  .txCuidando {
-    width: 55%;
-    padding: 20px 0px;
-    margin: 1% 2% 0 3%;
-    font-size: 14px;
-  }
-
-  .parte2 {
-    overflow-y: hidden;
-  }
-
-  .imageCuidando {
-    width: 40%;
-  }
-
-  .tiLupa {
-    width: 90%;
-    padding: 0;
-    text-align: center;
-    font-size: 10px;
-  }
-
-  .tiLupa h2 {
-    font-size: 1.6em;
-  }
-
-  .txLupa {
-    width: 80%;
-    margin: 0 5% 0 8%;
-    padding: 20px 0px;
-    font-size: 14px;
-  }
-
-  .lupa img {
-    width: 60%;
-    height: 90%;
-  }
-
-  .lupa {
-    width: 40%;
-  }
 }

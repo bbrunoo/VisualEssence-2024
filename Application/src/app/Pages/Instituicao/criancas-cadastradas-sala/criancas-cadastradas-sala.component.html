@@ -1,7 +1,9 @@
 <div class="container">
   <app-inst-menu></app-inst-menu>
   <div class="conteudo">
-    <h3>Crianças Cadastradas por Sala</h3>
+    <div class="conteudo-titulo">
+      <h3>Crianças Cadastradas por Sala</h3>
+    </div>
     <div class="conteudo-criancas" id="custom-bar">
       <div class="criancas-box">
         <div *ngIf="criancas.length > 0; else noData" >

@@ -13,7 +13,7 @@ import { VlibrasComponent } from '../../vlibras/vlibras.component';
 })
 export class CadastroCriancaPaisComponent {
   nomecrianca = '';
-  idadecrianca = 0;
+  idadecrianca: number | null = null;
 
   constructor(private router: Router) {}
   salvarCrianca(){

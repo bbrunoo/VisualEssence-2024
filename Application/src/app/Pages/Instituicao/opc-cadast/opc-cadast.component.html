@@ -1,21 +1,11 @@
 <div class="container">
   <app-vlibras></app-vlibras>
 
-  <div
-    class="conteudo"
-    *ngIf="!showCadUni && !showCadMas"
-    [ngClass]="{ fade_In: !showCadUni } && { fade_In: !showCadMas }"
-  >
-    <div class="espBtn">
-      <div class="content">
-        <button class="btnCad" [routerLink]="['/instituicao/cadastro-unico']">
-          CADASTRO UNITÁRIO DE CRIANÇA
-        </button>
-        <br />
-        <button class="btnCad" [routerLink]="['/instituicao/cadastro-massa']" >
-          CADASTRO EM MASSA
-        </button>
-      </div>
+  <div class="conteudo" *ngIf="!showCadUni && !showCadMas" [ngClass]="{ fade_In: !showCadUni || !showCadMas }">
+    <div class="content">
+      <button class="btnCad" [routerLink]="['/instituicao/cadastro-unico']">
+        CADASTRO UNITÁRIO DE CRIANÇA
+      </button>
     </div>
   </div>
 </div>

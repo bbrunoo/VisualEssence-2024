@@ -12,7 +12,6 @@
 
 .container{
     background-image: url("../../../../../assets/fundo.png");
-    background-color: blue;
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
@@ -52,7 +51,6 @@
    }
 
 .forms{
-    /*border: 2px solid greenyellow;*/
     display: flex;
     width: 50%;
     height: 99%;
@@ -71,11 +69,8 @@
     gap: 1em;
     padding: 10px;
     border-radius: 10px;
-    /*width: 35em;*/
-
     width: 70%;
     height: 60%;
-
     background-color: #7e30a0;
         border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
