@@ -12,7 +12,6 @@
 
 .container{
     background-image: url("../../../../assets/fundo.png");
-    background-color: blue;
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
