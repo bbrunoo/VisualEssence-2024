@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+*{
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+.container{
+    background-image: url("../../../../../assets/fundo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+}
+
+.conteudo{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.img{
+    display: flex;
+    width: 50%;
+    height: 99%;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.img img{
+    width: 60%;
+    height: 60%;
+    transform: rotate(20deg);
+    margin-left: 15%;
+    animation: moverVertical 3s ease-in-out infinite;
+
+}
+
+@keyframes moverVertical {
+
+    50% {
+       transform: translate(50px, -50px) rotate(20deg);
+    }
+
+   }
+
+.forms{
+    display: flex;
+    width: 50%;
+    height: 99%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.cadastro {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    padding: 10px;
+    border-radius: 10px;
+    width: 70%;
+    height: 60%;
+    background-color: #7e30a0;
+        border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.1px);
+    -webkit-backdrop-filter: blur(4.1px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.image_forms {
+    padding-top: 8%;
+    width: 50%;
+}
+
+.form1 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+button,select {
+    width: 80%;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 15px;
+    border: none;
+    color: black;
+    cursor: pointer;
+  }
+
+  select option{
+    color: black;
+  }
+
+  button:active,
+  button:focus {
+    border-color: white;
+    outline: none;
+  }
+
+ button {
+    background: #000000;
+    color: white;
+    padding-left: 0%;
+    cursor: pointer;
+  }
+
+ button:hover {
+    background: #37044d;
+    color: white;
+  }

@@ -1,28 +1,24 @@
-import { UserInst } from './../../../Models/UserInst.Model';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { NgIf, CommonModule, DatePipe } from '@angular/common';
+import { NgIf, CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { OpcCadastComponent } from '../opc-cadast/opc-cadast.component';
 import { InstMenuComponent } from '../shared-menu/inst-menu/inst-menu.component';
 import { SalasService } from '../Services/salas/salas.service';
 import { CadastroUnicoService } from '../Services/cadastrounico/cadastro-unico.service';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { GetSala } from '../../../Models/InstituicaoModels/GetSala.model';
 import Swal from 'sweetalert2';
-import { loggedUser } from '../../../Models/LoggedUser/user.model';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 import { CriancaInstDTO } from '../../../Models/CriancaInstDTO.model';
 import { VlibrasComponent } from '../../vlibras/vlibras.component';
-import { ChatBotComponent } from "../../chat-bot-conteudo/chat-bot/chat-bot.component";
 import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 
 
 @Component({
   selector: 'app-cadast-uni',
   standalone: true,
-  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, FormsModule, OpcCadastComponent, InstMenuComponent, NgxMaskPipe, NgxMaskDirective, ReactiveFormsModule, ChatBotComponent, ChatBotIconeComponent],
+  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, FormsModule, InstMenuComponent, NgxMaskDirective, ReactiveFormsModule, ChatBotIconeComponent],
   templateUrl: './cadast-uni.component.html',
   styleUrl: './cadast-uni.component.css',
   animations: [
@@ -33,7 +29,6 @@ import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/ch
   ],
 })
 export class CadastUniComponent implements OnInit {
-  userInstId: string = String(this.authService.getUserIdFromToken());
   isSubmitting: boolean = false; // Nova variável para controlar o estado do envio
 
   constructor(
@@ -43,6 +38,7 @@ export class CadastUniComponent implements OnInit {
     private authService: AuthService,
   ) {}
 
+  userInstId: string = String(this.authService.getUserIdFromToken());
 
   salas: GetSala[] =[]
   ngOnInit() {
@@ -144,9 +140,13 @@ export class CadastUniComponent implements OnInit {
             imageHeight: 100,
             confirmButtonText: 'OK',
             confirmButtonColor: '#3085d6',
+            customClass: {
+              title: 'custom-swal-title',
+              htmlContainer: 'custom-swal-text',
+            },
             heightAuto: false
           }).then(() => {
-            this.changePage(); // Redirecionar após sucesso
+            this.changePage();
           });
         },
         error: (error) => {
@@ -158,11 +158,15 @@ export class CadastUniComponent implements OnInit {
             imageHeight: 100,
             confirmButtonText: 'OK',
             confirmButtonColor: '#3085d6',
+            customClass: {
+              title: 'custom-swal-title',
+              htmlContainer: 'custom-swal-text',
+            },
             heightAuto: false
           });
         },
         complete: () => {
-          this.isSubmitting = false; // Permitir novos envios após completar
+          this.isSubmitting = false;
         }
       });
     } else {
@@ -172,6 +176,10 @@ export class CadastUniComponent implements OnInit {
         imageUrl: '../../../../assets/icons/cancel.png',
         imageWidth: 100,
         imageHeight: 100,
+        customClass: {
+          title: 'custom-swal-title',
+          htmlContainer: 'custom-swal-text',
+        },
         confirmButtonText: 'OK',
         confirmButtonColor: '#3085d6',
         heightAuto: false

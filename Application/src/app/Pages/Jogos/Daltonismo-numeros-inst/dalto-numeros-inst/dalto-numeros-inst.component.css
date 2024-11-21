@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+* {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../../../../../assets/DaltonismoImages/Telas/Fundo.png');
+  background-size: cover;
+  background-position: center;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.conteudo {
+  width: 70em;
+  height: 40em;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.3em;
+  background: rgba(111, 167, 237, 0.11);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  border: 1px solid rgba(111, 167, 237, 0.44);
+
+}
+
+.preview {
+  background-color: rgb(92, 119, 192);
+  width: 14.5em;
+  height: 3em;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  border: .5px solid rgb(8, 7, 36);
+  -webkit-box-shadow: inset 7px 6px 5px -3px rgba(51,64,125,1);
+  -moz-box-shadow: inset 7px 6px 5px -3px rgba(51,64,125,1);
+  box-shadow: inset 7px 6px 5px -3px rgba(51,64,125,1);
+}
+
+.imagem {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 30em;
+  height: 30em;
+}
+
+.imagem p {
+  font-size: 20px;
+  font-weight: 600;
+}
+.currentImage {
+  width: 25em;
+  height: 25em;
+  border-radius: 100%;
+  background-color: white;
+  padding: 10px;
+}
+
+.opcoes {
+  width: 25em;
+  height: 28em;
+  background-color: rgb(45, 73, 134);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  border-radius: 20px;
+  box-shadow: #0c1529 4px 4px 0 0;
+}
+
+.linha {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 5px;
+}
+
+.button-color {
+  background-color: #2758b3;
+  border: 2px solid #2758b3;
+  border-radius: 8px;
+  box-shadow: #16213a 4px 4px 0 0;
+  color: #ffffff;
+  cursor: pointer;
+  width: 6em;
+  height: 3em;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.button-color-enviar {
+  background-color: #2e77ff;
+  border:  solid #2e77ff;
+  border-radius: 8px;
+  box-shadow: #16213a 4px 4px 0 0;
+  color: #ffffff;
+  cursor: pointer;
+  width: 6em;
+  height: 3em;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.button-color:hover {
+  background-color: #3e69b9;
+}
+
+.button-color-enviar:hover {
+  background-color: #2c8fff;
+}
+
+.button-color:active {
+  transform: translate(2px, 2px);
+}
+
+.button-color-enviar:active {
+  transform: translate(2px, 2px);
+}

@@ -1,0 +1,17 @@
+
+<div class="textoinstru">
+  <h1>Qual é o Animal? - FASE {{ faseAtual + 1 }}</h1>
+</div>
+<div class="container">
+  <div class="imgteste">
+    <img class="opc-img" width="400px" height="400px" [src]="fases[faseAtual].questionImage" alt="Imagem da fase"/>
+  </div>
+  <div class="opc">
+    <button *ngFor="let btn of fases[faseAtual].buttons" (click)="verificarResposta(btn)">
+      <img [src]="btn" alt="Botão de resposta" />
+    </button>
+  </div>
+  <div class="opc2">
+    <button type="submit" (click)="pularFase()">Não Enxergo!</button>
+  </div>
+</div>

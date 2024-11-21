@@ -1,0 +1,40 @@
+<app-logo-menu-inst></app-logo-menu-inst>
+<div class="container">
+  <div class="imagens">
+    <img
+      src="../../../../../assets/DaltonismoImages/Telas/cachorrogalac.png"
+      alt="Cachorro no foguete"
+      class="imagem1"
+    />
+  </div>
+
+  <div class="conteudo">
+    <div class="titulo">
+      <h1>Instruções</h1>
+    </div>
+    <div class="conteudo-texto">
+      <p>
+        Observe a imagem e identifique o número nela. Use os botões de 1 a 9
+        para formar o número que você viu. Se não souber, clique em "Não Sei",
+        ou em "Apagar" para corrigir. Quando terminar, clique em "Enviar" para
+        validar sua resposta e avançar para a próxima fase. Cada fase traz um
+        desafio novo, então, concentre-se e divirta-se enquanto aprimora sua
+        percepção! Boa sorte!
+      </p>
+    </div>
+
+    <div class="botoes-jogo">
+      <img
+        src="../../../../../assets/DaltonismoImages/Telas/fechar.png"
+        alt="Fechar"
+        (click)="close()"
+      />
+
+      <img
+        src="../../../../../assets/DaltonismoImages/Telas/play.png"
+        alt="Ir para a próxima tela"
+        (click)="goToNextScreen()"
+      />
+    </div>
+  </div>
+</div>

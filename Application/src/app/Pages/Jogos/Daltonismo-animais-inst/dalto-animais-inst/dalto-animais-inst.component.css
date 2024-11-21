@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../../../../assets/DaltonismoImages/Telas/Fundo2.png");
+  background-size: cover;
+  background-position: center;
+  flex-direction: column;
+}
+
+.textoinstru {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  color: white;
+  width: 23em;
+  height: 5em;
+  background-color: #fb8f7e;
+  padding: 20px;
+  border-radius: 10px;
+  margin-left: 15px;
+  transform: translateX(-100%);
+  animation: slideIn 1s forwards;
+}
+
+.textoinstru h1 {
+  font-size: 20px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.imgteste {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fb8f7e;
+  border-radius: 50%;
+  padding: 20px;
+  height: 22em;
+  width: 22em;
+  margin-bottom: 30px;
+}
+
+.imgteste img {
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.opc {
+  display: grid;
+  grid-template-columns: repeat(4, 3em);
+  gap: 20px;
+  background: rgba(153, 194, 255, 0.24);
+  border-radius: 16px;
+  border: rgb(255, 255, 255) solid 2px;
+  padding: 15px;
+  width: 25em;
+  justify-content: center;
+  align-content: center;
+}
+
+.opc button{
+  width: 5em;
+  height: 5em;
+}
+
+.opc a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.opc img {
+  width: 4em;
+  height: 4em;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .1s ease-in;
+  padding: 2px;
+}
+
+.opc2 {
+  display: flex;
+  grid-template-columns: repeat(1, 2fr);
+  width: 12em;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 61%;
+  left: 70%;
+}
+
+.opc2 button {
+  border: none;
+  width: 10em;
+  font-size: 18px;
+  border-radius: 20px;
+  padding: 5px;
+  height: 3.5em;
+  background-color: #fb8f7e;
+  font-weight: 700;
+  transition: .2s ease-in;
+}
+
+.opc2 button:hover {
+  background-color: #ff6851;
+}
+
+.opc img:hover {
+  border-radius: 100%;
+  transition: .2s ease-in;
+  background-color: #ffffff;
+  padding: 2px;
+
+}
+
+.opc button {
+  transition: .2s ease-in;
+  border: none;
+  width: 4em;
+  height: 4em;
+  background-color: transparent;
+}
+
+.opc img {
+  width: 3.5em;
+  height: 3.5em;
+}

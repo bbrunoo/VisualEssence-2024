@@ -38,9 +38,14 @@ namespace VisualEssence.API.Controllers
                 var pdfBytes = GeneratePdf(crianca);
 
                 var tempPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "temp_report.pdf");
+
                 System.IO.File.WriteAllBytes(tempPath, pdfBytes);
 
-                return File(pdfBytes, "application/pdf", $"Relatorio_Crianca_{crianca.Nome}.pdf");
+                var fileResult = File(pdfBytes, "application/pdf", $"Relatorio_Crianca_{crianca.Nome}.pdf");
+
+                System.IO.File.Delete(tempPath);
+
+                return fileResult;
             }
             catch (Exception ex)
             {
@@ -135,15 +140,15 @@ namespace VisualEssence.API.Controllers
                     break;
 
                 case "Daltonismo Animais":
-                    if (pontuacao < 10) return "Se você teve dificuldade em distinguir as cores dos animais, pode ser um sinal de daltonismo, uma condição que afeta a percepção das cores. Consultar um médico é essencial para confirmar se você possui daltonismo e entender como lidar com essa condição.";
-                    if (pontuacao >= 10 && pontuacao < 15) return "Se você conseguiu identificar corretamente as cores dos animais, sua percepção cromática parece estar saudável. Porém, é sempre bom realizar exames com um especialista para garantir que não há outros problemas com sua visão.";
-                    if (pontuacao >= 16) return "Se você teve facilidade em identificar todas as cores, sua visão está em boa forma. Mesmo assim, um exame periódico é uma boa prática para monitorar a saúde dos seus olhos.";
+                    if (pontuacao <= 12) return "Se você teve dificuldade em distinguir as cores dos animais, pode ser um sinal de daltonismo, uma condição que afeta a percepção das cores. Consultar um médico é essencial para confirmar se você possui daltonismo e entender como lidar com essa condição.";
+                    if (pontuacao > 12 && pontuacao < 24) return "Se você conseguiu identificar corretamente as cores dos animais, sua percepção cromática parece estar saudável. Porém, é sempre bom realizar exames com um especialista para garantir que não há outros problemas com sua visão.";
+                    if (pontuacao >= 25) return "Se você teve facilidade em identificar todas as cores, sua visão está em boa forma. Mesmo assim, um exame periódico é uma boa prática para monitorar a saúde dos seus olhos.";
                     break;
 
                 case "Daltonismo Numeros":
-                    if (pontuacao < 10) return "Se você teve dificuldade em enxergar ou identificar os números, isso pode indicar daltonismo. É importante buscar um oftalmologista para um diagnóstico correto e discutir as possíveis soluções.";
-                    if (pontuacao >= 10 && pontuacao < 15) return "Se você conseguiu ver os números com clareza, sua percepção das cores provavelmente está dentro do normal. Uma consulta com um especialista é sempre recomendada para garantir a saúde dos seus olhos.";
-                    if (pontuacao >= 16) return "Se você conseguiu identificar os números sem dificuldades, isso é um bom sinal de saúde ocular. Mesmo assim, é sempre importante realizar exames de rotina para manter seus olhos protegidos e detectar qualquer alteração precocemente.";
+                    if (pontuacao < 16) return "Se você teve dificuldade em enxergar ou identificar os números, isso pode indicar daltonismo. É importante buscar um oftalmologista para um diagnóstico correto e discutir as possíveis soluções.";
+                    if (pontuacao >= 16 && pontuacao < 28) return "Se você conseguiu ver os números com clareza, sua percepção das cores provavelmente está dentro do normal. Uma consulta com um especialista é sempre recomendada para garantir a saúde dos seus olhos.";
+                    if (pontuacao >= 29) return "Se você conseguiu identificar os números sem dificuldades, isso é um bom sinal de saúde ocular. Mesmo assim, é sempre importante realizar exames de rotina para manter seus olhos protegidos e detectar qualquer alteração precocemente.";
                     break;
 
                 default:

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
 
 * {
   margin: 0;
@@ -11,3 +13,10 @@ body {
   height: 100vh;
 }
 
+.custom-swal-title {
+  font-family: "Montserrat", sans-serif;
+}
+
+.custom-swal-text {
+  font-family: "Montserrat", sans-serif;
+}

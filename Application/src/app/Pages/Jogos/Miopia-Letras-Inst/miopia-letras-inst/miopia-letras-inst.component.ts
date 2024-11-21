@@ -140,6 +140,10 @@ export class MiopiaLetrasInstComponent {
       imageUrl: '../../../../../assets/miopiaLetras/worried.png',
       imageWidth: 100,
       imageHeight: 100,
+      customClass: {
+        title: 'custom-swal-title',
+        htmlContainer: 'custom-swal-text',
+      },
       imageAlt: 'Imagem de erro',
       confirmButtonText: 'OK'
     });
@@ -155,7 +159,7 @@ export class MiopiaLetrasInstComponent {
     } else {
       this.result.score = this.acertos;
       this.result.errors = this.erros;
-  
+
       Swal.fire({
         title: 'Você finalizou o jogo!',
         text: 'Verificar diagnóstico.',
@@ -163,6 +167,10 @@ export class MiopiaLetrasInstComponent {
         imageWidth: 100,
         imageHeight: 100,
         imageAlt: 'Imagem de erro',
+        customClass: {
+          title: 'custom-swal-title',
+          htmlContainer: 'custom-swal-text',
+        },
         showCancelButton: true,
         confirmButtonText: 'OK',
         cancelButtonText: 'Home'
@@ -184,7 +192,10 @@ export class MiopiaLetrasInstComponent {
       imageWidth: 100,
       imageHeight: 100,
       imageAlt: 'Imagem de erro',
-
+      customClass: {
+        title: 'custom-swal-title',
+        htmlContainer: 'custom-swal-text',
+      },
       showCancelButton: true,
       confirmButtonText: 'Sim',
       cancelButtonText: 'Cancelar'

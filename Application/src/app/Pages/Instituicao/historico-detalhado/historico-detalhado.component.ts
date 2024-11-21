@@ -47,7 +47,6 @@ export class HistoricoDetalhadoComponent {
   baixarPdf(): void {
     this.pdfService.getJogadasPorCriancaPdf(this.idCrianca).subscribe(
       (response) => {
-        // Criar um link para baixar o PDF
         const blob = response;
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
