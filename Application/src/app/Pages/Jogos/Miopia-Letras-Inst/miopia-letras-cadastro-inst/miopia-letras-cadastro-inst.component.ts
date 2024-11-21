@@ -67,7 +67,7 @@ export class MiopiaLetrasCadastroInstComponent {
     if (this.selectedCriancaId) {
       localStorage.setItem("idCriancaInst", this.selectedCriancaId);
       console.log('Id da criança Inst:', this.selectedCriancaId);
-      this.router.navigate(['/instituicao/jogos/daltonismo-animais/instrucao']);
+      this.router.navigate(['/instituicao/jogos/letras/instrucoes']);
       } else {
       console.error('Nenhuma criança selecionada');
     }
