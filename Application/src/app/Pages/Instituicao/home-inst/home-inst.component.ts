@@ -2,6 +2,10 @@ import { DadosService } from './../Services/dados-graficos-service/dados.service
 import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { InstMenuComponent } from '../shared-menu/inst-menu/inst-menu.component';
+import { DadosGraficos } from '../../../Models/DadosGraficos.model';
+import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
+import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
+import { FontSizeService } from '../../Font/font-size.service';
 import {
   Chart,
   PieController,
@@ -17,14 +21,12 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
-import { DadosGraficos } from '../../../Models/DadosGraficos.model';
-import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
-import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-home-inst',
   standalone: true,
-  imports: [VlibrasComponent, InstMenuComponent, ChatBotIconeComponent],
+  imports: [VlibrasComponent, InstMenuComponent, ChatBotIconeComponent, NgClass],
   templateUrl: './home-inst.component.html',
   styleUrls: ['./home-inst.component.css']
 })
@@ -36,7 +38,7 @@ export class HomeInstComponent implements OnInit {
   userId = String(this.authService.getUserIdFromToken());
   userMessage = '';
 
-  constructor(private dadosService: DadosService, private authService: AuthService) { }
+  constructor(private dadosService: DadosService, private authService: AuthService, public fontSizeService: FontSizeService) { }
 
   delayed: boolean = false;
 
@@ -105,7 +107,7 @@ export class HomeInstComponent implements OnInit {
               label: function (context) {
                 const label = context.chart.data.labels![context.dataIndex];
                 const value = context.raw;
-                return ` Valor: ${value}`;
+                return `Valor: ${label} - ${value}`;
               }
             },
             titleFont: {
@@ -217,9 +219,19 @@ export class HomeInstComponent implements OnInit {
     });
   }
 
+  getFontSizeClass(): string {
+    if (this.fontSizeService.fontSizeMultiplier > 1.2) {
+      return 'size1_2';
+    }
+    return '';
+  }
+
   ngOnInit() {
     this.getDadosGrafico();
     Chart.register(PieController, ArcElement, BarController, BarElement, LineController, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
+
+    this.fontSizeService.initializeFontSize('txLeg', 15);
+    this.fontSizeService.initializeFontSize('txDes', 17);
   }
 }
 
@@ -227,7 +239,6 @@ class Utils {
   static CHART_COLORS = {
     blue: '#0870ff',
     red: '#ab0000',
-    yellow: '#ffe92d',
     green: '#5fb40f',
   };
 

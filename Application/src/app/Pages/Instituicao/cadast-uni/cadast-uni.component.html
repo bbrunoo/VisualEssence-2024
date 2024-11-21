@@ -5,7 +5,7 @@
   <div class="conteudo" *ngIf="!showNew" [ngClass]="{ fade_In: !showNew }">
     <div class="formulario">
       <form #criancaForm="ngForm" (ngSubmit)="cadastrarCrianca()" novalidate>
-        <legend>DADOS CRIANÇA</legend>
+        <legend id="txLB" [style.fontSize.px]="fontSizeService.getFontSize('txLG')">DADOS CRIANÇA</legend>
         <div class="I">
           <input
             type="text"
@@ -14,9 +14,10 @@
             required
             [(ngModel)]="dadosCriancas.nome"
             #nomeC="ngModel"
-            [ngModelOptions]="{ standalone: true }"
+            [ngModelOptions]="{ standalone: true }" 
+            id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')"
           />
-          <label for="nomeC">Nome</label>
+          <label for="nomeC" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">Nome</label>
         </div>
         <br />
 
@@ -30,9 +31,10 @@
               min="01-01-0001"
               [(ngModel)]="dadosCriancas.dataNascimento"
               #dataNas="ngModel"
-              [ngModelOptions]="{ standalone: true }"
+              [ngModelOptions]="{ standalone: true }" 
+              id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')"
             />
-            <label for="dataNas" class="esquerdoLabel">Data Nasc.</label>
+            <label for="dataNas" class="esquerdoLabel" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">Data Nasc.</label>
           </div>
 
           <div class="D">
@@ -45,9 +47,10 @@
               mask="000 0000 0000 0000"
               [(ngModel)]="dadosCriancas.cns"
               #cns="ngModel"
-              [ngModelOptions]="{ standalone: true }"
+              [ngModelOptions]="{ standalone: true }" 
+              id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')"
             />
-            <label for="cns" class="direitoLabel">CNS</label>
+            <label for="cns" class="direitoLabel" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">CNS</label>
           </div>
         </div>
 
@@ -60,6 +63,7 @@
             name="sex"
             required
             #sexo="ngModel"
+            id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')"
           >
             <option value="" disabled>Sexo</option>
             <option *ngFor="let sexo of sexos" [value]="sexo.valor">
@@ -79,8 +83,9 @@
             [(ngModel)]="dadosCriancas.nomeResp"
             #nomeRes="ngModel"
             [ngModelOptions]="{ standalone: true }"
+            id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')"
           />
-          <label for="nomeRes">Nome Responsável</label>
+          <label for="nomeRes" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">Nome Responsável</label>
         </div>
 
         <br />
@@ -96,9 +101,10 @@
               mask="000.000.000-00"
               [(ngModel)]="dadosCriancas.cpf"
               #cpf="ngModel"
-              [ngModelOptions]="{ standalone: true }"
+              [ngModelOptions]="{ standalone: true }" 
+              id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')"
             />
-            <label for="cpf" class="esquerdoLabel">CPF</label>
+            <label for="cpf" class="esquerdoLabel" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">CPF</label>
           </div>
 
           <div class="D">
@@ -112,8 +118,9 @@
               [(ngModel)]="dadosCriancas.rg"
               #rg="ngModel"
               [ngModelOptions]="{ standalone: true }"
+              id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')"
             />
-            <label for="rg" class="direitoLabel">RG</label>
+            <label for="rg" class="direitoLabel" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">RG</label>
           </div>
         </div>
 
@@ -131,8 +138,9 @@
               [(ngModel)]="dadosCriancas.tel1"
               #tel1="ngModel"
               [ngModelOptions]="{ standalone: true }"
+              id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')"
             />
-            <label for="tel1" class="esquerdoLabel">Telefone 1</label>
+            <label for="tel1" class="esquerdoLabel" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">Telefone 1</label>
           </div>
 
           <div class="D">
@@ -144,8 +152,9 @@
               [(ngModel)]="dadosCriancas.endereco"
               #end="ngModel"
               [ngModelOptions]="{ standalone: true }"
+              id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')"
             />
-            <label for="end" class="direitoLabel">Endereço</label>
+            <label for="end" class="direitoLabel" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">Endereço</label>
           </div>
         </div>
 
@@ -163,8 +172,9 @@
               [(ngModel)]="dadosCriancas.tel2"
               #tel2="ngModel"
               [ngModelOptions]="{ standalone: true }"
+              id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')"
             />
-            <label for="tel2" class="esquerdoLabel">Telefone 2</label>
+            <label for="tel2" class="esquerdoLabel" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">Telefone 2</label>
           </div>
 
           <select
@@ -173,6 +183,7 @@
             [(ngModel)]="dadosCriancas.idSala"
             #sala="ngModel"
             [ngModelOptions]="{ standalone: true }"
+            id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')"
           >
             <option value="0" selected disabled>Salas</option>
             <option *ngFor="let sala of salas" [value]="sala.id">
@@ -184,10 +195,11 @@
         <br />
 
         <div class="btns">
-          <button type="submit" class="btnSalvar" [disabled]="criancaForm.invalid || isSubmitting">Salvar</button>
+          <button type="submit" class="btnSalvar" [disabled]="criancaForm.invalid || isSubmitting" id="txLB" [style.fontSize.px]="fontSizeService.getFontSize('txLB')">Salvar</button>
           <button
             [routerLink]="['/instituicao/criar-sala']"
             class="btnCancelar"
+            id="txLB" [style.fontSize.px]="fontSizeService.getFontSize('txLB')"
           >
             Cancelar
           </button>

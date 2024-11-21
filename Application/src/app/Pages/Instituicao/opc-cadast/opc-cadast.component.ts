@@ -6,6 +6,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { CadastUniComponent } from '../cadast-uni/cadast-uni.component';
 import { CadastMassaComponent } from '../cadast-massa/cadast-massa.component';
 import { InstMenuComponent } from "../shared-menu/inst-menu/inst-menu.component";
+import { FontSizeService } from '../../Font/font-size.service';
 
 @Component({
   selector: 'app-opc-cadast',
@@ -33,6 +34,12 @@ export class OpcCadastComponent {
 
   toggleOpCad() {
     this.showOpCad = !this.showOpCad;
+  }
+
+  constructor(public fontSizeService: FontSizeService) { }
+
+  ngOnInit(): void {
+    this.fontSizeService.initializeFontSize('txBtn', 20);
   }
 
 }

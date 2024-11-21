@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Sala } from '../../../Models/InstituicaoModels/Sala.model';
 import { OpcCriarSalaComponent } from "../opc-criar-sala/opc-criar-sala.component";
 import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
+import { FontSizeService } from '../../Font/font-size.service';
 
 @Component({
   selector: 'app-criar-sala',
@@ -39,4 +40,9 @@ export class CriarSalaComponent {
     this.showOpCad = true;
   }
 
+  constructor(public fontSizeService: FontSizeService) { }
+
+  ngOnInit(): void {
+    this.fontSizeService.initializeFontSize('txCS', 19);
+  }
 }

@@ -3,7 +3,7 @@
 
   <div class="conteudo" *ngIf="!showCadUni && !showCadMas" [ngClass]="{ fade_In: !showCadUni || !showCadMas }">
     <div class="content">
-      <button class="btnCad" [routerLink]="['/instituicao/cadastro-unico']">
+      <button class="btnCad" [routerLink]="['/instituicao/cadastro-unico']" id="txBtn" [style.fontSize.px]="fontSizeService.getFontSize('txBtn')">
         CADASTRO UNITÁRIO DE CRIANÇA
       </button>
     </div>

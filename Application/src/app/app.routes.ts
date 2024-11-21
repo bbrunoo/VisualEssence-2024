@@ -97,7 +97,7 @@ export const routes: Routes = [
 
   // { path: 'doe-info', component: DoeInfoComponent },
 
-   { path: '', component: HomeComponent },
+  // { path: 'Pais/Home', component: HomeComponent },
   // { path: 'Pais/Painel-Educativo', component: PainelEducativoComponent },
   // { path: 'Pais/Sobre-nos', component: SobreNosComponent },
   // { path: 'Pais/Jogos/Historico', component: HistoricoPaisComponent },
@@ -110,7 +110,7 @@ export const routes: Routes = [
   // { path: 'instituicao/detalhes/:id', component: HistoricoDetalhadoComponent, canActivate: [AuthGuard] },
   // { path: 'instituicao/criancas-cadastradas/:id', component: CriancasCadastradasSalaComponent, canActivate: [AuthGuard] },
   // { path: 'instituicao/opcao-cadastro', component: OpcCadastComponent, canActivate: [AuthGuard] },
-  // { path: 'instituicao/cadastro-unico', component: CadastUniComponent, canActivate: [AuthGuard] },
+  { path: '', component: CadastUniComponent},
   // { path: 'instituicao/cadastro-massa', component: CadastMassaComponent, canActivate: [AuthGuard] },
   // { path: 'instituicao/cadastros', component: CadastrosComponent, canActivate: [AuthGuard] },
   // { path: 'instituicao/dados-cadastro/:id', component: DadCadastComponent, canActivate: [AuthGuard] },

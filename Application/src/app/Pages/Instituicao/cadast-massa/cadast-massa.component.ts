@@ -5,6 +5,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { FormsModule } from '@angular/forms';
 import { InstMenuComponent } from '../shared-menu/inst-menu/inst-menu.component';
 import { VlibrasComponent } from '../../vlibras/vlibras.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cadast-massa',
@@ -33,22 +34,19 @@ export class CadastMassaComponent {
     this.showNew = !this.showNew;
   }
 
-  //-------------------------------------------------------------------------------------------
+  /*--------------------------------------------------------------------------------------------------*/
 
-  selectSexo: string = '';
   selectSala: string = '';
 
   SelectChange(event: Event, type: string): void {
     const selectElement = event.target as HTMLSelectElement;
 
-    if (type === 'sexo' && selectElement.value === 'bra' || selectElement.value === '') {
-      this.selectSexo = '';
-    } else if (type === 'sala' && selectElement.value === 'bra' || selectElement.value === '') {
+    if (type === 'sala' && selectElement.value === 'bra' || selectElement.value === '') {
       this.selectSala = '';
     }
   }
 
-  //--------------------------------------------------------------------------------------------------
+  /*--------------------------------------------------------------------------------------------------*/
 
   @ViewChild('inputFile', { static: false })
   inputFile!: ElementRef<HTMLInputElement>;
@@ -63,8 +61,23 @@ export class CadastMassaComponent {
 
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
-      this.fileName = file.name;
-      console.log('Arquivo Selecionado:', file);
+      const allowedTypes = ['application/pdf', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+
+      if (allowedTypes.includes(file.type)) {
+        this.fileName = file.name;
+        console.log('Arquivo Selecionado:', file);
+      } else {
+        Swal.fire({
+          title: "Tipo de Arquivo Inválido!",
+          text: "Por favor, selecione um PDF ou um arquivo Excel.",
+          imageUrl: '../../../../assets/icons/cancel.png',
+          imageWidth: 100,
+          imageHeight: 100,
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#ff3c3c',
+          heightAuto: false
+        });
+      }
     }
   }
 }

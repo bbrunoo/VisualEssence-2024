@@ -138,3 +138,7 @@ mat-sidenav-content {
   background: rgba(0, 0, 0, 0.5);
   /* Define o fundo semi-transparente */
 }
+
+.size1_2{
+  width: 65%;
+}

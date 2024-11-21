@@ -17,7 +17,7 @@ import { CriancaInstDTO } from '../../../Models/CriancaInstDTO.model';
 import { VlibrasComponent } from '../../vlibras/vlibras.component';
 import { ChatBotComponent } from "../../chat-bot-conteudo/chat-bot/chat-bot.component";
 import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
-
+import { FontSizeService } from '../../Font/font-size.service';
 
 @Component({
   selector: 'app-cadast-uni',
@@ -41,8 +41,23 @@ export class CadastUniComponent implements OnInit {
     private dadosC: CadastroUnicoService,
     private router: Router,
     private authService: AuthService,
+    public fontSizeService: FontSizeService
   ) {}
 
+  // getFontSizeClass(): string {
+  //   if (this.fontSizeService.fontSizeMultiplier > 1.2) {
+  //     return 'size1_2';
+  //   }
+  //   return '';
+  // }
+
+  // aumentarFonte() {
+  //   this.fontSizeService.increaseFontSize();
+  // }
+
+  // diminuirFonte() {
+  //   this.fontSizeService.decreaseFontSize();
+  // }
 
   salas: GetSala[] =[]
   ngOnInit() {
@@ -51,6 +66,10 @@ export class CadastUniComponent implements OnInit {
     }, error => {
       console.error('Erro ao buscar salas:', error);
     });
+
+    this.fontSizeService.initializeFontSize('txLB', 17);
+    this.fontSizeService.initializeFontSize('txInp', 16);
+    this.fontSizeService.initializeFontSize('txL', 15);
   }
 
 
