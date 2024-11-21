@@ -44,7 +44,7 @@ export class HistoricoService {
     );
   }
 
-  getHistoricoDaltonismo(game: string, userId: string): Observable<Historico[]> {
+  getHistoricoDaltonismoAnimais(game: string, userId: string): Observable<Historico[]> {
     return this.http.get<Historico[]>(`${this.api}/JogadaPais/historico/${game}/${userId}`).pipe(
       catchError(error => {
         console.error(`Erro ao obter histórico de dalt`, error);
@@ -54,10 +54,10 @@ export class HistoricoService {
     );
   }
 
-  getHistoricoFigurasColoridas(game: string, userId: string): Observable<Historico[]> {
+  getHistoricoDaltonismoNumeros(game: string, userId: string): Observable<Historico[]> {
     return this.http.get<Historico[]>(`${this.api}/JogadaPais/historico/${game}/${userId}`).pipe(
       catchError(error => {
-        console.error(`Erro ao obter histórico de figu`, error);
+        console.error(`Erro ao obter histórico de dalt`, error);
         console.log("UserId DA CHAMADA:", this.userInstId);
         return of([]);
       })

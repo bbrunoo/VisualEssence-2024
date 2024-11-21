@@ -1,3 +1,6 @@
+import { DaltoNumerosInstComponent } from './Pages/Jogos/Daltonismo-numeros-inst/dalto-numeros-inst/dalto-numeros-inst.component';
+import { DaltoNumerosInstInstrucaoComponent } from './Pages/Jogos/Daltonismo-numeros-inst/dalto-numeros-inst-instrucao/dalto-numeros-inst-instrucao.component';
+import { DaltoNumerosInstResultadoComponent } from './Pages/Jogos/Daltonismo-numeros-inst/dalto-numeros-inst-resultado/dalto-numeros-inst-resultado.component';
 import { DoePageComponent } from './Pages/PaisHome/doe-page/doe-page.component';
 import { DoeInfoComponent } from './Pages/PaisHome/doe-info/doe-info.component';
 import { Routes } from '@angular/router';
@@ -46,23 +49,15 @@ import { MiopiaLetrasPaisInstrucaoComponent } from './Pages/Jogos/Miopia-Letras-
 import { MiopiaLetrasPaisResultadoComponent } from './Pages/Jogos/Miopia-Letras-Pais/miopia-letras-pais-resultado/miopia-letras-pais-resultado.component';
 import { MiopiaLetrasPaisComponent } from './Pages/Jogos/Miopia-Letras-Pais/miopia-letras-pais/miopia-letras-pais.component';
 
-//figurascoloridas
-import { FigurasColoridasComponent } from './Pages/Jogos/FigurasColoridas/figuras-coloridas/figuras-coloridas.component';
-import { FigurasColoridasInstrucoesComponent } from './Pages/Jogos/FigurasColoridas/figuras-coloridas-instrucoes/figuras-coloridas-instrucoes.component';
-import { FigurasColoridasResultComponent } from './Pages/Jogos/FigurasColoridas/figuras-coloridas-result/figuras-coloridas-result.component';
-import { CadastroCriancaFigurasComponent } from './Pages/Jogos/FigurasColoridas/cadastro-crianca-figuras/cadastro-crianca-figuras.component';
-
 //instituicao
 //miopia
 import { MiopiaInstComponent } from './Pages/Jogos/MiopiaInst/miopia-inst/miopia-inst.component';
 import { MiopiaInstResultComponent } from './Pages/Jogos/MiopiaInst/miopia-inst-result/miopia-inst-result.component';
 import { MiopiaInstInstrucoesComponent } from './Pages/Jogos/MiopiaInst/miopia-inst-instrucoes/miopia-inst-instrucoes.component';
 
-//figurascoloridas
-import { FigurasColoridasInstComponent } from './Pages/Jogos/FigurasColoridasInst/figuras-coloridas-inst/figuras-coloridas-inst.component';
-import { FigurasColoridasInstInstrucoesComponent } from './Pages/Jogos/FigurasColoridasInst/figuras-coloridas-inst-instrucoes/figuras-coloridas-inst-instrucoes.component';
-import { FigurasColoridasInstResultComponent } from './Pages/Jogos/FigurasColoridasInst/figuras-coloridas-inst-result/figuras-coloridas-inst-result.component';
-import { CadastroCriancasInstFigurasComponent } from './Pages/Jogos/FigurasColoridasInst/cadastro-criancas-inst-figuras/cadastro-criancas-inst-figuras.component';
+//instituicao
+//daltonismo
+import { DaltoAnimaisInstComponent } from './Pages/Jogos/Daltonismo-animais-inst/dalto-animais-inst/dalto-animais-inst.component';
 
 import { ContatoComponent } from './Pages/Contato/contato.component';
 import { AuthGuard } from './guards/user-authenticated.guard';
@@ -78,6 +73,18 @@ import { MiopiaLetrasInstComponent } from './Pages/Jogos/Miopia-Letras-Inst/miop
 import { MiopiaLetrasInstResultadoComponent } from './Pages/Jogos/Miopia-Letras-Inst/miopia-letras-inst-resultado/miopia-letras-inst-resultado.component';
 import { CriancasCadastradasSalaComponent } from './Pages/Instituicao/criancas-cadastradas-sala/criancas-cadastradas-sala.component';
 import { HistoricoDetalhadoComponent } from './Pages/Instituicao/historico-detalhado/historico-detalhado.component';
+import { DaltoAnimaisInstInstrucoesComponent } from './Pages/Jogos/Daltonismo-animais-inst/dalto-animais-inst-instrucoes/dalto-animais-inst-instrucoes.component';
+import { DaltoAnimaisInstResultComponent } from './Pages/Jogos/Daltonismo-animais-inst/dalto-animais-inst-result/dalto-animais-inst-result.component';
+import { DaltoAnimaisInstCadastroComponent } from './Pages/Jogos/Daltonismo-animais-inst/dalto-animais-inst-cadastro/dalto-animais-inst-cadastro.component';
+import { DaltoAnimaisPaisCadastroComponent } from './Pages/Jogos/Daltonismo-animais-pais/dalto-animais-pais-cadastro/dalto-animais-pais-cadastro.component';
+import { DaltoAnimaisPaisResultadoComponent } from './Pages/Jogos/Daltonismo-animais-pais/dalto-animais-pais-resultado/dalto-animais-pais-resultado.component';
+import { DaltoAnimaisPaisComponent } from './Pages/Jogos/Daltonismo-animais-pais/dalto-animais-pais/dalto-animais-pais.component';
+import { DaltoAnimaisPaisInstrucaoComponent } from './Pages/Jogos/Daltonismo-animais-pais/dalto-animais-pais-instrucao/dalto-animais-pais-instrucao.component';
+import { DaltoNumerosInstCadastroComponent } from './Pages/Jogos/Daltonismo-numeros-inst/dalto-numeros-inst-cadastro/dalto-numeros-inst-cadastro.component';
+import { DaltoNumPaisComponent } from './Pages/Jogos/Daltonismo-numeros-pais/dalto-num-pais/dalto-num-pais.component';
+import { DaltoNumPaisResultadoComponent } from './Pages/Jogos/Daltonismo-numeros-pais/dalto-num-pais-resultado/dalto-num-pais-resultado.component';
+import { DaltoNumPaisCadastroComponent } from './Pages/Jogos/Daltonismo-numeros-pais/dalto-num-pais-cadastro/dalto-num-pais-cadastro.component';
+import { DaltoNumPaisInstrucaoComponent } from './Pages/Jogos/Daltonismo-numeros-pais/dalto-num-pais-instrucao/dalto-num-pais-instrucao.component';
 
 
 export const routes: Routes = [
@@ -125,10 +132,15 @@ export const routes: Routes = [
   { path: 'instituicao/jogos/miopia', component: MiopiaInstComponent, canActivate: [AuthGuard] },
   { path: 'instituicao/jogos/miopia/result', component: MiopiaInstResultComponent, canActivate: [AuthGuard] },
 
-  { path: 'instituicao/jogos/cadastrar-crianca-figuras', component: CadastroCriancasInstFigurasComponent, canActivate: [AuthGuard] },
-  { path: 'instituicao/jogos/figuras-coloridas/instrucoes', component: FigurasColoridasInstInstrucoesComponent, canActivate: [AuthGuard] },
-  { path: 'instituicao/jogos/figuras-coloridas', component: FigurasColoridasInstComponent, canActivate: [AuthGuard] },
-  { path: 'instituicao/jogos/figuras-coloridas/result', component: FigurasColoridasInstResultComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/daltonismo-animais/cadastro', component: DaltoAnimaisInstCadastroComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/daltonismo-animais', component: DaltoAnimaisInstComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/daltonismo-animais/instrucao', component: DaltoAnimaisInstInstrucoesComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/daltonismo-animais/resultado', component: DaltoAnimaisInstResultComponent, canActivate: [AuthGuard] },
+
+  { path: 'instituicao/jogos/daltonismo-numeros/cadastro', component: DaltoNumerosInstCadastroComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/daltonismo-numeros', component: DaltoNumerosInstComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/daltonismo-numeros/instrucao', component: DaltoNumerosInstInstrucaoComponent, canActivate: [AuthGuard] },
+  { path: 'instituicao/jogos/daltonismo-numeros/resultado', component: DaltoNumerosInstResultadoComponent, canActivate: [AuthGuard] },
 
   { path: 'instituicao/jogos/letras/instrucoes', component: MiopiaLetrasInstInstrucaoComponent, canActivate: [AuthGuard] },
   { path: 'instituicao/jogos/letras-cadastro', component: MiopiaLetrasCadastroInstComponent, canActivate: [AuthGuard] },
@@ -140,15 +152,18 @@ export const routes: Routes = [
   { path: 'Pais/jogos/miopia/result', component: MiopiaResultComponent, canActivate: [AuthGuard] },
   { path: 'Pais/jogos/cadastrar-crianca-pais', component: CadastroCriancaPaisComponent, canActivate: [AuthGuard] },
 
-  { path: 'Pais/jogos/cadastrar-crianca-figuras', component: CadastroCriancaFigurasComponent, canActivate: [AuthGuard] },
-  { path: 'Pais/jogos/figuras-coloridas/instrucoes', component: FigurasColoridasInstrucoesComponent, canActivate: [AuthGuard] },
-  { path: 'Pais/jogos/figuras-coloridas', component: FigurasColoridasComponent, canActivate: [AuthGuard] },
-  { path: 'Pais/jogos/figuras-coloridas/result', component: FigurasColoridasResultComponent },
-
   { path: 'Pais/jogos/letras-cadastro', component: MiopiaLetrasCadastroPaisComponent, canActivate: [AuthGuard] },
   { path: 'Pais/jogos/letras/instrucoes', component: MiopiaLetrasPaisInstrucaoComponent, canActivate: [AuthGuard] },
   { path: 'Pais/jogos/letras', component: MiopiaLetrasPaisComponent, canActivate: [AuthGuard] },
   { path: 'Pais/jogos/letras/result', component: MiopiaLetrasPaisResultadoComponent, canActivate: [AuthGuard] },
 
+  { path: 'Pais/jogos/daltonismo-animais/instrucoes', component: DaltoAnimaisPaisInstrucaoComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/daltonismo-animais', component: DaltoAnimaisPaisComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/daltonismo-animais/resultado', component: DaltoAnimaisPaisResultadoComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/daltonismo-animais/cadastro', component: DaltoAnimaisPaisCadastroComponent, canActivate: [AuthGuard] },
 
+  { path: 'Pais/jogos/daltonismo-numeros/instrucoes', component: DaltoNumPaisInstrucaoComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/daltonismo-numeros', component: DaltoNumPaisComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/daltonismo-numeros/resultado', component: DaltoNumPaisResultadoComponent, canActivate: [AuthGuard] },
+  { path: 'Pais/jogos/daltonismo-numeros/cadastro', component: DaltoNumPaisCadastroComponent, canActivate: [AuthGuard] },
 ];

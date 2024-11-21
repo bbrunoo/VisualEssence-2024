@@ -1,0 +1,21 @@
+<app-logo-menu></app-logo-menu>
+<app-vlibras></app-vlibras>
+<div class="emenda">
+<div class="position">
+  <div class="content">
+    <div class="pos2">
+      <img src="../../../../assets/astronauta5.png" alt="" />
+    </div>
+    <div class="form-conteudo">
+      <img class="image_forms" src="../../../../assets/olhosmenu.png" alt="" />
+      <form class="form1" (submit)="salvarCrianca()">
+        <input class="input_nome" type="text" id="nome" name="nome" placeholder="NOME" [(ngModel)]="nomecrianca" required />
+        <br />
+        <input class="input_idade" type="number" id="idade" name="idade" placeholder="IDADE" [(ngModel)]="idadecrianca"  required />
+        <br />
+        <button class="input_submit" type="submit" routerlink="/Pais/jogos/letras/instrucoes">Salvar</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

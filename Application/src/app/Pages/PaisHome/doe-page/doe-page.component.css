@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-image: url("../../../../assets/HomeImages/star1.png"),
+    url("../../../../assets/HomeImages/allplanets1.png"),
+    url("../../../../assets/HomeImages/planeta2.png"),
+    url("../../../../assets/HomeImages/background.png");
+  background-size: cover, cover, 25% 50%;
+  background-position: 0 0, right -20px top -100px, left -125px bottom -75px;
+  background-repeat: no-repeat;
+  background-color: #010029;
+  padding-top: 5em;
+  gap: 5em;
+}
+
+.text1 {
+  max-width: 700px;
+  text-align: center;
+}
+
+.text1 h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.text1 p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.conteudo-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5em;
+  width: 100%;
+}
+
+.conteudo {
+  width: 60em;
+  border-radius: 20px;
+  border: 2px solid white;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.coluna {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-evenly;
+  gap: 1em;
+  width: 50em;
+}
+
+.reverse {
+  flex-direction: row-reverse; /* Inverte a ordem dos filhos */
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.right-content h3 {
+  font-size: 22px;
+  text-align: center;
+}
+
+.right-content img {
+  width: 10em;
+  height: 10em;
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
+
+.left-content {
+  text-align: justify;
+  font-size: 0.9rem;
+  width: 28em;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 1em;
+  justify-content: start;
+  font-size: 18px;
+}
+
+.align-start {
+  align-items: start;
+}
+
+.left-content button {
+  border: none;
+  background-color: rgb(33, 148, 23);
+  width: 8em;
+  font-size: 15px;
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  height: 3em;
+  text-align: center;
+}
+
+
+.left-content button a {
+  color: white;
+  text-decoration: none;
+}

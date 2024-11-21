@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../Shared-Pais/header/header.component';
 import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-opcoes-daltonismo',
   standalone: true,
-  imports: [LogoMenuComponent],
+  imports: [LogoMenuComponent, RouterLink],
   templateUrl: './opcoes-daltonismo.component.html',
   styleUrl: './opcoes-daltonismo.component.css'
 })

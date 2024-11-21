@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../../../../assets/DaltonismoImages/Telas/Fundo.png");
+  background-size: cover;
+  background-position: center;
+  flex-direction: row;
+  gap: 8em;
+}
+
+.imagens {
+  width: 22vw;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagem1 {
+  animation: gato 2.5s ease-in-out  infinite;
+  width: 22em;
+  height: auto;
+}
+
+@keyframes gato {
+  0% {
+    transform: translateY(60px) rotate(10deg);
+  }
+  50% {
+    transform: translateY(0px) rotate(-10deg);
+  }
+  100% {
+    transform: translateY(60px) rotate(10deg);
+  }
+}
+
+
+.conteudo {
+  background: rgba(65, 25, 88, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(65, 25, 88, 0.3);
+  padding: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 25em;
+  height: 30em;
+  gap: 2em;
+}
+
+.conteudo-texto {
+  height: 14em;
+}
+
+.titulo {
+  height: 5em;
+}
+
+.conteudo-texto h1 {
+  font-size: 23px;
+  color: #ffffff;
+}
+
+.conteudo-texto p {
+  font-size: 13px;
+  color: #ffffff;
+  line-height: 1.5;
+}
+
+.botoes-jogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  height: 6em;
+}
+
+.botoes-jogo img {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: .3s ease;
+  margin: 10px;
+}
+
+
+.botoes-jogo img:hover {
+  transform: scale(1.08);
+  transition: .3s ease;
+  filter: brightness(1.1);
+}

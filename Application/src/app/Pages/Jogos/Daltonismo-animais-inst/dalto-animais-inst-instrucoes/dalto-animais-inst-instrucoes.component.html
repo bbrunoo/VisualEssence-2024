@@ -1,0 +1,72 @@
+<app-logo-menu-inst></app-logo-menu-inst>
+<div class="container">
+  <div class="imagens">
+    <img
+      src="../../../../../assets/DaltonismoImages/Telas/cachorrogalac.png"
+      alt="Cachorro no foguete"
+      class="imagem1"
+    />
+    <img
+      src="../../../../../assets/DaltonismoImages/Telas/gatogalac.png"
+      alt="Gato no disco voador"
+      class="imagem2"
+    />
+  </div>
+
+  <div class="conteudo">
+    <div class="titulo">
+      <h1 *ngIf="isInstructions">Instruções</h1>
+      <h1 *ngIf="!isInstructions">Instruções</h1>
+    </div>
+    <div class="conteudo-texto">
+      <p *ngIf="isInstructions">
+        Bem-vindo ao "GalácticZooLand"! Um jogo para as crianças explorarem o
+        mundo dos animais e testarem suas habilidades visuais em 18 fases
+        emocionantes.
+      </p>
+      <p *ngIf="isInstructions">
+        A cada fase, você encontrará uma imagem com um animal colorido em estilo
+        Ishihara. Identifique-os clicando nas opções fornecidas.
+      </p>
+
+      <p *ngIf="!isInstructions">
+        Fique atento aos detalhes! Lembre-se, é só um jogo, não substitui um
+        diagnóstico médico.
+      </p>
+      <p *ngIf="!isInstructions">
+        Consulte um médico para avaliações precisas de visão. O jogo deve ser
+        feito acompanhado dos pais ou responsáveis da criança.
+      </p>
+    </div>
+
+    <div class="botoes-jogo">
+      <img
+        *ngIf="isInstructions"
+        src="../../../../../assets/DaltonismoImages/Telas/fechar.png"
+        alt="Fechar"
+        (click)="close()"
+      />
+
+      <img
+        *ngIf="isInstructions"
+        src="../../../../../assets/DaltonismoImages/Telas/direita.png"
+        alt="Avançar"
+        (click)="nextPhase()"
+      />
+
+      <img
+        *ngIf="!isInstructions"
+        src="../../../../../assets/DaltonismoImages/Telas/esquerda.png"
+        alt="Voltar"
+        (click)="previousPhase()"
+      />
+
+      <img
+        *ngIf="!isInstructions"
+        src="../../../../../assets/DaltonismoImages/Telas/play.png"
+        alt="Ir para a próxima tela"
+        (click)="goToNextScreen()"
+      />
+    </div>
+  </div>
+</div>

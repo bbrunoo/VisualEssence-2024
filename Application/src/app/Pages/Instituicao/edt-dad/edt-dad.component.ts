@@ -1,15 +1,13 @@
 import { VlibrasComponent } from './../../vlibras/vlibras.component';
 import { GetCriancas } from './../../../Models/InstituicaoModels/GetCriancas.model';
-import { Sala } from './../../../Models/InstituicaoModels/Sala.model';
 import { Component, OnInit } from '@angular/core';
-import { NgIf } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InstMenuComponent } from '../shared-menu/inst-menu/inst-menu.component';
 import { CadastroUnicoService } from '../Services/cadastrounico/cadastro-unico.service';
 import { SalasService } from '../Services/salas/salas.service';
 import { CommonModule } from '@angular/common';
-import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 import { GetSala } from '../../../Models/InstituicaoModels/GetSala.model';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
@@ -18,16 +16,15 @@ import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/ch
 @Component({
   selector: 'app-edt-dad',
   standalone: true,
-  imports: [VlibrasComponent, RouterLink, NgIf, FormsModule, InstMenuComponent, CommonModule, NgxMaskPipe, NgxMaskDirective, ReactiveFormsModule, ChatBotIconeComponent],
+  imports: [VlibrasComponent, RouterLink, FormsModule, InstMenuComponent, CommonModule, NgxMaskDirective, ReactiveFormsModule, ChatBotIconeComponent],
   templateUrl: './edt-dad.component.html',
   styleUrls: ['./edt-dad.component.css']
 })
 export class EdtDadComponent implements OnInit {
   criancaId!: string;
   selectedCrianca: GetCriancas | null = null;
-  salas: GetSala[] = []; // Array de salas recebidas
+  salas: GetSala[] = [];
   crianca!: GetCriancas;
-  userInstId: string = String(this.authService.getUserIdFromToken());
 
   sexos = [
     { valor: 'F', texto: 'Feminino' },
@@ -41,16 +38,17 @@ export class EdtDadComponent implements OnInit {
     private authService: AuthService,
     private routerGo: Router
   ) {}
+  userInstId: string = String(this.authService.getUserIdFromToken());
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.criancaId = id;  // Armazena o ID do parâmetro da URL
-      this.loadCriancaData();  // Carrega os dados da criança com o ID
+      this.criancaId = id;
+      this.loadCriancaData();
     } else {
       console.error('ID não encontrado na rota');
     }
-    this.getSalas(); // Carrega a lista de salas
+    this.getSalas();
   }
 
   loadCriancaData(): void {
@@ -95,6 +93,10 @@ export class EdtDadComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'Confirmar',
       cancelButtonText: 'Cancelar',
+      customClass: {
+        title: 'custom-swal-title',
+        htmlContainer: 'custom-swal-text',
+      },
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       heightAuto: false
@@ -109,6 +111,10 @@ export class EdtDadComponent implements OnInit {
               imageUrl: '../../../../assets/icons/check.png',
               imageWidth: 100,
               imageHeight: 100,
+              customClass: {
+                title: 'custom-swal-title',
+                htmlContainer: 'custom-swal-text',
+              },
               confirmButtonText: 'OK',
               confirmButtonColor: '#3085d6',
               heightAuto: false
@@ -127,6 +133,10 @@ export class EdtDadComponent implements OnInit {
               imageHeight: 100,
               confirmButtonText: 'OK',
               confirmButtonColor: '#3085d6',
+              customClass: {
+                title: 'custom-swal-title',
+                htmlContainer: 'custom-swal-text',
+              },
               heightAuto: false
             });
           }
@@ -139,6 +149,10 @@ export class EdtDadComponent implements OnInit {
           imageWidth: 100,
           imageHeight: 100,
           confirmButtonText: 'OK',
+          customClass: {
+            title: 'custom-swal-title',
+            htmlContainer: 'custom-swal-text',
+          },
           confirmButtonColor: '#3085d6',
           heightAuto: false
         });

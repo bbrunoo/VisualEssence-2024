@@ -11,9 +11,10 @@
       <div class="opcoes-jogo">
         <div class="contjogos" id="custom-bar">
           <div class="btn-opc">
-            <p>Miopia</p>
-            <img loading="lazy"
-              src="../../../../assets/InstHistorico/img1.png"
+            <p>Miopia Objetos</p>
+            <img
+              loading="lazy"
+              src="../../../../assets/HomeImages/MiopiaGaroto.png"
               (click)="getHistoricoMiopia()"
               width="70px"
               height="70px"
@@ -23,8 +24,9 @@
 
           <div class="btn-opc">
             <p>Miopia Letras</p>
-            <img loading="lazy"
-              src="../../../../assets/InstHistorico/img1.png"
+            <img
+              loading="lazy"
+              src="../../../../assets/HomeImages/MiopiaGarota.png"
               (click)="getHistoricoMiopiaLetras()"
               width="70px"
               height="70px"
@@ -33,10 +35,23 @@
           </div>
 
           <div class="btn-opc">
-            <p>Figuras</p>
-            <img loading="lazy"
-              src="../../../../assets/InstHistorico/img3.png"
-              (click)="getHistoricoFigurasColoridas()"
+            <p>Daltonismo Animais</p>
+            <img
+              loading="lazy"
+              src="../../../../assets/HomeImages/DaltonismoGarotaDois.png"
+              (click)="getHistoricoDaltonismoAnimais()"
+              width="70px"
+              height="70px"
+              alt="Icone Figuras Coloridas"
+            />
+          </div>
+
+          <div class="btn-opc">
+            <p>Daltonismo Numeros</p>
+            <img
+              loading="lazy"
+              src="../../../../assets/HomeImages/DaltonismoGarota.png"
+              (click)="getHistoricoDaltonismoNumeros()"
               width="70px"
               height="70px"
               alt="Icone Figuras Coloridas"
@@ -51,13 +66,13 @@
         <h1>Histórico</h1>
       </div>
 
-      <div class="box-oveflow" >
+      <div class="box-oveflow">
         <div class="none-info" *ngIf="!historico || historico.length === 0">
           <p>Nenhuma informação encontrada!</p>
         </div>
-        <div class="list-content" id="custom-bar" >
+        <div class="list-content" id="custom-bar">
           <div class="conteudo-historico" *ngFor="let item of historico">
-            <div class="Opcoes-hist"  >
+            <div class="Opcoes-hist">
               <div class="titulo">
                 <img
                   src="../../../../assets/InstHistorico/lupa.png"
@@ -77,6 +92,7 @@
 
                 <div class="list">
                   <p><strong>Pontuação Total:</strong> {{ item.pontuacao }}</p>
+
                 </div>
               </div>
 

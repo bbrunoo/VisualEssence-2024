@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-miopia-letras-cadastro-pais',
   standalone: true,
-  imports: [VlibrasComponent, LogoMenuComponent, CommonModule, FormsModule, RouterLink],
+  imports: [VlibrasComponent, LogoMenuComponent, CommonModule, FormsModule],
   templateUrl: './miopia-letras-cadastro-pais.component.html',
   styleUrl: './miopia-letras-cadastro-pais.component.css'
 })

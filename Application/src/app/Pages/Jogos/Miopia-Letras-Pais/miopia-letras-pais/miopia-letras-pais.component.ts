@@ -139,6 +139,10 @@ export class MiopiaLetrasPaisComponent {
       imageWidth: 100,
       imageHeight: 100,
       imageAlt: 'Imagem de erro',
+      customClass: {
+        title: 'custom-swal-title',
+        htmlContainer: 'custom-swal-text',
+      },
       confirmButtonText: 'OK'
     });
   }
@@ -157,7 +161,14 @@ export class MiopiaLetrasPaisComponent {
       Swal.fire({
         title: 'Você finalizou o jogo!',
         text: 'Verificar diagnóstico.',
-        icon: 'success',
+        imageUrl: '../../../../../assets/DaltonismoNumeros/happy-face.png',
+        imageWidth: 100,
+        imageHeight: 100,
+        imageAlt: 'Descrição da imagem',
+        customClass: {
+          title: 'custom-swal-title',
+          htmlContainer: 'custom-swal-text',
+        },
         showCancelButton: true,
         confirmButtonText: 'OK',
         cancelButtonText: 'Home'
@@ -175,8 +186,15 @@ export class MiopiaLetrasPaisComponent {
     Swal.fire({
       title: 'Você não enxerga?',
       text: 'Tem certeza de que não consegue identificar a imagem?',
-      icon: 'warning',
-      showCancelButton: true,
+      imageUrl: '../../../../../assets/DaltonismoNumeros/worried.png',
+      imageWidth: 100,
+      imageHeight: 100,
+      imageAlt: 'Descrição da imagem',
+            showCancelButton: true,
+      customClass: {
+        title: 'custom-swal-title',
+        htmlContainer: 'custom-swal-text',
+      },
       confirmButtonText: 'Sim',
       cancelButtonText: 'Cancelar'
     }).then((result) => {

@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+* {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.container {
+  background-image: url("../../../../../assets/DaltonismoImages/Telas/Fundo3.png");
+  background-size: cover;
+  background-position: 0 0, right -20px top -100px, left -125px bottom -75px;
+  background-repeat: no-repeat;
+  background-color: #010029;
+  width: 100%;
+  height: 100%;
+}
+
+.conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+h2 {
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.5em;
+  font-weight: 700;
+  text-align: center;
+}
+
+p {
+  font-size: 1.5em;
+  font-weight: 400;
+  text-align: center;
+}
+
+.resultados {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 60px;
+  width: 55em;
+  height: 35em;
+  padding: 30px;
+  background: rgba(182, 58, 255, 0.23);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.6px);
+  -webkit-backdrop-filter: blur(9.6px);
+  border: 1px solid rgba(182, 58, 255, 0.32);
+}
+
+.botoes {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 6.5em;
+  width: 50em;
+}
+
+button {
+  border: none;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 20px;
+  width: 8em;
+  padding: 18px;
+  background-color: #851ECF;
+}
+
+button:hover {
+  background-color: #a01bff;
+}

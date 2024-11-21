@@ -1,0 +1,47 @@
+<app-logo-menu-inst></app-logo-menu-inst>
+<div class="container">
+  <div class="conteudo">
+    <div class="imagem">
+      <p>FASE {{ currentPhase }}</p>
+      <div *ngIf="currentImage">
+        <img
+          class="currentImage"
+          [src]="currentImage.src"
+          alt="Imagem de teste de daltonismo"
+        />
+      </div>
+    </div>
+
+    <div class="opcoes">
+      <div class="preview">
+        <p>{{ previewText }}</p>
+      </div>
+      <div class="linha">
+        <button class="button-color" (click)="addToPreview('1')">1</button>
+        <button class="button-color" (click)="addToPreview('2')">2</button>
+        <button class="button-color" (click)="addToPreview('3')">3</button>
+      </div>
+      <div class="linha">
+        <button class="button-color" (click)="addToPreview('4')">4</button>
+        <button class="button-color" (click)="addToPreview('5')">5</button>
+        <button class="button-color" (click)="addToPreview('6')">6</button>
+      </div>
+      <div class="linha">
+        <button class="button-color" (click)="addToPreview('7')">7</button>
+        <button class="button-color" (click)="addToPreview('8')">8</button>
+        <button class="button-color" (click)="addToPreview('9')">9</button>
+      </div>
+      <div class="linha">
+        <button class="button-color" (click)="addToPreview('NaN')">
+          Não Sei
+        </button>
+        <button class="button-color" (click)="removeLastCharacter()">
+          Apagar
+        </button>
+        <button class="button-color-enviar" (click)="submitAnswer()">
+          Enviar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
