@@ -23,8 +23,8 @@
 }
 
 .imagens {
-  width: 22vw;
-  height: 50vh;
+  width: 22em;
+  height: 23em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,7 +32,8 @@
 
 .imagem1 {
   animation: gato 2.5s ease-in-out  infinite;
-  width: 22em;
+  width: 15em;
+  padding: 10px;
   height: auto;
 }
 
