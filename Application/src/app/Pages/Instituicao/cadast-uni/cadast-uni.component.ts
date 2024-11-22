@@ -40,10 +40,8 @@ export class CadastUniComponent implements OnInit {
     public fontSizeService: FontSizeService
   ) {}
 
-  userInstId: string = String(this.authService.getUserIdFromToken());
-
   salas: GetSala[] =[]
-  
+
   ngOnInit() {
     this.salaService.getSalaByUserId(this.userInstId).subscribe(salas => {
       this.salas = salas;
