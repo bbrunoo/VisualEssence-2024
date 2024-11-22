@@ -28,9 +28,15 @@
       <div class="Salas">
         <h3 id="txHB" [style.fontSize.px]="fontSizeService.getFontSize('txHB')">SALAS EXISTENTES</h3>
         <div class="barra" *ngIf="salas">
+<<<<<<< HEAD
           <div class="salaInf" *ngFor="let sala of salas">
             <label for="" id="txSala" [style.fontSize.px]="fontSizeService.getFontSize('txSala')">{{sala.nome}}</label>
             <div class="dados" id="txDad" [style.fontSize.px]="fontSizeService.getFontSize('txDad')">
+=======
+          <div class="salaInf" [ngClass]="getFontSizeClass()" *ngFor="let sala of salas">
+            <label for="" id="txSala" [style.fontSize.px]="fontSizeService.getFontSize('txSala')">{{sala.nome}}</label>
+            <div class="dados"  id="txDad" [style.fontSize.px]="fontSizeService.getFontSize('txDad')">
+>>>>>>> 148f47a (fixes-accessibility)
               <a [routerLink]="['/instituicao/criancas-cadastradas', sala.id]">Crianças Cadastradas</a>
               <p>Quantidade:<label for="">{{sala.capacidade}}</label></p>
               <p><img loading="lazy" src="../../../../assets/lixo.png" (click)="deleteSala(sala)" width="22px"

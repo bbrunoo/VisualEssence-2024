@@ -68,6 +68,13 @@ export class OpcCriarSalaComponent {
     this.fontSizeService.initializeFontSize('txDad', 15);
   }
 
+  getFontSizeClass(): string {
+    if (this.fontSizeService.fontSizeMultiplier > 1.2) {
+      return 'size1_2';
+    }
+    return '';
+  }
+
   validateForm() {
     this.isFormValid =
       this.sala.nome.trim().length > 0 && this.sala.capacidade > 0;
