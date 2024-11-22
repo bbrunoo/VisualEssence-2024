@@ -24,8 +24,8 @@
                 Pontuação
                 <span *ngIf="jogada.nomeJogo === 'Miopia'">: {{ jogada.pontuacao }}/20</span>
                 <span *ngIf="jogada.nomeJogo === 'Miopia Letras'">: {{ jogada.pontuacao }}/10</span>
-                <span *ngIf="jogada.nomeJogo === 'Daltonismo'">: {{ jogada.pontuacao }}/10</span>
-                <span *ngIf="jogada.nomeJogo === 'Figuras Coloridas'">: {{ jogada.pontuacao }}/20</span>
+                <span *ngIf="jogada.nomeJogo === 'Daltonismo Numeros'">: {{ jogada.pontuacao }}/32</span>
+                <span *ngIf="jogada.nomeJogo === 'Daltonismo Animais'">: {{ jogada.pontuacao }}/27</span>
               </label>
               <label class="tabela-data" id="txTab" [style.fontSize.px]="fontSizeService.getFontSize('txTab')">
                 Data: {{ jogada.dataJogo | date }}</label>

@@ -295,17 +295,3 @@ label {
     opacity: 0;
   }
 }
-
-.swal-container {
-  max-width: 400px;
-  /* Limita a largura máxima */
-  padding: 0;
-  /* Remove o padding extra */
-  box-shadow: none;
-  /* Remove a sombra para evitar overflow */
-}
-
-.swal2-popup {
-  overflow: hidden !important;
-  /* Garante que não haverá overflow */
-}

@@ -11,8 +11,6 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { CadastMassaComponent } from '../cadast-massa/cadast-massa.component';
-import { CadastUniComponent } from '../cadast-uni/cadast-uni.component';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
@@ -26,8 +24,6 @@ import { FontSizeService } from '../../Font/font-size.service';
     RouterLink,
     NgIf,
     CommonModule,
-    CadastUniComponent,
-    CadastMassaComponent,
     FormsModule,
   ],
   templateUrl: './opc-criar-sala.component.html',
@@ -99,6 +95,10 @@ export class OpcCriarSalaComponent {
             imageHeight: 100,
             confirmButtonText: 'OK',
             confirmButtonColor: '#0abf2f',
+            customClass: {
+              title: 'custom-swal-title',
+              htmlContainer: 'custom-swal-text',
+            },
             heightAuto: false,
           });
           this.clearForm();
@@ -113,6 +113,10 @@ export class OpcCriarSalaComponent {
             imageHeight: 100,
             confirmButtonText: 'OK',
             confirmButtonColor: '#d9534f',
+            customClass: {
+              title: 'custom-swal-title',
+              htmlContainer: 'custom-swal-text',
+            },
             heightAuto: false,
           });
         }
@@ -152,6 +156,10 @@ export class OpcCriarSalaComponent {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
+      customClass: {
+        title: 'custom-swal-title',
+        htmlContainer: 'custom-swal-text',
+      },
       confirmButtonText: 'Confirmar',
       cancelButtonText: 'Cancelar',
     }).then((result) => {
@@ -163,6 +171,10 @@ export class OpcCriarSalaComponent {
               title: 'Sucesso!',
               text: 'Sala excluída com sucesso.',
               imageUrl: '../../../../assets/icons/check.png',
+              customClass: {
+                title: 'custom-swal-title',
+                htmlContainer: 'custom-swal-text',
+              },
               imageWidth: 100,
               imageHeight: 100,
               confirmButtonText: 'OK',
@@ -177,6 +189,10 @@ export class OpcCriarSalaComponent {
               title: 'Erro',
               text: 'Não foi possível excluir a sala.',
               imageUrl: '../../../../assets/icons/error.png',
+              customClass: {
+                title: 'custom-swal-title',
+                htmlContainer: 'custom-swal-text',
+              },
               imageWidth: 100,
               imageHeight: 100,
               confirmButtonText: 'OK',

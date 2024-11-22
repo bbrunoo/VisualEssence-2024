@@ -4,16 +4,13 @@ import { ContatoServiceService } from '../../../Services/Contato/contato-service
 import { ContatoModel } from '../../Models/ContatoEntitie/contato.model';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { HeaderComponent } from "../PaisHome/Shared-Pais/header/header.component";
-import { BackHeaderComponent } from "../PaisHome/Shared-Pais/back-header/back-header.component";
 import Swal from 'sweetalert2';
 import { LogoMenuComponent } from "../SharedMenu/logo-menu/logo-menu.component";
 
 @Component({
   selector: 'app-contato',
   standalone: true,
-  imports: [VlibrasComponent, FormsModule, RouterLink, HeaderComponent, BackHeaderComponent, LogoMenuComponent],
+  imports: [VlibrasComponent, FormsModule, LogoMenuComponent],
   templateUrl: './contato.component.html',
   styleUrl: './contato.component.css',
   providers: [ContatoServiceService],
@@ -36,6 +33,10 @@ export class ContatoComponent {
           imageHeight: 100,
           confirmButtonText: 'OK',
           confirmButtonColor: '#3085d6',
+          customClass: {
+            title: 'custom-swal-title',
+            htmlContainer: 'custom-swal-text',
+          },
           heightAuto: false
         });
       },
@@ -48,6 +49,10 @@ export class ContatoComponent {
           imageHeight: 100,
           confirmButtonText: 'OK',
           confirmButtonColor: '#3085d6',
+          customClass: {
+            title: 'custom-swal-title',
+            htmlContainer: 'custom-swal-text',
+          },
           heightAuto: false
         });
       }

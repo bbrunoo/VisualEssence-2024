@@ -22,14 +22,11 @@ import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/ch
   standalone: true,
   imports: [
     VlibrasComponent,
-    RouterLink,
     NgIf,
     CommonModule,
     InstMenuComponent,
     NgFor,
     FormsModule,
-    NgxMaskPipe,
-    NgxMaskDirective,
     ReactiveFormsModule,
     ChatBotIconeComponent
 

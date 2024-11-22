@@ -1,0 +1,30 @@
+<app-logo-menu-inst></app-logo-menu-inst>
+<div class="container">
+  <div class="conteudo">
+      <div class="img">
+          <img loading="lazy" src="../../../../assets/astronauta.png" alt="">
+      </div>
+      <div class="forms">
+          <div class="cadastro">
+              <div class="form1">
+                  <img loading="lazy" class="image_forms" src="../../../../assets/olhosmenu.png" alt="">
+                  <select class="input_nome" id="salas" [(ngModel)]="selectedSalaId" (change)="onSalaChange()">
+                      <option value="" disabled selected>Selecione uma sala</option>
+                      <option *ngFor="let sala of salas" [value]="sala.id">
+                      {{ sala.nome }}
+                      </option>
+                  </select>
+                  <select class="input_nome" id="criancas" [(ngModel)]="selectedCriancaId" [disabled]="!selectedSalaId">
+                      <option value="" disabled selected>Seleciona uma Crianca</option>
+                      <option *ngFor="let crianca of criancasFiltradas" [value]="crianca.id">
+                      {{ crianca.nome }}
+                      </option>
+                  </select>
+                  <button (click)="onSubmit()" class="input_submit">Salvar</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+

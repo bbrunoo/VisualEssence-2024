@@ -24,7 +24,7 @@
 
 .emenda {
   flex-direction: row;
-  background-image: url("../../../../assets/fundo.png");
+  background-image: url("../../../../assets/DaltonismoImages/Telas/Fundo2.png");
   background-size: cover;
   background-position: 0 0, right -20px top -100px, left -125px bottom -75px;
   background-repeat: no-repeat;
@@ -153,3 +153,4 @@ input:focus {
   font-size: 15px;
   font-weight: bold;
 }
+

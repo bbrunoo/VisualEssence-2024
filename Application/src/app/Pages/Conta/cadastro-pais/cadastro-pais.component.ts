@@ -68,6 +68,10 @@ export class CadastroPaisComponent {
           imageHeight: 100,
           confirmButtonText: 'OK',
           confirmButtonColor: '#3085d6',
+          customClass: {
+            title: 'custom-swal-title',
+            htmlContainer: 'custom-swal-text',
+          },
         }).then(() => {
           this.router.navigate(['/login-pais']);
         });
@@ -82,6 +86,10 @@ export class CadastroPaisComponent {
           imageHeight: 100,
           confirmButtonText: 'OK',
           confirmButtonColor: '#3085d6',
+          customClass: {
+            title: 'custom-swal-title',
+            htmlContainer: 'custom-swal-text',
+          },
         });
       },
     });
