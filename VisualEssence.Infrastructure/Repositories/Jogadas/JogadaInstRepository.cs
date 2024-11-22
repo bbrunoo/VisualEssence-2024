@@ -108,90 +108,6 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
 
             return jogadaExistente;
         }
-
-        //public async Task<IEnumerable<HistoricoJogadasDTO>> ObterHistoricoPorFiltro(
-        //string? nomeJogo,
-        //string? nomeCrianca,
-        //Guid userId,
-        //int pageNumber,
-        //int pageSize)
-        //{
-        //    var query = _context.JogadaInst
-        //        .Include(j => j.CriancaInst)
-        //        .Where(j => j.UserInstId == userId);
-
-        //    if (!string.IsNullOrEmpty(nomeJogo))
-        //    {
-        //        query = query.Where(j => j.NomeJogo.Contains(nomeJogo));
-        //    }
-
-        //    if (!string.IsNullOrEmpty(nomeCrianca))
-        //    {
-        //        query = query.Where(j => j.CriancaInst.Nome.Contains(nomeCrianca));
-        //    }
-
-        //    var historicoJogadas = await query
-        //        .OrderByDescending(j => j.DataJogo) 
-        //        .Skip((pageNumber - 1) * pageSize)
-        //        .Take(pageSize)
-        //        .Select(j => new HistoricoJogadasDTO
-        //        {
-        //            NomeCrianca = j.CriancaInst.Nome,
-        //            NomeJogo = j.NomeJogo,
-        //            DataJogo = j.DataJogo,
-        //            Pontuacao = j.Pontuacao,
-        //        })
-        //        .ToListAsync();
-
-        //    return historicoJogadas;
-        //}
-
-        //public async Task<IEnumerable<HistoricoJogadasDTO>> ObterUltimosDoisJogosPorCrianca(Guid userId)
-        //{
-        //    var query = await _context.JogadaInst
-        //        .Include(j => j.CriancaInst)
-        //        .Where(j => j.UserInstId == userId)
-        //        .ToListAsync();
-
-        //    var historicoJogadas = query
-        //        .GroupBy(j => j.IdCrianca)
-        //        .SelectMany(g => g.OrderByDescending(j => j.DataJogo).Take(2))
-        //        .OrderBy(j => j.CriancaInst.Nome)
-        //        .Select(j => new HistoricoJogadasDTO
-        //        {
-        //            NomeCrianca = j.CriancaInst.Nome,
-        //            NomeJogo = j.NomeJogo,
-        //            DataJogo = j.DataJogo,
-        //            Pontuacao = j.Pontuacao,
-        //        });
-
-        //    return historicoJogadas;
-        //}
-
-
-        //public async Task<IEnumerable<HistoricoJogadasDTO>> ObterHistoricoCompletoPorCrianca(
-        //Guid userId,
-        //Guid criancaId,
-        //int pageNumber,
-        //int pageSize)
-        //{
-        //    var query = _context.JogadaInst
-        //        .Include(j => j.CriancaInst)
-        //        .Where(j => j.UserInstId == userId && j.IdCrianca == criancaId)
-        //        .OrderByDescending(j => j.DataJogo)
-        //        .Skip((pageNumber - 1) * pageSize)
-        //        .Take(pageSize)
-        //        .Select(j => new HistoricoJogadasDTO
-        //        {
-        //            NomeCrianca = j.CriancaInst.Nome,
-        //            NomeJogo = j.NomeJogo,
-        //            DataJogo = j.DataJogo,
-        //            Pontuacao = j.Pontuacao,
-        //        });
-
-        //    return await query.ToListAsync();
-        //}
-
         public async Task<PaginatedResult<CriancaComJogosDTO>> ObterUltimosDoisJogosPorCrianca(
             Guid userId,
             int pageNumber,
@@ -255,9 +171,8 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
 
         public async Task<IDictionary<string, int>> CalcularQuantidadePorCategoriaAsync(Guid userId)
         {
-            // Filtrar jogadas pela conta do usuário
             var jogadas = await _context.JogadaInst
-                .Where(j => j.UserInstId == userId) // Filtra por UserInstId
+                .Where(j => j.UserInstId == userId)
                 .Select(j => new
                 {
                     j.NomeJogo,
@@ -267,19 +182,19 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
                 .ToListAsync();
 
             var resultado = new Dictionary<string, int>
-    {
-        { "MiopiaRuim", 0 },
-        { "DaltonismoRuim", 0 },
-        { "NenhumRisco", 0 }
-    };
+            {
+                { "MiopiaRuim", 0 },
+                { "DaltonismoRuim", 0 },
+                { "NenhumRisco", 0 }
+            };
 
             foreach (var jogada in jogadas)
             {
-                if (jogada.NomeJogo == "Miopia" && jogada.Pontuacao < 10)
+                if (jogada.NomeJogo.Contains("Miopia") && jogada.Pontuacao < 10)
                 {
                     resultado["MiopiaRuim"]++;
                 }
-                else if ((jogada.NomeJogo == "Daltonismo" || jogada.NomeJogo == "Figuras Coloridas") && jogada.Pontuacao < 10)
+                else if (jogada.NomeJogo.Contains("Daltonismo") && jogada.Pontuacao < 10)
                 {
                     resultado["DaltonismoRuim"]++;
                 }
@@ -288,7 +203,6 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
                     resultado["NenhumRisco"]++;
                 }
             }
-
             return resultado;
         }
 
