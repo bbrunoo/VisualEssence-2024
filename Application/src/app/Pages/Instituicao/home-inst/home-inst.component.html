@@ -13,16 +13,14 @@
         </div>
       </div>
       <div class="legendGra">
-        <p class="text">
-          Os gráficos disponibilizados tem o intuito de exibir a quantidade de
-          alunos que obtiveram uma pontuação considerada baixa nos jogos de
-          miopia e daltonismo, além da quantia que atingiu bons resultados e os
-          que não finalizaram o pré-diagnóstico.
+        <p class="text" id="txLeg" [style.fontSize.px]="fontSizeService.getFontSize('txLeg')">
+          Os gráficos mostram a quantidade de alunos com pontuações baixas ou boas nos jogos de miopia e daltonismo,
+          baseados nos pré-diagnósticos disponíveis na aba "Histórico".
         </p>
       </div>
     </div>
-    <div class="infDesen">
-      <p class="text">
+    <div class="infDesen" [ngClass]="getFontSizeClass()">
+      <p class="text" id="txDes" [style.fontSize.px]="fontSizeService.getFontSize('txDes')">
         Esse projeto tem como finalidade proporcionar uma melhor qualidade de
         vida para as crianças que enfrentam no seu dia a dia as dificuldades
         causadas pela baixa visão. No decorrer do website será apresentado de

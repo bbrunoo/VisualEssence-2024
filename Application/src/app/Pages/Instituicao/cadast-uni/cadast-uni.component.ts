@@ -13,7 +13,7 @@ import { AuthService } from '../../../../Services/Auth/AuthService/auth.service'
 import { CriancaInstDTO } from '../../../Models/CriancaInstDTO.model';
 import { VlibrasComponent } from '../../vlibras/vlibras.component';
 import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
-
+import { FontSizeService } from '../../Font/font-size.service';
 
 @Component({
   selector: 'app-cadast-uni',
@@ -29,26 +29,38 @@ import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/ch
   ],
 })
 export class CadastUniComponent implements OnInit {
-  isSubmitting: boolean = false; // Nova variável para controlar o estado do envio
+  userInstId: string = String(this.authService.getUserIdFromToken());
+  isSubmitting: boolean = false;
 
   constructor(
     private salaService: SalasService,
     private dadosC: CadastroUnicoService,
     private router: Router,
     private authService: AuthService,
+    public fontSizeService: FontSizeService
   ) {}
 
-  userInstId: string = String(this.authService.getUserIdFromToken());
-
   salas: GetSala[] =[]
+
   ngOnInit() {
     this.salaService.getSalaByUserId(this.userInstId).subscribe(salas => {
       this.salas = salas;
     }, error => {
       console.error('Erro ao buscar salas:', error);
     });
+
+    this.fontSizeService.initializeFontSize('txLB', 17);
+    this.fontSizeService.initializeFontSize('txLG', 17);
+    this.fontSizeService.initializeFontSize('txInp', 16);
+    this.fontSizeService.initializeFontSize('txL', 15);
   }
 
+  getFontSizeClass(): string {
+    if (this.fontSizeService.fontSizeMultiplier > 1.2) {
+      return 'size1_2';
+    }
+    return '';
+  }
 
   dadosCriancas: CriancaInstDTO = {
     nome: '',

@@ -6,6 +6,7 @@ import { InstMenuComponent } from "../shared-menu/inst-menu/inst-menu.component"
 import { PictureService } from '../Services/picture-service/picture.service';
 import { JogadaDetalhadaDTO } from '../../../Models/JogadaDetalhadaDTO.model';
 import { PDFCreatorService } from '../../../../Services/PDFCreator/pdfcreator.service';
+import { FontSizeService } from '../../Font/font-size.service';
 
 @Component({
   selector: 'app-historico-detalhado',
@@ -19,11 +20,15 @@ export class HistoricoDetalhadoComponent {
   detalhes: JogadaDetalhadaDTO[] = [];
   historico: JogadaDetalhadaDTO[] = [];
 
-  constructor(private route: ActivatedRoute, private jogadaService: HistoricoService, private pictureService: PictureService, private pdfService: PDFCreatorService ) {}
+  constructor(public fontSizeService: FontSizeService, private route: ActivatedRoute, private jogadaService: HistoricoService, private pictureService: PictureService, private pdfService: PDFCreatorService) { }
 
   ngOnInit(): void {
     this.idCrianca = this.route.snapshot.paramMap.get('id') || '';
     this.carregarDetalhes();
+
+    this.fontSizeService.initializeFontSize('txOne', 16);
+    this.fontSizeService.initializeFontSize('txTab', 15);
+    this.fontSizeService.initializeFontSize('txDo', 11);
   }
 
   loadImages(): void {

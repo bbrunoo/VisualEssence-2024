@@ -6,12 +6,12 @@
     />
   </div>
 
-  <div class="MenuOpt">
-    <ul>
+  <div class="MenuOpt" [ngClass]="getFontSizeClass()">
+    <ul id="txMenu" [style.fontSize.px]="fontSizeService.getFontSize('txMenu')">
       <li>
         <div class="AumDim">
-          <button>A+/</button>
-          <button>A-</button>
+          <button (click)="aumentarFonte()">A+/</button>
+          <button (click)="diminuirFonte()">A-</button>
         </div>
       </li>
       <li><a [routerLink]="['/instituicao/home']">HOME</a></li>

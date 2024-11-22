@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserPais } from '../../../../Models/User/GetUserPais.model';
 import { AccountPictureService } from '../../../Instituicao/Services/profile-picture-service/account-picture.service';
 import { UserInfosService } from '../../../Instituicao/Services/user-infos/user-infos.service';
+import { FontSizeService } from '../../../Font/font-size.service';
 
 declare var google: any;
 
@@ -30,11 +31,13 @@ export class HeaderComponent implements OnInit {
   userInfo: UserPais | null = null;
   userId = String(this.userService.getUserIdFromToken());
 
-  constructor(private userService: AuthService, private dialog: MatDialog, private accountPicture: AccountPictureService, private userInfoService: UserInfosService){
+  constructor(private userService: AuthService, private dialog: MatDialog, private accountPicture: AccountPictureService, private userInfoService: UserInfosService, public fontSizeService: FontSizeService){
   }
 
   ngOnInit(): void {
     this.getUserInfos(this.userId);
+
+    this.fontSizeService.initializeFontSize('txMenu', 17);
   }
 
   getUserInfos(userId: string): void {
@@ -88,5 +91,13 @@ export class HeaderComponent implements OnInit {
 
   scrollTo(section: string) {
     document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  aumentarFonte() {
+    this.fontSizeService.increaseFontSize();
+  }
+
+  diminuirFonte() {
+    this.fontSizeService.decreaseFontSize();
   }
 }

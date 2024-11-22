@@ -1,29 +1,33 @@
 <div class="container">
   <app-inst-menu></app-inst-menu>
   <div class="conteudo">
-    <div class="conteudo-titulo">
-      <h3>Crianças Cadastradas por Sala</h3>
+    <div class="conteudo-titulo" [ngClass]="getFontSizeClass()">
+      <h3 id="txH3" [style.fontSize.px]="fontSizeService.getFontSize('txH3')">Crianças Cadastradas por Sala</h3>
     </div>
     <div class="conteudo-criancas" id="custom-bar">
       <div class="criancas-box">
-        <div *ngIf="criancas.length > 0; else noData" >
+        <div *ngIf="criancas.length > 0; else noData">
           <div class="crianca" *ngFor="let crianca of criancas">
             <img class="imagem-crianca" loading="lazy" [src]="crianca.foto || '../../../assets/user.png'" />
             <div class="info-criancas">
-              <p><strong>Nome:</strong> {{ crianca.nome }}</p>
-              <p>
+              <p id="txp" [style.fontSize.px]="fontSizeService.getFontSize('txp')"><strong>Nome:</strong> {{
+                crianca.nome }}</p>
+              <p id="txp" [style.fontSize.px]="fontSizeService.getFontSize('txp')">
                 <strong>Idade:</strong>
                 {{ getIdade(crianca.dataNascimento) }} anos
               </p>
-              <p><strong>Nome do Responsável:</strong> {{ crianca.nomeResp }}</p>
-              <p ><strong >Telefone do Responsável:</strong> {{ crianca.tel1 | mask: '(00) 0000-0000' }}</p>
+              <p id="txp" [style.fontSize.px]="fontSizeService.getFontSize('txp')"><strong>Nome do Responsável:</strong>
+                {{ crianca.nomeResp }}</p>
+              <p id="txp" [style.fontSize.px]="fontSizeService.getFontSize('txp')"><strong>Telefone do
+                  Responsável:</strong> {{ crianca.tel1 | mask: '(00) 0000-0000' }}</p>
               <hr />
             </div>
           </div>
         </div>
       </div>
       <ng-template #noData>
-        <p class="nodata">Não há crianças cadastradas nesta sala.</p>
+        <p class="nodata" id="txND" [style.fontSize.px]="fontSizeService.getFontSize('txND')">Não há crianças cadastradas
+          nesta sala.</p>
       </ng-template>
     </div>
   </div>
