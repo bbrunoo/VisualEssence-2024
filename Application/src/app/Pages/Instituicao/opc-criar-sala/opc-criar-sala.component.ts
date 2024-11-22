@@ -188,7 +188,7 @@ export class OpcCriarSalaComponent {
   }
 
   reloadRoute() {
-    const currentUrl = this.router.url; // Obtém a rota atual
+    const currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([currentUrl]);
     });

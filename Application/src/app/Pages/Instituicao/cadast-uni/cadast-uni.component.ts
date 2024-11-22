@@ -22,7 +22,7 @@ import { FontSizeService } from '../../Font/font-size.service';
 @Component({
   selector: 'app-cadast-uni',
   standalone: true,
-  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, FormsModule, OpcCadastComponent, InstMenuComponent, NgxMaskPipe, NgxMaskDirective, ReactiveFormsModule, ChatBotComponent, ChatBotIconeComponent],
+  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, FormsModule, InstMenuComponent, NgxMaskDirective, ReactiveFormsModule, ChatBotIconeComponent],
   templateUrl: './cadast-uni.component.html',
   styleUrl: './cadast-uni.component.css',
   animations: [
@@ -34,7 +34,7 @@ import { FontSizeService } from '../../Font/font-size.service';
 })
 export class CadastUniComponent implements OnInit {
   userInstId: string = String(this.authService.getUserIdFromToken());
-  isSubmitting: boolean = false; // Nova variável para controlar o estado do envio
+  isSubmitting: boolean = false;
 
   constructor(
     private salaService: SalasService,
@@ -44,22 +44,9 @@ export class CadastUniComponent implements OnInit {
     public fontSizeService: FontSizeService
   ) {}
 
-  // getFontSizeClass(): string {
-  //   if (this.fontSizeService.fontSizeMultiplier > 1.2) {
-  //     return 'size1_2';
-  //   }
-  //   return '';
-  // }
-
-  // aumentarFonte() {
-  //   this.fontSizeService.increaseFontSize();
-  // }
-
-  // diminuirFonte() {
-  //   this.fontSizeService.decreaseFontSize();
-  // }
 
   salas: GetSala[] =[]
+  
   ngOnInit() {
     this.salaService.getSalaByUserId(this.userInstId).subscribe(salas => {
       this.salas = salas;
@@ -68,10 +55,17 @@ export class CadastUniComponent implements OnInit {
     });
 
     this.fontSizeService.initializeFontSize('txLB', 17);
+    this.fontSizeService.initializeFontSize('txLG', 17);
     this.fontSizeService.initializeFontSize('txInp', 16);
     this.fontSizeService.initializeFontSize('txL', 15);
   }
 
+  getFontSizeClass(): string {
+    if (this.fontSizeService.fontSizeMultiplier > 1.2) {
+      return 'size1_2';
+    }
+    return '';
+  }
 
   dadosCriancas: CriancaInstDTO = {
     nome: '',
