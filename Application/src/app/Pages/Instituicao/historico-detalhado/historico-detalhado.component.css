@@ -113,7 +113,7 @@
 }
 
 .barra {
-  width: 40em;
+  width: 43em;
   overflow: auto;
   align-items: center;
   justify-content: center;
@@ -145,7 +145,7 @@
   border: 1px solid black;
   flex-direction: row;
   height: 3.5em;
-  width: 40em;
+  width: 42em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,7 +155,7 @@
 .tabela-nome,
 .tabela-data,
 .tabela-pontos {
-  width: 14em;
+  width: 15em;
   font-size: 14px;
   display: flex;
   align-items: center;
