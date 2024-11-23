@@ -4,13 +4,16 @@
     <div class="resultados">
       <h2>RESULTADO</h2>
       <p *ngIf="result.score >= 9">
-        Parabéns! Você obteve um resultado normal, o que indica uma boa visão.
+        Pelo resultado é possivel que tenha a 'Visao Normal'. Para um resultado
+        preciso aconselhamos consultar um especialista.
       </p>
       <p *ngIf="result.score >= 6 && result.score < 9">
-        Baixas chances de ter problemas de visão. Recomendamos consultar um especialista para um diagnóstico mais preciso.
+        Baixas chances de ter problemas de visão. Recomendamos consultar um
+        especialista para um diagnóstico mais preciso.
       </p>
       <p *ngIf="result.score <= 5">
-        O resultado indica que pode haver algum problema de visão. Recomendamos consultar um especialista para um diagnóstico mais preciso.
+        O resultado indica que pode haver algum problema de visão. Recomendamos
+        consultar um especialista para um diagnóstico mais preciso.
       </p>
       <h3>Acertos: {{ result.score }}/10</h3>
       <div class="botoes">

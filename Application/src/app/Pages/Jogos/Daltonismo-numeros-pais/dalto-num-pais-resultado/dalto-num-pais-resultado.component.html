@@ -1,10 +1,11 @@
 <div class="container">
-<app-logo-menu></app-logo-menu>
+  <app-logo-menu></app-logo-menu>
   <div class="conteudo">
     <div class="resultados">
       <h2>RESULTADO</h2>
       <p *ngIf="result.score >= 29">
-        Parabéns! Você obteve um resultado normal, o que indica uma boa visão.
+        Pelo resultado é possivel que tenha a 'Visao Normal'. Para um resultado
+        preciso aconselhamos consultar um especialista.
       </p>
       <p *ngIf="result.score >= 17 && result.score < 28">
         Baixas chances de ter problemas de visão. Recomendamos consultar um
