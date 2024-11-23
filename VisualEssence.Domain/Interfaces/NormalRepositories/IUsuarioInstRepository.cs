@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using VisualEssence.Domain.DTOs;
-using VisualEssence.Domain.Interfaces.GenericRepository;
 using VisualEssence.Domain.Models;
 
 namespace VisualEssence.Domain.Interfaces.NormalRepositories

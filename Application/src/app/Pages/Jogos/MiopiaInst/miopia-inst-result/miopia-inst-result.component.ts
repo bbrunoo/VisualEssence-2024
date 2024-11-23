@@ -12,7 +12,7 @@ import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-m
 @Component({
   selector: 'app-miopia-inst-result',
   standalone: true,
-  imports: [RouterLink, NgIf, LogoMenuComponent, LogoMenuInstComponent],
+  imports: [RouterLink, NgIf, LogoMenuInstComponent],
   templateUrl: './miopia-inst-result.component.html',
   styleUrl: './miopia-inst-result.component.css'
 })

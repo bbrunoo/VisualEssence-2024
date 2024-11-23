@@ -10,7 +10,7 @@ import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/ch
 @Component({
   selector: 'app-dad-cadast',
   standalone: true,
-  imports: [VlibrasComponent, RouterLink, NgIf, InstMenuComponent, NgFor, ChatBotIconeComponent],
+  imports: [VlibrasComponent, InstMenuComponent, ChatBotIconeComponent],
   templateUrl: './dad-cadast.component.html',
   styleUrl: './dad-cadast.component.css'
 })

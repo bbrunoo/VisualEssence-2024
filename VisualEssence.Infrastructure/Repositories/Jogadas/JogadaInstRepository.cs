@@ -4,9 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.DTOs.GamesDTO;
-using VisualEssence.Domain.Interfaces.GenericRepository;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
-using VisualEssence.Domain.Models;
 using VisualEssence.Domain.Models.Jogada;
 using VisualEssence.Infrastructure.Data;
 

@@ -1,11 +1,9 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { RouterLink } from '@angular/router';
 import { UserInst } from '../../../Models/User/GetUserInst.model';
 import { UserInfosService } from '../../Instituicao/Services/user-infos/user-infos.service';
 import { AccountPictureService } from '../../Instituicao/Services/profile-picture-service/account-picture.service';
-import { NgFor } from '@angular/common';
 import { ProfileUploadImageComponent } from '../../Instituicao/profile-upload-image/profile-upload-image.component';
 
 @Component({

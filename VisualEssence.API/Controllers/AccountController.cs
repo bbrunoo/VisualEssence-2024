@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using VisualEssence.API.ViewModel;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.Authenticate;
-using VisualEssence.Domain.Interfaces.GenericRepository;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
 using VisualEssenceAPI.Services;
@@ -306,8 +305,6 @@ namespace VisualEssence.API
 
             return Ok(viewModel);
         }
-
-
 
         [HttpPut("Pais/{id}")]
         public async Task<IActionResult> UpdatePais(Guid id, EditUserPaisDTO pais)

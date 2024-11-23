@@ -6,7 +6,7 @@ import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-m
 @Component({
   selector: 'app-miopia-inst-instrucoes',
   standalone: true,
-  imports: [RouterLink, LogoMenuComponent, LogoMenuInstComponent],
+  imports: [RouterLink, LogoMenuInstComponent],
   templateUrl: './miopia-inst-instrucoes.component.html',
   styleUrl: './miopia-inst-instrucoes.component.css'
 })

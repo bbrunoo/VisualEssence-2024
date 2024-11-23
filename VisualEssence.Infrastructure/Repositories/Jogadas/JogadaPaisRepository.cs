@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.DTOs.GamesDTO;
-using VisualEssence.Domain.Interfaces.GenericRepository;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
-using VisualEssence.Domain.Models;
 using VisualEssence.Domain.Models.Jogada;
 using VisualEssence.Infrastructure.Data;
 
@@ -59,8 +57,6 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
                 UserPaisId = dto.UserPaisId
             };
         }
-
-
         public async Task<JogadaPaisDTO> Update(Guid id, JogadaPaisDTO dto)
         {
             if (dto == null)
@@ -118,7 +114,5 @@ namespace VisualEssence.Infrastructure.Repositories.Jogadas
 
             return historicoJogadas;
         }
-
-
     }
 }

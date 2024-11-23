@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-miopia-letras-pais-instrucao',
   standalone: true,
-  imports: [LogoMenuInstComponent, LogoMenuComponent, RouterLink],
+  imports: [LogoMenuComponent, RouterLink],
   templateUrl: './miopia-letras-pais-instrucao.component.html',
   styleUrl: './miopia-letras-pais-instrucao.component.css'
 })

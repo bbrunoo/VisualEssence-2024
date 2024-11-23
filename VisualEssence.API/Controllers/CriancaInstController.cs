@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
@@ -332,21 +331,5 @@ namespace VisualEssence.API.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-
-
-
-        //[HttpGet("crianças-com-jogadas")]
-        //public async Task<IActionResult> GetCriancasComJogadas([FromQuery] Guid userId)
-        //{
-        //    if (userId == Guid.Empty)
-        //    {
-        //        return BadRequest("O ID do usuário é obrigatório.");
-        //    }
-
-        //    var criancasComJogadas = await _repository.GetAllCriancasComJogadasByUserIdAsync(userId);
-
-        //    return Ok(criancasComJogadas);
-        //}
-
     }
 }

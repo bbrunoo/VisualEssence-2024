@@ -13,7 +13,7 @@ import { AuthService } from '../../../../Services/Auth/AuthService/auth.service'
 @Component({
   selector: 'app-cadastro-crianca-inst',
   standalone: true,
-  imports: [FormsModule, RouterLink, NgFor, NgIf, LogoMenuComponent, VlibrasComponent, LogoMenuInstComponent],
+  imports: [FormsModule, NgFor, LogoMenuInstComponent],
   templateUrl: './cadastro-crianca-inst.component.html',
   styleUrl: './cadastro-crianca-inst.component.css'
 })

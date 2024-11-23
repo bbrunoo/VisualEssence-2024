@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-miopia-letras-inst-resultado',
   standalone: true,
-  imports: [LogoMenuInstComponent, NgIf, NgFor, RouterLink],
+  imports: [LogoMenuInstComponent, NgIf, RouterLink],
   templateUrl: './miopia-letras-inst-resultado.component.html',
   styleUrl: './miopia-letras-inst-resultado.component.css'
 })

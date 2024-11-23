@@ -14,7 +14,7 @@ import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/ch
 @Component({
   selector: 'app-criar-sala',
   standalone: true,
-  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, OpcCadastComponent, InstMenuComponent, FormsModule, ReactiveFormsModule, OpcCriarSalaComponent, ChatBotIconeComponent],
+  imports: [VlibrasComponent, NgIf, CommonModule, OpcCadastComponent, InstMenuComponent, FormsModule, ReactiveFormsModule, OpcCriarSalaComponent, ChatBotIconeComponent],
   templateUrl: './criar-sala.component.html',
   styleUrl: './criar-sala.component.css',
   animations: [

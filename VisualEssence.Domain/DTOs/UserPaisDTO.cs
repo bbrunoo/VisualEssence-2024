@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace VisualEssence.Domain.DTOs
+﻿namespace VisualEssence.Domain.DTOs
 {
     public class UserPaisDTO
     {

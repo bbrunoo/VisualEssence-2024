@@ -59,29 +59,27 @@ export class ChatBotComponent implements AfterViewChecked, OnInit {
     this.detalhes.forEach((user) => {
       console.log(`Carregando foto para usuário com ID: ${this.userId}`);
 
-      // Primeira tentativa: Verificar foto no endpoint `/inst`
       this.pictureService.getFoto(this.userId).subscribe(
         (response) => {
           if (response && response.url) {
-            user.foto = response.url; // Atribui a URL da foto diretamente
+            user.foto = response.url;
             console.log(`Foto carregada com sucesso (Inst) para ID: ${this.userId}`);
           } else {
             console.warn(`Foto não encontrada no endpoint (Inst) para ID: ${this.userId}. Tentando no endpoint (Pais)...`);
 
-            // Segunda tentativa: Verificar foto no endpoint `/pais`
             this.pictureService.getFotoPais(this.userId).subscribe(
               (responsePais) => {
                 if (responsePais && responsePais.url) {
-                  user.foto = responsePais.url; // Atribui a URL da foto diretamente
+                  user.foto = responsePais.url;
                   console.log(`Foto carregada com sucesso (Pais) para ID: ${this.userId}`);
                 } else {
-                  user.foto = '../../../assets/user.png'; // Foto padrão
+                  user.foto = '../../../assets/user.png';
                   console.warn(`Foto não encontrada no endpoint (Pais) para ID: ${this.userId}. Usando imagem padrão.`);
                 }
               },
               (errorPais) => {
                 console.error(`Erro ao carregar foto no endpoint (Pais) para ID: ${this.userId}:`, errorPais);
-                user.foto = '../../../assets/user.png'; // Foto padrão
+                user.foto = '../../../assets/user.png';
               }
             );
           }
@@ -89,20 +87,19 @@ export class ChatBotComponent implements AfterViewChecked, OnInit {
         (error) => {
           console.error(`Erro ao carregar foto no endpoint (Inst) para ID: ${this.userId}:`, error);
 
-          // Segunda tentativa em caso de erro no primeiro endpoint
           this.pictureService.getFotoPais(this.userId).subscribe(
             (responsePais) => {
               if (responsePais && responsePais.url) {
-                user.foto = responsePais.url; // Atribui a URL da foto diretamente
+                user.foto = responsePais.url;
                 console.log(`Foto carregada com sucesso (Pais) para ID: ${this.userId}`);
               } else {
-                user.foto = '../../../assets/user.png'; // Foto padrão
+                user.foto = '../../../assets/user.png';
                 console.warn(`Foto não encontrada no endpoint (Pais) para ID: ${this.userId}. Usando imagem padrão.`);
               }
             },
             (errorPais) => {
               console.error(`Erro ao carregar foto no endpoint (Pais) para ID: ${this.userId}:`, errorPais);
-              user.foto = '../../../assets/user.png'; // Foto padrão
+              user.foto = '../../../assets/user.png'; 
             }
           );
         }

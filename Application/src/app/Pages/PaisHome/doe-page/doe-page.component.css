@@ -74,7 +74,7 @@
 }
 
 .reverse {
-  flex-direction: row-reverse; /* Inverte a ordem dos filhos */
+  flex-direction: row-reverse; 
 }
 
 .right-content {

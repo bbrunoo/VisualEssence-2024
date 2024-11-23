@@ -29,7 +29,7 @@ import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/ch
   ],
 })
 export class CadastUniComponent implements OnInit {
-  isSubmitting: boolean = false; // Nova variável para controlar o estado do envio
+  isSubmitting: boolean = false;
 
   constructor(
     private salaService: SalasService,
@@ -108,12 +108,11 @@ export class CadastUniComponent implements OnInit {
 
   cadastrarCrianca() {
     if (this.dadosCriancas.idSala && this.userInstId) {
-      // Impedir envios duplicados
       if (this.isSubmitting) {
         return;
       }
 
-      this.isSubmitting = true; // Definir como verdadeiro durante o envio
+      this.isSubmitting = true;
 
       const criancaDTO: CriancaInstDTO = {
         nome: this.dadosCriancas.nome,

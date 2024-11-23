@@ -1,5 +1,4 @@
-﻿using VisualEssence.Domain.Interfaces.GenericRepository;
-using VisualEssence.Domain.Models;
+﻿using VisualEssence.Domain.Models;
 
 namespace VisualEssence.Domain.Interfaces.NormalRepositories
 {

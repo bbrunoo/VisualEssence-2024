@@ -93,7 +93,6 @@ export class HomeInstComponent implements OnInit {
     };
 
 
-    // Criando o gráfico de pizza
     new Chart(this.canvas1.nativeElement, {
       type: 'pie',
       data: data1,
@@ -141,7 +140,6 @@ export class HomeInstComponent implements OnInit {
       }
     });
 
-    // Criando o gráfico de barras
     new Chart(this.canvas2.nativeElement, {
       type: 'bar',
       data: data2,

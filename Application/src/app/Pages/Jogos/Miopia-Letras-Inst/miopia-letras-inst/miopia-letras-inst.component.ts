@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { NgFor, NgIf } from '@angular/common';
-import { LoginInstComponent } from "../../../Conta/login-inst/login-inst.component";
 import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-menu-inst.component";
 import { MiopiaResult } from '../../../../Models/MiopiaGame/miopiaResult.model';
 

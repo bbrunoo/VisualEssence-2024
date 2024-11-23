@@ -16,6 +16,4 @@ export class ContatoServiceService {
     if (contato != null) console.log(contato + ' enviado com sucesso');
     return this.http.post(`${this.apiUrl}`, contato);
   }
-
-
 }

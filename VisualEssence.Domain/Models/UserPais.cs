@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using VisualEssence.Domain.Models.Jogada;
+﻿using VisualEssence.Domain.Models.Jogada;
 
 namespace VisualEssence.Domain.Models
 {
