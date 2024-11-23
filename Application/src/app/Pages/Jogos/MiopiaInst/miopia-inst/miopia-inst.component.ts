@@ -9,7 +9,7 @@ import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-m
 @Component({
   selector: 'app-miopia-inst',
   standalone: true,
-  imports: [NgIf, NgFor, LogoMenuComponent, LogoMenuInstComponent],
+  imports: [NgIf, LogoMenuInstComponent],
   templateUrl: './miopia-inst.component.html',
   styleUrl: './miopia-inst.component.css'
 })
@@ -60,7 +60,7 @@ export class MiopiaInstComponent {
     '../../../../../assets/MiopiaImages/monstro.png': 'Monstro',
   };
 
-  images: string[] = Object.keys(this.imageDescriptions); // Lista de imagens sem restrições
+  images: string[] = Object.keys(this.imageDescriptions); 
 
   constructor(private router: Router) {
     this.startGame();

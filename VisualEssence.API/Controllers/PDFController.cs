@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using QuestPDF.Infrastructure;
+﻿using Microsoft.AspNetCore.Mvc;
 using QuestPDF.Fluent;
+using QuestPDF.Infrastructure;
 using VisualEssence.Domain.DTOs;
-using VisualEssence.Domain.Interfaces.GenericRepository;
 using VisualEssence.Domain.Interfaces.NormalRepositories;
-using SkiaSharp;
-using System.IO;
 
 namespace VisualEssence.API.Controllers
 {

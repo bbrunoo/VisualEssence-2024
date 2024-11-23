@@ -17,7 +17,6 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     HttpClientModule,
     MatSidenavModule,
-    RouterLink
   ],
   providers: [
     provideNgxMask(),

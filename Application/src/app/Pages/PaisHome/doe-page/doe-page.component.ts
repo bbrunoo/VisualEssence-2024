@@ -2,11 +2,14 @@ import { Component } from '@angular/core';
 import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.component";
 import { CommonModule, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { VlibrasComponent } from "../../vlibras/vlibras.component";
+import { ChatBotComponent } from "../../chat-bot-conteudo/chat-bot/chat-bot.component";
+import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 
 @Component({
   selector: 'app-doe-page',
   standalone: true,
-  imports: [LogoMenuComponent, NgFor, CommonModule],
+  imports: [LogoMenuComponent, NgFor, CommonModule, VlibrasComponent, ChatBotIconeComponent],
   templateUrl: './doe-page.component.html',
   styleUrl: './doe-page.component.css'
 })

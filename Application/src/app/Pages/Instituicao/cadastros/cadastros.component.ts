@@ -28,7 +28,6 @@ import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/ch
     InstMenuComponent,
     NgFor,
     FormsModule,
-    HeaderComponent,
     NgxMaskPipe,
     NgxMaskDirective,
     ReactiveFormsModule,

@@ -7,7 +7,7 @@ import { VlibrasComponent } from '../../vlibras/vlibras.component';
 @Component({
   selector: 'app-cadastro-crianca-pais',
   standalone: true,
-  imports: [FormsModule, RouterLink, LogoMenuComponent, VlibrasComponent],
+  imports: [FormsModule, LogoMenuComponent, VlibrasComponent],
   templateUrl: './cadastro-crianca-pais.component.html',
   styleUrl: './cadastro-crianca-pais.component.css'
 })

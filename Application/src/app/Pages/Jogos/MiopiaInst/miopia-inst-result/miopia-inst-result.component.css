@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
 
 * {
-    font-family: "Montserrat", sans-serif;
-    color: white;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
 }
 
 .container {
@@ -20,7 +20,7 @@
   height: 100%;
 }
 
-.conteudo{
+.conteudo {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,26 +28,25 @@
   height: 100vh;
 }
 
-h2{
+h2 {
   font-size: 2.5em;
   font-weight: bold;
 }
 
-h3{
+h3 {
   font-size: 1.5em;
   font-weight: 700;
   text-align: center;
 }
 
-p{
+p {
   font-size: 1.5em;
   font-weight: 400;
   text-align: center;
 }
 
 
-.resultados
-{
+.resultados {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,17 +55,14 @@ p{
   width: 55em;
   height: 35em;
   padding: 30px;
-
-
-/* From https://css.glass */
-background: rgba(255, 255, 255, 0.17);
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(3.3px);
--webkit-backdrop-filter: blur(3.3px);
-border: 1px solid rgba(255, 255, 255, 0.71);
+  background: rgba(255, 255, 255, 0.17);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.3px);
+  -webkit-backdrop-filter: blur(3.3px);
+  border: 1px solid rgba(255, 255, 255, 0.71);
 }
 
-.botoes{
+.botoes {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -74,7 +70,7 @@ border: 1px solid rgba(255, 255, 255, 0.71);
   width: 50em;
 }
 
-button{
+button {
   border: none;
 
   border-radius: 15px;
@@ -85,6 +81,6 @@ button{
   background-color: #009DFF;
 }
 
-button:hover{
+button:hover {
   background-color: #02c4ff;
 }

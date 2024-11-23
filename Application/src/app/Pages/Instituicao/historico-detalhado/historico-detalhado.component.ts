@@ -6,11 +6,13 @@ import { InstMenuComponent } from "../shared-menu/inst-menu/inst-menu.component"
 import { PictureService } from '../Services/picture-service/picture.service';
 import { JogadaDetalhadaDTO } from '../../../Models/JogadaDetalhadaDTO.model';
 import { PDFCreatorService } from '../../../../Services/PDFCreator/pdfcreator.service';
+import { VlibrasComponent } from "../../vlibras/vlibras.component";
+import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 
 @Component({
   selector: 'app-historico-detalhado',
   standalone: true,
-  imports: [NgIf, NgFor, CommonModule, InstMenuComponent],
+  imports: [NgIf, NgFor, CommonModule, InstMenuComponent, VlibrasComponent, ChatBotIconeComponent],
   templateUrl: './historico-detalhado.component.html',
   styleUrl: './historico-detalhado.component.css'
 })

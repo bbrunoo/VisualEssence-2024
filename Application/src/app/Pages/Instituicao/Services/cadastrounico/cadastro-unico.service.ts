@@ -42,7 +42,7 @@ export class CadastroUnicoService {
   }
 
   getCriancasByQuery(idsala?: string, codigo?: string, nomeCrianca?: string): Observable<GetCriancas[]> {
-    let params = new HttpParams();  // Params para filtros opcionais
+    let params = new HttpParams();
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getToken()}`
     });

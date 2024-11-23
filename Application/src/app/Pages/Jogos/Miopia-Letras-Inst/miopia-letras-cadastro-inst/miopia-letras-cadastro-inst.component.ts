@@ -11,7 +11,7 @@ import { LogoMenuInstComponent } from "../../../SharedMenu/logo-menu-inst/logo-m
 @Component({
   selector: 'app-miopia-letras-cadastro-inst',
   standalone: true,
-  imports: [FormsModule, CommonModule, NgFor, NgIf, LogoMenuInstComponent],
+  imports: [FormsModule, CommonModule, NgFor, LogoMenuInstComponent],
   templateUrl: './miopia-letras-cadastro-inst.component.html',
   styleUrl: './miopia-letras-cadastro-inst.component.css'
 })

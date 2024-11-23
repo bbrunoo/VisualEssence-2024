@@ -14,6 +14,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
+import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 
 @Component({
   selector: 'app-opc-criar-sala',
@@ -24,7 +25,8 @@ import { AuthService } from '../../../../Services/Auth/AuthService/auth.service'
     NgIf,
     CommonModule,
     FormsModule,
-  ],
+    ChatBotIconeComponent
+],
   templateUrl: './opc-criar-sala.component.html',
   styleUrl: './opc-criar-sala.component.css',
   animations: [

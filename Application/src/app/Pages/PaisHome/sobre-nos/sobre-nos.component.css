@@ -212,7 +212,6 @@ footer {
 @media screen and (max-width: 1440px) {
   h1 {
     font-size: 40px;
-    background-color: red;
   }
 
   h2 {

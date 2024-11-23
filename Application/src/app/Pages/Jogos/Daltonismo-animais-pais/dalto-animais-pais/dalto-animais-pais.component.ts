@@ -12,7 +12,7 @@ interface DaltonismoPhase {
 @Component({
   selector: 'app-dalto-animais-pais',
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [NgFor],
   templateUrl: './dalto-animais-pais.component.html',
   styleUrl: './dalto-animais-pais.component.css'
 })

@@ -7,11 +7,13 @@ import { InstMenuComponent } from "../shared-menu/inst-menu/inst-menu.component"
 import { FormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { PictureService } from '../Services/picture-service/picture.service';
+import { VlibrasComponent } from "../../vlibras/vlibras.component";
+import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 
 @Component({
   selector: 'app-criancas-cadastradas-sala',
   standalone: true,
-  imports: [NgFor, NgIf, InstMenuComponent, CommonModule, FormsModule, NgxMaskPipe, NgxMaskDirective,],
+  imports: [NgFor, NgIf, InstMenuComponent, CommonModule, FormsModule, NgxMaskPipe, VlibrasComponent, ChatBotIconeComponent],
   templateUrl: './criancas-cadastradas-sala.component.html',
   styleUrl: './criancas-cadastradas-sala.component.css'
 })
@@ -60,13 +62,13 @@ export class CriancasCadastradasSalaComponent {
             crianca.foto = response.url;
             console.log(`Imagem carregada para a criança com ID: ${crianca.id}`);
           } else {
-            crianca.foto = '../../../assets/user.png'; 
+            crianca.foto = '../../../assets/user.png';
             console.warn(`Imagem não encontrada para a criança com ID: ${crianca.id}. Usando imagem padrão.`);
           }
         },
         (error) => {
           console.error(`Erro ao carregar imagem para a criança com ID: ${crianca.id}. Detalhes:`, error);
-          crianca.foto = '../../../assets/user.png'; // Define imagem padrão em caso de erro
+          crianca.foto = '../../../assets/user.png';
         }
       );
     });

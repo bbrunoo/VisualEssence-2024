@@ -27,7 +27,7 @@ export class SalasService {
   }
 
   getCriancasBySalaId(salaId: string): Observable<any> {
-    console.log('Requisição para URL:', `${this.apiUrl}/Criancas/${salaId}`);  // Verifique a URL no console
+    console.log('Requisição para URL:', `${this.apiUrl}/Criancas/${salaId}`); 
     return this.http.get<any>(`${this.apiUrl}/Criancas/${salaId}`);
   }
 

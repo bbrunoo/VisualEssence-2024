@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../Shared-Pais/header/header.component';
 import { LogoMenuComponent } from "../../SharedMenu/logo-menu/logo-menu.component";
 import { RouterLink } from '@angular/router';
+import { VlibrasComponent } from "../../vlibras/vlibras.component";
+import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
 
 @Component({
   selector: 'app-opcoes-miopia',
   standalone: true,
-  imports: [LogoMenuComponent, RouterLink],
+  imports: [LogoMenuComponent, RouterLink, VlibrasComponent, ChatBotIconeComponent],
   templateUrl: './opcoes-miopia.component.html',
   styleUrl: './opcoes-miopia.component.css'
 })

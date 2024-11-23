@@ -2,7 +2,6 @@
 using Amazon.S3.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System.Data;
 using VisualEssence.Domain.DTOs;
 using VisualEssence.Domain.Interfaces.NormalRepositories;

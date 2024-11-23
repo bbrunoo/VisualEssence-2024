@@ -30,14 +30,13 @@ export class LoginPaisComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   login() {
-    // Verifica se os campos estão preenchidos corretamente
     if (!this.CredentialsPais.email || !this.CredentialsPais.senha) {
       this.errorMessage = 'Por favor, preencha todos os campos.';
       return;
     }
 
     this.isLoading = true;
-    this.errorMessage = ''; // Reseta mensagem de erro antes do envio
+    this.errorMessage = '';
 
     this.authService.loginPais(this.CredentialsPais).subscribe(
       (response) => {
@@ -48,7 +47,6 @@ export class LoginPaisComponent {
       (error) => {
         this.isLoading = false;
 
-        // Define mensagem de erro baseada no status HTTP retornado
         if (error.status === 400) {
           this.errorMessage = 'Usuário não existe.';
         } else if (error.status === 401) {

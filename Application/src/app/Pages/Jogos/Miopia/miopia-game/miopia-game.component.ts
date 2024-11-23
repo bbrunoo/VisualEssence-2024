@@ -10,7 +10,7 @@ import { VlibrasComponent } from '../../../vlibras/vlibras.component';
 @Component({
   selector: 'app-miopia-game',
   standalone: true,
-  imports: [NgIf, NgFor, LogoMenuComponent, VlibrasComponent],
+  imports: [NgIf, LogoMenuComponent],
   templateUrl: './miopia-game.component.html',
   styleUrls: ['./miopia-game.component.css'],
   animations: [
@@ -67,7 +67,7 @@ export class MiopiaGameComponent {
     '../../../../../assets/MiopiaImages/monstro.png': 'Monstro',
   };
 
-  images: string[] = Object.keys(this.imageDescriptions); // Lista de imagens sem restrições
+  images: string[] = Object.keys(this.imageDescriptions);
 
   constructor(private router: Router) {
     this.startGame();

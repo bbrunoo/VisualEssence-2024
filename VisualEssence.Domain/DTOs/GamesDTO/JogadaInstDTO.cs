@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VisualEssence.Domain.Models;
-
-namespace VisualEssence.Domain.DTOs.GamesDTO
+﻿namespace VisualEssence.Domain.DTOs.GamesDTO
 {
     public class JogadaInstDTO
     {
