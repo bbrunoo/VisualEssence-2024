@@ -39,16 +39,16 @@ namespace VisualEssence.Infrastructure.Repositories
         }
         public async Task<CriancaInst> PostCrianca(CriancaInst crianca)
         {
-            bool isUsuarioInstitucional = await _context.UserInst.AnyAsync(u => u.Id == crianca.UserInstId);
-            if (!isUsuarioInstitucional)
-            {
-                throw new Exception("Usuário não encontrado.");
-            }
-
             var sala = await _context.Sala.FindAsync(crianca.IdSala);
             if (sala == null)
             {
                 throw new Exception("Sala não encontrada.");
+            }
+
+            bool isUsuarioInstitucional = await _context.UserInst.AnyAsync(u => u.Id == crianca.UserInstId);
+            if (!isUsuarioInstitucional)
+            {
+                throw new Exception("Usuário não encontrado.");
             }
 
             var numCriancasNaSala = await _context.CriancaInst.CountAsync(c => c.IdSala == sala.Id);
