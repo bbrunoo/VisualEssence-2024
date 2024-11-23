@@ -163,7 +163,7 @@ export class MiopiaLetrasInstComponent {
       Swal.fire({
         title: 'Você finalizou o jogo!',
         text: 'Verificar diagnóstico.',
-        imageUrl: '../../../../../assets/miopiaLetras/worried.png',
+        imageUrl: '../../../../../assets/happy-face.png',
         imageWidth: 100,
         imageHeight: 100,
         imageAlt: 'Imagem de erro',
@@ -188,7 +188,7 @@ export class MiopiaLetrasInstComponent {
     Swal.fire({
       title: 'Você não enxerga?',
       text: 'Tem certeza de que não consegue identificar a imagem?',
-      imageUrl: '../../../../../assets/miopiaLetras/worried.png',
+      imageUrl: '../../../../../assets/sad-face.png',
       imageWidth: 100,
       imageHeight: 100,
       imageAlt: 'Imagem de erro',

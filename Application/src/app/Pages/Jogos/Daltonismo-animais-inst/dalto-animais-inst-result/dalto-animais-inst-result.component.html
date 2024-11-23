@@ -4,18 +4,23 @@
     <div class="resultados">
       <h2>RESULTADO</h2>
       <p *ngIf="result.score >= 25">
-        Parabéns! Você obteve um resultado normal, o que indica uma boa visão.
+        Pelo resultado é possivel que tenha a 'Visao Normal'. Para um resultado
+        preciso aconselhamos consultar um especialista.
       </p>
       <p *ngIf="result.score >= 12 && result.score < 24">
-        Baixas chances de ter problemas de visão. Recomendamos consultar um especialista para um diagnóstico mais preciso.
+        Baixas chances de ter problemas de visão. Recomendamos consultar um
+        especialista para um diagnóstico mais preciso.
       </p>
       <p *ngIf="result.score <= 12">
-        O resultado indica que pode haver algum problema de visão. Recomendamos consultar um especialista para um diagnóstico mais preciso.
+        O resultado indica que pode haver algum problema de visão. Recomendamos
+        consultar um especialista para um diagnóstico mais preciso.
       </p>
       <h3>Acertos: {{ result.score }}/27</h3>
       <div class="botoes">
         <button routerLink="/instituicao/home">SAIR</button>
-        <button routerLink="/instituicao/jogos/daltonismo-animais/cadastro">REFAZER</button>
+        <button routerLink="/instituicao/jogos/daltonismo-animais/cadastro">
+          REFAZER
+        </button>
       </div>
     </div>
   </div>

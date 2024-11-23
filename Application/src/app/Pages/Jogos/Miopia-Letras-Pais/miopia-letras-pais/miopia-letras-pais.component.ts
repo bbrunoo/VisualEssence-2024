@@ -161,7 +161,7 @@ export class MiopiaLetrasPaisComponent {
       Swal.fire({
         title: 'Você finalizou o jogo!',
         text: 'Verificar diagnóstico.',
-        imageUrl: '../../../../../assets/DaltonismoNumeros/happy-face.png',
+        imageUrl: '../../../../../assets/happy-face.png',
         imageWidth: 100,
         imageHeight: 100,
         imageAlt: 'Descrição da imagem',
@@ -186,7 +186,7 @@ export class MiopiaLetrasPaisComponent {
     Swal.fire({
       title: 'Você não enxerga?',
       text: 'Tem certeza de que não consegue identificar a imagem?',
-      imageUrl: '../../../../../assets/DaltonismoNumeros/worried.png',
+      imageUrl: '../../../../../assets/sad-face.png',
       imageWidth: 100,
       imageHeight: 100,
       imageAlt: 'Descrição da imagem',
