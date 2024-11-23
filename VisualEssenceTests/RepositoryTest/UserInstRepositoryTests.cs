@@ -1,17 +1,11 @@
 ﻿using Amazon.S3;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VisualEssence.API;
 using VisualEssence.Domain.Models;
 using VisualEssence.Infrastructure.Data;
 using VisualEssenceAPI.Repositories;
 
-namespace VisualEssenceTests
+namespace VisualEssenceTests.RepositoryTest
 {
     public class UserInstRepositoryTests : IDisposable
     {

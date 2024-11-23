@@ -1,17 +1,11 @@
 ﻿using Amazon.S3;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VisualEssence.Domain.Interfaces.NormalRepositories;
 using VisualEssence.Domain.Models;
 using VisualEssence.Infrastructure.Data;
 using VisualEssenceAPI.Repositories;
 
-namespace VisualEssenceTests
+namespace VisualEssenceTests.RepositoryTest
 {
     public class UserPaisRepositoryTests : IDisposable
     {
@@ -30,7 +24,7 @@ namespace VisualEssenceTests
             _context.Database.Migrate();
 
             _repository = new UsuarioPaisRepository(_context, _s3Client);
-         
+
         }
         public void Dispose()
         {

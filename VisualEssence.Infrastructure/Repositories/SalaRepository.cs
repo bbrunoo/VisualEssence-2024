@@ -24,6 +24,9 @@ namespace VisualEssence.Infrastructure.Repositories
         }
         public async Task<SalaDTO> Post(SalaDTO salaDto)
         {
+            if (salaDto.Capacidade < 0)
+                throw new ArgumentException("Capacidade não pode ser negativa.");
+
             var sala = new Sala
             {
                 Capacidade = salaDto.Capacidade,

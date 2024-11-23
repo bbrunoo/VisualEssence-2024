@@ -35,24 +35,6 @@ namespace VisualEssence.Infrastructure.Repositories
         }
         public async Task<CriancaPaisDTO> Post(CriancaPaisDTO criancaDto)
         {
-            //if (criancaDto == null)
-            //    throw new ArgumentNullException(nameof(criancaDto));
-
-            //var crianca = new CriancaPais
-            //{
-            //    Nome = criancaDto.Nome,
-            //    Idade = criancaDto.Idade,
-            //};
-
-            //_context.CriancaPais.Add(crianca);
-            //await _context.SaveChangesAsync();
-
-            //return new CriancaPaisDTO
-            //{
-            //    Id = crianca.Id,
-            //    Nome = crianca.Nome,
-            //    Idade = crianca.Idade
-            //};
             throw new NotImplementedException();
         }
 
