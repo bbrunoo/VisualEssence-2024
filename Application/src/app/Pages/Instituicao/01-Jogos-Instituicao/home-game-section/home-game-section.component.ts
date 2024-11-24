@@ -5,6 +5,8 @@ import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ChatBotIconeComponent } from "../../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 import { VlibrasComponent } from "../../../vlibras/vlibras.component";
+import { FontSizeService } from '../../../Font/font-size.service';
+
 @Component({
   selector: 'app-home-game-section',
   standalone: true,
@@ -22,5 +24,11 @@ export class HomeGameSectionComponent {
     this.showNew = !this.showNew;
   }
 
+  constructor(public fontSizeService: FontSizeService) { }
 
+  ngOnInit(): void {
+    this.fontSizeService.initializeFontSize('txH1', 25);
+    this.fontSizeService.initializeFontSize('txH2', 22);
+    this.fontSizeService.initializeFontSize('txp', 15);
+  }
 }

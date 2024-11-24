@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   gap: 2em;
-  height: 60%;
+  height: 62%;
 }
 
 .jogos-container h1 {
@@ -63,4 +63,8 @@
 .jogos-daltonismo img:hover,
 .jogos-miopia img:hover {
   filter: brightness(1.1);
+}
+
+.size1_2{
+  height: 65%;
 }

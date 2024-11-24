@@ -1,18 +1,20 @@
 <div class="container">
-  <app-inst-menu></app-inst-menu>
-  <app-vlibras></app-vlibras>
-  <app-chat-bot-icone></app-chat-bot-icone>
-  <div class="criarS_Opt">
-      <button (click)="showCriarS = true; showOpCad = false">CRIAR SALA</button>
-      <p>|</p>
-      <button (click)="showCriarS = false; showOpCad = true">CADASTRAR CRIANÇA</button>
-  </div>
+    <app-inst-menu></app-inst-menu>
+    <app-vlibras></app-vlibras>
+    <app-chat-bot-icone></app-chat-bot-icone>
+    <div class="criarS_Opt">
+        <button (click)="showCriarS = true; showOpCad = false" id="txCS"
+            [style.fontSize.px]="fontSizeService.getFontSize('txCS')">CRIAR SALA</button>
+        <p>|</p>
+        <button (click)="showCriarS = false; showOpCad = true" id="txCS"
+            [style.fontSize.px]="fontSizeService.getFontSize('txCS')">CADASTRAR CRIANÇA</button>
+    </div>
 
-  <div *ngIf="showCriarS" @fadeAnimation class="fade_In">
-      <app-opc-criar-sala></app-opc-criar-sala>
-  </div>
+    <div *ngIf="showCriarS" @fadeAnimation class="fade_In">
+        <app-opc-criar-sala></app-opc-criar-sala>
+    </div>
 
-  <div *ngIf="showOpCad" @fadeAnimation class="fade_In">
-      <app-opc-cadast></app-opc-cadast>
-  </div>
+    <div *ngIf="showOpCad" @fadeAnimation class="fade_In">
+        <app-opc-cadast></app-opc-cadast>
+    </div>
 </div>

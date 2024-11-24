@@ -4,15 +4,15 @@
       <img loading="lazy" [src]="Nave">
     </div>
 
-    <div class="cont-textos">
+    <div class="cont-textos" [ngClass]="getFontSizeClass()">
       <div class="s-titulo">
-        <h1>
+        <h1 id="txH1" [style.fontSize.px]="fontSizeService.getFontSize('txH1')">
           Visual Essence
         </h1>
       </div>
 
       <div class="s-texto">
-        <p>
+        <p id="txSobre" [style.fontSize.px]="fontSizeService.getFontSize('txSobre')">
           Uma plataforma de jogos seguros e divertidos para crianças,
           com monitoramento integrado da saúde visual.
           Com uma variedade de jogos educativos,

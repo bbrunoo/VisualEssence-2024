@@ -5,40 +5,39 @@
   <div class="conteudo">
     <div class="cadastros">
       <div class="imgAluno">
-        <img
-          loading="lazy"
-          [src]="detalhes[0].foto || '../../../assets/user.png'"
-        />
+        <img loading="lazy" [src]="detalhes[0].foto || '../../../assets/user.png'" />
       </div>
       <div class="tudinho" *ngIf="detalhes.length > 0">
         <div class="one">
           <div class="two">
-            <p>NOME: {{ detalhes[0].nome }}</p>
+            <p id="txOne" [style.fontSize.px]="fontSizeService.getFontSize('txOne')">NOME: {{ detalhes[0].nome }}</p>
           </div>
           <div class="three">
-            <p>SALA: {{ detalhes[0].salaNome }}</p>
+            <p id="txOne" [style.fontSize.px]="fontSizeService.getFontSize('txOne')">SALA: {{ detalhes[0].salaNome }}
+            </p>
           </div>
         </div>
         <div class="informacoes">
-          <div class="barra" >
+          <div class="barra">
             <div class="historico" *ngFor="let jogada of detalhes[0]?.jogadas">
-              <label class="tabela-nome">Jogo: {{ jogada.nomeJogo }}</label>
-              <label class="tabela-pontos">
+              <label class="tabela-nome" id="txTab" [style.fontSize.px]="fontSizeService.getFontSize('txTab')">Jogo: {{
+                jogada.nomeJogo }}</label>
+              <label class="tabela-pontos" id="txTab" [style.fontSize.px]="fontSizeService.getFontSize('txTab')">
                 Pontuação
                 <span *ngIf="jogada.nomeJogo === 'Miopia'">: {{ jogada.pontuacao }}/20</span>
                 <span *ngIf="jogada.nomeJogo === 'Miopia Letras'">: {{ jogada.pontuacao }}/10</span>
                 <span *ngIf="jogada.nomeJogo === 'Daltonismo Numeros'">: {{ jogada.pontuacao }}/32</span>
                 <span *ngIf="jogada.nomeJogo === 'Daltonismo Animais'">: {{ jogada.pontuacao }}/27</span>
               </label>
-              <label class="tabela-data"
-                >Data: {{ jogada.dataJogo | date }}</label
-              >
+              <label class="tabela-data" id="txTab" [style.fontSize.px]="fontSizeService.getFontSize('txTab')">
+                Data: {{ jogada.dataJogo | date }}</label>
             </div>
           </div>
         </div>
         <div class="dowload">
           <img src="../../../../assets/imgUpl.png" alt="" />
-          <p (click)="baixarPdf()">BAIXAR DIAGNÓSTICO</p>
+          <p (click)="baixarPdf()" id="txDo" [style.fontSize.px]="fontSizeService.getFontSize('txDo')">BAIXAR
+            DIAGNÓSTICO</p>
         </div>
       </div>
     </div>

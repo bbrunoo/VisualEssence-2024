@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { NgIf, CommonModule } from '@angular/common';
+import { NgIf, CommonModule, NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { InstMenuComponent } from '../shared-menu/inst-menu/inst-menu.component';
@@ -13,12 +13,12 @@ import { AuthService } from '../../../../Services/Auth/AuthService/auth.service'
 import { CriancaInstDTO } from '../../../Models/CriancaInstDTO.model';
 import { VlibrasComponent } from '../../vlibras/vlibras.component';
 import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
-
+import { FontSizeService } from '../../Font/font-size.service';
 
 @Component({
   selector: 'app-cadast-uni',
   standalone: true,
-  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, FormsModule, InstMenuComponent, NgxMaskDirective, ReactiveFormsModule, ChatBotIconeComponent],
+  imports: [VlibrasComponent, RouterLink, NgIf, CommonModule, FormsModule, InstMenuComponent, NgxMaskDirective, ReactiveFormsModule, ChatBotIconeComponent, NgClass],
   templateUrl: './cadast-uni.component.html',
   styleUrl: './cadast-uni.component.css',
   animations: [
@@ -36,19 +36,22 @@ export class CadastUniComponent implements OnInit {
     private dadosC: CadastroUnicoService,
     private router: Router,
     private authService: AuthService,
-  ) {}
+    public fontSizeService: FontSizeService
+  ) { }
 
   userInstId: string = String(this.authService.getUserIdFromToken());
 
-  salas: GetSala[] =[]
+  salas: GetSala[] = []
   ngOnInit() {
     this.salaService.getSalaByUserId(this.userInstId).subscribe(salas => {
       this.salas = salas;
     }, error => {
       console.error('Erro ao buscar salas:', error);
     });
-  }
 
+    this.fontSizeService.initializeFontSize('tx7', 17);
+    this.fontSizeService.initializeFontSize('tx6', 16);
+  }
 
   dadosCriancas: CriancaInstDTO = {
     nome: '',
@@ -76,8 +79,7 @@ export class CadastUniComponent implements OnInit {
     { valor: 'M', texto: 'Masculino' }
   ];
 
-
-  getSalas(){
+  getSalas() {
     this.salaService.getSalaByUserId(this.userInstId).subscribe(
       response => {
         this.salas = response;
@@ -104,7 +106,6 @@ export class CadastUniComponent implements OnInit {
       }
     );
   }
-
 
   cadastrarCrianca() {
     if (this.dadosCriancas.idSala && this.userInstId) {
@@ -186,12 +187,21 @@ export class CadastUniComponent implements OnInit {
     }
   }
 
-  changePage(){
+  changePage() {
     this.router.navigate(['/instituicao/cadastros']);
   }
 
   showNew = false;
   toggleContent() {
     this.showNew = !this.showNew;
+  }
+
+  getFontSizeClass(): string {
+    if (this.fontSizeService.fontSizeMultiplier < 1.2 && this.fontSizeService.fontSizeMultiplier > 1) {
+      return 'size1_1';
+    } else if (this.fontSizeService.fontSizeMultiplier > 1) {
+      return 'size1_2';
+    }
+    return '';
   }
 }

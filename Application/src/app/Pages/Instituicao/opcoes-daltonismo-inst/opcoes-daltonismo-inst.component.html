@@ -5,22 +5,19 @@
   <div class="sec-jogos">
     <div class="jogos-container">
       <div class="titulo-game">
-        <h1>DALTONISMO</h1>
-        <p>Jogos que ajudam a identificar o daltonismo nas crianças.</p>
+        <h1 id="txH1" [style.fontSize.px]="fontSizeService.getFontSize('txH1')">DALTONISMO</h1>
+        <p id="txp" [style.fontSize.px]="fontSizeService.getFontSize('txp')">Jogos que ajudam a identificar o daltonismo
+          nas crianças.</p>
       </div>
 
       <div class="jogos-box">
         <div class="jogos-daltonismo">
           <div class="jogos-img">
-            <h2>Números</h2>
-            <img
-              loading="lazy"
-              class="dalto"
-              routerLink="/instituicao/jogos/daltonismo-numeros/cadastro"
-              src="../../../../assets/HomeImages/DaltonismoGarota.png"
-            />
+            <h2 id="txH2" [style.fontSize.px]="fontSizeService.getFontSize('txH2')">Números</h2>
+            <img loading="lazy" class="dalto" routerLink="/instituicao/jogos/daltonismo-numeros/cadastro"
+              src="../../../../assets/HomeImages/DaltonismoGarota.png" />
           </div>
-          <div class="explicativo">
+          <div class="explicativo" id="txEx" [style.fontSize.px]="fontSizeService.getFontSize('txEx')">
             Este jogo divertido ajuda a descobrir o daltonismo com desafios
             numéricos! Em cada fase, surgem números coloridos que o jogador
             precisa identificar corretamente. Cada nível traz novos números e
@@ -31,15 +28,11 @@
 
         <div class="jogos-miopia">
           <div class="jogos-img">
-            <h2>Animais</h2>
-            <img
-              loading="lazy"
-              class="miopia"
-              routerLink="/instituicao/jogos/daltonismo-animais/cadastro"
-              src="../../../../assets/HomeImages/DaltonismoGarotaDois.png"
-            />
+            <h2 id="txH2" [style.fontSize.px]="fontSizeService.getFontSize('txH2')">Animais</h2>
+            <img loading="lazy" class="miopia" routerLink="/instituicao/jogos/daltonismo-animais/cadastro"
+              src="../../../../assets/HomeImages/DaltonismoGarotaDois.png" />
           </div>
-          <div class="explicativo">
+          <div class="explicativo" id="txEx" [style.fontSize.px]="fontSizeService.getFontSize('txEx')">
             Este jogo divertido testa a miopia com desenhos que ficam cada vez
             menores! Em cada fase, o jogador tenta identificar figuras que vão
             diminuindo de tamanho, desafiando a visão. É uma jornada visual
