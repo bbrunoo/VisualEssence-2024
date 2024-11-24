@@ -10,11 +10,11 @@
         </div>
 
         <div class="MenuOpt">
-          <ul>
+          <ul id="txMenu" [style.fontSize.px]="fontSizeService.getFontSize('txMenu')">
             <li>
               <div class="AumDim">
-                <button>A+/</button>
-                <button>A-</button>
+                <button id="txMenu" [style.fontSize.px]="fontSizeService.getFontSize('txMenu')" (click)="aumentarFonte()">A+/</button>
+                <button id="txMenu" [style.fontSize.px]="fontSizeService.getFontSize('txMenu')" (click)="diminuirFonte()">A-</button>
               </div>
             </li>
             <li><a (click)="scrollTo('sobre')">HOME</a></li>

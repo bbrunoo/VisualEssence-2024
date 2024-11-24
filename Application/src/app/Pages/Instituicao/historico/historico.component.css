@@ -86,6 +86,7 @@
   text-decoration: none;
   border-radius: 10px;
 }
+
 .conjJogo select,
 .conjNome input {
   border-radius: 10px;
@@ -111,6 +112,7 @@
   color: #252525;
   font-weight: 500;
 }
+
 .selectJogo:focus {
   border: solid 2px #007bff;
   outline: none;
@@ -272,7 +274,7 @@
 .pagination {
   display: flex;
   align-items: center;
-  height:3em;
+  height: 3em;
 }
 
 .page-input {

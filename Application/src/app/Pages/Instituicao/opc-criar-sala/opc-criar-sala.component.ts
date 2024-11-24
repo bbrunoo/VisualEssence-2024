@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
+import { FontSizeService } from '../../Font/font-size.service';
 
 @Component({
   selector: 'app-opc-criar-sala',
@@ -37,10 +38,12 @@ import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/ch
   ],
 })
 export class OpcCriarSalaComponent {
+
   constructor(
     private salaService: SalasService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public fontSizeService: FontSizeService
   ) {}
 
   salas?: Sala[];
@@ -56,6 +59,18 @@ export class OpcCriarSalaComponent {
 
   ngOnInit(): void {
     this.getSalas();
+
+    this.fontSizeService.initializeFontSize('txHB', 18);
+    this.fontSizeService.initializeFontSize('txInp', 17);
+    this.fontSizeService.initializeFontSize('txSala', 16);
+    this.fontSizeService.initializeFontSize('txDad', 15);
+  }
+
+  getFontSizeClass(): string {
+    if (this.fontSizeService.fontSizeMultiplier > 1.2) {
+      return 'size1_2';
+    }
+    return '';
   }
 
   validateForm() {

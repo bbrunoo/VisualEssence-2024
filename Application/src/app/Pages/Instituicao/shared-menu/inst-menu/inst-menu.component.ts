@@ -1,5 +1,5 @@
 import { RouterLink } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { loggedUser } from '../../../../Models/LoggedUser/user.model';
 import { AuthService } from '../../../../../Services/Auth/AuthService/auth.service';
@@ -9,7 +9,7 @@ import { InstProfileComponent } from '../../../Shared-Profile/inst-profile/inst-
 import { UserInst } from '../../../../Models/User/GetUserInst.model';
 import { AccountPictureService } from '../../Services/profile-picture-service/account-picture.service';
 import { UserInfosService } from '../../Services/user-infos/user-infos.service';
-
+import { FontSizeService } from '../../../Font/font-size.service';
 
 @Component({
   selector: 'app-inst-menu',
@@ -17,6 +17,7 @@ import { UserInfosService } from '../../Services/user-infos/user-infos.service';
   imports: [
     NgIf,
     RouterLink,
+    NgClass
   ],
   exportAs: 'inst-menu',
   templateUrl: './inst-menu.component.html',
@@ -39,10 +40,13 @@ export class InstMenuComponent implements OnInit {
     private accountPicture: AccountPictureService,
     private authService: AuthService,
     private userInfoService: UserInfosService,
+    public fontSizeService: FontSizeService,
   ) { }
 
   ngOnInit(): void {
     this.getUserInfos(this.userId);
+
+    this.fontSizeService.initializeFontSize('txMenu', 15);
   }
 
   logout(): void {
@@ -80,5 +84,20 @@ export class InstMenuComponent implements OnInit {
         this.userInfo!.foto = '../../../../../assets/user.png';
       }
     );
+  }
+
+  getFontSizeClass(): string {
+    if (this.fontSizeService.fontSizeMultiplier > 1.2) {
+      return 'size1_2';
+    }
+    return '';
+  }
+
+  aumentarFonte() {
+    this.fontSizeService.increaseFontSize();
+  }
+
+  diminuirFonte() {
+    this.fontSizeService.decreaseFontSize();
   }
 }

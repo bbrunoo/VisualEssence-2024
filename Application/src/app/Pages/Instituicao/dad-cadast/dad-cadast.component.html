@@ -5,91 +5,114 @@
 
   <div class="conteudo">
     <div class="agruDados">
-      <h1 class="titulo">DADOS CADASTRADOS</h1>
+      <h2 class="titulo" id="txH2" [style.fontSize.px]="fontSizeService.getFontSize('txH2')">DADOS CADASTRADOS</h2>
 
       <div class="infDados">
         <div class="content-infos">
           <div class="I">
-            <label for="nomeC">Nome:</label>
-            <label for="" class="dadoU">{{ crianca.nome }}</label>
+            <label for="nomeC" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">Nome:</label>
+            <label for="" class="dadoU" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">{{
+              crianca.nome }}</label>
           </div>
 
           <div class="linD">
             <div class="E">
-              <label for="dataNas" class="esquerdoLabel">Data Nasc.:</label>
-              <label for="" class="dadoU">{{ crianca.dataNascimento }}</label>
+              <label for="dataNas" class="esquerdoLabel" id="txL"
+                [style.fontSize.px]="fontSizeService.getFontSize('txL')">Data Nasc.:</label>
+              <label for="" class="dadoU" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">{{
+                crianca.dataNascimento }}</label>
             </div>
 
             <div class="D">
-              <label for="cns" class="direitoLabel">CNS:</label>
-              <label for="" class="dadoU">{{ crianca.cns }}</label>
-            </div>
-          </div>
-
-          <div class="linD">
-            <div class="E">
-              <label for="sex" class="esquerdoLabel">Sexo:</label>
-              <label for="" class="dadoU">{{ crianca.sexo }}</label>
+              <label for="cns" class="direitoLabel" id="txL"
+                [style.fontSize.px]="fontSizeService.getFontSize('txL')">CNS:</label>
+              <label for="" class="dadoU" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">{{
+                crianca.cns }}</label>
             </div>
           </div>
 
           <div class="I">
-            <label for="nomeRes">Nome Responsável:</label>
-            <label for="" class="dadoU">{{ crianca.nomeResp }}</label>
+            <label for="sex" class="esquerdoLabel" id="txL"
+              [style.fontSize.px]="fontSizeService.getFontSize('txL')">Sexo:</label>
+            <label for="" class="dadoU" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">{{
+              crianca.sexo }}</label>
+          </div>
+
+          <div class="I">
+            <label for="nomeRes" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">Nome
+              Responsável:</label>
+            <label for="" class="dadoU" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">{{
+              crianca.nomeResp }}</label>
           </div>
 
           <div class="linD">
             <div class="E">
-              <label for="cpf" class="esquerdoLabel">CPF:</label>
-              <label for="" class="dadoU">{{ crianca.cpf }}</label>
+              <label for="cpf" class="esquerdoLabel" id="txL"
+                [style.fontSize.px]="fontSizeService.getFontSize('txL')">CPF:</label>
+              <label for="" class="dadoU" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">{{
+                crianca.cpf }}</label>
             </div>
 
             <div class="D">
-              <label for="rg" class="direitoLabel">RG:</label>
-              <label for="" class="dadoU">{{ crianca.rg }}</label>
+              <label for="rg" class="direitoLabel" id="txL"
+                [style.fontSize.px]="fontSizeService.getFontSize('txL')">RG:</label>
+              <label for="" class="dadoU" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">{{
+                crianca.rg }}</label>
             </div>
           </div>
 
           <div class="linD">
             <div class="E">
-              <label for="tel1" class="esquerdoLabel">Telefone 1:</label>
-              <label for="" class="dadoU">{{ crianca.tel1 }}</label>
+              <label for="tel1" class="esquerdoLabel" id="txL"
+                [style.fontSize.px]="fontSizeService.getFontSize('txL')">Telefone 1:</label>
+              <label for="" class="dadoU" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">{{
+                crianca.tel1 }}</label>
             </div>
             <div class="D">
-              <label for="end" class="direitoLabel">Endereço:</label>
-              <label for="" class="dadoU">{{ crianca.endereco }}</label>
+              <label for="end" class="direitoLabel" id="txL"
+                [style.fontSize.px]="fontSizeService.getFontSize('txL')">Endereço:</label>
+              <label for="" class="dadoU" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">{{
+                crianca.endereco }}</label>
             </div>
           </div>
 
           <div class="linD">
             <div class="E">
-              <label for="tel2" class="esquerdoLabel">Telefone 2:</label>
-              <label for="" class="dadoU">{{ crianca.tel2 }}</label>
+              <label for="tel2" class="esquerdoLabel" id="txL"
+                [style.fontSize.px]="fontSizeService.getFontSize('txL')">Telefone 2:</label>
+              <label for="" class="dadoU" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">{{
+                crianca.tel2 }}</label>
             </div>
 
             <div class="D">
-              <label for="sala" class="direitoLabel">Sala:</label>
-              <label for="" class="dadoU">{{ crianca.sala.nome }}</label>
+              <label for="sala" class="direitoLabel" id="txL"
+                [style.fontSize.px]="fontSizeService.getFontSize('txL')">Sala:</label>
+              <label for="" class="dadoU" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">{{
+                crianca.sala.nome }}</label>
             </div>
           </div>
         </div>
 
         <div class="preHist">
           <div class="campHist">
-            <div class="tit">
+            <div class="tit" id="txTit" [style.fontSize.px]="fontSizeService.getFontSize('txTit')">
               <label>Média do Histórico dos Jogos</label>
             </div>
 
             <div class="dadMiopia">
-              <label for="" class="titV">MIOPIA - </label>
-              <label for="">Acertos: 9/18 </label>
-              <label for="">Resultado: dificuldade na visão</label>
+              <label for="" class="titV" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">MIOPIA -
+              </label>
+              <label for="" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">Acertos: 9/18 </label>
+              <label for="" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">Resultado: dificuldade na
+                visão</label>
             </div>
 
             <div class="dadDalt">
-              <label for="" class="titV">DALTONISMO - </label>
-              <label for="">Acertos: 18/18 </label>
-              <label for="">Resultado: visão normal</label>
+              <label for="" class="titV" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">DALTONISMO -
+              </label>
+              <label for="" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">Acertos: 18/18 </label>
+              <label for="" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">Resultado: visão
+                normal</label>
             </div>
           </div>
         </div>

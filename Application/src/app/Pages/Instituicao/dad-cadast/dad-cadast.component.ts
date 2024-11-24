@@ -6,6 +6,7 @@ import { InstMenuComponent } from "../shared-menu/inst-menu/inst-menu.component"
 import { CadastroUnicoService } from '../Services/cadastrounico/cadastro-unico.service';
 import { GetCriancas } from '../../../Models/InstituicaoModels/GetCriancas.model';
 import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
+import { FontSizeService } from '../../Font/font-size.service';
 
 @Component({
   selector: 'app-dad-cadast',
@@ -23,8 +24,12 @@ export class DadCadastComponent implements OnInit {
     } else {
       console.error('ID não encontrado na rota');
     }
+
+    this.fontSizeService.initializeFontSize('txH2', 18);
+    this.fontSizeService.initializeFontSize('txTit', 17);
+    this.fontSizeService.initializeFontSize('txL', 16);
   }
-  constructor(private criancaService: CadastroUnicoService, private route: ActivatedRoute) { }
+  constructor(private criancaService: CadastroUnicoService, private route: ActivatedRoute, public fontSizeService: FontSizeService) { }
 
   criancaId!: string;
   crianca!: GetCriancas;

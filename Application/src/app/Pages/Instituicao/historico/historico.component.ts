@@ -15,7 +15,7 @@ import { PictureService } from '../Services/picture-service/picture.service';
 import { GetCriancas } from '../../../Models/InstituicaoModels/GetCriancas.model';
 import { CriancaComJogosDTO, HistoricoJogadasDTO } from '../../../Models/HistoricoJogadas.model';
 import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
-
+import { FontSizeService } from '../../Font/font-size.service';
 
 @Component({
   selector: 'app-historico',
@@ -51,10 +51,18 @@ export class HistoricoComponent implements OnInit {
     private authService: AuthService,
     private pictureService: PictureService,
     private router: Router,
+    public fontSizeService: FontSizeService
   ) { }
 
   ngOnInit(): void {
     this.getUltimosDoisJogos();
+
+    this.fontSizeService.initializeFontSize('txL', 18);
+    this.fontSizeService.initializeFontSize('txInp', 16);
+    this.fontSizeService.initializeFontSize('txSJ', 15);
+    this.fontSizeService.initializeFontSize('txpN', 20);
+    this.fontSizeService.initializeFontSize('txpU', 13);
+    this.fontSizeService.initializeFontSize('txDo', 10);
   }
 
   verDetalhes(id: string): void {

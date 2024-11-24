@@ -5,18 +5,19 @@
   <div class="sec-jogos">
     <div class="jogos-container">
       <div class="titulo-game">
-        <h1>MIOPIA</h1>
-        <p>Jogos que ajudam a identificar a miopia nas crianças.</p>
+        <h1 id="txH1" [style.fontSize.px]="fontSizeService.getFontSize('txH1')">MIOPIA</h1>
+        <p id="txp" [style.fontSize.px]="fontSizeService.getFontSize('txp')">Jogos que ajudam a identificar a miopia nas
+          crianças.</p>
       </div>
 
       <div class="jogos-box">
         <div class="jogos-daltonismo">
           <div class="jogos-img">
-            <h2>Letras</h2>
+            <h2 id="txH2" [style.fontSize.px]="fontSizeService.getFontSize('txH2')">Letras</h2>
             <img src="../../../../assets/HomeImages/MiopiaGaroto.png" class="dalto"
               routerLink="/instituicao/jogos/letras-cadastro" />
           </div>
-          <div class="explicativo">
+          <div class="explicativo" id="txEx" [style.fontSize.px]="fontSizeService.getFontSize('txEx')">
             Este jogo divertido testa a miopia com letras que mudam de posição e
             tamanho! Em cada fase, o jogador tenta identificar letras que
             aparecem em diferentes ângulos, viradas para esquerda, direita, cima
@@ -27,11 +28,11 @@
 
         <div class="jogos-miopia">
           <div class="jogos-img">
-            <h2>Objetos</h2>
+            <h2 id="txH2" [style.fontSize.px]="fontSizeService.getFontSize('txH2')">Objetos</h2>
             <img loading="lazy" class="miopia" routerLink="/instituicao/jogos/cadastrar-crianca-inst"
               src="../../../../assets/HomeImages/MiopiaGarota.png" />
           </div>
-          <div class="explicativo">
+          <div class="explicativo" id="txEx" [style.fontSize.px]="fontSizeService.getFontSize('txEx')">
             Este jogo divertido testa a miopia com desenhos que ficam cada vez
             menores! Em cada fase, o jogador tenta identificar figuras que vão
             diminuindo de tamanho, desafiando a visão. É uma jornada visual

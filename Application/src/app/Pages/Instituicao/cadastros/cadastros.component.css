@@ -46,7 +46,6 @@
   opacity: 0.6;
 }
 
-
 .no-results {
   text-align: center;
   font-size: 1.2em;
@@ -207,7 +206,6 @@
   height: 75%;
 }
 
-
 .d-left {
   display: flex;
   flex-direction: column;
@@ -232,7 +230,6 @@
 .r-edit {
   cursor: pointer;
 }
-
 
 .blocos {
   width: 100%;

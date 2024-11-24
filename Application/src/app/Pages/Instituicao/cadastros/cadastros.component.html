@@ -4,7 +4,7 @@
   <app-vlibras></app-vlibras>
   <div class="conteudo-cadastros">
     <form class="filters" (ngSubmit)="searchCriancas()">
-      <div class="f-sala">
+      <div class="f-sala" id="txF" [style.fontSize.em]="fontSizeService.getFontSize('txF')">
         <label for="sala">SALAS:</label>
         <select id="idsala" [(ngModel)]="idsala" name="sala">
           <option selected="selected" disabled="disabled">- Opções -</option>
@@ -13,7 +13,7 @@
           </option>
         </select>
       </div>
-      <div class="f-cod">
+      <div class="f-cod" id="txF" [style.fontSize.em]="fontSizeService.getFontSize('txF')">
         <label for="cod">CNS:</label>
         <input
           type="text"
@@ -24,9 +24,7 @@
           name="cod"
         />
       </div>
-
-
-      <div class="f-nome">
+      <div class="f-nome" id="txF" [style.fontSize.em]="fontSizeService.getFontSize('txF')">
         <label for="nome">NOME:</label>
         <input type="text" id="nome" [(ngModel)]="nomeCrianca" name="nome" />
         <button class="icon-button" type="submit">
@@ -87,7 +85,7 @@
         </ng-container>
       </div>
 
-      <div *ngIf="dadosCriancas.length === 0" class="no-results">
+      <div *ngIf="dadosCriancas.length === 0" class="no-results" id="txNR" [style.fontSize.px]="fontSizeService.getFontSize('txNR')">
         Nenhuma criança encontrada com os filtros aplicados.
       </div>
     </div>

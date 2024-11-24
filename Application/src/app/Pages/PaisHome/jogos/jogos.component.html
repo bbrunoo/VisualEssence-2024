@@ -2,21 +2,22 @@
   <app-header></app-header>
   <app-vlibras></app-vlibras>
   <app-chat-bot-icone></app-chat-bot-icone>
-  <div class="jogos-container">
-    <h1>JOGOS</h1>
-    <p>Jogos que ajudam a identificar possíveis problemas visuais.
+  <div class="jogos-container" [ngClass]="getFontSizeClass()">
+    <h1 id="txH1" [style.fontSize.px]="fontSizeService.getFontSize('txH1')">JOGOS</h1>
+    <p id="txJog" [style.fontSize.px]="fontSizeService.getFontSize('txJog')">Jogos que ajudam a identificar possíveis
+      problemas visuais.
       Venha aprender brincando!</p>
 
     <div class="jogos-box">
       <div class="jogos-daltonismo">
-        <h2>Daltonismo</h2>
+        <h2 id="txJog" [style.fontSize.px]="fontSizeService.getFontSize('txJog')">Daltonismo</h2>
         <div class="jogos-img">
-          <img  loading="lazy" class="dalto" routerLink="/Pais/Jogos/Opcoes-Daltonismo" [src]="Dalt" />
+          <img loading="lazy" class="dalto" routerLink="/Pais/Jogos/Opcoes-Daltonismo" [src]="Dalt" />
         </div>
       </div>
 
       <div class="jogos-miopia">
-        <h2>Miopia</h2>
+        <h2 id="txJog" [style.fontSize.px]="fontSizeService.getFontSize('txJog')">Miopia</h2>
         <div class="jogos-img">
           <img loading="lazy" class="miopia" routerLink="/Pais/Jogos/Opcoes-Miopia" [src]="Miop" />
         </div>

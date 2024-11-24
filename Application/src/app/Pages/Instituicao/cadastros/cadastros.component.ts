@@ -16,6 +16,8 @@ import { ImageUploadComponent } from '../image-upload/image-upload.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PictureService } from '../Services/picture-service/picture.service';
 import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
+import Swal from 'sweetalert2';
+import { FontSizeService } from '../../Font/font-size.service';
 
 @Component({
   selector: 'app-cadastros',
@@ -32,7 +34,7 @@ import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/ch
     NgxMaskDirective,
     ReactiveFormsModule,
     ChatBotIconeComponent
-],
+  ],
   templateUrl: './cadastros.component.html',
   styleUrls: ['./cadastros.component.css'],
 })
@@ -55,8 +57,9 @@ export class CadastrosComponent implements OnInit {
     private pictureService: PictureService,
     private salasService: SalasService,
     private authService: AuthService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    public fontSizeService: FontSizeService
+  ) { }
 
   ngOnInit(): void {
     this.loadSalas();
@@ -67,6 +70,16 @@ export class CadastrosComponent implements OnInit {
       console.error('User ID não encontrado');
     }
     this.loadImages();
+
+    this.fontSizeService.initializeFontSize('txF', 1);
+    this.fontSizeService.initializeFontSize('txNR', 16);
+  }
+
+  getFontSizeClass(): string {
+    if (this.fontSizeService.fontSizeMultiplier > 1.2) {
+      return 'size1_2';
+    }
+    return '';
   }
 
   loadSalas(): void {
@@ -156,6 +169,21 @@ export class CadastrosComponent implements OnInit {
 
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp'];
+      if (!allowedTypes.includes(file.type)) {
+        Swal.fire({
+          title: "Tipo de Arquivo Inválido!",
+          text: "Por favor, selecione uma imagem.",
+          imageUrl: '../../../../assets/icons/cancel.png',
+          imageWidth: 100,
+          imageHeight: 100,
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#ff3c3c',
+          heightAuto: false
+        });
+        return;
+      }
+
       const reader = new FileReader();
 
       reader.onload = () => {

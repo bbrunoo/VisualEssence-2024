@@ -13,14 +13,14 @@
     <div class="other-pages">
       <div class="pages">
         <ul>
-          <li routerLink="/Pais/Sobre-nos">Sobre nós</li>
-          <li routerLink="/Pais/Painel-Educativo">Painel Educativo</li>
+          <li id="txCont" [style.fontSize.px]="fontSizeService.getFontSize('txCont')" routerLink="/Pais/Sobre-nos">Sobre nós</li>
+          <li id="txCont" [style.fontSize.px]="fontSizeService.getFontSize('txCont')" routerLink="/Pais/Painel-Educativo">Painel Educativo</li>
 
         </ul>
       </div>
       <span class="regua"></span>
       <div class="copy">
-        <p>Direitos reservados a equipe de desenvolvimento Code Fusion</p>
+        <p id="txDir" [style.fontSize.px]="fontSizeService.getFontSize('txDir')">Direitos reservados a equipe de desenvolvimento Code Fusion</p>
       </div>
     </div>
   </footer>

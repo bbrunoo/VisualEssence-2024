@@ -12,6 +12,7 @@ import { GetSala } from '../../../Models/InstituicaoModels/GetSala.model';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
+import { FontSizeService } from '../../Font/font-size.service';
 
 @Component({
   selector: 'app-edt-dad',
@@ -36,7 +37,8 @@ export class EdtDadComponent implements OnInit {
     private salaService: SalasService,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private routerGo: Router
+    private routerGo: Router,
+    public fontSizeService: FontSizeService
   ) {}
   userInstId: string = String(this.authService.getUserIdFromToken());
 
@@ -49,6 +51,9 @@ export class EdtDadComponent implements OnInit {
       console.error('ID não encontrado na rota');
     }
     this.getSalas();
+
+    this.fontSizeService.initializeFontSize('txLB', 17);
+    this.fontSizeService.initializeFontSize('txIL', 16);
   }
 
   loadCriancaData(): void {

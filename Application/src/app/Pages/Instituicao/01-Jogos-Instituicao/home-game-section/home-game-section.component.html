@@ -3,20 +3,21 @@
   <app-chat-bot-icone></app-chat-bot-icone>
   <app-vlibras></app-vlibras>
   <div class="jogos-container">
-    <h1>JOGOS</h1>
-    <p>Jogos que ajudam a identificar possíveis problemas visuais.
+    <h1 id="txH1" [style.fontSize.px]="fontSizeService.getFontSize('txH1')">JOGOS</h1>
+    <p id="txp" [style.fontSize.px]="fontSizeService.getFontSize('txp')">Jogos que ajudam a identificar possíveis
+      problemas visuais.
       Venha aprender brincando!</p>
 
     <div class="jogos-box">
       <div class="jogos-daltonismo">
-        <h2>Daltonismo</h2>
+        <h2 id="txH2" [style.fontSize.px]="fontSizeService.getFontSize('txH2')">Daltonismo</h2>
         <div class="jogos-img">
           <img loading="lazy" [src]="Dalt" routerLink="/instituicao/jogos/opcoes-daltonismo" />
         </div>
       </div>
 
       <div class="jogos-miopia">
-        <h2>Miopia</h2>
+        <h2 id="txH2" [style.fontSize.px]="fontSizeService.getFontSize('txH2')">Miopia</h2>
         <div class="jogos-img">
           <img loading="lazy" routerLink="/instituicao/jogos/opcoes-miopia" [src]="Miop" />
         </div>
