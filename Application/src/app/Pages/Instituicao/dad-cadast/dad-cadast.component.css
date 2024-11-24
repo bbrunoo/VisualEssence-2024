@@ -10,11 +10,15 @@
   list-style: none;
 }
 
-h1 {
+h2 {
+  font-size: 18px;
+  position: relative;
+  top: 15px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-y: hidden;
 }
 
 .container {
@@ -30,116 +34,6 @@ h1 {
   height: 100%;
 }
 
-.logo img {
-  width: 100px;
-  height: 80px;
-}
-
-.menu {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-}
-
-.MenuOpt ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 17px;
-  flex-direction: row;
-  width: 50em;
-  font-weight: bold;
-  margin: 10px 200px 10px 150px;
-  gap: 3em;
-}
-
-.btnIdi {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-
-  img {
-    width: 30px;
-    height: 30px;
-  }
-}
-
-.AumDim {
-  display: flex;
-  gap: 3px;
-  position: relative;
-}
-
-.AumDim button {
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-}
-
-.AumDim::after {
-  content: "";
-  position: absolute;
-  background-color: white;
-  width: 0;
-  height: 3px;
-  bottom: -10px;
-  left: -10%;
-  transition: 0.5s ease-in-out;
-}
-
-.AumDim:hover::after {
-  width: 115%;
-}
-
-.MenuOpt ul li a::after {
-  content: "";
-  position: absolute;
-  background-color: white;
-  width: 0;
-  height: 3px;
-  bottom: -10px;
-  left: -8%;
-  transition: 0.5s ease-in-out;
-}
-
-a {
-  position: relative;
-  letter-spacing: 0.5px;
-}
-
-.MenuOpt ul li a:hover::after {
-  width: 115%;
-}
-
-.MenuAcco {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 2em;
-  align-items: center;
-  font-weight: bold;
-
-  img {
-    width: 35px;
-    height: 35px;
-  }
-}
-
-.MenuConta {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  align-items: center;
-}
-
-.MenuConta img {
-  border-radius: 100%;
-}
-
 .conteudo {
   width: 100%;
   height: 85%;
@@ -149,13 +43,14 @@ a {
 }
 
 .agruDados {
-  width: 60em;
+  width: 50em;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-self: center;
   justify-content: center;
-  gap: 20px;
+  gap: 5px;
+  
   background: rgba(255, 255, 255, 0.1);
   border-radius: 30px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -166,8 +61,8 @@ a {
 .content-infos {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
+  height: 80%;
+  width: 90%;
   align-items: center;
   justify-content: center;
   gap: 1.5em;
@@ -183,37 +78,39 @@ a {
 }
 
 label {
-  font-size: 17px;
+  font-size: 16px;
   cursor: text;
   padding: 3px;
 }
 
 .linD {
   display: flex;
-  width: 50em;
+  width: 40em;
   position: relative;
-  bottom: -20px;
-  margin: 5px 0 5px 0;
-  overflow: hidden;
+  bottom: 0;
+  margin: 5px 0;
 }
 
 .I {
-  width: 50em;
+  width: 40em;
   border-bottom: 1px solid white;
   position: relative;
-  bottom: -20px;
+  bottom: 0;
   padding: 2px;
+  overflow-y: hidden;
 }
 
 .E {
   width: 50%;
   border-bottom: 1px solid white;
   margin-right: 12%;
+  overflow-y: hidden;
 }
 
 .D {
   width: 50%;
   border-bottom: 1px solid white;
+  overflow-y: hidden;
 }
 
 .direitoLabel {
@@ -222,9 +119,9 @@ label {
 
 .preHist {
   width: 100%;
-  height: 22%;
+  height: 25%;
   position: relative;
-  bottom: -45px;
+  bottom: 0;
   display: block;
   place-content: center;
 }
@@ -235,20 +132,20 @@ label {
   align-items: center;
   border: 1px solid white;
   border-radius: 15px;
-  width: 84%;
-  height: 95%;
-  margin-left: 8.2%;
+  width: 80%;
+  height: 90%;
+  margin-left: 10%;
   position: relative;
-  bottom: 30px;
+  bottom: 5px;
 }
 
 .tit {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 19px;
+  font-size: 17px;
   height: 30%;
-  margin: 2px 0 2px 0;
+  margin: 2px 0;
 }
 
 .dadMiopia {

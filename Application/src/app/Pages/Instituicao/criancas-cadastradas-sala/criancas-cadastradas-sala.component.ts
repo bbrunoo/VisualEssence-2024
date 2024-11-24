@@ -9,6 +9,7 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { PictureService } from '../Services/picture-service/picture.service';
 import { VlibrasComponent } from "../../vlibras/vlibras.component";
 import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
+import { FontSizeService } from '../../Font/font-size.service';
 
 @Component({
   selector: 'app-criancas-cadastradas-sala',
@@ -22,7 +23,7 @@ export class CriancasCadastradasSalaComponent {
   criancas: CriancaSala[] = [];
 
   constructor(private route: ActivatedRoute, private salasService: SalasService,
-    private pictureService: PictureService,) {}
+    private pictureService: PictureService, public fontSizeService: FontSizeService) {}
 
   ngOnInit(): void {
     this.salaId = this.route.snapshot.paramMap.get('id');
@@ -31,6 +32,17 @@ export class CriancasCadastradasSalaComponent {
     } else {
       console.error('Sala ID não encontrado');
     }
+
+    this.fontSizeService.initializeFontSize('txH3', 20);
+    this.fontSizeService.initializeFontSize('txp', 16);
+    this.fontSizeService.initializeFontSize('txND', 18);
+  }
+
+  getFontSizeClass(): string {
+    if (this.fontSizeService.fontSizeMultiplier > 1.2) {
+      return 'size1_2';
+    }
+    return '';
   }
 
   getCriancas(salaId: string) {

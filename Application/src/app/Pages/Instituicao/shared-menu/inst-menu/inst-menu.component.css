@@ -137,3 +137,7 @@ mat-sidenav-content {
 .transparent-backdrop {
   background: rgba(0, 0, 0, 0.5);
 }
+
+.size1_2{
+  width: 65%;
+}

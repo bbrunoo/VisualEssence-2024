@@ -55,7 +55,7 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.8px);
   -webkit-backdrop-filter: blur(3.8px);
-  width: 60em;
+  width: 65em;
   height: 5em;
 }
 
@@ -86,6 +86,7 @@
   text-decoration: none;
   border-radius: 10px;
 }
+
 .conjJogo select,
 .conjNome input {
   border-radius: 10px;
@@ -111,6 +112,7 @@
   color: #252525;
   font-weight: 500;
 }
+
 .selectJogo:focus {
   border: solid 2px #007bff;
   outline: none;
@@ -128,7 +130,7 @@
 }
 
 .conteudo-historico {
-  width: 60em;
+  width: 65em;
   height: 32em;
   display: flex;
   flex-direction: column;
@@ -153,8 +155,8 @@
 
 .card {
   margin: 5px;
-  width: 56em;
-  height: 13em;
+  width: 60em;
+  height: 15em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -180,7 +182,7 @@
 }
 
 .right {
-  width: 42em;
+  width: 48em;
   height: 12em;
   border-radius: 20px;
   display: flex;
@@ -195,7 +197,7 @@
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
-  width: 30em;
+  width: 36em;
   height: 8em;
   margin: 14px;
 }
@@ -209,6 +211,7 @@
 
 .p-nome {
   font-size: 20px;
+  height: 2em;
   font-weight: 700;
 }
 
@@ -272,7 +275,7 @@
 .pagination {
   display: flex;
   align-items: center;
-  height:3em;
+  height: 3em;
 }
 
 .page-input {
