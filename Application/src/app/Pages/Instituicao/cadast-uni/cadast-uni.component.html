@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="currentLanguage === 'pt'">
   <app-inst-menu></app-inst-menu>
   <app-vlibras></app-vlibras>
   <app-chat-bot-icone></app-chat-bot-icone>
@@ -233,6 +233,248 @@
           [style.fontSize.px]="fontSizeService.getFontSize('tx7')"
           >
             Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!------------------------------------------------------------->
+
+<div class="container" *ngIf="currentLanguage === 'en'">
+  <app-inst-menu></app-inst-menu>
+  <div class="conteudo" *ngIf="!showNew" [ngClass]="{ fade_In: !showNew }">
+    <div class="formulario">
+      <form #criancaForm="ngForm" (ngSubmit)="cadastrarCrianca()" novalidate [ngClass]="getFontSizeClass()">
+        <legend
+          id="tx7"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx7')"
+        >
+        CHILD DATA
+        </legend>
+        <div class="I">
+          <input
+            type="text"
+            class="inteiro"
+            name="nomeC"
+            required
+            [(ngModel)]="dadosCriancas.nome"
+            #nomeC="ngModel"
+            [ngModelOptions]="{ standalone: true }"
+            id="tx6"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx6')"
+            placeholder="Name"
+          />
+        </div>
+        <br />
+
+        <div class="linD">
+          <div class="E">
+            <input
+              type="date"
+              class="esquerdo"
+              name="dataNas"
+              required
+              min="01-01-0001"
+              [(ngModel)]="dadosCriancas.dataNascimento"
+              #dataNas="ngModel"
+              [ngModelOptions]="{ standalone: true }"
+              id="tx6"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx6')"
+            />
+            <label
+              for="dataNas"
+              class="esquerdoLabel"
+              id="tx6"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx6')"
+              >Date Birth</label
+            >
+          </div>
+
+          <div class="D">
+            <input
+              type="text"
+              class="direito"
+              name="cns"
+              required
+              [showMaskTyped]="false"
+              mask="000 0000 0000 0000"
+              [(ngModel)]="dadosCriancas.cns"
+              #cns="ngModel"
+              [ngModelOptions]="{ standalone: true }"
+              id="tx6"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx6')"
+              placeholder="CNS"
+            />
+          </div>
+        </div>
+
+        <br />
+
+        <div class="linD">
+          <select
+            [(ngModel)]="dadosCriancas.sexo"
+            class="selectE"
+            name="sex"
+            required
+            #sexo="ngModel"
+            id="tx6"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx6')"
+          >
+            <option value="" disabled>Sex</option>
+            <option *ngFor="let sexo of sexos" [value]="sexo.valor">
+              {{ sexo.texto }}
+            </option>
+          </select>
+        </div>
+
+        <br />
+
+        <div class="I">
+          <input
+            type="text"
+            class="inteiro"
+            name="nomeRes"
+            required
+            [(ngModel)]="dadosCriancas.nomeResp"
+            #nomeRes="ngModel"
+            [ngModelOptions]="{ standalone: true }"
+            id="tx6"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx6')"
+            placeholder="Responsible Name"
+          />
+        </div>
+
+        <br />
+
+        <div class="linD">
+          <div class="E">
+            <input
+              type="text"
+              class="esquerdo"
+              name="cpf"
+              required
+              [showMaskTyped]="false"
+              mask="000.000.000-00"
+              [(ngModel)]="dadosCriancas.cpf"
+              #cpf="ngModel"
+              [ngModelOptions]="{ standalone: true }"
+              id="tx6"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx6')"
+              placeholder="CPF"
+            />
+          </div>
+
+          <div class="D">
+            <input
+              type="text"
+              class="direito"
+              name="rg"
+              required
+              [showMaskTyped]="false"
+              mask="00.000.000-0"
+              [(ngModel)]="dadosCriancas.rg"
+              #rg="ngModel"
+              [ngModelOptions]="{ standalone: true }"
+              id="tx6"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx6')"
+              placeholder="RG"
+            />
+          </div>
+        </div>
+
+        <br />
+
+        <div class="linD">
+          <div class="E">
+            <input
+              type="text"
+              class="esquerdo"
+              name="tel1"
+              required
+              [showMaskTyped]="false"
+              mask="(00)0000-0000"
+              [(ngModel)]="dadosCriancas.tel1"
+              #tel1="ngModel"
+              [ngModelOptions]="{ standalone: true }"
+              id="tx6"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx6')"
+              placeholder="Telephone 1"
+            />
+          </div>
+
+          <div class="D">
+            <input
+              type="text"
+              class="direito"
+              name="end"
+              required
+              [(ngModel)]="dadosCriancas.endereco"
+              #end="ngModel"
+              [ngModelOptions]="{ standalone: true }"
+              id="tx6"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx6')"
+              placeholder="Address"
+            />
+          </div>
+        </div>
+
+        <br />
+
+        <div class="linD">
+          <div class="E">
+            <input
+              type="text"
+              class="esquerdo"
+              name="tel2"
+              required
+              [showMaskTyped]="false"
+              mask="(00)0000-0000"
+              [(ngModel)]="dadosCriancas.tel2"
+              #tel2="ngModel"
+              [ngModelOptions]="{ standalone: true }"
+              id="tx6"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx6')"
+              placeholder="Telephone 2"
+            />
+          </div>
+
+          <select
+            name="sala"
+            required
+            [(ngModel)]="dadosCriancas.idSala"
+            #sala="ngModel"
+            [ngModelOptions]="{ standalone: true }"
+            id="tx6"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx6')"
+          >
+            <option value="0" selected disabled>Rooms</option>
+            <option *ngFor="let sala of salas" [value]="sala.id">
+              {{ sala.nome }} - Amount: {{ sala.capacidade }}
+            </option>
+          </select>
+        </div>
+
+        <br />
+
+        <div class="btns">
+          <button
+            type="submit"
+            class="btnSalvar"
+            [disabled]="criancaForm.invalid || isSubmitting"
+            id="tx7"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx7')"
+          >
+            Salve
+          </button>
+          <button
+            [routerLink]="['/instituicao/criar-sala']"
+            class="btnCancelar"
+            id="tx7"
+          [style.fontSize.px]="fontSizeService.getFontSize('tx7')"
+          >
+            Cancel
           </button>
         </div>
       </form>

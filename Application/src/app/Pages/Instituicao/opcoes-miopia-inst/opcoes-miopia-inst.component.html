@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="currentLanguage === 'pt'">
   <app-inst-menu></app-inst-menu>
   <app-vlibras></app-vlibras>
   <app-chat-bot-icone></app-chat-bot-icone>
@@ -37,6 +37,52 @@
             menores! Em cada fase, o jogador tenta identificar figuras que vão
             diminuindo de tamanho, desafiando a visão. É uma jornada visual
             divertida que ajuda a perceber como enxergamos detalhes de longe.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--------------------------------------------------------->
+
+<div class="container" *ngIf="currentLanguage === 'en'">
+  <app-inst-menu></app-inst-menu>
+  <div class="sec-jogos">
+    <div class="jogos-container">
+      <div class="titulo-game">
+        <h1 id="txH1" [style.fontSize.px]="fontSizeService.getFontSize('txH1')">MYOPIA</h1>
+        <p id="txp" [style.fontSize.px]="fontSizeService.getFontSize('txp')">Games that help identify myopia in
+          children.</p>
+      </div>
+
+      <div class="jogos-box">
+        <div class="jogos-daltonismo">
+          <div class="jogos-img">
+            <h2 id="txH2" [style.fontSize.px]="fontSizeService.getFontSize('txH2')">Lyrics</h2>
+            <img src="../../../../assets/HomeImages/MiopiaGaroto.png" class="dalto"
+              routerLink="/instituicao/jogos/letras-cadastro" />
+          </div>
+          <div class="explicativo" id="txEx" [style.fontSize.px]="fontSizeService.getFontSize('txEx')">
+            This fun game tests myopia with letters that change position and
+            size! In each phase, the player tries to identify letters that
+            appear at different angles, facing left, right, upward
+            or low, while decreasing in size. It's a visual adventure that
+            challenges vision and perception of details!
+          </div>
+        </div>
+
+        <div class="jogos-miopia">
+          <div class="jogos-img">
+            <h2 id="txH2" [style.fontSize.px]="fontSizeService.getFontSize('txH2')">Objects</h2>
+            <img loading="lazy" class="miopia" routerLink="/instituicao/jogos/cadastrar-crianca-inst"
+              src="../../../../assets/HomeImages/MiopiaGarota.png" />
+          </div>
+          <div class="explicativo" id="txEx" [style.fontSize.px]="fontSizeService.getFontSize('txEx')">
+            This fun game tests myopia with drawings that become increasingly
+            smaller ones! In each phase, the player tries to identify figures that will
+            shrinking in size, defying vision. It's a visual journey
+            fun that helps us understand how we see details from afar.
           </div>
         </div>
       </div>

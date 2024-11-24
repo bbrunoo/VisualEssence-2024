@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="currentLanguage === 'pt'">
   <app-chat-bot-icone></app-chat-bot-icone>
   <app-inst-menu></app-inst-menu>
   <app-vlibras></app-vlibras>
@@ -31,6 +31,46 @@
         Fusion do curso superior de Análise e Desenvolvimento de Sistemas,
         dedicam esse projeto a todas as crianças e responsáveis que encaram esse
         problema e necessitam de auxílio e apoio.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!------------------------------------------------------------------->
+
+<div class="container" *ngIf="currentLanguage === 'en'">
+  <app-chat-bot-icone></app-chat-bot-icone>
+  <app-inst-menu></app-inst-menu>
+  <app-vlibras></app-vlibras>
+  <div class="conteudo">
+    <div class="grafico">
+      <div class="twoGra">
+        <div class="graPizza">
+          <canvas #meuCanvas1 width="100" height="100"></canvas>
+        </div>
+        <div class="graBarra">
+          <canvas #meuCanvas2 width="100" height="100"></canvas>
+        </div>
+      </div>
+      <div class="legendGra">
+        <p class="text" id="txLeg" [style.fontSize.px]="fontSizeService.getFontSize('txLeg')">
+          The graphs show the number of students with low or good scores in the myopia and color blindness games,
+          based on the pre-diagnoses available in the "History" tab.
+        </p>
+      </div>
+    </div>
+    <div class="infDesen" [ngClass]="getFontSizeClass()">
+      <p class="text" id="txDes" [style.fontSize.px]="fontSizeService.getFontSize('txDes')">
+        This project aims to provide better quality of
+        life for children who face difficulties in their daily lives
+        caused by low vision. Throughout the website, you will be presented with
+        in a detailed and fun way to provide possible help, which can help
+        institutions involved to obtain direction through simple games
+        and dynamic, to later analyze whether these children need
+        consult a specialist. Because of this, students in the Code group
+        Fusion of the Systems Analysis and Development higher education course,
+        dedicate this project to all children and guardians who face this
+        problem and need help and support.
       </p>
     </div>
   </div>

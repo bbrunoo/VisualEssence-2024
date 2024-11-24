@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ChatBotIconeComponent } from "../../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 import { VlibrasComponent } from "../../../vlibras/vlibras.component";
 import { FontSizeService } from '../../../Font/font-size.service';
+import { LanguageService } from '../../../Language/language.service';
 
 @Component({
   selector: 'app-home-game-section',
@@ -24,7 +25,19 @@ export class HomeGameSectionComponent {
     this.showNew = !this.showNew;
   }
 
-  constructor(public fontSizeService: FontSizeService) { }
+  constructor(public fontSizeService: FontSizeService, public languageService: LanguageService) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.currentLanguage = language;
+    });
+  }
+
+  currentLanguage!: string;
+
+  toggleLanguage() {
+    const newLanguage = this.currentLanguage === 'pt' ? 'en' : 'pt';
+
+    this.languageService.changeLanguage(newLanguage);
+  }
 
   ngOnInit(): void {
     this.fontSizeService.initializeFontSize('txH1', 25);

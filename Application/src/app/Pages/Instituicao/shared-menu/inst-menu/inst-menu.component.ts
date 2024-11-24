@@ -10,6 +10,7 @@ import { UserInst } from '../../../../Models/User/GetUserInst.model';
 import { AccountPictureService } from '../../Services/profile-picture-service/account-picture.service';
 import { UserInfosService } from '../../Services/user-infos/user-infos.service';
 import { FontSizeService } from '../../../Font/font-size.service';
+import { LanguageService } from '../../../Language/language.service';
 
 @Component({
   selector: 'app-inst-menu',
@@ -41,7 +42,19 @@ export class InstMenuComponent implements OnInit {
     private authService: AuthService,
     private userInfoService: UserInfosService,
     public fontSizeService: FontSizeService,
-  ) { }
+    public languageService: LanguageService) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.currentLanguage = language;
+    });
+  }
+
+  currentLanguage!: string;
+
+  toggleLanguage() {
+    const newLanguage = this.currentLanguage === 'pt' ? 'en' : 'pt';
+
+    this.languageService.changeLanguage(newLanguage);
+  }
 
   ngOnInit(): void {
     this.getUserInfos(this.userId);

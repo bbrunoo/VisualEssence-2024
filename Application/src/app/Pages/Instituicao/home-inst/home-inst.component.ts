@@ -21,12 +21,13 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
+import { LanguageService } from '../../Language/language.service';
 
 @Component({
   selector: 'app-home-inst',
   standalone: true,
-  imports: [VlibrasComponent, InstMenuComponent, ChatBotIconeComponent, NgClass],
+  imports: [VlibrasComponent, InstMenuComponent, ChatBotIconeComponent, NgClass, NgIf],
   templateUrl: './home-inst.component.html',
   styleUrls: ['./home-inst.component.css']
 })
@@ -38,7 +39,19 @@ export class HomeInstComponent implements OnInit {
   userId = String(this.authService.getUserIdFromToken());
   userMessage = '';
 
-  constructor(private dadosService: DadosService, private authService: AuthService, public fontSizeService: FontSizeService) { }
+  constructor(private dadosService: DadosService, private authService: AuthService, public fontSizeService: FontSizeService, public languageService: LanguageService) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.currentLanguage = language;
+    });
+  }
+
+  currentLanguage!: string;
+
+  toggleLanguage() {
+    const newLanguage = this.currentLanguage === 'pt' ? 'en' : 'pt';
+
+    this.languageService.changeLanguage(newLanguage);
+  }
 
   delayed: boolean = false;
 

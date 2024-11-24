@@ -10,6 +10,7 @@ import { PictureService } from '../Services/picture-service/picture.service';
 import { VlibrasComponent } from "../../vlibras/vlibras.component";
 import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 import { FontSizeService } from '../../Font/font-size.service';
+import { LanguageService } from '../../Language/language.service';
 
 @Component({
   selector: 'app-criancas-cadastradas-sala',
@@ -23,7 +24,20 @@ export class CriancasCadastradasSalaComponent {
   criancas: CriancaSala[] = [];
 
   constructor(private route: ActivatedRoute, private salasService: SalasService,
-    private pictureService: PictureService, public fontSizeService: FontSizeService) {}
+    private pictureService: PictureService, public fontSizeService: FontSizeService,
+    public languageService: LanguageService) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.currentLanguage = language;
+    });
+  }
+
+  currentLanguage!: string;
+
+  toggleLanguage() {
+    const newLanguage = this.currentLanguage === 'pt' ? 'en' : 'pt';
+
+    this.languageService.changeLanguage(newLanguage);
+  }
 
   ngOnInit(): void {
     this.salaId = this.route.snapshot.paramMap.get('id');

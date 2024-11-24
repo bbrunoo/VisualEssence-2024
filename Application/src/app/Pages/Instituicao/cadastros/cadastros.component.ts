@@ -18,6 +18,7 @@ import { PictureService } from '../Services/picture-service/picture.service';
 import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 import Swal from 'sweetalert2';
 import { FontSizeService } from '../../Font/font-size.service';
+import { LanguageService } from '../../Language/language.service';
 
 @Component({
   selector: 'app-cadastros',
@@ -58,8 +59,19 @@ export class CadastrosComponent implements OnInit {
     private salasService: SalasService,
     private authService: AuthService,
     private dialog: MatDialog,
-    public fontSizeService: FontSizeService
-  ) { }
+    public fontSizeService: FontSizeService, public languageService: LanguageService) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.currentLanguage = language;
+    });
+  }
+
+  currentLanguage!: string;
+
+  toggleLanguage() {
+    const newLanguage = this.currentLanguage === 'pt' ? 'en' : 'pt';
+
+    this.languageService.changeLanguage(newLanguage);
+  }
 
   ngOnInit(): void {
     this.loadSalas();

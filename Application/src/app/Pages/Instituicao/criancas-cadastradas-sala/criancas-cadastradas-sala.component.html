@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="currentLanguage === 'pt'">
   <app-inst-menu></app-inst-menu>
   <app-chat-bot-icone></app-chat-bot-icone>
   <app-vlibras></app-vlibras>
@@ -30,6 +30,42 @@
       <ng-template #noData>
         <p class="nodata" id="txND" [style.fontSize.px]="fontSizeService.getFontSize('txND')">Não há crianças cadastradas
           nesta sala.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<!----------------------------------------------------------->
+
+<div class="container" *ngIf="currentLanguage === 'en'">
+  <app-inst-menu></app-inst-menu>
+  <div class="conteudo">
+    <div class="conteudo-titulo" [ngClass]="getFontSizeClass()">
+      <h3 id="txH3" [style.fontSize.px]="fontSizeService.getFontSize('txH3')">Children Registered by Room</h3>
+    </div>
+    <div class="conteudo-criancas" id="custom-bar">
+      <div class="criancas-box">
+        <div *ngIf="criancas.length > 0; else noData">
+          <div class="crianca" *ngFor="let crianca of criancas">
+            <img class="imagem-crianca" loading="lazy" [src]="crianca.foto || '../../../assets/user.png'" />
+            <div class="info-criancas">
+              <p id="txp" [style.fontSize.px]="fontSizeService.getFontSize('txp')"><strong>Name:</strong> {{
+                crianca.nome }}</p>
+              <p id="txp" [style.fontSize.px]="fontSizeService.getFontSize('txp')">
+                <strong>Age:</strong>
+                {{ getIdade(crianca.dataNascimento) }} years
+              </p>
+              <p id="txp" [style.fontSize.px]="fontSizeService.getFontSize('txp')"><strong>Name of the person responsible:</strong>
+                {{ crianca.nomeResp }}</p>
+              <p id="txp" [style.fontSize.px]="fontSizeService.getFontSize('txp')"><strong>Telephone number of the person responsible:</strong> {{ crianca.tel1 | mask: '(00) 0000-0000' }}</p>
+              <hr />
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noData>
+        <p class="nodata" id="txND" [style.fontSize.px]="fontSizeService.getFontSize('txND')">There are no children registered
+          in this room.</p>
       </ng-template>
     </div>
   </div>

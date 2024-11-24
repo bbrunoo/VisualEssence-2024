@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="currentLanguage === 'pt'">
   <app-inst-menu></app-inst-menu>
   <app-vlibras></app-vlibras>
   <app-chat-bot-icone></app-chat-bot-icone>
@@ -37,6 +37,52 @@
             menores! Em cada fase, o jogador tenta identificar figuras que vão
             diminuindo de tamanho, desafiando a visão. É uma jornada visual
             divertida que ajuda a perceber como enxergamos detalhes de longe.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--------------------------------------------------------------------->
+
+<div class="container" *ngIf="currentLanguage === 'en'">
+  <app-inst-menu></app-inst-menu>
+  <div class="sec-jogos">
+    <div class="jogos-container">
+      <div class="titulo-game">
+        <h1 id="txH1" [style.fontSize.px]="fontSizeService.getFontSize('txH1')">Color blindness</h1>
+        <p id="txp" [style.fontSize.px]="fontSizeService.getFontSize('txp')">Games that help identify color blindness
+          in children.</p>
+      </div>
+
+      <div class="jogos-box">
+        <div class="jogos-daltonismo">
+          <div class="jogos-img">
+            <h2 id="txH2" [style.fontSize.px]="fontSizeService.getFontSize('txH2')">Numbers</h2>
+            <img loading="lazy" class="dalto" routerLink="/instituicao/jogos/daltonismo-numeros/cadastro"
+              src="../../../../assets/HomeImages/DaltonismoGarota.png" />
+          </div>
+          <div class="explicativo" id="txEx" [style.fontSize.px]="fontSizeService.getFontSize('txEx')">
+            This fun game helps discover color blindness with challenges
+            numeric! In each phase, colored numbers appear that the player
+            need to identify correctly. Each level brings new numbers and
+            colors, making the journey exciting while revealing how
+            we see and distinguish different tones.
+          </div>
+        </div>
+
+        <div class="jogos-miopia">
+          <div class="jogos-img">
+            <h2 id="txH2" [style.fontSize.px]="fontSizeService.getFontSize('txH2')">Animals</h2>
+            <img loading="lazy" class="miopia" routerLink="/instituicao/jogos/daltonismo-animais/cadastro"
+              src="../../../../assets/HomeImages/DaltonismoGarotaDois.png" />
+          </div>
+          <div class="explicativo" id="txEx" [style.fontSize.px]="fontSizeService.getFontSize('txEx')">
+            This fun game tests myopia with drawings that become increasingly
+            smaller ones! In each phase, the player tries to identify figures that will
+            shrinking in size, defying vision. It's a visual journey
+            fun that helps us understand how we see details from afar.
           </div>
         </div>
       </div>

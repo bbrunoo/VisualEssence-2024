@@ -1,4 +1,4 @@
-<section class="sec-jogos">
+<section class="sec-jogos" *ngIf="currentLanguage === 'pt'">
   <app-header></app-header>
   <app-vlibras></app-vlibras>
   <app-chat-bot-icone></app-chat-bot-icone>
@@ -18,6 +18,37 @@
 
       <div class="jogos-miopia">
         <h2 id="txJog" [style.fontSize.px]="fontSizeService.getFontSize('txJog')">Miopia</h2>
+        <div class="jogos-img">
+          <img loading="lazy" class="miopia" routerLink="/Pais/Jogos/Opcoes-Miopia" [src]="Miop" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!----------------------------------------------------------------->
+
+<section class="sec-jogos" *ngIf="currentLanguage === 'en'">
+  <app-header></app-header>
+  <app-vlibras></app-vlibras>
+  <app-chat-bot-icone></app-chat-bot-icone>
+  <div class="jogos-container" [ngClass]="getFontSizeClass()">
+    <h1 id="txH1" [style.fontSize.px]="fontSizeService.getFontSize('txH1')">GAMES</h1>
+    <p id="txJog" [style.fontSize.px]="fontSizeService.getFontSize('txJog')">Games that help identify possible
+      visual problems.
+      Come learn by playing!</p>
+
+    <div class="jogos-box">
+      <div class="jogos-daltonismo">
+        <h2 id="txJog" [style.fontSize.px]="fontSizeService.getFontSize('txJog')">Color blindness</h2>
+        <div class="jogos-img">
+          <img loading="lazy" class="dalto" routerLink="/Pais/Jogos/Opcoes-Daltonismo" [src]="Dalt" />
+        </div>
+      </div>
+
+      <div class="jogos-miopia">
+        <h2 id="txJog" [style.fontSize.px]="fontSizeService.getFontSize('txJog')">Myopia</h2>
         <div class="jogos-img">
           <img loading="lazy" class="miopia" routerLink="/Pais/Jogos/Opcoes-Miopia" [src]="Miop" />
         </div>

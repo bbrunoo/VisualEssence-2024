@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="currentLanguage === 'pt'">
     <app-inst-menu></app-inst-menu>
     <app-vlibras></app-vlibras>
     <app-chat-bot-icone></app-chat-bot-icone>
@@ -8,6 +8,29 @@
         <p>|</p>
         <button (click)="showCriarS = false; showOpCad = true" id="txCS"
             [style.fontSize.px]="fontSizeService.getFontSize('txCS')">CADASTRAR CRIANÇA</button>
+    </div>
+
+    <div *ngIf="showCriarS" @fadeAnimation class="fade_In">
+        <app-opc-criar-sala></app-opc-criar-sala>
+    </div>
+
+    <div *ngIf="showOpCad" @fadeAnimation class="fade_In">
+        <app-opc-cadast></app-opc-cadast>
+    </div>
+</div>
+
+<!----------------------------------------------------------->
+
+<div class="container" *ngIf="currentLanguage === 'en'">
+    <app-inst-menu></app-inst-menu>
+    <app-vlibras></app-vlibras>
+    <app-chat-bot-icone></app-chat-bot-icone>
+    <div class="criarS_Opt">
+        <button (click)="showCriarS = true; showOpCad = false" id="txCS"
+            [style.fontSize.px]="fontSizeService.getFontSize('txCS')">CREATE ROOM</button>
+        <p>|</p>
+        <button (click)="showCriarS = false; showOpCad = true" id="txCS"
+            [style.fontSize.px]="fontSizeService.getFontSize('txCS')">REGISTER CHILD</button>
     </div>
 
     <div *ngIf="showCriarS" @fadeAnimation class="fade_In">

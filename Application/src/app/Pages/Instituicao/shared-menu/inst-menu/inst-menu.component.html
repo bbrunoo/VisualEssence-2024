@@ -1,4 +1,4 @@
-<div class="menu">
+<div class="menu" *ngIf="currentLanguage === 'pt'">
   <div class="logo">
     <img
       [routerLink]="['/instituicao/home']"
@@ -19,7 +19,10 @@
       <li><a [routerLink]="['/instituicao/cadastros']">CADASTROS</a></li>
       <li><a [routerLink]="['/instituicao/jogos']">JOGOS</a></li>
       <li>
-        <button class="btnIdi"><img src="assets/bdEUA.webp" /></button>
+        <button class="btnIdi" (click)="toggleLanguage()">
+          <img *ngIf="currentLanguage === 'pt'" src="../../../../../assets/bdEUA.webp"
+            alt="Inglês" />
+        </button>
       </li>
     </ul>
   </div>
@@ -41,4 +44,49 @@
   </div>
 </div>
 
+<!------------------------------------------------------------------->
 
+<div class="menu" *ngIf="currentLanguage === 'en'">
+  <div class="logo">
+    <img
+      [routerLink]="['/instituicao/home']"
+      src="../../../assets/HomeImages/VisualEssenceLogo.svg"
+    />
+  </div>
+
+  <div class="MenuOpt" [ngClass]="getFontSizeClass()">
+    <ul id="txMenu" [style.fontSize.px]="fontSizeService.getFontSize('txMenu')">
+      <li>
+        <div class="AumDim">
+          <button (click)="aumentarFonte()">A+/</button>
+          <button (click)="diminuirFonte()">A-</button>
+        </div>
+      </li>
+      <li><a [routerLink]="['/instituicao/home']">HOME</a></li>
+      <li><a [routerLink]="['/instituicao/criar-sala']">CREATE ROOM</a></li>
+      <li><a [routerLink]="['/instituicao/cadastros']">REGISTRATIONS</a></li>
+      <li><a [routerLink]="['/instituicao/jogos']">GAMES</a></li>
+      <li>
+        <button class="btnIdi" (click)="toggleLanguage()">
+          <img *ngIf="currentLanguage === 'en'" src="../../../../../assets/bdBR.png" alt="Port" />
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="MenuAcco">
+    <div *ngIf="user" class="MenuConta">
+        <img mat-button (click)="openSideModal(userId)" [src]="userInfo?.foto || '../../../../../assets/user.png'"  alt=""/>
+      <p>{{ userInfo?.nomeInst }}</p>
+    </div>
+
+    <div class="MenuLogout">
+      <img
+        [src]="Logout"
+        alt=""
+        [routerLink]="['/opc-entrar']"
+        (click)="logout()"
+      />
+    </div>
+  </div>
+</div>

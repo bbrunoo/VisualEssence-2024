@@ -11,11 +11,12 @@ import { Sala } from '../../../Models/InstituicaoModels/Sala.model';
 import { OpcCriarSalaComponent } from "../opc-criar-sala/opc-criar-sala.component";
 import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
 import { FontSizeService } from '../../Font/font-size.service';
+import { LanguageService } from '../../Language/language.service';
 
 @Component({
   selector: 'app-criar-sala',
   standalone: true,
-  imports: [VlibrasComponent, NgIf, CommonModule, OpcCadastComponent, InstMenuComponent, FormsModule, ReactiveFormsModule, OpcCriarSalaComponent, ChatBotIconeComponent],
+  imports: [VlibrasComponent, NgIf, CommonModule, OpcCadastComponent, InstMenuComponent, FormsModule, ReactiveFormsModule, OpcCriarSalaComponent, ChatBotIconeComponent, NgIf],
   templateUrl: './criar-sala.component.html',
   styleUrl: './criar-sala.component.css',
   animations: [
@@ -40,7 +41,19 @@ export class CriarSalaComponent {
     this.showOpCad = true;
   }
 
-  constructor(public fontSizeService: FontSizeService) { }
+  constructor(public fontSizeService: FontSizeService, public languageService: LanguageService) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.currentLanguage = language;
+    });
+  }
+
+  currentLanguage!: string;
+
+  toggleLanguage() {
+    const newLanguage = this.currentLanguage === 'pt' ? 'en' : 'pt';
+
+    this.languageService.changeLanguage(newLanguage);
+  }
 
   ngOnInit(): void {
     this.fontSizeService.initializeFontSize('txCS', 19);

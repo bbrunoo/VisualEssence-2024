@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 import { AuthService } from '../../../../Services/Auth/AuthService/auth.service';
 import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 import { FontSizeService } from '../../Font/font-size.service';
+import { LanguageService } from '../../Language/language.service';
 
 @Component({
   selector: 'app-opc-criar-sala',
@@ -26,7 +27,8 @@ import { FontSizeService } from '../../Font/font-size.service';
     NgIf,
     CommonModule,
     FormsModule,
-    ChatBotIconeComponent
+    ChatBotIconeComponent,
+    NgIf
 ],
   templateUrl: './opc-criar-sala.component.html',
   styleUrl: './opc-criar-sala.component.css',
@@ -43,8 +45,20 @@ export class OpcCriarSalaComponent {
     private salaService: SalasService,
     private authService: AuthService,
     private router: Router,
-    public fontSizeService: FontSizeService
-  ) {}
+    public fontSizeService: FontSizeService,
+    public languageService: LanguageService) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.currentLanguage = language;
+    });
+  }
+
+  currentLanguage!: string;
+
+  toggleLanguage() {
+    const newLanguage = this.currentLanguage === 'pt' ? 'en' : 'pt';
+
+    this.languageService.changeLanguage(newLanguage);
+  }
 
   salas?: Sala[];
   userInstId: string = String(this.authService.getUserIdFromToken());

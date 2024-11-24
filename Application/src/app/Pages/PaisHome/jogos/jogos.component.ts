@@ -4,12 +4,13 @@ import { HeaderComponent } from "../Shared-Pais/header/header.component";
 import { VlibrasComponent } from "../../vlibras/vlibras.component";
 import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 import { FontSizeService } from '../../Font/font-size.service';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
+import { LanguageService } from '../../Language/language.service';
 
 @Component({
   selector: 'app-jogos',
   standalone: true,
-  imports: [RouterLink, HeaderComponent, VlibrasComponent, ChatBotIconeComponent, NgClass],
+  imports: [RouterLink, HeaderComponent, VlibrasComponent, ChatBotIconeComponent, NgClass, NgIf],
   templateUrl: './jogos.component.html',
   styleUrl: './jogos.component.css'
 })
@@ -19,7 +20,19 @@ export class JogosComponent {
 
   //------------------------------------------------------------------------------------//
 
-  constructor(public fontSizeService: FontSizeService) { }
+  constructor(public fontSizeService: FontSizeService, public languageService: LanguageService) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.currentLanguage = language;
+    });
+  }
+
+  currentLanguage!: string;
+
+  toggleLanguage() {
+    const newLanguage = this.currentLanguage === 'pt' ? 'en' : 'pt';
+
+    this.languageService.changeLanguage(newLanguage);
+  }
 
   ngOnInit(): void {
     this.fontSizeService.initializeFontSize('txH1', 25);

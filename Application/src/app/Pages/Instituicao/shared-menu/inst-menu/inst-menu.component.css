@@ -47,7 +47,7 @@
 }
 
 .MenuOpt {
-  width: 55%;
+  width: 65%;
 }
 
 .MenuOpt ul {
@@ -139,5 +139,5 @@ mat-sidenav-content {
 }
 
 .size1_2{
-  width: 65%;
+  width: 75%;
 }

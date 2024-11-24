@@ -16,6 +16,7 @@ import { GetCriancas } from '../../../Models/InstituicaoModels/GetCriancas.model
 import { CriancaComJogosDTO, HistoricoJogadasDTO } from '../../../Models/HistoricoJogadas.model';
 import { ChatBotIconeComponent } from '../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component';
 import { FontSizeService } from '../../Font/font-size.service';
+import { LanguageService } from '../../Language/language.service';
 
 @Component({
   selector: 'app-historico',
@@ -28,8 +29,8 @@ import { FontSizeService } from '../../Font/font-size.service';
     NgFor,
     FormsModule,
     ReactiveFormsModule,
-    ChatBotIconeComponent
-
+    ChatBotIconeComponent,
+    NgIf
   ],
   templateUrl: './historico.component.html',
   styleUrl: './historico.component.css'
@@ -51,8 +52,20 @@ export class HistoricoComponent implements OnInit {
     private authService: AuthService,
     private pictureService: PictureService,
     private router: Router,
-    public fontSizeService: FontSizeService
-  ) { }
+    public fontSizeService: FontSizeService, 
+    public languageService: LanguageService) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.currentLanguage = language;
+    });
+  }
+
+  currentLanguage!: string;
+
+  toggleLanguage() {
+    const newLanguage = this.currentLanguage === 'pt' ? 'en' : 'pt';
+
+    this.languageService.changeLanguage(newLanguage);
+  }
 
   ngOnInit(): void {
     this.getUltimosDoisJogos();

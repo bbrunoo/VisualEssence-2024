@@ -1,4 +1,4 @@
-<div class="sec-sobre">
+<div class="sec-sobre" *ngIf="currentLanguage === 'pt'">
   <div class="sobre-conteudo">
     <div class="sobre-imagem">
       <img loading="lazy" [src]="Nave">
@@ -22,6 +22,38 @@
           Uma solução abrangente que une
           entretenimento digital e cuidados
           com a saúde infantil.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---------------------------------------------------------------------->
+
+<div class="sec-sobre" *ngIf="currentLanguage === 'en'">
+  <div class="sobre-conteudo">
+    <div class="sobre-imagem">
+      <img loading="lazy" [src]="Nave">
+    </div>
+
+    <div class="cont-textos" [ngClass]="getFontSizeClass()">
+      <div class="s-titulo">
+        <h1 id="txH1" [style.fontSize.px]="fontSizeService.getFontSize('txH1')">
+          Visual Essence
+        </h1>
+      </div>
+
+      <div class="s-texto">
+        <p id="txSobre" [style.fontSize.px]="fontSizeService.getFontSize('txSobre')">
+          A safe and fun gaming platform for children,
+          with integrated visual health monitoring.
+          With a variety of educational games,
+          parents can track progress and
+          identify possible visual problems
+          while your children have fun.
+          A comprehensive solution that unites
+          digital entertainment and care
+          with child health.
         </p>
       </div>
     </div>

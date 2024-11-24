@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild} from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { AuthService } from '../../../../../Services/Auth/AuthService/auth.service';
 import { loggedUser } from '../../../../Models/LoggedUser/user.model';
 import { RouterLink } from '@angular/router';
@@ -15,6 +15,7 @@ import { UserPais } from '../../../../Models/User/GetUserPais.model';
 import { AccountPictureService } from '../../../Instituicao/Services/profile-picture-service/account-picture.service';
 import { UserInfosService } from '../../../Instituicao/Services/user-infos/user-infos.service';
 import { FontSizeService } from '../../../Font/font-size.service';
+import { LanguageService } from '../../../Language/language.service';
 
 declare var google: any;
 
@@ -27,11 +28,22 @@ declare var google: any;
 })
 export class HeaderComponent implements OnInit {
 
-  user: loggedUser = {id: '', nome:'', email: '', isInstitucional: false, isPais: false}
+  user: loggedUser = { id: '', nome: '', email: '', isInstitucional: false, isPais: false }
   userInfo: UserPais | null = null;
   userId = String(this.userService.getUserIdFromToken());
 
-  constructor(private userService: AuthService, private dialog: MatDialog, private accountPicture: AccountPictureService, private userInfoService: UserInfosService, public fontSizeService: FontSizeService){
+  constructor(private userService: AuthService, private dialog: MatDialog, private accountPicture: AccountPictureService, private userInfoService: UserInfosService, public fontSizeService: FontSizeService, public languageService: LanguageService) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.currentLanguage = language;
+    });
+  }
+
+  currentLanguage!: string;
+
+  toggleLanguage() {
+    const newLanguage = this.currentLanguage === 'pt' ? 'en' : 'pt';
+
+    this.languageService.changeLanguage(newLanguage);
   }
 
   ngOnInit(): void {

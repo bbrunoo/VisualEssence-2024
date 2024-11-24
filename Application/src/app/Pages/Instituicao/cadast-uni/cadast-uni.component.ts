@@ -14,6 +14,7 @@ import { CriancaInstDTO } from '../../../Models/CriancaInstDTO.model';
 import { VlibrasComponent } from '../../vlibras/vlibras.component';
 import { ChatBotIconeComponent } from "../../chat-bot-conteudo/chat-bot-icone/chat-bot-icone.component";
 import { FontSizeService } from '../../Font/font-size.service';
+import { LanguageService } from '../../Language/language.service';
 
 @Component({
   selector: 'app-cadast-uni',
@@ -36,8 +37,20 @@ export class CadastUniComponent implements OnInit {
     private dadosC: CadastroUnicoService,
     private router: Router,
     private authService: AuthService,
-    public fontSizeService: FontSizeService
-  ) { }
+    public fontSizeService: FontSizeService, 
+    public languageService: LanguageService) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.currentLanguage = language;
+    });
+  }
+
+  currentLanguage!: string;
+
+  toggleLanguage() {
+    const newLanguage = this.currentLanguage === 'pt' ? 'en' : 'pt';
+
+    this.languageService.changeLanguage(newLanguage);
+  }
 
   userInstId: string = String(this.authService.getUserIdFromToken());
 

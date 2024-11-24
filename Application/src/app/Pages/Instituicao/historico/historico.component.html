@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="currentLanguage === 'pt'">
   <app-vlibras></app-vlibras>
   <app-inst-menu></app-inst-menu>
   <app-chat-bot-icone></app-chat-bot-icone>
@@ -76,6 +76,108 @@
 
       <div *ngIf="historico.length === 0">
         <p id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')">Nenhum resultado encontrado.</p>
+      </div>
+    </div>
+
+    <div class="pagination">
+      <button class="button-change" (click)="goToFirstPage()" [disabled]="pageNumber === 1">
+        <img src="../../../../assets/back.png" width="15px" height="15px" alt="">
+      </button>
+      <button class="button-change" (click)="prevPage()" [disabled]="pageNumber === 1">
+        <img src="../../../../assets/left-arrow.png" width="15px" height="15px" alt="">
+      </button>
+      <input class="page-input"
+             type="text"
+             [(ngModel)]="pageNumber"
+             (ngModelChange)="onPageChange($event)"
+             (keypress)="validateInput($event)" />
+      <button class="button-change" (click)="nextPage()" [disabled]="pageNumber === totalPages">
+        <img src="../../../../assets/right-arrow.png" width="15px" height="15px" alt="">
+      </button>
+      <button class="button-change" (click)="goToLastPage()" [disabled]="pageNumber === totalPages">
+        <img src="../../../../assets/forward.png" width="15px" height="15px" alt="">
+      </button>
+    </div>
+</div>
+
+<!---------------------------------------------------------------->
+
+<div class="container" *ngIf="currentLanguage === 'en'">
+  <app-vlibras></app-vlibras>
+  <div class="conteudo">
+    <div class="barFiltro">
+      <div class="conjJogo">
+        <label for="selectJogo" id="txSJ" [style.fontSize.px]="fontSizeService.getFontSize('txSJ')">GAME: </label>
+        <select class="selectJogo" [(ngModel)]="nomeJogo" name="selectJogo" id="txSJ" [style.fontSize.px]="fontSizeService.getFontSize('txSJ')">
+          <option disabled value="">Select the game</option>
+          <option value="Miopia">Myopia</option>
+          <option value="Daltonismo">Color blindness</option>
+        </select>
+      </div>
+      <div class="conjNome">
+        <label for="inputNome" id="txL" [style.fontSize.px]="fontSizeService.getFontSize('txL')">NAME: </label>
+        <input
+          type="text"
+          class="inpNome"
+          name="inputNome"
+          [(ngModel)]="nomeCrianca"
+          (keydown.enter)="onSearch()"
+          id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')"
+        />
+      </div>
+      <div class="btnLupa">
+        <button (click)="onSearch()">
+          <img  loading="lazy" src="../../assets/lupa.png" alt="Buscar" />
+        </button>
+      </div>
+    </div>
+
+    <div class="conteudo-historico">
+      <div *ngIf="historico.length > 0" id="custom-bar">
+        <div *ngFor="let item of historico" class="box" id="custom-bar">
+          <div class="card">
+            <div class="left">
+              <img loading="lazy" [src]="item.foto || '../../../assets/user.png'" alt="" />
+            </div>
+            <div class="right">
+              <div class="content-r-left">
+                <div class="p-nome">
+                  <p id="txpN" [style.fontSize.px]="fontSizeService.getFontSize('txpN')">{{ item.nomeCrianca }}</p>
+                </div>
+                <div *ngFor="let jogo of item.jogos" class="p-undetailed">
+                  <p id="txpU" [style.fontSize.px]="fontSizeService.getFontSize('txpU')">Game: {{ jogo.nomeJogo }}</p>
+                  <p id="txpU" [style.fontSize.px]="fontSizeService.getFontSize('txpU')">Date: {{ jogo.dataJogo | date : "dd/MM/yyyy" }}</p>
+                  <div *ngIf="jogo.nomeJogo === 'Miopia'">
+                    <p id="txpU" [style.fontSize.px]="fontSizeService.getFontSize('txpU')">Score: {{ jogo.pontuacao }}/20</p>
+                  </div>
+                  <div *ngIf="jogo.nomeJogo === 'Daltonismo Numeros'">
+                    <p id="txpU" [style.fontSize.px]="fontSizeService.getFontSize('txpU')">Score: {{ jogo.pontuacao }}/32</p>
+                  </div>
+                  <div *ngIf="jogo.nomeJogo === 'Daltonismo Animais'">
+                    <p id="txpU" [style.fontSize.px]="fontSizeService.getFontSize('txpU')">Score: {{ jogo.pontuacao }}/27</p>
+                  </div>
+                  <div *ngIf="jogo.nomeJogo === 'Miopia Letras'">
+                    <p id="txpU" [style.fontSize.px]="fontSizeService.getFontSize('txpU')">Score: {{ jogo.pontuacao }}/20</p>
+                  </div>
+                </div>
+                <div class="p-more-details">
+                  <a (click)="verDetalhes(item.idCrianca)" id="txpU" [style.fontSize.px]="fontSizeService.getFontSize('txpU')">Mais detalhes</a>
+                </div>
+              </div>
+              <div class="content-r-right">
+                <div class="p-imagem">
+                  <p id="txpU" [style.fontSize.px]="fontSizeService.getFontSize('txpU')">ROOM: {{item.salaNome}}</p>
+                </div>
+                <div class="p-download" id="txDo" [style.fontSize.px]="fontSizeService.getFontSize('txDo')">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="historico.length === 0">
+        <p id="txInp" [style.fontSize.px]="fontSizeService.getFontSize('txInp')">No results found.</p>
       </div>
     </div>
 

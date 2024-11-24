@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="currentLanguage === 'pt'">
   <app-inst-menu></app-inst-menu>
   <app-chat-bot-icone></app-chat-bot-icone>
   <app-vlibras></app-vlibras>
@@ -87,6 +87,100 @@
 
       <div *ngIf="dadosCriancas.length === 0" class="no-results" id="txNR" [style.fontSize.px]="fontSizeService.getFontSize('txNR')">
         Nenhuma criança encontrada com os filtros aplicados.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---------------------------------------------------------------->
+
+<div class="container" *ngIf="currentLanguage === 'en'">
+  <app-inst-menu></app-inst-menu>
+  <div class="conteudo-cadastros">
+    <form class="filters" (ngSubmit)="searchCriancas()">
+      <div class="f-sala" id="txF" [style.fontSize.em]="fontSizeService.getFontSize('txF')">
+        <label for="sala">ROOMS:</label>
+        <select id="idsala" [(ngModel)]="idsala" name="sala">
+          <option selected="selected" disabled="disabled">- Options -</option>
+          <option *ngFor="let sala of salas" [value]="sala.id">
+            {{ sala.nome }}
+          </option>
+        </select>
+      </div>
+      <div class="f-cod" id="txF" [style.fontSize.em]="fontSizeService.getFontSize('txF')">
+        <label for="cod">CNS:</label>
+        <input
+          type="text"
+          id="cod"
+          [showMaskTyped]="false"
+          mask="000 0000 0000 0000"
+          [(ngModel)]="codigo"
+          name="cod"
+        />
+      </div>
+      <div class="f-nome" id="txF" [style.fontSize.em]="fontSizeService.getFontSize('txF')">
+        <label for="nome">NAME:</label>
+        <input type="text" id="nome" [(ngModel)]="nomeCrianca" name="nome" />
+        <button class="icon-button" type="submit">
+          <img loading="lazy"
+            src="../../../assets/lupa.png"
+            width="30px"
+            height="30px"
+            alt="Buscar"
+          />
+        </button>
+      </div>
+    </form>
+
+    <div class="cadastros">
+      <div class="blocos" *ngIf="dadosCriancas.length > 0">
+        <ng-container *ngFor="let crianca of dadosCriancas">
+          <div class="info-crianca">
+            <div class="cadastro-img">
+              <img loading="lazy"
+              [src]="crianca.foto || '../../../assets/user.png'"
+              (click)="openImageUploadModal(crianca.id)"
+              class="img-crianca"
+            />
+            </div>
+            <div class="dados-crianca">
+              <div class="line-content">
+                <div class="d-left">
+                  <div class="l-name">
+                      {{ crianca.nome }}
+                  </div>
+                  <div class="l-infos">
+                    <p>Date of birth: {{ crianca.dataNascimento | date:'dd/MM/yyyy' }}</p>
+                    <p>CNS: {{ crianca.cns | mask: '000 0000 0000 0000' }}</p>
+                    <p>Tel 1: {{ crianca.tel1 | mask: '(00) 0000-0000' }}</p>
+                    <p>Tel 2: {{ crianca.tel2 | mask: '(00) 0000-0000' }}</p>
+                    <p>Sex: {{ crianca.sexo }}</p>
+
+                  </div>
+                </div>
+                <div class="d-right">
+                  <div class="r-textos">
+                    <p>ROOM: {{ getSalaNameById(crianca.idSala) }}</p>
+                    <p>Amount: {{ getSalaCapacidadeById(crianca.idSala) }}</p>
+                  </div>
+                  <div class="r-edit">
+                    <img loading="lazy"
+                      [routerLink]="['/instituicao/editar-dados', crianca.id]"
+                      src="../../../assets/lapis.png"
+                      width="30px"
+                      height="30px"
+                      alt="Editar"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div *ngIf="dadosCriancas.length === 0" class="no-results" id="txNR" [style.fontSize.px]="fontSizeService.getFontSize('txNR')">
+        No children found with the filters applied.
       </div>
     </div>
   </div>

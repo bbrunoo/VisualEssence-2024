@@ -1,6 +1,6 @@
 <app-vlibras></app-vlibras>
 <app-chat-bot-icone></app-chat-bot-icone>
-<div class="content">
+<div class="content" *ngIf="currentLanguage === 'pt'">
   <div class="criarS_Cont" *ngIf="!showOpCad" [ngClass]="{'fade_In': !showOpCad}">
     <div class="novaSala">
       <form (submit)="addSala()">
@@ -34,6 +34,52 @@
             <div class="dados"  id="txDad" [style.fontSize.px]="fontSizeService.getFontSize('txDad')">
               <a [routerLink]="['/instituicao/criancas-cadastradas', sala.id]">Crianças Cadastradas</a>
               <p>Quantidade:<label for="">{{sala.capacidade}}</label></p>
+              <p><img loading="lazy" src="../../../../assets/lixo.png" (click)="deleteSala(sala)" width="22px"
+                  height="22px" style="cursor: pointer;" alt=""></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---------------------------------------------------------->
+
+<div class="content" *ngIf="currentLanguage === 'en'">
+  <div class="criarS_Cont" *ngIf="!showOpCad" [ngClass]="{'fade_In': !showOpCad}">
+    <div class="novaSala">
+      <form (submit)="addSala()">
+        <h3 id="txHB" [style.fontSize.px]="fontSizeService.getFontSize('txHB')">NEW ROOM</h3>
+        <input type="text" id="name" placeholder="Name" required [(ngModel)]="sala.nome"
+          [ngModelOptions]="{standalone: true}" (input)="validateForm()" id="txInp"
+          [style.fontSize.px]="fontSizeService.getFontSize('txInp')">
+        <br>
+        <input type="text" id="capacity" placeholder="Capacidade" required [(ngModel)]="sala.capacidade"
+          [ngModelOptions]="{standalone: true}" (input)="validateForm()" id="txInp"
+          [style.fontSize.px]="fontSizeService.getFontSize('txInp')">
+        <div class="botoes">
+          <div class="btnCancelar">
+            <button type="button" (click)="clearForm()" id="txHB"
+              [style.fontSize.px]="fontSizeService.getFontSize('txHB')">Cancel</button>
+          </div>
+          <div class="btnSalvar">
+            <button type="submit" [disabled]="!isFormValid || isSubmitting" id="txHB"
+              [style.fontSize.px]="fontSizeService.getFontSize('txHB')">Salve</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="salasExist">
+      <div class="Salas">
+        <h3 id="txHB" [style.fontSize.px]="fontSizeService.getFontSize('txHB')">EXISTING ROOMS</h3>
+        <div class="barra" *ngIf="salas">
+          <div class="salaInf" [ngClass]="getFontSizeClass()" *ngFor="let sala of salas">
+            <label for="" id="txSala" [style.fontSize.px]="fontSizeService.getFontSize('txSala')">{{sala.nome}}</label>
+            <div class="dados"  id="txDad" [style.fontSize.px]="fontSizeService.getFontSize('txDad')">
+              <a [routerLink]="['/instituicao/criancas-cadastradas', sala.id]">REGISTERED CHILDREN</a>
+              <p>Amount:<label for="">{{sala.capacidade}}</label></p>
               <p><img loading="lazy" src="../../../../assets/lixo.png" (click)="deleteSala(sala)" width="22px"
                   height="22px" style="cursor: pointer;" alt=""></p>
             </div>

@@ -1,12 +1,13 @@
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FontSizeService } from '../../Font/font-size.service';
+import { LanguageService } from '../../Language/language.service';
 
 @Component({
   selector: 'app-doe-info',
   standalone: true,
-  imports: [RouterLink, NgClass],
+  imports: [RouterLink, NgClass, NgIf],
   templateUrl: './doe-info.component.html',
   styleUrl: './doe-info.component.css'
 })
@@ -15,7 +16,19 @@ export class DoeInfoComponent {
 
   //------------------------------------------------------------------------------------//
 
-  constructor(public fontSizeService: FontSizeService) { }
+  constructor(public fontSizeService: FontSizeService, public languageService: LanguageService) {
+    this.languageService.currentLanguage.subscribe(language => {
+      this.currentLanguage = language;
+    });
+  }
+
+  currentLanguage!: string;
+
+  toggleLanguage() {
+    const newLanguage = this.currentLanguage === 'pt' ? 'en' : 'pt';
+
+    this.languageService.changeLanguage(newLanguage);
+  }
 
   ngOnInit(): void {
     this.fontSizeService.initializeFontSize('txH1', 30);

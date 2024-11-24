@@ -1,47 +1,89 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" *ngIf="currentLanguage === 'pt'">
   <header>
     <div class="menu">
       <div class="content-menu">
         <div class="logo">
-          <img loading="lazy"
-            (click)="scrollTo('sobre')"
-            src="../../../assets/HomeImages/VisualEssenceLogo.svg"
-          />
+          <img loading="lazy" (click)="scrollTo('sobre')" src="../../../assets/HomeImages/VisualEssenceLogo.svg" />
         </div>
 
         <div class="MenuOpt">
           <ul id="txMenu" [style.fontSize.px]="fontSizeService.getFontSize('txMenu')">
             <li>
               <div class="AumDim">
-                <button id="txMenu" [style.fontSize.px]="fontSizeService.getFontSize('txMenu')" (click)="aumentarFonte()">A+/</button>
-                <button id="txMenu" [style.fontSize.px]="fontSizeService.getFontSize('txMenu')" (click)="diminuirFonte()">A-</button>
+                <button id="txMenu" [style.fontSize.px]="fontSizeService.getFontSize('txMenu')"
+                  (click)="aumentarFonte()">A+/</button>
+                <button id="txMenu" [style.fontSize.px]="fontSizeService.getFontSize('txMenu')"
+                  (click)="diminuirFonte()">A-</button>
               </div>
             </li>
             <li><a (click)="scrollTo('sobre')">HOME</a></li>
             <li><a (click)="scrollTo('doe-info')">ONGs</a></li>
             <li><a (click)="scrollTo('jogos')">JOGOS</a></li>
             <li>
-              <button class="btnIdi">
-                <img loading="lazy" src="assets/bdEUA.webp" alt="Inglês" />
+              <button class="btnIdi" (click)="toggleLanguage()">
+                <img loading="lazy" *ngIf="currentLanguage === 'pt'" src="../../../../../assets/bdEUA.webp"
+                  alt="Inglês" />
               </button>
-
             </li>
           </ul>
         </div>
 
         <div class="MenuAcco">
           <div *ngIf="user" class="MenuConta">
-            <img loading="lazy" mat-button (click)="openSideModal(userId)" [src]="userInfo?.foto || '../../../../../assets/user.png'"  alt=""/>
+            <img loading="lazy" mat-button (click)="openSideModal(userId)"
+              [src]="userInfo?.foto || '../../../../../assets/user.png'" alt="" />
             <p>{{ userInfo?.nome }}</p>
           </div>
 
           <div class="MenuLogout">
-            <img loading="lazy"
-              [src]="Logout"
-              alt=""
-              [routerLink]="['/opc-entrar']"
-              (click)="logout()"
-            />
+            <img loading="lazy" [src]="Logout" alt="" [routerLink]="['/opc-entrar']" (click)="logout()" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</mat-sidenav-container>
+
+<!-------------------------------------------------------------------------------->
+
+<mat-sidenav-container class="sidenav-container" *ngIf="currentLanguage === 'en'">
+  <header>
+    <div class="menu">
+      <div class="content-menu">
+        <div class="logo">
+          <img loading="lazy" (click)="scrollTo('sobre')" src="../../../assets/HomeImages/VisualEssenceLogo.svg" />
+        </div>
+
+        <div class="MenuOpt">
+          <ul id="txMenu" [style.fontSize.px]="fontSizeService.getFontSize('txMenu')">
+            <li>
+              <div class="AumDim">
+                <button id="txMenu" [style.fontSize.px]="fontSizeService.getFontSize('txMenu')"
+                  (click)="aumentarFonte()">A+/</button>
+                <button id="txMenu" [style.fontSize.px]="fontSizeService.getFontSize('txMenu')"
+                  (click)="diminuirFonte()">A-</button>
+              </div>
+            </li>
+            <li><a (click)="scrollTo('sobre')">HOME</a></li>
+            <li><a (click)="scrollTo('doe-info')">NGOs</a></li>
+            <li><a (click)="scrollTo('jogos')">GAMES</a></li>
+            <li>
+              <button class="btnIdi" (click)="toggleLanguage()">
+                <img loading="lazy" *ngIf="currentLanguage === 'en'" src="../../../../../assets/bdBR.png" alt="Port" />
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="MenuAcco">
+          <div *ngIf="user" class="MenuConta">
+            <img loading="lazy" mat-button (click)="openSideModal(userId)"
+              [src]="userInfo?.foto || '../../../../../assets/user.png'" alt="" />
+            <p>{{ userInfo?.nome }}</p>
+          </div>
+
+          <div class="MenuLogout">
+            <img loading="lazy" [src]="Logout" alt="" [routerLink]="['/opc-entrar']" (click)="logout()" />
           </div>
         </div>
       </div>
